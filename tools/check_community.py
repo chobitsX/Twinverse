@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def main() -> int:
     errors = []
-    required = ["README.md", "README.en.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md", "SECURITY.md",
+    required = ["README.md", "README.zh-CN.md", "README.en.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md", "SECURITY.md",
                 "ROADMAP.md", "LICENSE", "LICENSING.md", "THIRD_PARTY_NOTICES.md",
                 "LICENSES/CC-BY-4.0.txt", "docs/community/ASSET_INVENTORY.json"]
     for name in required:

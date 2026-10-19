@@ -13,7 +13,7 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 TEXT_RESOURCES = {".gd", ".gdshader", ".gdshaderinc", ".tscn", ".tres", ".cfg", ".import", ".json"}
-ROOT_FILES = ["README.md", "README.en.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md",
+ROOT_FILES = ["README.md", "README.zh-CN.md", "README.en.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md",
               "SECURITY.md", "ROADMAP.md", "LICENSE", "LICENSING.md", "THIRD_PARTY_NOTICES.md",
               "project.godot", "export_presets.cfg", ".godot-version", ".gitattributes",
               "tests/tools/test_public_snapshot.py"]

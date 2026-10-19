@@ -1,66 +1,47 @@
-# Twinverse · 孪生宇宙
+# Twinverse
 
-**从宇宙结构到生命内部，用3D观察理解我们所处的世界。**
+**Explore the universe and the inner structures of life through interactive 3D scenes.**
 
-[English](README.en.md) · [开始探索](docs/community/GETTING_STARTED.md) · [参与贡献](CONTRIBUTING.md) · [路线图](ROADMAP.md) · [科学边界](docs/community/SCIENCE.md)
+[简体中文](README.zh-CN.md) · [Getting started](docs/community/GETTING_STARTED.md) · [Contributing](CONTRIBUTING.md) · [Roadmap](ROADMAP.md) · [Scientific scope](docs/community/SCIENCE.md)
 
-![Godot实机中的宇宙结构教学视图](docs/media/cosmic-web.png)
+![A cosmic-web teaching view rendered in Godot](docs/media/cosmic-web.png)
 
-Twinverse 是一个以教育科普为主的开源3D宇宙探索与模拟应用。你可以旋转地球、走近不同生态环境，观察天体运动，也可以沿着一条鱼深入器官、细胞与分子层次。我们希望与开发者、美术创作者、教师和科学爱好者一起，让这些体验更准确、更直观，也能在更多电脑上运行。
+Twinverse is an open-source educational 3D exploration and simulation application. Rotate Earth, approach different habitats, observe celestial motion, or follow a fish into organ, cell and molecular reference views. Developers, artists, educators, scientists and curious explorers are welcome to help improve its accuracy, accessibility and performance.
 
-> 当前版本 **0.4.187（285）**。核心代表场景已可体验；目前实机验证集中在 Apple Silicon Mac。Windows 与低配硬件验证正在路线图中，尚无公开二进制发行版。
+**Current version: 0.4.187 (build 285).** Representative scenes are playable. Native validation currently focuses on Apple Silicon Macs; Windows and lower-end hardware remain unverified. No public binary release is available yet. The in-app interface is primarily Chinese.
 
-## 可以探索什么
+## Explore
 
-| 方向 | 当前体验 |
-|---|---|
-| 宇宙与天文 | 三维宇宙网、银河、太阳系、月球及其他天然卫星；观察自转、公转和同日期的空间关系 |
-| 地球与生态 | 海洋、林地、荒漠、城市、南北极；具名生物、虚拟人物、局部生态教学实验 |
-| 地面观星 | 从地球表面观察参考恒星、银河、太阳、月球与行星，比较昼夜和时间变化 |
-| 生命内部 | 从鱼类进入心脏、细胞、线粒体、分子与原子的参考结构 |
-| 自然探索 | 在3D对象或地域上选择、靠近、进入、返回；按需查看知识、来源与观察主题 |
+- **Space:** an illustrative cosmic web and Milky Way, the Solar System, the Moon and other natural satellites.
+- **Earth:** ocean, woodland, desert, cities and polar environments, with named species and local teaching experiments.
+- **The night sky:** reference stars, the Milky Way, Sun, Moon and planets seen from a ground-level observer.
+- **Life:** reference views of a fish, heart, cells, mitochondria, molecules and atoms.
+- **Spatial interaction:** hover, approach, inspect, enter and return through 3D objects and regions; open explanations when needed.
 
-“孪生宇宙”是长期愿景。当前应用结合真实数据、简化模型和作者设计的教学场景；银河与宇宙网是示意，生态场景也不代表全球实时观测。每类内容的依据与限制见[科学说明](docs/community/SCIENCE.md)。
+A comprehensive digital twin is a long-term ambition. The current application combines reference data, simplified models and authored teaching scenes. It does not provide a live reconstruction of the universe. Read the [scientific boundaries](docs/community/SCIENCE.md).
 
-## 从源码运行
+## Run from source
 
-需要固定版本 **Godot 4.7.2**（完整版本见[.godot-version](.godot-version)），使用标准版编辑器；macOS辅助脚本还需要Python 3.11或更新版本。资源已随源码候选提供，首次打开需要Godot导入。
-
-1. 下载或克隆本仓库。
-2. 在Godot项目管理器中导入根目录的`project.godot`。
-3. 等资源导入完成，按 **F5** 启动整个应用。
-
-macOS也可在仓库根目录运行：
+Use the standard **Godot 4.7.2** editor; the exact build is pinned in [.godot-version](.godot-version). Import `project.godot`, wait for the initial resource import, then press **F5** to run the project. macOS helper scripts also require Python 3.11 or newer.
 
 ```sh
+# From the repository root on macOS; no user save writes.
 ./tools/godot.sh --headless --editor --quit
 ./tools/godot.sh -- --no-save --experience-preset --scale universe
 ```
 
-该命令默认流畅画质，适合第一次体验，不写入用户存档。需要保存进度时运行`./tools/godot.sh`。编辑器不在默认位置时，通过`GODOT_BIN`指定可执行文件。更完整的步骤、版本检查和故障说明见[开发指南](docs/community/DEVELOPMENT.md)。
+For normal save-enabled use, run `./tools/godot.sh`. Set `GODOT_BIN` if the editor is installed elsewhere. Tripo, Blender and generation-service API keys are not required to run existing content. See [development and validation](docs/community/DEVELOPMENT.md) for exact steps and current platform limits.
 
-无需安装Tripo、Blender或申请生成服务API Key即可运行现有内容；这些工具仅用于资产制作。
+## Controls and performance
 
-## 基本操作
+Drag to orbit; pinch or scroll to zoom. Hover for names, click to inspect, and double-click or press Enter to enter supported objects. Backspace returns, R resets the view, Space pauses, and F9 hides the interface. The top-right menu offers Clear, Balanced and Economy quality settings.
 
-- **拖动**环绕，**双指捏合或滚轮**靠近/拉远。
-- **悬停**看名称，**单击**近看；可进入的对象用**双击 / Enter**继续深入。
-- **Backspace**或顶部路径返回，**R**恢复视角，**Space**暂停/继续。
-- **导览**寻找地区、物种与主题；**知识**查看解释与科学边界。
-- **“…” → 画质**选择清晰、流畅或节能；**F9**切换纯净观察。
+The default foreground cap is 30 FPS, with 5 FPS in the background and two shared worker threads. Minimum system requirements have not been certified across devices.
 
-默认前台30 FPS、后台5 FPS、两条共享工作线程。低开销档位会让远处细节更柔和；当前尚未冻结最低硬件配置。[操作与平台状态](docs/community/GETTING_STARTED.md)
+## Contribute
 
-## 一起来建设
+Start with [a bounded first contribution](docs/community/FIRST_CONTRIBUTIONS.md). Science corrections, documentation, translation, art and device reports are welcome alongside code. Read [CONTRIBUTING.md](CONTRIBUTING.md) and the [roadmap](ROADMAP.md).
 
-不只欢迎代码贡献：科学纠错、使用反馈、翻译、3D素材、教学路线与跨设备测试都很有价值。
+## Licensing
 
-- 从[第一份贡献](docs/community/FIRST_CONTRIBUTIONS.md)选择一个范围小、完成标准明确的任务。
-- 提问题时使用仓库中的问题反馈、科学纠错或设备测试模板。
-- 修改前阅读[贡献指南](CONTRIBUTING.md)，一次提交集中解决一个问题，并注明验证范围。
-
-## 许可与来源
-
-项目自有代码与自有文字说明采用 **[MIT](LICENSE)**。项目有权授权的原创及付费生成美术资源采用 **CC BY 4.0**；第三方图片、数据与派生代码保留各自条款，不能统一视为MIT或公共领域。
-
-查看[许可范围](LICENSING.md)、[第三方署名](THIRD_PARTY_NOTICES.md)和[公开资源清单](docs/community/ASSET_INVENTORY.json)。使用科学机构的资料不表示获得其背书。
+Project-owned code and written documentation: **[MIT](LICENSE)**. Project-owned and lawfully relicensable generated artwork: **CC BY 4.0**. Third-party media, data and adapted code retain their own terms. See [LICENSING.md](LICENSING.md), [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and the [asset inventory](docs/community/ASSET_INVENTORY.json); the root MIT license does not replace those terms.
