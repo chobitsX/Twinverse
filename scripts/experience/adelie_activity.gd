@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## A bounded authored demonstration for the existing third penguin.
 ## Every transform is resolved from the one world clock; no wildlife state.
 const CYCLE_S: float = 80.0
@@ -19,25 +20,25 @@ static func sample(time: float, entry_shore_z: float, exit_shore_z: float) -> Di
 	var heading: float = PI/2.0
 	var swim: float = 0.0
 	var walk: float = 0.0
-	var activity: String = "岸上停歇"
+	var activity: String = I18n.text("岸上停歇")
 	if phase >= 6.0 and phase < 26.0:
 		var u: float = (phase-6.0)/20.0
 		position.z = lerpf(LAND_HOME.y, entry_z, smoothstep(0.0, 1.0, u))
 		walk = smoothstep(0.0, .15, u)*(1.0-smoothstep(.85, 1.0, u))
-		activity = "岸上迈步"
+		activity = I18n.text("岸上迈步")
 	elif phase >= 26.0 and phase < 32.0:
 		var u: float = smoothstep(0.0, 1.0, (phase-26.0)/6.0)
 		position.z = lerpf(entry_z, water_z, u)
 		swim = u
 		walk = 1.0-u
-		activity = "入水 · 身体转为水平"
+		activity = I18n.text("入水 · 身体转为水平")
 	elif phase >= 32.0 and phase < 54.0:
 		var angle: float = PI*smoothstep(0.0, 1.0, (phase-32.0)/22.0)
 		position.x = 6.2-2.6*cos(angle)
 		position.z = water_z-3.3*sin(angle)
 		heading = atan2(3.3*cos(angle), 2.6*sin(angle))
 		swim = 1.0
-		activity = "水面鳍划水"
+		activity = I18n.text("水面鳍划水")
 	elif phase >= 54.0 and phase < 60.0:
 		var u: float = smoothstep(0.0, 1.0, (phase-54.0)/6.0)
 		position.x = EXIT_X
@@ -45,7 +46,7 @@ static func sample(time: float, entry_shore_z: float, exit_shore_z: float) -> Di
 		heading = lerp_angle(-PI/2.0, return_heading, smoothstep(.65, 1.0, u))
 		swim = 1.0-u
 		walk = u
-		activity = "上岸 · 收鳍迈步"
+		activity = I18n.text("上岸 · 收鳍迈步")
 	elif phase >= 60.0 and phase < 74.0:
 		var u: float = (phase-60.0)/14.0
 		var progress: float = smoothstep(0.0, 1.0, u)
@@ -53,7 +54,7 @@ static func sample(time: float, entry_shore_z: float, exit_shore_z: float) -> Di
 		position.z = lerpf(exit_z, LAND_HOME.y, progress)
 		heading = return_heading
 		walk = smoothstep(0.0, .15, u)*(1.0-smoothstep(.85, 1.0, u))
-		activity = "岸上返回"
+		activity = I18n.text("岸上返回")
 	elif phase >= 74.0:
 		heading = lerp_angle(return_heading, PI/2.0, smoothstep(74.0, 78.0, phase))
 	return {"position": position, "heading": heading, "swim": swim, "walk": walk,
@@ -109,19 +110,19 @@ static func apply(bird: Node3D, rig: Dictionary, pose: Dictionary, time: float) 
 
 static func readout(host: Node) -> String:
 	var data: Dictionary = host.coordinator.active_scene.get_meta("polar", {})
-	if data.is_empty(): return "企鹅观察尚未就绪"
+	if data.is_empty(): return I18n.text("企鹅观察尚未就绪")
 	var bird: Node3D = data.birds[2] if host._content_follow in [5, 6] else data.birds[0]
-	return "%s · 同一世界时间\n%s" % [bird.get_meta("activity", "形态观察"),
-		"第3只 · 80世界秒作者往返；可暂停/调时比较" if host._content_follow in [5, 6] else "同种成鸟参考；切至跟随往返比较岸上与水中"]
+	return I18n.text("%s · 同一世界时间\n%s") % [bird.get_meta("activity", I18n.text("形态观察")),
+		I18n.text("第3只 · 80世界秒作者往返；可暂停/调时比较") if host._content_follow in [5, 6] else I18n.text("同种成鸟参考；切至跟随往返比较岸上与水中")]
 
 static func marks(host: Node) -> Array[Dictionary]:
 	var data: Dictionary = host.coordinator.active_scene.get_meta("polar", {})
 	if data.is_empty(): return []
 	if host._content_follow in [5, 6]:
-		return [{"at": data.activity_focus.global_position, "label": "同一企鹅 · "+str(data.birds[2].get_meta("activity", "观察")), "offset": Vector2(80, -75)}]
+		return [{"at": data.activity_focus.global_position, "label": I18n.text("同一企鹅 · ")+str(data.birds[2].get_meta("activity", I18n.text("观察"))), "offset": Vector2(80, -75)}]
 	var bird: Node3D = data.birds[0]
 	if bird.has_meta("adelie_skin"):
-		return [{"at": SelectedSkin.point(bird, "Head", Vector3(.080, .586, -.060)), "label": "白色眼环", "offset": Vector2(70, -80)},
-			{"at": SelectedSkin.point(bird, "L_Clavicle", Vector3(.020, .290, -.175)), "label": "鳍状翼", "offset": Vector2(90, 60)}]
-	return [{"at": bird.to_global(Vector3(.110, .611, .108)), "label": "白色眼环", "offset": Vector2(70, -80)},
-		{"at": bird.to_global(Vector3(-.045, .331, .187)), "label": "鳍状翼", "offset": Vector2(90, 60)}]
+		return [{"at": SelectedSkin.point(bird, "Head", Vector3(.080, .586, -.060)), "label": I18n.text("白色眼环"), "offset": Vector2(70, -80)},
+			{"at": SelectedSkin.point(bird, "L_Clavicle", Vector3(.020, .290, -.175)), "label": I18n.text("鳍状翼"), "offset": Vector2(90, 60)}]
+	return [{"at": bird.to_global(Vector3(.110, .611, .108)), "label": I18n.text("白色眼环"), "offset": Vector2(70, -80)},
+		{"at": bird.to_global(Vector3(-.045, .331, .187)), "label": I18n.text("鳍状翼"), "offset": Vector2(90, 60)}]

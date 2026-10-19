@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Original amphibian reference, with deterministic authored throat movement.
 ## This is a presentation of the host clock; no independent physiology state.
 const Forms = preload("res://scripts/experience/life_forms.gd")
@@ -26,7 +27,7 @@ static func prepare(root: Node3D) -> bool:
 static func pose(root: Node3D, time: float, index: int) -> void:
 	var data: Dictionary = root.get_meta("frog_skin")
 	data.skeleton.set_bone_pose_position(data.throat,data.rest+data.direction*sample(time,index))
-	root.set_meta("activity","岸边静伏 · 喉部轻微起伏（作者动作）")
+	root.set_meta("activity",I18n.text("岸边静伏 · 喉部轻微起伏（作者动作）"))
 
 static func _shelf(stage: Node, at: Vector2) -> Vector3:
 	# A small authored shore stone. Its actual flat top is the foot-contact plane.
@@ -71,19 +72,19 @@ static func build(stage: Node) -> void:
 		frogs.append(node)
 	stage.set_meta("frogs",frogs)
 	stage.set_meta("frog_targets",[
-		{"node":frogs[0],"label":"美洲牛蛙 · 鼓膜与喉部","role":"Lithobates catesbeianus成年雄性参考；黄色喉部、眼后鼓膜和短耳后褶。常见于有遮蔽的静水或缓流，主要夜间活动。","source_url":MALE_SOURCE,"distance":.37,"min_distance":.20,"focus_height":.035,"view_offset":Vector3(.20,.12,.30)},
-		{"node":frogs[0],"label":"美洲牛蛙 · 后足与趾蹼","role":"比较短前肢与折叠后肢，前足四趾、后足五趾；最长后趾末端伸出蹼缘。当前仅静伏微动，没有游泳、跳跃或捕食求解。","source_url":SOURCE,"distance":.34,"min_distance":.20,"focus_height":.025,"view_offset":Vector3(-.13,.28,.18)}])
+		{"node":frogs[0],"label":I18n.text("美洲牛蛙 · 鼓膜与喉部"),"role":I18n.text("Lithobates catesbeianus成年雄性参考；黄色喉部、眼后鼓膜和短耳后褶。常见于有遮蔽的静水或缓流，主要夜间活动。"),"source_url":MALE_SOURCE,"distance":.37,"min_distance":.20,"focus_height":.035,"view_offset":Vector3(.20,.12,.30)},
+		{"node":frogs[0],"label":I18n.text("美洲牛蛙 · 后足与趾蹼"),"role":I18n.text("比较短前肢与折叠后肢，前足四趾、后足五趾；最长后趾末端伸出蹼缘。当前仅静伏微动，没有游泳、跳跃或捕食求解。"),"source_url":SOURCE,"distance":.34,"min_distance":.20,"focus_height":.025,"view_offset":Vector3(-.13,.28,.18)}])
 
 static func animate(stage: Node, time: float) -> void:
 	var frogs: Array = stage.get_meta("frogs",[])
 	for i: int in range(frogs.size()): pose(frogs[i],time,i)
 
 static func readout(host: Node) -> String:
-	return "成年雄性参考 · 体长约15 cm（作者尺度）\n岸边静伏；喉部起伏不代表实测呼吸频率或鸣叫。"
+	return I18n.text("成年雄性参考 · 体长约15 cm（作者尺度）\n岸边静伏；喉部起伏不代表实测呼吸频率或鸣叫。")
 
 static func marks(host: Node) -> Array[Dictionary]:
 	var node: Node3D = host.coordinator.active_scene.get_meta("frogs")[0]
 	return [
-		{"at":node.to_global(Vector3(.019,.044,.042)),"label":"鼓膜 · 位于眼后","offset":Vector2(-130,-65)},
-		{"at":node.to_global(Vector3(.045,.024,.018)),"label":"雄性黄色喉部","offset":Vector2(95,65)},
-		{"at":node.to_global(Vector3(-.025,.004,.078)),"label":"后足 · 五趾与趾蹼","offset":Vector2(-110,75)}]
+		{"at":node.to_global(Vector3(.019,.044,.042)),"label":I18n.text("鼓膜 · 位于眼后"),"offset":Vector2(-130,-65)},
+		{"at":node.to_global(Vector3(.045,.024,.018)),"label":I18n.text("雄性黄色喉部"),"offset":Vector2(95,65)},
+		{"at":node.to_global(Vector3(-.025,.004,.078)),"label":I18n.text("后足 · 五趾与趾蹼"),"offset":Vector2(-110,75)}]

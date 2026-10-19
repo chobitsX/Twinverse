@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Shared visual language for the actual application controls.
 const INK: Color = Color(.055, .067, .084, .97)
 const TEXT: Color = Color(.91, .93, .95)
@@ -27,13 +28,17 @@ static func _short_number(value: float) -> String:
 	return text.rstrip("0").trim_suffix(".") if text.contains(".") else text
 
 static func astronomy_rate(days_per_second: float) -> String:
-	if is_zero_approx(days_per_second): return "日期保持"
-	if days_per_second < 1.0/24.0: return "每世界秒 %s 分钟" % _short_number(days_per_second*1440.0)
-	if days_per_second < 1.0: return "每世界秒 %s 小时" % _short_number(days_per_second*24.0)
-	return "每世界秒 %s 天" % _short_number(days_per_second)
+	if is_zero_approx(days_per_second): return I18n.text("日期保持")
+	if days_per_second < 1.0/24.0: return I18n.text("每世界秒 %s 分钟") % _short_number(days_per_second*1440.0)
+	if days_per_second < 1.0: return I18n.text("每世界秒 %s 小时") % _short_number(days_per_second*24.0)
+	return I18n.text("每世界秒 %s 天") % _short_number(days_per_second)
 
 static func fit_popups(root: Node, display_scale: float) -> void:
 	# Popups are separate Windows and do not inherit their Control parent's scale.
+	if root is OptionButton:
+		root.fit_to_longest_item = false
+		root.clip_text = true
+		root.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	if root is MenuButton or root is OptionButton:
 		var popup: PopupMenu = root.get_popup()
 		popup.content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
@@ -195,3 +200,9 @@ static func build(display_scale: float = 1.0) -> Theme:
 	theme.set_stylebox("panel","TooltipPanel",surface(INK,9,6))
 	theme.set_color("font_color","TooltipLabel",TEXT)
 	return theme
+
+static func wrap_panel_labels(root: Node) -> void:
+	# Narrative headings in a drawer must not force it wider in English.
+	if root is Label and root.get_parent() is VBoxContainer:
+		root.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	for child: Node in root.get_children(): wrap_panel_labels(child)

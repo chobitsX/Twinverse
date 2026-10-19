@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 const Deadwood = preload("res://scripts/experience/deadwood_observation.gd")
 const Fungi = preload("res://scripts/experience/fungus_observation.gd")
 const Frogs = preload("res://scripts/experience/frog_observation.gd")
@@ -106,7 +107,7 @@ static func _woodland(stage: Node) -> void:
 	stage.default_target = Vector3(0,1.8,-5)
 	stage.target_position = Vector3(1,1.5,1)
 	stage.close_position = Vector3(5,3,7)
-	stage.set_meta("scientific_label","陆地 · 林地与水边教学场景\n北美温带林缘意象：白尾鹿、赤狐、东部箱龟、阔叶乔木、草本、美洲知更鸟与美洲牛蛙。参考形态模型；合成布局与活动不代表实测种群。")
+	I18n.set_meta_text(stage,"scientific_label","陆地 · 林地与水边教学场景\n北美温带林缘意象：白尾鹿、赤狐、东部箱龟、阔叶乔木、草本、美洲知更鸟与美洲牛蛙。参考形态模型；合成布局与活动不代表实测种群。")
 	stage.environment.fog_density = .00085
 	stage.environment.fog_sky_affect = .18
 	Woodland.build(stage)
@@ -138,7 +139,7 @@ static func _woodland(stage: Node) -> void:
 		bird.set_meta("stable_id","3dworld:teaching:robin:%04d" % k)
 		stage.world_root.add_child(bird)
 		actors.append({"node":bird,"kind":"bird","index":k,"label":"美洲知更鸟 · Turdus migratorius", "source_url":"https://www.allaboutbirds.org/guide/American_Robin/id", "role":"地面取食无脊椎动物，也食果实；模型以成鸟为参考。"})
-	stage.set_meta("content_summary","8只白尾鹿 · 1只赤狐 · 1只东部箱龟 · 12只美洲知更鸟 · 4只成蝶、1只晚龄幼虫及叶背单卵/悬挂绿蛹、普通乳草花丛 · 2只美洲牛蛙 · 河岸9株宽叶香蒲与1只绿纹蜻蜓、河水中8尾金色鲦、6尾斑纹鳉与20处美洲苦草叶丛 · 1段枯木上的云芝参考\n北美白橡与东部白松幼树参考形态\n选择植物可近看株形，或直接观察北美白橡圆裂叶与东部白松五针一束。可从叶背卵到幼虫、悬挂蛹和成蝶比较同种不同阶段与食物。卵/蛹为固定三维参考；阶段切换不生成同一个体的发育，未模拟完整变态、蜕皮或叶片消耗。牛蛙可近看鼓膜、喉部与趾蹼；香蒲可看宽叶与相邻上下穗，蜻蜓可看四翅、绿色胸部和蓝色雄虫腹部；切至水下可比较较深的金色鲦、植被旁近水面的斑纹鳉与美洲苦草的基生莲座、带状叶和走茎。蜻蜓在缓水河岸的短程路线来自统一世界时间，未模拟水中幼体或捕食，两种淡水鱼的游动与苦草轻微摆动也只是作者演示，鱼—草同框不是因果模型。云芝是真菌，可看同一附木子实体的色带与底面孔口，菌丝主要隐在木内。旁边的局部枯木对照可切换水分条件并看碳去向，采用加速教学参数；未计算全林地分解或养分流。其余背景树、草本和蕨状地被仍未鉴种。\n东部箱龟是陆生杂食性爬行类，可近看高拱背甲、后足四趾与同一头部；14厘米背甲、短步路线/40秒节律为作者参考，腹甲铰链静态，不演示闭壳、冬眠、捕食或种群。赤狐可食小动物和植物；本场景的一只米制参考只沿作者路线缓行/停步，不计算捕猎，也未把已有鹿/鸟指定为猎物。白尾鹿以植物为食，林缘提供取食与遮蔽空间。生物数量与布局为教学表达；一只鹿接入成对样方的取食/恢复相对模型，其余活动为作者路线。河岸和浅水颜色来自合成地形的显示映射，不是测绘或水文模拟。未标定真实生长速度、种群或季节物候。")
+	I18n.set_meta_text(stage,"content_summary","8只白尾鹿 · 1只赤狐 · 1只东部箱龟 · 12只美洲知更鸟 · 4只成蝶、1只晚龄幼虫及叶背单卵/悬挂绿蛹、普通乳草花丛 · 2只美洲牛蛙 · 河岸9株宽叶香蒲与1只绿纹蜻蜓、河水中8尾金色鲦、6尾斑纹鳉与20处美洲苦草叶丛 · 1段枯木上的云芝参考\n北美白橡与东部白松幼树参考形态\n选择植物可近看株形，或直接观察北美白橡圆裂叶与东部白松五针一束。可从叶背卵到幼虫、悬挂蛹和成蝶比较同种不同阶段与食物。卵/蛹为固定三维参考；阶段切换不生成同一个体的发育，未模拟完整变态、蜕皮或叶片消耗。牛蛙可近看鼓膜、喉部与趾蹼；香蒲可看宽叶与相邻上下穗，蜻蜓可看四翅、绿色胸部和蓝色雄虫腹部；切至水下可比较较深的金色鲦、植被旁近水面的斑纹鳉与美洲苦草的基生莲座、带状叶和走茎。蜻蜓在缓水河岸的短程路线来自统一世界时间，未模拟水中幼体或捕食，两种淡水鱼的游动与苦草轻微摆动也只是作者演示，鱼—草同框不是因果模型。云芝是真菌，可看同一附木子实体的色带与底面孔口，菌丝主要隐在木内。旁边的局部枯木对照可切换水分条件并看碳去向，采用加速教学参数；未计算全林地分解或养分流。其余背景树、草本和蕨状地被仍未鉴种。\n东部箱龟是陆生杂食性爬行类，可近看高拱背甲、后足四趾与同一头部；14厘米背甲、短步路线/40秒节律为作者参考，腹甲铰链静态，不演示闭壳、冬眠、捕食或种群。赤狐可食小动物和植物；本场景的一只米制参考只沿作者路线缓行/停步，不计算捕猎，也未把已有鹿/鸟指定为猎物。白尾鹿以植物为食，林缘提供取食与遮蔽空间。生物数量与布局为教学表达；一只鹿接入成对样方的取食/恢复相对模型，其余活动为作者路线。河岸和浅水颜色来自合成地形的显示映射，不是测绘或水文模拟。未标定真实生长速度、种群或季节物候。")
 
 static func _tint_person(root: Node, index: int) -> void:
 	# Each instance owns its palette; imported meshes remain shared.
@@ -202,7 +203,7 @@ static func _city(stage: Node) -> void:
 	stage.default_target = Vector3(0,6,-7)
 	stage.target_position = Vector3(8,1.6,8)
 	stage.close_position = Vector3(17,6,19)
-	stage.set_meta("scientific_label","城市与人类 · 合成教学街区\n建筑/人口非现实映射；行人与车辆沿规则路径运行。十字路口分相通行是简化规则示意，不是实测交通流。")
+	I18n.set_meta_text(stage,"scientific_label","城市与人类 · 合成教学街区\n建筑/人口非现实映射；行人与车辆沿规则路径运行。十字路口分相通行是简化规则示意，不是实测交通流。")
 	var ground: Material = _surface(stage,Color(0.49,0.49,0.42))
 	var road: StandardMaterial3D = Forms.material(Color(0.085,0.11,0.125))
 	var pavement: StandardMaterial3D = Forms.material(Color(0.62,0.62,0.53))
@@ -348,7 +349,7 @@ static func _city(stage: Node) -> void:
 		street_person.scale = Vector3(1.0,stature,build)
 		stage.world_root.add_child(street_person)
 		street_walkers.append(street_person)
-		street_walker_targets.append({"node":street_person,"label":"街道人行道行人 %d" % (index+1),"role":"同一位合成行人；外观、身形和人行道路线为作者设置，不代表现实人口或个人身份。","distance":4.0,"min_distance":1.35,"focus_height":.95,"view_offset_local":Vector3(3.4,1.2,.8)})
+		street_walker_targets.append({"node":street_person,"label":I18n.format_text("街道人行道行人 %d",(index+1)),"label_message":{"format":"街道人行道行人 %d","args":index+1},"role":"同一位合成行人；外观、身形和人行道路线为作者设置，不代表现实人口或个人身份。","distance":4.0,"min_distance":1.35,"focus_height":.95,"view_offset_local":Vector3(3.4,1.2,.8)})
 	stage.set_meta("street_walkers",street_walkers)
 	stage.set_meta("street_walker_targets",street_walker_targets)
 	Runoff.build(stage)
@@ -360,7 +361,7 @@ static func _city(stage: Node) -> void:
 		Urban.prepare_car(car,k)
 		stage.world_root.add_child(car)
 		actors.append({"node":car,"kind":"car","index":k,"label":"车辆 · 分相通行 / 停车等待"})
-	stage.set_meta("content_summary","近景27栋商铺/住宅/办公楼 · 34位合成行人 · 12辆原创车辆 · 公园里4只欧亚树麻雀、2只帝王蝶/4株普通乳草种植样本，以及池塘里同种绿头鸭雌雄各1只、岸边3株香蒲；周边为简化街区背景\n观察主题：临街入口、阳台、屋顶能源设施、道路和绿地；可选择建筑、公园小鸟、种植片区和池塘雌雄近看。树麻雀警觉、帝王蝶访花和绿头鸭游动/低头均为作者教学活动，不是实测行为频率或种群。普通乳草与香蒲复用已有原创物种模型；具体栽植、两只绿头鸭和光照坐标均不表示真实地址、当地原生性或现实生境建议。银杏、红枫和东部紫荆幼树及叶/花可近看；季节外观读取统一观察日期，具体月界为教学日历。\n车辆在交叉口前等待，在各自通行时段通过；26位行人在公园两条步道环路活动，2位在西侧斑马线等待/过街，另6位沿两侧连续人行道往返。默认48秒分相；24秒步行方案同步延长清空、周期为56秒。用时、通行窗口和速度为作者规则；街道路线也没有人群决策、碰撞避让或真实人口密度，不是现实交通指导。\n雨水与地表主题：两块9m²剖面台比较入渗、暂存、径流与深排水；作者参数，不是城市洪水预测。")
+	I18n.set_meta_text(stage,"content_summary","近景27栋商铺/住宅/办公楼 · 34位合成行人 · 12辆原创车辆 · 公园里4只欧亚树麻雀、2只帝王蝶/4株普通乳草种植样本，以及池塘里同种绿头鸭雌雄各1只、岸边3株香蒲；周边为简化街区背景\n观察主题：临街入口、阳台、屋顶能源设施、道路和绿地；可选择建筑、公园小鸟、种植片区和池塘雌雄近看。树麻雀警觉、帝王蝶访花和绿头鸭游动/低头均为作者教学活动，不是实测行为频率或种群。普通乳草与香蒲复用已有原创物种模型；具体栽植、两只绿头鸭和光照坐标均不表示真实地址、当地原生性或现实生境建议。银杏、红枫和东部紫荆幼树及叶/花可近看；季节外观读取统一观察日期，具体月界为教学日历。\n车辆在交叉口前等待，在各自通行时段通过；26位行人在公园两条步道环路活动，2位在西侧斑马线等待/过街，另6位沿两侧连续人行道往返。默认48秒分相；24秒步行方案同步延长清空、周期为56秒。用时、通行窗口和速度为作者规则；街道路线也没有人群决策、碰撞避让或真实人口密度，不是现实交通指导。\n雨水与地表主题：两块9m²剖面台比较入渗、暂存、径流与深排水；作者参数，不是城市洪水预测。")
 
 static func update_camera(stage: Node) -> void:
 	# Only a camera close to the real attached cap needs millimetre clipping.

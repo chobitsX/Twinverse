@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## A fixed-ellipse teaching reference on the existing JPL orbit and observer clock.
 ## It does not integrate another orbit or predict physical apsis event times.
 const Orbit = preload("res://scripts/core/solar_ephemeris.gd")
@@ -106,12 +107,12 @@ static func _mesh(root: Node3D, title: String, vertices: PackedVector3Array, pri
 
 static func readout(host: Node) -> String:
 	var data: Dictionary = cached_reference(host.coordinator.active_scene,host.solar_jd)
-	return "各8天：橙 %.1f° / 蓝 %.1f°\n各扫过 %.4f AU² · 当前距日 %.3f AU" % [data.arcs[0].angle_deg,data.arcs[1].angle_deg,data.area,Orbit.position_au(0,host.solar_jd).length()]
+	return I18n.text("各8天：橙 %.1f° / 蓝 %.1f°\n各扫过 %.4f AU² · 当前距日 %.3f AU") % [data.arcs[0].angle_deg,data.arcs[1].angle_deg,data.area,Orbit.position_au(0,host.solar_jd).length()]
 
 static func marks(host: Node) -> Array[Dictionary]:
 	var data: Dictionary = cached_reference(host.coordinator.active_scene,host.solar_jd)
 	return [
-		{"at":Orbit.display_vector(0,data.peri,host.solar_true_distance),"label":"近日点 · %.3f AU" % data.peri.length(),"offset":Vector2(-95,-60)},
-		{"at":Orbit.display_vector(0,data.apo,host.solar_true_distance),"label":"远日点 · %.3f AU" % data.apo.length(),"offset":Vector2(-75,45)},
-		{"at":Vector3.ZERO,"label":"太阳 · 椭圆的一个焦点","offset":Vector2(-90,75)},
-		{"at":Orbit.display_position(0,host.solar_jd,host.solar_true_distance),"label":"水星 · 当前日期","offset":Vector2(25,-35)}]
+		{"at":Orbit.display_vector(0,data.peri,host.solar_true_distance),"label":I18n.text("近日点 · %.3f AU") % data.peri.length(),"offset":Vector2(-95,-60)},
+		{"at":Orbit.display_vector(0,data.apo,host.solar_true_distance),"label":I18n.text("远日点 · %.3f AU") % data.apo.length(),"offset":Vector2(-75,45)},
+		{"at":Vector3.ZERO,"label":I18n.text("太阳 · 椭圆的一个焦点"),"offset":Vector2(-90,75)},
+		{"at":Orbit.display_position(0,host.solar_jd,host.solar_true_distance),"label":I18n.text("水星 · 当前日期"),"offset":Vector2(25,-35)}]

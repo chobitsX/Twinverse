@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 const Model = preload("res://scripts/core/jovian_ephemeris.gd")
 const Cosmos = preload("res://scripts/experience/cosmos_builder.gd")
 const Orientation = preload("res://scripts/core/celestial_orientation.gd")
@@ -61,7 +62,7 @@ static func build(stage: Node) -> void:
 		bodies.append({"node":moon,"label":label,"orbit":orbit,"material":material})
 	Cosmos._stars(stage,1200,150,220,false)
 	stage.set_meta("jovian",{"root":root,"jupiter":jupiter,"planet_material":planet_mat,"bodies":bodies,"orbit_date":-INF,"true_size":false,"valid":false})
-	stage.set_meta("content_summary","木星与四颗伽利略卫星 · 星历轨迹与历史表面拼图\n距离始终按木星平均半径同比缩放；宿主与卫星平均半径、距离始终同比；小对象用明确的识别点，不放大实体球。选择卫星近看，并用天文日期比较运动。")
+	I18n.set_meta_text(stage,"content_summary","木星与四颗伽利略卫星 · 星历轨迹与历史表面拼图\n距离始终按木星平均半径同比缩放；宿主与卫星平均半径、距离始终同比；小对象用明确的识别点，不放大实体球。选择卫星近看，并用天文日期比较运动。")
 	var existing: Dictionary = {}
 	for i: int in range(4): existing[501+i]=bodies[i].node
 	Satellites.attach(stage,"jupiter",jupiter,planet_mat,existing)
@@ -75,7 +76,7 @@ static func set_view(stage: Node, jd: float, true_size: bool) -> void:
 	data.root.visible=data.valid
 	if not data.valid:
 		for body: Dictionary in data.bodies: body.node.set_meta("activity","当前日期无卫星位置 · 主要卫星支持1995—2050。")
-		stage.set_meta("scientific_label","木星主要卫星支持1995—2050 TDB；范围外不外推轨迹。")
+		I18n.set_meta_text(stage,"scientific_label","木星主要卫星支持1995—2050 TDB；范围外不外推轨迹。")
 		Satellites.set_view(stage,jd,true_size)
 		return
 	var sunlight: Vector3 = sun.world_km.normalized() if sun.valid else -Ephemeris.display_position(4,jd,true).normalized()
@@ -97,7 +98,7 @@ static func set_view(stage: Node, jd: float, true_size: bool) -> void:
 		body.material.set_shader_parameter("sun_direction",sunlight)
 		body.material.set_shader_parameter("body_center",body.node.position)
 		body.label.position=body.node.position+Vector3(0,Model.RADII_KM[i]/RADIUS_KM*1.0+.35,0)
-		body.node.set_meta("activity","距木星中心 %.0f km · 平均绕行 %.3f 天\n%s" % [state.distance_km,Model.period_days(i),"半径与距离同比"])
+		body.node.set_meta("activity",I18n.format_text("距木星中心 %.0f km · 平均绕行 %.3f 天\n%s",[state.distance_km,Model.period_days(i),"半径与距离同比"]))
 		if absf(jd-float(data.orbit_date))>.02:
 			var period: float = Model.period_days(i)
 			var start: float = clampf(jd-period*.5,States.START_JD,States.END_JD-period)
@@ -107,7 +108,7 @@ static func set_view(stage: Node, jd: float, true_size: bool) -> void:
 			mesh.surface_end()
 			body.orbit.mesh=mesh
 	if absf(jd-float(data.orbit_date))>.02: data.orbit_date=jd
-	stage.set_meta("scientific_label","JPL木心几何星历 · 主要卫星1995—2050 TDB\n距离同比；%s。历史影像拼图与理想同步姿态，非地面观测预报/实时表面。" % "卫星真实半径（识别点不代表大小）")
+	I18n.set_meta_text(stage,"scientific_label",{"format":"JPL木心几何星历 · 主要卫星1995—2050 TDB\n距离同比；%s。历史影像拼图与理想同步姿态，非地面观测预报/实时表面。","args":"卫星真实半径（识别点不代表大小）"})
 	Satellites.set_view(stage,jd,true_size)
 
 static func targets(stage: Node) -> Array[Dictionary]:
@@ -117,14 +118,14 @@ static func targets(stage: Node) -> Array[Dictionary]:
 	var result: Array[Dictionary] = [{"node":data.jupiter,"label":"木星 · 云带与自转","source_url":"https://science.nasa.gov/jupiter/","role":"木星平均半径69911km；IAU自转模型，Hubble历史拼图，极区边缘颜色延伸为显示辅助。","distance":3.8,"min_distance":1.3,"view_offset":direction*3.8}]
 	for i: int in range(4):
 		var size: float = Model.RADII_KM[i]/RADIUS_KM*1.0
-		result.append({"node":data.bodies[i].node,"label":Model.NAMES[i],"source_url":MAP_SOURCE,"role":"NASA/JPL/USGS历史影像拼图；蓝灰斜纹为影像缺测区，非真实地形。平均半径%.2f km；星历位置与理想同步朝向分别计算，没有求解潮汐、火山或内部海洋。" % Model.RADII_KM[i],"distance":size*4.8,"min_distance":size*1.4,"view_offset":direction*size*4.8})
+		result.append({"node":data.bodies[i].node,"label":Model.NAMES[i],"source_url":MAP_SOURCE,"role":I18n.format_text("NASA/JPL/USGS历史影像拼图；蓝灰斜纹为影像缺测区，非真实地形。平均半径%.2f km；星历位置与理想同步朝向分别计算，没有求解潮汐、火山或内部海洋。",Model.RADII_KM[i]),"distance":size*4.8,"min_distance":size*1.4,"view_offset":direction*size*4.8})
 	return result
 
 static func readout(host: Node) -> String:
-	if not States.available(host.solar_jd): return "当前日期超出1995—2050卫星星历范围。"
-	var text: String = "木心几何轨迹 · TDB日期\n2026年9—12月星历区间平均绕行周期："
-	for i: int in range(4): text+="\n%s：%.3f 天" % [Model.NAMES[i],Model.period_days(i)]
-	return text+"\n周期按缓存角位移估计；不是潮汐或共振动力学求解。"
+	if not States.available(host.solar_jd): return I18n.text("当前日期超出1995—2050卫星星历范围。")
+	var text: String = I18n.text("木心几何轨迹 · TDB日期\n2026年9—12月星历区间平均绕行周期：")
+	for i: int in range(4): text+=I18n.format_text("\n%s：%.3f 天",[Model.NAMES[i],Model.period_days(i)])
+	return text+I18n.text("\n周期按缓存角位移估计；不是潮汐或共振动力学求解。")
 
 static func entry_pose(stage: Node, _source: String) -> Dictionary:
 	return {"position":stage.default_position*1.2,"target":Vector3.ZERO}

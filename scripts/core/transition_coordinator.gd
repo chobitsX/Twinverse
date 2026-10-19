@@ -1,4 +1,5 @@
 extends Node
+const I18n = preload("res://scripts/core/app_text.gd")
 ## One resource request, at most old + incoming scene. No authority writes until commit.
 
 const WorldState = preload("res://scripts/core/world_state.gd")
@@ -312,7 +313,7 @@ func _poll_draining() -> void:
 		_finish_recovery()
 	elif now_us - _drain_start_us >= 10000000 and not _drain_alerted:
 		_drain_alerted = true
-		recovery_required.emit("后台资源仍未结束；当前层可继续观察，请稍后重试或退出后重开。")
+		recovery_required.emit(I18n.text("后台资源仍未结束；当前层可继续观察，请稍后重试或退出后重开。"))
 
 
 func recovery_state() -> Dictionary:

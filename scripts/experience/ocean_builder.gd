@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 const Seagrass = preload("res://scripts/experience/seagrass_observation.gd")
 const Coral = preload("res://scripts/experience/coral_observation.gd")
 const Urchin = preload("res://scripts/experience/urchin_observation.gd")
@@ -201,7 +202,7 @@ static func build(stage: Node) -> void:
 		attributes.dof_blur_far_transition = 0.45
 		attributes.dof_blur_amount = 0.16
 		stage.camera.attributes = attributes
-	stage.set_meta("scientific_note", "蜥蜴岛北大堡礁代表性生境 · A. percula · 场景布局与运动为作者化示意")
+	I18n.set_meta_text(stage,"scientific_note","蜥蜴岛北大堡礁代表性生境 · A. percula · 场景布局与运动为作者化示意")
 	stage.set_meta("reef_lookdev_version", REEF_LOOKDEV_VERSION)
 
 

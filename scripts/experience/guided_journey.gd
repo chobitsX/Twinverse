@@ -1,4 +1,5 @@
 extends PanelContainer
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Optional observation guidance. Never advances, rewinds or resets world state.
 const Catalog = preload("res://scripts/core/scale_catalog.gd")
 const WORLD_ROUTE: Array[String] = ["solar_system", "earth", "atmosphere", "reef", "woodland", "desert", "city", "polar", "earth"]
@@ -86,14 +87,14 @@ func configure(experience: Node, style: StyleBoxFlat) -> void:
 	boundary.add_theme_color_override("font_color",Color(.69,.78,.82))
 	status=_text(column,13)
 	lesson_button=host._button("",visit_lesson); column.add_child(lesson_button)
-	lesson_button.tooltip_text="进入已有观察主题，随后可返回本漫游站；不会自动播放、设置日期或重置实验。"
+	lesson_button.tooltip_text=I18n.text("进入已有观察主题，随后可返回本漫游站；不会自动播放、设置日期或重置实验。")
 	advance_button=host._button("",advance); column.add_child(advance_button)
 	var row: HFlowContainer=HFlowContainer.new(); column.add_child(row)
-	previous_button=host._button("上一步",func() -> void: request_step(step-1)); row.add_child(previous_button)
-	skip_button=host._button("跳过这步",func() -> void: request_step(step+1)); row.add_child(skip_button)
-	pause_button=host._button("暂停引导",suspend); row.add_child(pause_button)
-	restart_button=host._button("从头重播（保留世界）",restart); column.add_child(restart_button)
-	restart_button.tooltip_text="只重播观察路线，不重置世界、时间或存档。"
+	previous_button=host._button(I18n.text("上一步"),func() -> void: request_step(step-1)); row.add_child(previous_button)
+	skip_button=host._button(I18n.text("跳过这步"),func() -> void: request_step(step+1)); row.add_child(skip_button)
+	pause_button=host._button(I18n.text("暂停引导"),suspend); row.add_child(pause_button)
+	restart_button=host._button(I18n.text("从头重播（保留世界）"),restart); column.add_child(restart_button)
+	restart_button.tooltip_text=I18n.text("只重播观察路线，不重置世界、时间或存档。")
 	fit_window(host.ui_view_size())
 	hide()
 
@@ -179,10 +180,10 @@ func _restore_world_progress(value: Variant) -> Dictionary:
 
 func entry_label(key: String) -> String:
 	var value: Dictionary=progress_for(key)
-	var title: String="世界漫游" if key=="world" else "跨尺度引导"
-	if value.completed: return title+" · 查看已完成路线 / 重播"
-	if value.started: return "继续%s · 第%d步" % [title,int(value.step)+1]
-	return "世界漫游 · 太阳系与地球五分支" if key=="world" else "跨尺度引导 · 从银河到原子再返回"
+	var title: String=I18n.text("世界漫游") if key=="world" else I18n.text("跨尺度引导")
+	if value.completed: return title+I18n.text(" · 查看已完成路线 / 重播")
+	if value.started: return I18n.text("继续%s · 第%d步") % [title,int(value.step)+1]
+	return I18n.text("世界漫游 · 太阳系与地球五分支") if key=="world" else I18n.text("跨尺度引导 · 从银河到原子再返回")
 
 func open(key: String="life") -> void:
 	if host.coordinator.is_busy() or not host.world.foreground: return
@@ -232,7 +233,7 @@ func visit_lesson() -> void:
 		host._open_guide()
 		host.world_guide.show_species(true)
 	else:
-		var entry: Dictionary=WORLD_LESSONS[step]
+		var entry: Dictionary=I18n.dictionaries(WORLD_LESSONS)[step]
 		host.start_guide_visit(str(entry.scale),str(entry.topic),true)
 
 func has_lesson_return() -> bool:
@@ -276,21 +277,21 @@ func refresh() -> void:
 	var scale_id: String=route[step]
 	var returning: bool=route_id=="life" and step>=Catalog.EXPLORATION_PATH.size()
 	if route_id=="world":
-		progress.text="可选世界漫游 · %d / %d" % [step+1,route.size()]
-		heading.text="回看地球，继续自由探索" if step==route.size()-1 else WORLD_PROMPTS[scale_id][0]
-		description.text="五类场景已沿同一世界访问。继续自由观察，或从世界导览进入具体主题。" if step==route.size()-1 else WORLD_PROMPTS[scale_id][1]
-		boundary.text=WORLD_PROMPTS[scale_id][2]
+		progress.text=I18n.text(I18n.text("可选世界漫游 · %d / %d") % [step+1,route.size()])
+		heading.text=I18n.text(I18n.text("回看地球，继续自由探索") if step==route.size()-1 else I18n.dictionary(WORLD_PROMPTS)[scale_id][0])
+		description.text=I18n.text(I18n.text("五类场景已沿同一世界访问。继续自由观察，或从世界导览进入具体主题。") if step==route.size()-1 else I18n.dictionary(WORLD_PROMPTS)[scale_id][1])
+		boundary.text=I18n.text(I18n.dictionary(WORLD_PROMPTS)[scale_id][2])
 	else:
-		progress.text="可选跨尺度引导 · %d / %d · %s" % [step+1,route.size(),"返回宏观" if returning else "逐层深入"]
-		heading.text=str(Catalog.describe(scale_id).label) if returning else PROMPTS[scale_id][0]
-		description.text="逐层放大观察范围，回看%s。原来的目标鱼与参考状态仍沿同一世界时间持续。" % Catalog.describe(scale_id).label if returning else PROMPTS[scale_id][1]
-		boundary.text=PROMPTS[scale_id][2]
+		progress.text=I18n.text(I18n.text("可选跨尺度引导 · %d / %d · %s") % [step+1,route.size(),I18n.text("返回宏观") if returning else I18n.text("逐层深入")])
+		heading.text=I18n.text(str(Catalog.describe(scale_id).label) if returning else I18n.dictionary(PROMPTS)[scale_id][0])
+		description.text=I18n.text(I18n.text("逐层放大观察范围，回看%s。原来的目标鱼与参考状态仍沿同一世界时间持续。") % Catalog.describe(scale_id).label if returning else I18n.dictionary(PROMPTS)[scale_id][1])
+		boundary.text=I18n.text(I18n.dictionary(PROMPTS)[scale_id][2])
 	var busy: bool=host.coordinator.is_busy() or pending>=0
 	lesson_button.visible=route_id=="world" and not completed
-	lesson_button.text=WORLD_LESSONS[step].label if route_id=="world" else ""
+	lesson_button.text=I18n.text(I18n.dictionaries(WORLD_LESSONS)[step].label if route_id=="world" else "")
 	lesson_button.disabled=busy or not started
-	status.text="正在前往下一观察点；Esc可暂停引导。" if busy else "路线已结束。可自由探索，或从头重播。" if completed else "可以自由环绕；暂停引导不会暂停世界。"
-	advance_button.text="返回这一步" if host.world.current_scale_id!=scale_id else "结束路线" if step==route.size()-1 else "下一步 · "+str(Catalog.describe(route[step+1]).label)
+	status.text=I18n.text(I18n.text("正在前往下一观察点；Esc可暂停引导。") if busy else I18n.text("路线已结束。可自由探索，或从头重播。") if completed else I18n.text("可以自由环绕；暂停引导不会暂停世界。"))
+	advance_button.text=I18n.text(I18n.text("返回这一步") if host.world.current_scale_id!=scale_id else I18n.text("结束路线") if step==route.size()-1 else I18n.text("下一步 · ")+str(Catalog.describe(route[step+1]).label))
 	advance_button.disabled=busy or completed
 	previous_button.disabled=busy or step==0
 	skip_button.disabled=busy or step==route.size()-1

@@ -192,7 +192,7 @@ def main():
     original = config.read_text()
     files_line = 'export_files=PackedStringArray(' + ', '.join('"res://' + p + '"' for p in sorted(paths)) + ')'
     updated, filters = re.subn(r'^export_filter="[^"]*"$', 'export_filter="resources"', original, count=1, flags=re.M)
-    updated, includes = re.subn(r'^include_filter="[^"]*"$', 'include_filter="data/environment/*.json,assets/data/jovian117/*.json,assets/data/satellites273/*.json,assets/data/satellites273/*.bin,assets/data/satellites275/*.json,assets/data/satellites275/*.bin,assets/data/solar_de440_179/*.bin,assets/data/solar_de440_179/manifest.json,assets/data/ground_sky262/*.json,assets/licenses/*.txt"', updated, count=1, flags=re.M)
+    updated, includes = re.subn(r'^include_filter="[^"]*"$', 'include_filter="localization/*.json,data/environment/*.json,assets/data/jovian117/*.json,assets/data/satellites273/*.json,assets/data/satellites273/*.bin,assets/data/satellites275/*.json,assets/data/satellites275/*.bin,assets/data/solar_de440_179/*.bin,assets/data/solar_de440_179/manifest.json,assets/data/ground_sky262/*.json,assets/licenses/*.txt"', updated, count=1, flags=re.M)
     updated, lists = re.subn(r'^export_files=PackedStringArray\(.*\)$', files_line, updated, count=1, flags=re.M)
     if filters != 1 or lists != 1 or includes != 1:
         parser.error('Expected preset.0 export_filter, export_files and include_filter')

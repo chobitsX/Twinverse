@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Synthetic lowland Sonoran setting, shared world clock and observer only.
 const Iguana = preload("res://scripts/experience/iguana_observation.gd")
 const Rat = preload("res://scripts/experience/kangaroo_rat_observation.gd")
@@ -65,8 +66,8 @@ static func build(stage: Node) -> void:
 	Rat.build(stage)
 	_ocotillo(stage)
 	_brittlebush(stage)
-	stage.set_meta("scientific_label","索诺兰荒漠 · 合成低地灌丛\n巨柱仙人掌、三齿拉瑞阿、绒毛牧豆树、Ocotillo、Brittlebush、沙漠鬣蜥与梅氏袋鼠鼠参考。32°N / 112°W仅用于光照；不是国家公园测绘或生物实测位置。")
-	stage.set_meta("content_summary","9株巨柱仙人掌 · 64株三齿拉瑞阿灌木 · 4株沟缘绒毛牧豆树 · 6株Ocotillo · 8株Brittlebush · 1只沙漠鬣蜥 · 1只梅氏袋鼠鼠\n砾质裸地、浅枯沟、岩石与远山构成作者设计的干旱生境。比较肉质茎、成对小叶、木本荚果、带刺花枝、灰白叶冠/黄花头与夜间食籽动物。\n七种具名动植物参考；Ocotillo与Brittlebush花序均为静态形态样本，不表示当前日期花期或降雨。袋鼠鼠夜间有限教学种子搬运保留。株数、尺寸和布局不是实测群落；未模拟真实种子库存、取食/萌发、植物储水、生长、地下水或物候。")
+	I18n.set_meta_text(stage,"scientific_label","索诺兰荒漠 · 合成低地灌丛\n巨柱仙人掌、三齿拉瑞阿、绒毛牧豆树、Ocotillo、Brittlebush、沙漠鬣蜥与梅氏袋鼠鼠参考。32°N / 112°W仅用于光照；不是国家公园测绘或生物实测位置。")
+	I18n.set_meta_text(stage,"content_summary","9株巨柱仙人掌 · 64株三齿拉瑞阿灌木 · 4株沟缘绒毛牧豆树 · 6株Ocotillo · 8株Brittlebush · 1只沙漠鬣蜥 · 1只梅氏袋鼠鼠\n砾质裸地、浅枯沟、岩石与远山构成作者设计的干旱生境。比较肉质茎、成对小叶、木本荚果、带刺花枝、灰白叶冠/黄花头与夜间食籽动物。\n七种具名动植物参考；Ocotillo与Brittlebush花序均为静态形态样本，不表示当前日期花期或降雨。袋鼠鼠夜间有限教学种子搬运保留。株数、尺寸和布局不是实测群落；未模拟真实种子库存、取食/萌发、植物储水、生长、地下水或物候。")
 
 static func _terrain(stage: Node) -> void:
 	var surface: SurfaceTool = SurfaceTool.new()

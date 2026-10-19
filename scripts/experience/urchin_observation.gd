@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 const EcologySurface = preload("res://scripts/experience/ecology_surface_material.gd")
 ## One original reference invertebrate; shares the stage/world clock.
 const LifeMotion = preload("res://scripts/experience/life_asset_motion.gd")
@@ -22,7 +23,7 @@ static func build(stage: Node) -> void:
 	root.position = ground+Vector3(0,.041,0)
 	stage.world_root.add_child(root)
 	root.set_meta("stable_id","3dworld:teaching:diadema-setosum:0001")
-	root.set_meta("activity","长棘微动 · 作者动作；体壳直径6cm")
+	root.set_meta("activity",I18n.text("长棘微动 · 作者动作；体壳直径6cm"))
 	var spines: MeshInstance3D = root.find_child("Spines",true,false) as MeshInstance3D
 	var material: ShaderMaterial = ShaderMaterial.new()
 	material.shader = SpineShader
@@ -35,13 +36,13 @@ static func build(stage: Node) -> void:
 	stage.world_root.add_child(detail)
 	detail.position = root.position+Vector3(0,.035,0)
 	detail.set_meta("urchin_root",root)
-	detail.set_meta("activity","数五个白斑 · 橙环位于肛锥，并非眼睛")
-	var role: String = "棘皮动物参考形态：长棘、五白斑与橙色肛锥环。资料记录夜间活动；此处为便于观察的个体摆放，未模拟昼夜觅食、摄食量或生物侵蚀。"
+	detail.set_meta("activity",I18n.text("数五个白斑 · 橙环位于肛锥，并非眼睛"))
+	var role: String = I18n.text("棘皮动物参考形态：长棘、五白斑与橙色肛锥环。资料记录夜间活动；此处为便于观察的个体摆放，未模拟昼夜觅食、摄食量或生物侵蚀。")
 	var targets: Array[Dictionary] = [
-		{"node":root,"label":"长刺海胆 · Diadema setosum","role":role,"source_url":SOURCE,"distance":.60,"focus_height":.045,"view_offset":Vector3(.20,.30,.49)},
-		{"node":detail,"label":"长刺海胆 · 顶端结构近看","role":role,"source_url":SOURCE,"distance":.19,"view_offset":Vector3(.006,.18,.04)}]
+		{"node":root,"label":I18n.text("长刺海胆 · Diadema setosum"),"role":role,"source_url":SOURCE,"distance":.60,"focus_height":.045,"view_offset":Vector3(.20,.30,.49)},
+		{"node":detail,"label":I18n.text("长刺海胆 · 顶端结构近看"),"role":role,"source_url":SOURCE,"distance":.19,"view_offset":Vector3(.006,.18,.04)}]
 	stage.set_meta("benthic_targets",targets)
-	stage.set_meta("content_summary",str(stage.get_meta("content_summary"))+"\n长刺海胆提供长棘/五白斑/橙环结构观察；近看摆放与微动为教学设置。")
+	I18n.set_meta_text(stage,"content_summary",{"parts":[I18n.meta_message(stage,"content_summary"),"\n长刺海胆提供长棘/五白斑/橙环结构观察；近看摆放与微动为教学设置。"]})
 
 static func marks(host: Node) -> Array[Dictionary]:
 	var targets: Array = host.coordinator.active_scene.get_meta("benthic_targets",[])
@@ -51,7 +52,7 @@ static func marks(host: Node) -> Array[Dictionary]:
 	var offsets: Array[Vector2] = [Vector2(100,-45),Vector2(70,85),Vector2(-95,80),Vector2(-115,-40),Vector2(-40,-110)]
 	for i: int in range(1,6):
 		var mesh: MeshInstance3D = root.find_child("WhiteSpot"+str(i),true,false) as MeshInstance3D
-		marks.append({"at":mesh.to_global(mesh.get_aabb().get_center()),"label":"白斑 "+str(i),"offset":offsets[i-1]})
+		marks.append({"at":mesh.to_global(mesh.get_aabb().get_center()),"label":I18n.text("白斑 ")+str(i),"offset":offsets[i-1]})
 	var anchor: Node3D = root.find_child("AnalRingAnchor",true,false) as Node3D
-	marks.append({"at":anchor.global_position,"label":"橙色肛锥环 · 非眼睛","offset":Vector2(70,-140)})
+	marks.append({"at":anchor.global_position,"label":I18n.text("橙色肛锥环 · 非眼睛"),"offset":Vector2(70,-140)})
 	return marks

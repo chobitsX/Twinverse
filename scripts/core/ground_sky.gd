@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Geometric topocentric directions using the existing common TDB date.
 ## Fixed FK5/J2000 stars; no EOP, UTC conversion, refraction or light-time.
 const Orientation = preload("res://scripts/core/celestial_orientation.gd")
@@ -36,13 +37,13 @@ static func body(jd: float, index: int, site: Dictionary = PARANAL) -> Dictionar
 	if index==8:
 		vector=Orientation.moon_position_km(jd)
 		radius=Orientation.MOON_RADIUS_KM
-		label="月球"
+		label=I18n.text("月球")
 	else:
 		var earth: Vector3=Orbit.position_au(2,jd)
 		var au: Vector3=-earth if index==9 else Orbit.position_au(index,jd)-earth
 		vector=Vector3(au.x,au.z,-au.y)*Orbit.AU_KM
 		radius=695700.0 if index==9 else Orbit.RADII_KM[index]
-		label="太阳" if index==9 else Orbit.NAMES[index]
+		label=I18n.text("太阳") if index==9 else I18n.strings(Orbit.NAMES)[index]
 	vector-=observer_world_km(jd,site)
 	var distance: float=vector.length()
 	var direction: Vector3=inertial_to_local(jd,site)*vector.normalized()

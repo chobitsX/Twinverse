@@ -1,4 +1,5 @@
 extends PanelContainer
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Reads the authority; following an event navigates the current world, never rewinds it.
 
 const Catalog = preload("res://scripts/core/scale_catalog.gd")
@@ -54,26 +55,26 @@ func configure(host: Node, style: StyleBoxFlat) -> void:
 	page_scroll.add_child(rows)
 	var heading: HBoxContainer = HBoxContainer.new()
 	rows.add_child(heading)
-	var title: Label = host._label("持续观察", 21)
+	var title: Label = host._label(I18n.text("持续观察"), 21)
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	heading.add_child(title)
-	heading.add_child(host.InterfaceTheme.icon("close","关闭影响链与记录 · Esc",hide))
+	heading.add_child(host.InterfaceTheme.icon("close",I18n.text("关闭影响链与记录 · Esc"),hide))
 	status = host._label("", 14)
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	rows.add_child(status)
 	var actions: HBoxContainer = HBoxContainer.new()
 	rows.add_child(actions)
-	fish_button = host._button("返回目标鱼", host.observe_scale.bind("fish"))
+	fish_button = host._button(I18n.text("返回目标鱼"), host.observe_scale.bind("fish"))
 	actions.add_child(fish_button)
-	restart_button = host._button("从头试览", host.toggle_trial)
-	restart_button.tooltip_text = "用相同种子从零开始临时试览；原世界保留，可随时返回。"
+	restart_button = host._button(I18n.text("从头试览"), host.toggle_trial)
+	restart_button.tooltip_text = I18n.text("用相同种子从零开始临时试览；原世界保留，可随时返回。")
 	actions.add_child(restart_button)
 	tabs = TabContainer.new()
 	tabs.custom_minimum_size.y=280
 	tabs.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	rows.add_child(tabs)
 	var oxygen_scroll: ScrollContainer = ScrollContainer.new()
-	oxygen_scroll.name = "礁区到 ATP"
+	oxygen_scroll.name = I18n.text("礁区到 ATP")
 	oxygen_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	tabs.add_child(oxygen_scroll)
 	oxygen_view = OxygenPanel.new()
@@ -81,18 +82,18 @@ func configure(host: Node, style: StyleBoxFlat) -> void:
 	oxygen_scroll.add_child(oxygen_view)
 	oxygen_view.configure(host)
 	var history_scroll: ScrollContainer = ScrollContainer.new()
-	history_scroll.name = "活动记录"
+	history_scroll.name = I18n.text("活动记录")
 	history_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	tabs.add_child(history_scroll)
 	rows = VBoxContainer.new()
 	rows.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	rows.add_theme_constant_override("separation", 10)
 	history_scroll.add_child(rows)
-	rows.add_child(host._label("目标鱼位移 · 0–25 mm · 行为示意", 12))
+	rows.add_child(host._label(I18n.text("目标鱼位移 · 0–25 mm · 行为示意"), 12))
 	trace = MovementTrace.new()
 	trace.custom_minimum_size.y = 100
 	rows.add_child(trace)
-	rows.add_child(host._label("近期记录 · 点击地点返回当前世界中的该处", 12))
+	rows.add_child(host._label(I18n.text("近期记录 · 点击地点返回当前世界中的该处"), 12))
 	journal = RichTextLabel.new()
 	journal.bbcode_enabled = true
 	journal.fit_content = true
@@ -101,7 +102,7 @@ func configure(host: Node, style: StyleBoxFlat) -> void:
 		var scale_id: String = str(meta)
 		if Catalog.contains(scale_id): experience.observe_scale(scale_id))
 	rows.add_child(journal)
-	var note: Label = host._label("轨迹由参考行为驱动；能量与健康为代理值。升级前的旧轨迹保持原记录，不补写过去的生理状态。", 12)
+	var note: Label = host._label(I18n.text("轨迹由参考行为驱动；能量与健康为代理值。升级前的旧轨迹保持原记录，不补写过去的生理状态。"), 12)
 	note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	rows.add_child(note)
 	visibility_changed.connect(func() -> void: _refresh_in_s = 0.0)
@@ -121,18 +122,18 @@ func refresh() -> void:
 	var world: RefCounted = experience.world
 	var habitat: RefCounted = world.habitat
 	var local: Dictionary = habitat.snapshot(world.simulation_time_s, world.current_scale_id)
-	status.text = ("临时试览 · 原世界已保留\n" if experience.is_trial() else "当前世界 · 同一条目标鱼\n")
-	status.text += "海葵双锯鱼 0001 · 宿主附近活动\n蜥蜴岛局部礁区 · 世界时间 %.1f s\n已到访 %d 个尺度 · %d 条活动采样" % [world.simulation_time_s, habitat.visits.size(), habitat.samples.size()]
-	if local.mode == "remote": status.text += "\n目标鱼在当前画面外，活动继续"
+	status.text = I18n.text((I18n.text("临时试览 · 原世界已保留\n") if experience.is_trial() else I18n.text("当前世界 · 同一条目标鱼\n")))
+	status.text += I18n.text(I18n.text("海葵双锯鱼 0001 · 宿主附近活动\n蜥蜴岛局部礁区 · 世界时间 %.1f s\n已到访 %d 个尺度 · %d 条活动采样") % [world.simulation_time_s, habitat.visits.size(), habitat.samples.size()])
+	if local.mode == "remote": status.text += I18n.text(I18n.text("\n目标鱼在当前画面外，活动继续"))
 	fish_button.disabled = experience.coordinator.is_busy()
 	restart_button.disabled = experience.coordinator.is_busy()
-	restart_button.text = "返回原世界" if experience.is_trial() else "从头试览"
+	restart_button.text = I18n.text(I18n.text("返回原世界") if experience.is_trial() else I18n.text("从头试览"))
 	trace.samples.assign(habitat.samples)
 	trace.queue_redraw()
 	var lines: PackedStringArray = []
-	var labels: Dictionary = {"started": "开始观察", "continued": "继续观察", "arrived": "到达", "paused": "暂停", "running": "继续时间", "speed": "调整时间"}
+	var labels: Dictionary = {"started": I18n.text("开始观察"), "continued": I18n.text("继续观察"), "arrived": I18n.text("到达"), "paused": I18n.text("暂停"), "running": I18n.text("继续时间"), "speed": I18n.text("调整时间")}
 	for index: int in range(habitat.events.size() - 1, maxi(-1, habitat.events.size() - 25), -1):
 		var event: Dictionary = habitat.events[index]
 		var suffix: String = " · %s×" % str(event.multiplier) if event.kind == "speed" else ""
 		lines.append("[color=#99b6bb]%.1f s[/color]  %s · [url=%s]%s[/url]%s" % [event.time_s, labels[event.kind], event.scale_id, Catalog.describe(event.scale_id).label, suffix])
-	journal.text = "\n\n".join(lines) if not lines.is_empty() else "开始观察后，这里会记录到访与时间操作。"
+	journal.text = I18n.text("\n\n".join(lines) if not lines.is_empty() else I18n.text("开始观察后，这里会记录到访与时间操作。"))

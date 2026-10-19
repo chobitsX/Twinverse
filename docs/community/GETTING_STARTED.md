@@ -50,4 +50,4 @@
 
 ## English quick route
 
-After importing `project.godot`, run with F5. Use the top navigation/search to find the cosmic web, Solar System, Earth habitats or a species. Drag to orbit; pinch/scroll to zoom; click to inspect; double-click/Enter to enter supported targets. Backspace returns and Space pauses. The interface is primarily Chinese; the controls table above follows the same order. The quality menu provides Clear/Balanced/Economy. Use the device-report template to help test unverified platforms.
+After importing `project.godot`, run with F5. Use the top navigation/search to find the cosmic web, Solar System, Earth habitats or a species. Drag to orbit; pinch/scroll to zoom; click to inspect; double-click/Enter to enter supported targets. Backspace returns and Space pauses. The interface supports English and Simplified Chinese. Use the top-right “···” menu to choose a language or follow the system; the choice is saved locally. The controls table above follows the same order. The quality menu provides High/Balanced/Energy saving. Use the device-report template to help test unverified platforms.

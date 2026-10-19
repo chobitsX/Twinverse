@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Local satellite context in the existing solar viewport; one date and one scale.
 const Model = preload("res://scripts/core/natural_satellites.gd")
 const Ephemeris = preload("res://scripts/core/solar_ephemeris.gd")
@@ -86,7 +87,7 @@ static func _positions(stage: Node, index: int, system: Dictionary, jd: float) -
 		body.point.position=body.node.position
 		body.orbit.position=centre
 		body.orbit.scale=Vector3.ONE*scale
-		body.node.set_meta("activity","距%s中心 %.0f km · 局部距离同比\n%s · %s" % [Model.name(str(system.host)),float(state.distance_km),"距离与半径同比（识别点非大小）","历史影像" if body.mapped else "中性尺寸示意球"])
+		body.node.set_meta("activity",I18n.text("距%s中心 %.0f km · 局部距离同比\n%s · %s") % [Model.name(str(system.host)),float(state.distance_km),I18n.text("距离与半径同比（识别点非大小）"),I18n.text("历史影像") if body.mapped else I18n.text("中性尺寸示意球")])
 	system.sampled_jd=jd; system.sampled_scale=scale; system.sampled_centre=centre
 
 static func update_camera(stage: Node) -> void:
@@ -165,7 +166,7 @@ static func targets(stage: Node) -> Array[Dictionary]:
 		for body: Dictionary in system.bodies:
 			var size: float = float(body.node.mesh.radius)*scale*enlargement(stage)
 			var distance: float = maxf(.012,size*5.0)
-			result.append({"node":body.node,"pick_nodes":[body.point],"label":str(body.record.display_name),"satellite_key":str(body.record.key),"host_planet":index,"destination":Model.BRANCHES[str(system.host)],"distance":distance,"min_distance":maxf(.0015,size*1.5),"entry_distance":distance*.55,"role":Model.description(body.record),"source_url":"https://ssd.jpl.nasa.gov/sats/ephem/"})
+			result.append({"node":body.node,"pick_nodes":[body.point],"label":I18n.text(str(body.record.display_name)),"satellite_key":str(body.record.key),"host_planet":index,"destination":Model.BRANCHES[str(system.host)],"distance":distance,"min_distance":maxf(.0015,size*1.5),"entry_distance":distance*.55,"role":Model.description(body.record),"source_url":"https://ssd.jpl.nasa.gov/sats/ephem/"})
 	return result
 
 static func local_pose(solar: Node, index: int, pose: Dictionary) -> Dictionary:

@@ -1,4 +1,5 @@
 extends PanelContainer
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Shows the real coordinator phase without inventing a completion clock.
 var host: Node
 var heading: Label
@@ -23,8 +24,8 @@ func configure(experience: Node, style: StyleBoxFlat) -> void:
 	resource_bar.custom_minimum_size.y=8
 	resource_bar.show_percentage=false
 	column.add_child(resource_bar)
-	cancel_button=host._button("留在当前场景",_cancel)
-	cancel_button.tooltip_text="取消这次进入；已开始的资源读取可能仍需在后台完成，不会重复启动加载。"
+	cancel_button=host._button(I18n.text("留在当前场景"),_cancel)
+	cancel_button.tooltip_text=I18n.text("取消这次进入；已开始的资源读取可能仍需在后台完成，不会重复启动加载。")
 	column.add_child(cancel_button)
 	hide()
 
@@ -36,18 +37,18 @@ func refresh() -> void:
 	var status: Dictionary=host.coordinator.loading_status()
 	visible=bool(status.cancellable) and not host._spatial_authoring_visible()
 	if not visible:return
-	heading.text="正在进入 · "+str(host.Catalog.describe(str(status.target)).label)
+	heading.text=I18n.text(I18n.text("正在进入 · ")+str(host.Catalog.describe(str(status.target)).label))
 	resource_bar.hide()
 	match int(status.phase):
 		host.Coordinator.Phase.LOADING:
 			var fraction: float=float(status.resource_fraction)
-			phase_label.text="正在读取资源…" if fraction<0. else "资源读取 %.0f%% · 随后准备场景" % (fraction*100.)
+			phase_label.text=I18n.text(I18n.text("正在读取资源…") if fraction<0. else I18n.text("资源读取 %.0f%% · 随后准备场景") % (fraction*100.))
 			resource_bar.visible=fraction>=0.
 			resource_bar.value=maxf(0.,fraction)*100.
 		host.Coordinator.Phase.PREPARING:
-			phase_label.text="正在准备观察内容…"
+			phase_label.text=I18n.text(I18n.text("正在准备观察内容…"))
 		host.Coordinator.Phase.AUTHORING:
-			phase_label.text="正在靠近…"
+			phase_label.text=I18n.text(I18n.text("正在靠近…"))
 
 func _process(_delta: float) -> void:
 	refresh()

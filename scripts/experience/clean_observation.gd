@@ -1,4 +1,5 @@
 extends VBoxContainer
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Temporary presentation state. The world, camera and panel state stay owned by host.
 var host: Node
 var active: bool=false
@@ -24,11 +25,11 @@ func configure(experience: Node, shared_theme: Theme) -> void:
 	var row: HBoxContainer=HBoxContainer.new()
 	row.alignment=BoxContainer.ALIGNMENT_END
 	add_child(row)
-	exit_button=host.InterfaceTheme.icon("close","返回界面 · Esc / F9",set_active.bind(false))
+	exit_button=host.InterfaceTheme.icon("close",I18n.text("返回界面 · Esc / F9"),set_active.bind(false))
 	row.add_child(exit_button)
-	pause_button=host.InterfaceTheme.icon("pause","暂停或继续世界时间 · Space",host._toggle_pause)
+	pause_button=host.InterfaceTheme.icon("pause",I18n.text("暂停或继续世界时间 · Space"),host._toggle_pause)
 	row.add_child(pause_button)
-	var hint: Label=host._label("拖动环绕 · 滚轮缩放 · F9 返回",12)
+	var hint: Label=host._label(I18n.text("拖动环绕 · 滚轮缩放 · F9 返回"),12)
 	hint.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT
 	add_child(hint)
 	mouse_filter=Control.MOUSE_FILTER_IGNORE
@@ -48,7 +49,7 @@ func set_active(value: bool) -> void:
 	refresh()
 
 func refresh() -> void:
-	location.text="观察 · "+str(host.Catalog.describe(host.world.current_scale_id).label)
+	location.text=I18n.text(I18n.text("观察 · ")+str(host.Catalog.describe(host.world.current_scale_id).label))
 	pause_button.set("symbol","play" if host.world.paused else "pause"); pause_button.queue_redraw()
 
 func _process(_delta: float) -> void:

@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## General teleost illustration. All moving materials receive the host's world time.
 
 const TISSUE: Shader = preload("res://shaders/anatomy_tissue.gdshader")
@@ -47,8 +48,8 @@ static func build(stage: Node) -> void:
 	stage.set_meta("anatomy_solid", solid)
 	stage.set_meta("anatomy_cutaway", cutaway)
 	stage.set_meta("anatomy_regions", _region_definitions())
-	stage.set_meta("scientific_label", SCIENCE_LABEL)
-	stage.set_meta("scientific_note", SCIENCE_LABEL)
+	I18n.set_meta_text(stage,"scientific_label",SCIENCE_LABEL)
+	I18n.set_meta_text(stage,"scientific_note",SCIENCE_LABEL)
 	stage.set_meta("anatomy_flow_label", "暖色穿透标记仅表示血流方向；不是血氧颜色、细胞实测轨迹或流速。")
 	stage.set_meta("anatomy_scale_label", "示意放大 · 4 mm 仅为鱼体内布局假设")
 	stage.set_meta("orbit_min_distance", 0.22)

@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Authored motion on the original oral meshes; all poses derive from world seconds.
 const CYCLE_S: float = 12.0
 
@@ -25,7 +26,7 @@ static func phase(time: float) -> float:
 
 static func phase_label(time: float) -> String:
 	var value: float = phase(time)
-	return "伸出参考" if value<.25 else ("缓慢收拢" if value<.60 else "再伸出参考")
+	return I18n.text("伸出参考") if value<.25 else (I18n.text("缓慢收拢") if value<.60 else I18n.text("再伸出参考"))
 
 static func animate(stage: Node, time: float) -> void:
 	if not stage.has_meta("holothuria_root"): return
@@ -36,10 +37,10 @@ static func animate(stage: Node, time: float) -> void:
 		var cycle: float = phase(time)+float(index)/12.0
 		var inward: float = (1.0-cos(cycle*TAU))*.5
 		entry.pivot.basis = Basis(entry.axis,.08-.48*inward)
-	root.set_meta("activity","身体固定 · 错相触手伸收示意 · 首触手"+phase_label(time))
+	root.set_meta("activity",I18n.text("身体固定 · 错相触手伸收示意 · 首触手")+phase_label(time))
 
 static func readout(host: Node) -> String:
 	var stage: Node = host.coordinator.active_scene
-	if not stage.has_meta("holothuria_root"): return "等待原海参观察就绪"
+	if not stage.has_meta("holothuria_root"): return I18n.text("等待原海参观察就绪")
 	var time: float = host.world.simulation_time_s
-	return "同一只黑海参 · 触手伸收示意\n所指标记触手：%s · %.1f 秒\n%s；12秒循环为作者设置" % [phase_label(time),time,"已暂停，可继续看触手" if host.world.paused else "暂停可看口端与附着"]
+	return I18n.text("同一只黑海参 · 触手伸收示意\n所指标记触手：%s · %.1f 秒\n%s；12秒循环为作者设置") % [phase_label(time),time,I18n.text("已暂停，可继续看触手") if host.world.paused else I18n.text("暂停可看口端与附着")]

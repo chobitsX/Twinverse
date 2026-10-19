@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Slow authored observation itinerary. All phases come from the host world time.
 ## Species reference supports ground foraging, not these distances or flight dynamics.
 const PERIOD: float = 48.0
@@ -31,30 +32,30 @@ static func sample(time: float, index: int) -> Dictionary:
 	var distance: float = 0.0
 	var inspect: float = pulse(p,5.0,6.4)+pulse(p,12.0,13.4)+pulse(p,17.0,18.4)
 	var wings: float = smoothstep(20.5,FLIGHT_START,p)*(1.0-smoothstep(FLIGHT_END,47.5,p))
-	var activity: String = "停步查看 · 地面觅食参考"
+	var activity: String = I18n.text("停步查看 · 地面觅食参考")
 	if p>=2.0 and p<4.0:
 		var u: float = (p-2.0)/2.0
 		displacement.x = STEP_DISTANCE*smoothstep(0.0,1.0,u)
 		distance = displacement.x
 		moving = 4.0*u*(1.0-u)
-		activity = "短距离行走 · 寻找取食位置"
+		activity = I18n.text("短距离行走 · 寻找取食位置")
 	elif p>=4.0 and p<9.0:
 		displacement.x = STEP_DISTANCE
 		distance = STEP_DISTANCE
 		heading += PI*smoothstep(7.0,9.0,p)
-		if p>=7.0: activity = "停步转身 · 改变查看方向"
+		if p>=7.0: activity = I18n.text("停步转身 · 改变查看方向")
 	elif p>=9.0 and p<11.0:
 		var u: float = (p-9.0)/2.0
 		displacement.x = STEP_DISTANCE*(1.0-smoothstep(0.0,1.0,u))
 		distance = 2.0*STEP_DISTANCE-displacement.x
 		heading += PI
 		moving = 4.0*u*(1.0-u)
-		activity = "短距离行走 · 返回观察点"
+		activity = I18n.text("短距离行走 · 返回观察点")
 	elif p>=11.0 and p<16.0:
 		distance = 2.0*STEP_DISTANCE
 		heading += PI*(1.0-smoothstep(14.0,16.0,p))
-		if p>=14.0: activity = "停步转身 · 准备下一段活动"
-	if p>=20.5 and p<FLIGHT_START: activity = "展开翅膀 · 准备起飞"
+		if p>=14.0: activity = I18n.text("停步转身 · 准备下一段活动")
+	if p>=20.5 and p<FLIGHT_START: activity = I18n.text("展开翅膀 · 准备起飞")
 	if p>=FLIGHT_START and p<FLIGHT_END:
 		var u: float = smoothstep(0.0,1.0,(p-FLIGHT_START)/(FLIGHT_END-FLIGHT_START))
 		var angle: float = TAU*u
@@ -65,8 +66,8 @@ static func sample(time: float, index: int) -> Dictionary:
 		heading += atan2(-tangent.z,tangent.x)
 		pitch = atan2(tangent.y,Vector2(tangent.x,tangent.z).length())
 		bank = .14*sin(angle)
-		activity = "起飞 · 收起双足" if p<26.0 else "落地 · 伸足接近地面" if p>42.0 else "飞行 · 缓速观察翼与尾"
-	elif p>=FLIGHT_END: activity = "落地收翼 · 返回地面观察"
+		activity = I18n.text("起飞 · 收起双足") if p<26.0 else I18n.text("落地 · 伸足接近地面") if p>42.0 else I18n.text("飞行 · 缓速观察翼与尾")
+	elif p>=FLIGHT_END: activity = I18n.text("落地收翼 · 返回地面观察")
 	var at: Vector3 = base_position(index)+displacement.rotated(Vector3.UP,index*1.7)
 	return {"position":at,"height":displacement.y,"heading":heading,"pitch":pitch,"bank":bank,
 		"walking":moving,"inspect":inspect,"wings":wings,"tuck":smoothstep(.06,.24,displacement.y),

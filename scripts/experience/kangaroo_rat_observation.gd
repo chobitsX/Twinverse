@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## A visible authored seed-carrying route driven by the sole world time.
 const Terrain = preload("res://scripts/experience/desert_terrain.gd")
 const Life = preload("res://scripts/experience/life_asset_motion.gd")
@@ -17,24 +18,24 @@ static func sample(time: float, night: bool, resources: Dictionary = {}) -> Dict
 	if not night:
 		var retained: bool=int(resources.get("pouch_units",0))>0
 		return {"where":DEN_POINT,"facing":SEED_POINT-DEN_POINT,"moving":false,"carrying":retained,
-			"activity":"日间静态形态参考 · 颊囊教学单位待夜间续接" if retained else "日间静态形态参考 · 夜间才示意采种"}
+			"activity":I18n.text("日间静态形态参考 · 颊囊教学单位待夜间续接") if retained else I18n.text("日间静态形态参考 · 夜间才示意采种")}
 	if int(resources.get("ground_units",1))==0 and int(resources.get("pouch_units",0))==0:
 		return {"where":DEN_POINT,"facing":SEED_POINT-DEN_POINT,"moving":false,"carrying":false,
-			"activity":"地表教学种子已搬完 · 洞穴缓存留存"}
+			"activity":I18n.text("地表教学种子已搬完 · 洞穴缓存留存")}
 	var cycle: float = fposmod(time,CYCLE_S)
 	if cycle<3.0:
 		return {"where":DEN_POINT.lerp(SEED_POINT,smoothstep(0.0,3.0,cycle)),
 			"facing":SEED_POINT-DEN_POINT,"moving":true,"carrying":false,
-			"activity":"夜间出洞 · 接近落地牧豆树荚果"}
+			"activity":I18n.text("夜间出洞 · 接近落地牧豆树荚果")}
 	if cycle<6.0:
 		return {"where":SEED_POINT,"facing":DEN_POINT-SEED_POINT,"moving":false,"carrying":false,
-			"activity":"夜间取种 · 颊囊可储存种子"}
+			"activity":I18n.text("夜间取种 · 颊囊可储存种子")}
 	if cycle<10.0:
 		return {"where":SEED_POINT.lerp(DEN_POINT,smoothstep(6.0,10.0,cycle)),
 			"facing":DEN_POINT-SEED_POINT,"moving":true,"carrying":int(resources.get("pouch_units",1))>0,
-			"activity":"颊囊携种回洞 · 循环路线为作者示意"}
+			"activity":I18n.text("颊囊携种回洞 · 循环路线为作者示意")}
 	return {"where":DEN_POINT,"facing":SEED_POINT-DEN_POINT,"moving":false,"carrying":false,
-		"activity":"洞口停留 · 缓存计数是有限教学单位"}
+		"activity":I18n.text("洞口停留 · 缓存计数是有限教学单位")}
 
 
 static func _terrain_position(point: Vector2) -> Vector3:
@@ -108,16 +109,16 @@ static func build(stage: Node) -> void:
 	stage.world_root.add_child(lamp)
 	stage.set_meta("kangaroo_rat_observation_light",lamp)
 	stage.set_meta("kangaroo_rat_night",false)
-	var role: String="梅氏袋鼠鼠Dipodomys merriami。大后足、长尾、小耳、大眼与颊囊是形态参考；NPS记录夜间采食牧豆树种子并在洞内贮藏，USFS记录袋鼠鼠可搬运并缓存牧豆树种子。此个体、洞口、落地荚果、24秒路线和8枚可见教学单位为作者设置；洞口旁圆盘是缓存剖面示意，不是露在地面的真实种子。白天仅静态展示，夜间提供辅助观察光，不代表月光、实测搬运率、真实取食或萌发。"
+	var role: String=I18n.text("梅氏袋鼠鼠Dipodomys merriami。大后足、长尾、小耳、大眼与颊囊是形态参考；NPS记录夜间采食牧豆树种子并在洞内贮藏，USFS记录袋鼠鼠可搬运并缓存牧豆树种子。此个体、洞口、落地荚果、24秒路线和8枚可见教学单位为作者设置；洞口旁圆盘是缓存剖面示意，不是露在地面的真实种子。白天仅静态展示，夜间提供辅助观察光，不代表月光、实测搬运率、真实取食或萌发。")
 	var targets: Array=stage.get_meta("desert_targets",[])
-	targets.append({"node":root,"label":"梅氏袋鼠鼠 · 后足、长尾与颊囊","role":role,"source_url":SPECIES_SOURCE,"distance":.70,"min_distance":.16,"focus_height":.10,"view_offset":Vector3(.34,.27,.52)})
+	targets.append({"node":root,"label":I18n.text("梅氏袋鼠鼠 · 后足、长尾与颊囊"),"role":role,"source_url":SPECIES_SOURCE,"distance":.70,"min_distance":.16,"focus_height":.10,"view_offset":Vector3(.34,.27,.52)})
 	var habitat: Node3D=Node3D.new()
 	habitat.name="KangarooRatSeedRouteObserver"
 	habitat.position=_terrain_position((SEED_POINT+DEN_POINT)*.5)
 	stage.world_root.add_child(habitat)
 	stage.set_meta("kangaroo_rat_route_observer",habitat)
-	habitat.set_meta("activity","同株附近落地荚果、洞口与袋鼠鼠 · 夜间循环示意")
-	targets.append({"node":habitat,"label":"梅氏袋鼠鼠 · 荚果与洞穴","role":role,"source_url":ECOLOGY_SOURCE,"distance":3.0,"focus_height":.22,"view_offset":Vector3(1.45,1.4,2.0)})
+	habitat.set_meta("activity",I18n.text("同株附近落地荚果、洞口与袋鼠鼠 · 夜间循环示意"))
+	targets.append({"node":habitat,"label":I18n.text("梅氏袋鼠鼠 · 荚果与洞穴"),"role":role,"source_url":ECOLOGY_SOURCE,"distance":3.0,"focus_height":.22,"view_offset":Vector3(1.45,1.4,2.0)})
 	stage.set_meta("desert_targets",targets)
 	animate(stage,0.0)
 

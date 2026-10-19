@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## One authored nearshore ice-krill group, resolved from the host's world time.
 const LifeMotion = preload("res://scripts/experience/life_asset_motion.gd")
 const SOURCE: String = "https://euphausiids.linnaeus.naturalis.nl/linnaeus_ng/app/views/species/taxon.php?epi=3&id=176888"
@@ -65,9 +66,9 @@ static func build(stage: Node) -> Array[Dictionary]:
 		"head_focus": head_focus, "fill": fill})
 	animate(stage, float(stage.world_snapshot.simulation_time_s))
 	return [
-		{"node": overview, "label": "近岸水下 · 冰磷虾小群", "role": "12只同种作者参考，保持约3厘米本体；海冰旁数量与游动不是实测群密度或水流。可切到同一只成体近看。", "source_url": SOURCE, "distance": .40, "min_distance": .20, "view_offset": Vector3(.015, .04, .40)},
-		{"node": animals[0], "label": "冰磷虾 · Euphausia crystallorophias", "role": "约3厘米成体参考：大圆眼、长尖额剑、分节腹部、游泳足与尾扇。镜头靠近，模型保持米制尺寸；触角伸出本体。", "source_url": SOURCE, "distance": .070, "min_distance": .033, "view_offset": Vector3(.006, .010, .070)},
-		{"node": head_focus, "label": "冰磷虾 · 同一成体的大眼与额剑", "role": "同一只小群成体的头部，不是另造的放大标本；比较黑色大圆眼、眼柄和长尖额剑。细部为原创简化形态。", "source_url": MORPHOLOGY_SOURCE, "distance": .024, "min_distance": .014, "view_offset": Vector3(.001, .004, .024)},
+		{"node": overview, "label": I18n.text("近岸水下 · 冰磷虾小群"), "role": I18n.text("12只同种作者参考，保持约3厘米本体；海冰旁数量与游动不是实测群密度或水流。可切到同一只成体近看。"), "source_url": SOURCE, "distance": .40, "min_distance": .20, "view_offset": Vector3(.015, .04, .40)},
+		{"node": animals[0], "label": I18n.text("冰磷虾 · Euphausia crystallorophias"), "role": I18n.text("约3厘米成体参考：大圆眼、长尖额剑、分节腹部、游泳足与尾扇。镜头靠近，模型保持米制尺寸；触角伸出本体。"), "source_url": SOURCE, "distance": .070, "min_distance": .033, "view_offset": Vector3(.006, .010, .070)},
+		{"node": head_focus, "label": I18n.text("冰磷虾 · 同一成体的大眼与额剑"), "role": I18n.text("同一只小群成体的头部，不是另造的放大标本；比较黑色大圆眼、眼柄和长尖额剑。细部为原创简化形态。"), "source_url": MORPHOLOGY_SOURCE, "distance": .024, "min_distance": .014, "view_offset": Vector3(.001, .004, .024)},
 	]
 
 static func animate(stage: Node, time: float) -> void:
@@ -81,13 +82,13 @@ static func animate(stage: Node, time: float) -> void:
 		for pair: int in range(5):
 			var joint: Node3D = data.pleopods[index][pair]
 			if joint != null: joint.rotation.z = .23 * sin(TAU * time * 1.8 + float(index) * .9 - float(pair) * .65)
-		animal.set_meta("activity", "作者短程游动 · 本体约3 cm")
+		animal.set_meta("activity", I18n.text("作者短程游动 · 本体约3 cm"))
 	data.head_focus.position = (data.animals[0] as Node3D).to_global(Vector3(.0107, .0010, .0010))
 
 static func readout(host: Node, topic: String) -> String:
 	if topic == "ice_krill_habitat":
-		return "12只同种教学参考 · 本体约3 cm\n冰磷虾是阿德利企鹅近岸食物的一种；本场景没有捕食过程。"
-	return "同一只成体 · 额剑至尾端约3 cm\n形态近看隔离显示该个体；回到小群可看其他个体。尺寸与世界时间保持。"
+		return I18n.text("12只同种教学参考 · 本体约3 cm\n冰磷虾是阿德利企鹅近岸食物的一种；本场景没有捕食过程。")
+	return I18n.text("同一只成体 · 额剑至尾端约3 cm\n形态近看隔离显示该个体；回到小群可看其他个体。尺寸与世界时间保持。")
 
 static func marks(host: Node, topic: String) -> Array[Dictionary]:
 	var stage: Node = host.coordinator.active_scene
@@ -95,10 +96,10 @@ static func marks(host: Node, topic: String) -> Array[Dictionary]:
 	var data: Dictionary = stage.get_meta("ice_krill")
 	var animal: Node3D = data.animals[0]
 	if topic == "ice_krill_habitat":
-		return [{"at": animal.global_position, "label": "冰磷虾 · 3 cm量级", "offset": Vector2(70, -60)}]
+		return [{"at": animal.global_position, "label": I18n.text("冰磷虾 · 3 cm量级"), "offset": Vector2(70, -60)}]
 	var result: Array[Dictionary] = [
-		{"at": animal.to_global(Vector3(.01135, .0011, .00157)), "label": "大圆眼", "offset": Vector2(80, -95)},
-		{"at": animal.to_global(Vector3(.0125, .00145, 0)), "label": "长尖额剑", "offset": Vector2(120, 30)}]
+		{"at": animal.to_global(Vector3(.01135, .0011, .00157)), "label": I18n.text("大圆眼"), "offset": Vector2(80, -95)},
+		{"at": animal.to_global(Vector3(.0125, .00145, 0)), "label": I18n.text("长尖额剑"), "offset": Vector2(120, 30)}]
 	if topic != "ice_krill_head":
-		result.append({"at": animal.to_global(Vector3(-.0162, -.0012, .0018)), "label": "尾扇", "offset": Vector2(-80, -75)})
+		result.append({"at": animal.to_global(Vector3(-.0162, -.0012, .0018)), "label": I18n.text("尾扇"), "offset": Vector2(-80, -75)})
 	return result

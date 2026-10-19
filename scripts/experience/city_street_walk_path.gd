@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Six authored sidewalk walkers use the existing world time and person rig.
 ## The paired narrow loops stay on the two paved strips; they are not a crowd model.
 const COUNT: int = 6
@@ -34,4 +35,4 @@ static func sample(time: float, index: int) -> Dictionary:
 
 static func _pose(x: float, z: float, dx: float, dz: float, travel: float) -> Dictionary:
 	return {"position":Vector3(x,.16,z),"heading":fposmod(atan2(-dz,dx),TAU),
-		"moving":1.0,"travel":travel,"activity":"街道人行道步行"}
+		"moving":1.0,"travel":travel,"activity":I18n.text("街道人行道步行")}

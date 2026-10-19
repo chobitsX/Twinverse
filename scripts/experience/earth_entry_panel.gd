@@ -1,4 +1,5 @@
 extends PanelContainer
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Authored exploration areas on the globe, never real habitat boundaries.
 const Sites = preload("res://scripts/data/earth_sites.gd")
 const Locator = preload("res://scripts/experience/earth_locator.gd")
@@ -65,10 +66,10 @@ func select_region(id: String) -> void:
 	if not available() or not ORDER.has(id): return
 	selected = id
 	host._earth_reference = id
-	card_title.text = LABELS[id]
-	card_kind.text = "Paranal参考观星位置 · 合成山地平台" if id=="night_sky" else "蜥蜴岛区域 · 场景布局为教学设定" if id=="reef" else "光照参考区域 · 合成场景，非实地地址"
-	footnote.text = "地球 → 大气 → 海面 → 珊瑚礁" if id=="reef" else "再点区域或双指靠近进入 · 拉远返回"
-	host.message_label.text = "已选 "+str(LABELS[id])+" · 双指靠近探索"
+	card_title.text = I18n.text(I18n.dictionary(LABELS)[id])
+	card_kind.text = I18n.text(I18n.text("Paranal参考观星位置 · 合成山地平台") if id=="night_sky" else I18n.text("蜥蜴岛区域 · 场景布局为教学设定") if id=="reef" else I18n.text("光照参考区域 · 合成场景，非实地地址"))
+	footnote.text = I18n.text(I18n.text("地球 → 大气 → 海面 → 珊瑚礁") if id=="reef" else I18n.text("再点区域或双指靠近进入 · 拉远返回"))
+	host.message_label.text = I18n.text(I18n.text("已选 ")+str(I18n.dictionary(LABELS)[id])+I18n.text(" · 双指靠近探索"))
 	host._refresh_city_view_button()
 	refresh_points()
 
@@ -124,7 +125,7 @@ func _build_markers(stage: Node) -> void:
 		border_material.albedo_color = Color(COLORS[id],.38)
 		var border: MeshInstance3D = MeshInstance3D.new(); border.mesh = boundary_mesh; border.material_override = border_material
 		border.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF; root.add_child(border)
-		var label: Label3D = Locator._label(stage,str(LABELS[id]).split(" · ")[0],COLORS[id])
+		var label: Label3D = Locator._label(stage,str(I18n.dictionary(LABELS)[id]).split(" · ")[0],COLORS[id])
 		label.font_size = 16; label.outline_size = 2; label.modulate = Color(.88,.93,.95); label.hide()
 		entries[id] = {"root":root,"material":material,"border_material":border_material,"label":label,"polygon":polygon,"site":site}
 	stage.set_meta("earth_entry_markers",entries)

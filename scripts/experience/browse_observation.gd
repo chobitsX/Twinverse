@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 const Model = preload("res://scripts/core/woodland_browse.gd")
 const Forms = preload("res://scripts/experience/life_forms.gd")
 const OPEN_AT: Vector3 = Vector3(11,0,3)
@@ -61,7 +62,7 @@ static func build(stage: Node) -> void:
 	var anchor: Node3D = Node3D.new()
 	stage.world_root.add_child(anchor)
 	anchor.position=Vector3(12.7,stage.builder._height(12.7,3)+.45,3)
-	stage.set_meta("browse_targets",[{"node":anchor,"pick_nodes":[plots[0].root,plots[1].root],"topic":"browse","spatial_hint":"点左侧门闩开放/保护 · 双击样方看说明","label":"植被对照 · 开放区与保护区","role":"同样的初始相对叶量，比较取食与恢复。加速教学，不对应实际年数或森林生物量。","source_url":Model.SOURCE,"distance":13.0,"view_offset":Vector3(-3.0,7.5,10.4)}])
+	stage.set_meta("browse_targets",[{"node":anchor,"pick_nodes":[plots[0].root,plots[1].root],"topic":"browse","spatial_hint":I18n.text("点左侧门闩开放/保护 · 双击样方看说明"),"label":I18n.text("植被对照 · 开放区与保护区"),"role":I18n.text("同样的初始相对叶量，比较取食与恢复。加速教学，不对应实际年数或森林生物量。"),"source_url":Model.SOURCE,"distance":13.0,"view_offset":Vector3(-3.0,7.5,10.4)}])
 	var latch: Node3D = Node3D.new()
 	latch.name="LeftBrowseGateLatch"
 	latch.position=Vector3(-1.13,stage.builder._height(OPEN_AT.x-1.13,OPEN_AT.z+1.1)-plots[0].root.position.y,1.1)
@@ -82,7 +83,7 @@ static func build(stage: Node) -> void:
 	caption.modulate=Color(.83,.95,.78)
 	latch.add_child(caption)
 	stage.set_meta("browse_latch",{"node":latch,"lever":lever,"caption":caption})
-	stage.set_meta("spatial_controls",[{"node":latch,"observer":anchor,"topic":"browse","action":"browse_protection","label":"左侧样方 · 保护门闩","spatial_hint":"再点门闩开放/保护 · 右侧保持保护对照"}])
+	stage.set_meta("spatial_controls",[{"node":latch,"observer":anchor,"topic":"browse","action":"browse_protection","label":I18n.text("左侧样方 · 保护门闩"),"spatial_hint":I18n.text("再点门闩开放/保护 · 右侧保持保护对照")}])
 
 static func animate(stage: Node) -> void:
 	if not stage.has_meta("browse_plots"): return
@@ -91,7 +92,7 @@ static func animate(stage: Node) -> void:
 	var latch: Dictionary = stage.get_meta("browse_latch",{})
 	if not latch.is_empty():
 		latch.lever.rotation.z=0.0 if state.protected_left else -PI*.45
-		latch.caption.text="左侧 · "+("保护" if state.protected_left else "开放")+"\n点门闩切换 · 教学屏障"
+		latch.caption.text=I18n.text(I18n.text("左侧 · ")+(I18n.text("保护") if state.protected_left else I18n.text("开放"))+I18n.text("\n点门闩切换 · 教学屏障"))
 	for i: int in range(2):
 		var plot: Dictionary = stage.get_meta("browse_plots")[i]
 		var fraction: float = float(state.stock[i])/Model.CAPACITY
@@ -103,15 +104,15 @@ static func animate(stage: Node) -> void:
 
 static func deer_pose(state: Dictionary) -> Dictionary:
 	var grazing: float = float(state.get("grazing",0.))
-	return {"position":DEER_AT,"heading":0.,"moving":0.,"grazing":grazing,"step_phase":0.,"activity":"样方取食 · 叶量影响取食强度" if grazing>.7 else "停止取食 · 等待开放样方" if state.get("protected_left",false) else "接近地表植物 · 准备取食"}
+	return {"position":DEER_AT,"heading":0.,"moving":0.,"grazing":grazing,"step_phase":0.,"activity":I18n.text("样方取食 · 叶量影响取食强度") if grazing>.7 else I18n.text("停止取食 · 等待开放样方") if state.get("protected_left",false) else I18n.text("接近地表植物 · 准备取食")}
 
 static func readout(host: Node) -> String:
 	var state: Dictionary = host.world.browse.snapshot()
-	return "相对可食叶量\n左 %.0f%% · %s / 右 %.0f%% · 持续保护\n%s" % [state.stock[0],"已保护" if state.protected_left else "可取食",state.stock[1],"时间已暂停；继续后观察变化" if host.world.paused else "加速过程示意；不对应真实生长速度"]
+	return I18n.text("相对可食叶量\n左 %.0f%% · %s / 右 %.0f%% · 持续保护\n%s") % [state.stock[0],I18n.text("已保护") if state.protected_left else I18n.text("可取食"),state.stock[1],I18n.text("时间已暂停；继续后观察变化") if host.world.paused else I18n.text("加速过程示意；不对应真实生长速度")]
 
 static func marks(stage: Node) -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
 	for i: int in range(2):
 		var plot: Dictionary = stage.get_meta("browse_plots")[i]
-		result.append({"at":plot.root.position+Vector3(0,.25,0),"label":"左 · 可切换保护" if i==0 else "右 · 持续保护","offset":Vector2(10,90) if i==0 else Vector2(90,-55)})
+		result.append({"at":plot.root.position+Vector3(0,.25,0),"label":I18n.text("左 · 可切换保护") if i==0 else I18n.text("右 · 持续保护"),"offset":Vector2(10,90) if i==0 else Vector2(90,-55)})
 	return result

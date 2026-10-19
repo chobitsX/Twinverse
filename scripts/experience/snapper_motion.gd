@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Authored schooling/inspection demonstration, not calibrated predator or prey dynamics.
 const PERIOD: float = 52.0
 const OFFSETS: Array[Vector3] = [
@@ -24,7 +25,7 @@ static func sample(time: float, index: int) -> Dictionary:
 	var position: Vector3 = position_at(time,index)
 	var velocity: Vector3 = (position_at(time+.01,index)-position_at(time-.01,index))/.02
 	var phase: float = fposmod(time,PERIOD)
-	var activity: String = "礁旁集群 · 食性包括鱼类与甲壳类"
-	if index==0 and phase>14 and phase<26: activity = "离开群体巡游 · 教学动作"
-	elif index==0 and phase>=26 and phase<38: activity = "转向返回群体 · 教学动作"
+	var activity: String = I18n.text("礁旁集群 · 食性包括鱼类与甲壳类")
+	if index==0 and phase>14 and phase<26: activity = I18n.text("离开群体巡游 · 教学动作")
+	elif index==0 and phase>=26 and phase<38: activity = I18n.text("转向返回群体 · 教学动作")
 	return {"position":position,"yaw":atan2(-velocity.z,velocity.x),"pitch":atan2(velocity.y,Vector2(velocity.x,velocity.z).length()),"activity":activity}

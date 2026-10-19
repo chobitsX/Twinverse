@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 const EarthSeasonOrbit = preload("res://scripts/experience/earth_season_orbit.gd")
 const EarthRegionFlight = preload("res://scripts/experience/earth_region_flight.gd")
 ## Stage 0 local-coordinate visual prototypes. No second authoritative clock.
@@ -139,7 +140,7 @@ static func _earth(stage: Node) -> void:
 		cloud.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	_air(stage, EARTH_LOCAL_RADIUS, Vector3.ZERO, sun)
 	_stars(stage, 900, 65.0, 150.0, false)
-	stage.set_meta("scientific_label", "NASA 冻结地表与云层合成 · 非当前天气\n地表 2004-01；云层来自 2002 年发布的 MODIS 多日合成，非同一天观测。")
+	I18n.set_meta_text(stage,"scientific_label","NASA 冻结地表与云层合成 · 非当前天气\n地表 2004-01；云层来自 2002 年发布的 MODIS 多日合成，非同一天观测。")
 	EarthLocator.build(stage)
 	EarthDaylight.build(stage)
 
@@ -181,7 +182,7 @@ static func _atmosphere(stage: Node) -> void:
 	stage.set_meta("cloud_render_pass", cloud_pass)
 	stage.environment.ambient_light_energy = 0.34
 	stage.environment.ambient_light_color = Color(0.51,0.66,0.84)
-	stage.set_meta("scientific_label", "地球大气 · 观察弧面、云层与地平线\n继续靠近进入海面 · 拉远返回地球\n大气散射与云体为显示模型，非当前天气。")
+	I18n.set_meta_text(stage,"scientific_label","地球大气 · 观察弧面、云层与地平线\n继续靠近进入海面 · 拉远返回地球\n大气散射与云体为显示模型，非当前天气。")
 
 
 static func update_camera(stage: Node) -> void:
@@ -278,7 +279,7 @@ static func _galaxy(stage: Node) -> void:
 	stage.default_target = Vector3.ZERO
 	stage.close_position = stage.target_position+Vector3(0,0.5,1.0)
 	stage.set_meta("scientific_category","authored_galactic_structure_not_star_catalog")
-	stage.set_meta("scientific_label", "银河系结构与转动示意 · 参考盘径约10万光年，太阳距银心约2.6万光年\n恒星采用理想化差速转动，旋臂图案单独转动；速度、方位、厚度与星点为作者示意，非银河动力学或恒星目录。\n真实太阳绕银心一周约2.3亿年；本图大幅压缩时间，暂停受同一世界控制。")
+	I18n.set_meta_text(stage,"scientific_label","银河系结构与转动示意 · 参考盘径约10万光年，太阳距银心约2.6万光年\n恒星采用理想化差速转动，旋臂图案单独转动；速度、方位、厚度与星点为作者示意，非银河动力学或恒星目录。\n真实太阳绕银心一周约2.3亿年；本图大幅压缩时间，暂停受同一世界控制。")
 	_stars(stage,22000,0,15,true)
 	_stars(stage,1300,55,100,false)
 	var box: BoxMesh = BoxMesh.new()
@@ -309,7 +310,7 @@ static func _solar(stage: Node) -> void:
 	stage.camera.fov = 50.0
 	stage.environment.glow_intensity = .25
 	stage.set_meta("scientific_category","de440_planet_positions_with_teaching_orbits")
-	stage.set_meta("scientific_label", Ephemeris.position_source() + " · 选中行星青实线为DE440日期采样轨迹，橙虚线/等时点是Table 1近似教学椭圆\n行星大小放大、默认逐轨道缩放；太阳、八行星与卫星共用同一日期/倍率。全景默认10天/世界秒，快进时滤除无法分辨的自转纹理；选中或自然靠近卫星系统时全系统1小时/秒慢放，不单独减慢天体。全景月距压缩；近景宿主、卫星距离和平均半径同比，补正系统质心/EMB到本体中心（1995—2050）。远距天体保持几何方向和视大小，识别点不是实体大小；超出中心偏移覆盖时保留质心近似。月球为ERFA位置与IAU月面模型，非精密掩食预报。自转是IAU参考系，非实时云带或当日纹理。")
+	I18n.set_meta_text(stage,"scientific_label",{"parts":[Ephemeris.position_source()," · 选中行星青实线为DE440日期采样轨迹，橙虚线/等时点是Table 1近似教学椭圆\n行星大小放大、默认逐轨道缩放；太阳、八行星与卫星共用同一日期/倍率。全景默认10天/世界秒，快进时滤除无法分辨的自转纹理；选中或自然靠近卫星系统时全系统1小时/秒慢放，不单独减慢天体。全景月距压缩；近景宿主、卫星距离和平均半径同比，补正系统质心/EMB到本体中心（1995—2050）。远距天体保持几何方向和视大小，识别点不是实体大小；超出中心偏移覆盖时保留质心近似。月球为ERFA位置与IAU月面模型，非精密掩食预报。自转是IAU参考系，非实时云带或当日纹理。"]})
 	stage.add_mesh(_sphere(1.65,128,64),_material(stage,SUN_SHADER)).name = "Sun_AuthoredPhotosphere"
 	var corona: QuadMesh = QuadMesh.new()
 	corona.size = Vector2(13.2,13.2)
@@ -903,8 +904,8 @@ static func _earth_moon(stage: Node) -> void:
 	stage.camera.far = 800.0
 	stage.target_radius = 1.0
 	stage.set_meta("scientific_category","lunar_series_and_iau_rotation")
-	stage.set_meta("content_summary","选择地球看昼夜与倾斜的自转轴，选择月球看同步自转。\n切换至日附近日期，比较南北半球昼长。")
-	stage.set_meta("scientific_label","地月观察台 · 月轨道摄动近似 / IAU月面朝向\n距离与平均半径同比，遮光按物理距离计算；均匀太阳圆盘，无大气折射红月或食预报。")
+	I18n.set_meta_text(stage,"content_summary","选择地球看昼夜与倾斜的自转轴，选择月球看同步自转。\n切换至日附近日期，比较南北半球昼长。")
+	I18n.set_meta_text(stage,"scientific_label","地月观察台 · 月轨道摄动近似 / IAU月面朝向\n距离与平均半径同比，遮光按物理距离计算；均匀太阳圆盘，无大气折射红月或食预报。")
 	var sun: Vector3 = Orientation.sun_direction(Ephemeris.DEFAULT_JD)
 	var globe: MeshInstance3D = stage.add_mesh(_sphere(1.0,160,80),_earth_material(stage,Basis.IDENTITY,Vector3.ZERO,sun))
 	globe.name = "ObservatoryEarth"

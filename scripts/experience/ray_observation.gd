@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Annotation of the existing authored waveform, not a thrust/flow model.
 const SOURCE: String = "https://doi.org/10.1242/jeb.202.24.3523"
 
@@ -30,6 +31,6 @@ static func fin_points(root: Node3D) -> PackedVector3Array:
 
 static func marks(root: Node3D) -> Array[Dictionary]:
 	var points: PackedVector3Array = fin_points(root)
-	return [{"at":points[0],"label":"前段 · 波从这里向后传播","offset":Vector2(-100,-100)},
-		{"at":points[1],"label":"中段 · 胸鳍起伏","offset":Vector2(80,65)},
-		{"at":points[2],"label":"后段 · 波继续传向尾侧","offset":Vector2(-80,115)}]
+	return [{"at":points[0],"label":I18n.text("前段 · 波从这里向后传播"),"offset":Vector2(-100,-100)},
+		{"at":points[1],"label":I18n.text("中段 · 胸鳍起伏"),"offset":Vector2(80,65)},
+		{"at":points[2],"label":I18n.text("后段 · 波继续传向尾侧"),"offset":Vector2(-80,115)}]

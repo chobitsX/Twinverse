@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Two illustrative adults of one new species in the existing synthetic park pond.
 ## Positions and head dips sample the single world clock; no local timer or water state.
 const Forms = preload("res://scripts/experience/life_forms.gd")
@@ -21,7 +22,7 @@ static func sample(time: float, index: int) -> Dictionary:
 	var interval: float = fposmod(time+24.0*float(index),PERIOD_S)
 	var dip: float = pow(sin(PI*clampf((interval-8.0)/6.0,0.0,1.0)),2.0) if interval>=8.0 and interval<=14.0 else 0.0
 	return {"position":position,"heading":-atan2(velocity.z,velocity.x),
-		"head_dip":dip,"activity":"浅水探食姿态示意" if dip>0.25 else "水面缓游"}
+		"head_dip":dip,"activity":I18n.text("浅水探食姿态示意") if dip>0.25 else I18n.text("水面缓游")}
 
 static func _rim(root: Node3D, label: String, at: Vector3, size: Vector3, material: Material) -> void:
 	var mesh: BoxMesh = BoxMesh.new()
@@ -69,9 +70,9 @@ static func build(stage: Node) -> void:
 		heads.append(head)
 	stage.set_meta("city_pond",{"overview":overview,"birds":birds,"heads":heads,"plants":plants})
 	stage.set_meta("city_pond_targets",[
-		{"node":overview,"label":"城市池塘 · 绿头鸭雌雄与香蒲","role":"一对绿头鸭为同一物种的雌雄外观参考；岸边三株香蒲复用林地原创模型。合成城市池塘与摆放不是实地调查。","source_url":SOURCE,"distance":10.0,"view_offset":Vector3(6.8,3.8,8.2)},
-		{"node":birds[0],"label":"绿头鸭雄鸟 · Anas platyrhynchos","role":"繁殖羽参考：绿色头部、白颈环、栗色前胸、黄色扁喙和有白边的蓝色翼镜。48秒游动及低头姿态为作者示意，不按日期模拟换羽或真实取食。","source_url":SOURCE,"distance":1.35,"min_distance":.75,"focus_height":.28,"view_offset":Vector3(.90,.55,1.0)},
-		{"node":birds[1],"label":"绿头鸭雌鸟 · Anas platyrhynchos","role":"同种雌鸟参考：棕褐斑驳体羽、橙黑色宽扁喙及同样的蓝色翼镜。路线、两只数量和低头间隔均为作者设置。","source_url":SOURCE,"distance":1.35,"min_distance":.75,"focus_height":.28,"view_offset":Vector3(.90,.55,1.0)}])
+		{"node":overview,"label":I18n.text("城市池塘 · 绿头鸭雌雄与香蒲"),"role":I18n.text("一对绿头鸭为同一物种的雌雄外观参考；岸边三株香蒲复用林地原创模型。合成城市池塘与摆放不是实地调查。"),"source_url":SOURCE,"distance":10.0,"view_offset":Vector3(6.8,3.8,8.2)},
+		{"node":birds[0],"label":I18n.text("绿头鸭雄鸟 · Anas platyrhynchos"),"role":I18n.text("繁殖羽参考：绿色头部、白颈环、栗色前胸、黄色扁喙和有白边的蓝色翼镜。48秒游动及低头姿态为作者示意，不按日期模拟换羽或真实取食。"),"source_url":SOURCE,"distance":1.35,"min_distance":.75,"focus_height":.28,"view_offset":Vector3(.90,.55,1.0)},
+		{"node":birds[1],"label":I18n.text("绿头鸭雌鸟 · Anas platyrhynchos"),"role":I18n.text("同种雌鸟参考：棕褐斑驳体羽、橙黑色宽扁喙及同样的蓝色翼镜。路线、两只数量和低头间隔均为作者设置。"),"source_url":SOURCE,"distance":1.35,"min_distance":.75,"focus_height":.28,"view_offset":Vector3(.90,.55,1.0)}])
 	animate(stage,float(stage.world_snapshot.simulation_time_s))
 
 static func animate(stage: Node, time: float) -> void:
@@ -92,29 +93,29 @@ static func animate(stage: Node, time: float) -> void:
 
 static func readout(host: Node, topic: String) -> String:
 	var pond: Dictionary = host.coordinator.active_scene.get_meta("city_pond",{})
-	if pond.is_empty(): return "城市池塘尚未就绪"
+	if pond.is_empty(): return I18n.text("城市池塘尚未就绪")
 	if topic=="city_pond":
-		return "同种绿头鸭：1只雄鸟、1只雌鸟 · 岸边3株香蒲\n池塘、水位与布置为合成场景；无真实种群或水文模型"
+		return I18n.text("同种绿头鸭：1只雄鸟、1只雌鸟 · 岸边3株香蒲\n池塘、水位与布置为合成场景；无真实种群或水文模型")
 	var index: int = 0 if topic=="city_mallard_drake" else 1
 	var bird: Node3D = pond.birds[index]
-	return "%s · %s\n同一世界时间 %.1f s · 48秒作者路线；暂停后姿态与位置冻结" % [
-		"雄鸟繁殖羽参考" if index==0 else "雌鸟羽色参考",
-		str(bird.get_meta("activity","水面缓游")),host.world.simulation_time_s]
+	return I18n.text("%s · %s\n同一世界时间 %.1f s · 48秒作者路线；暂停后姿态与位置冻结") % [
+		I18n.text("雄鸟繁殖羽参考") if index==0 else I18n.text("雌鸟羽色参考"),
+		str(bird.get_meta("activity",I18n.text("水面缓游"))),host.world.simulation_time_s]
 
 static func marks(host: Node, topic: String) -> Array[Dictionary]:
 	var pond: Dictionary = host.coordinator.active_scene.get_meta("city_pond",{})
 	if pond.is_empty(): return []
 	if topic=="city_pond":
 		return [{"at":pond.birds[0].global_position+Vector3(0.0,.48,0.0),
-			"label":"雄鸟","offset":Vector2(-120,-70)},
+			"label":I18n.text("雄鸟"),"offset":Vector2(-120,-70)},
 			{"at":pond.birds[1].global_position+Vector3(0.0,.48,0.0),
-			"label":"雌鸟","offset":Vector2(100,-70)},
+			"label":I18n.text("雌鸟"),"offset":Vector2(100,-70)},
 			{"at":pond.plants[0].global_position+Vector3(0.0,.90,0.0),
-			"label":"岸边香蒲","offset":Vector2(-100,-90)}]
+			"label":I18n.text("岸边香蒲"),"offset":Vector2(-100,-90)}]
 	var index: int = 0 if topic=="city_mallard_drake" else 1
 	var bird: Node3D = pond.birds[index]
 	var bill: Node3D = bird.find_child("BillTipAnchor",true,false) as Node3D
 	var wing: Node3D = bird.find_child("WingSpeculumAnchor",true,false) as Node3D
 	if bill==null or wing==null: return []
-	return [{"at":bill.global_position,"label":"宽扁喙","offset":Vector2(95,-70)},
-		{"at":wing.global_position,"label":"蓝色翼镜 / 白边","offset":Vector2(-145,-55)}]
+	return [{"at":bill.global_position,"label":I18n.text("宽扁喙"),"offset":Vector2(95,-70)},
+		{"at":wing.global_position,"label":I18n.text("蓝色翼镜 / 白边"),"offset":Vector2(-145,-55)}]

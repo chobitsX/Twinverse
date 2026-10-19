@@ -1,4 +1,5 @@
 extends VBoxContainer
+const I18n = preload("res://scripts/core/app_text.gd")
 const Relations = preload("res://scripts/experience/ecology_relations.gd")
 signal visit_requested(scale_id: String, topic_id: String)
 var host: Node
@@ -16,13 +17,13 @@ func configure(experience: Node) -> void:
 	host=experience
 	size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	add_theme_constant_override("separation",10)
-	var intro: Label=host._label("食物 / 资源 → 利用它的生物",20)
+	var intro: Label=host._label(I18n.text("食物 / 资源 → 利用它的生物"),20)
 	add_child(intro)
-	var note: Label=host._label("箭头指向消费者或分解者。连线表示资料支持的关系，不是此刻发生的摄食，也不是完整食物网。点击有三维入口的节点继续观察。",14)
+	var note: Label=host._label(I18n.text("箭头指向消费者或分解者。连线表示资料支持的关系，不是此刻发生的摄食，也不是完整食物网。点击有三维入口的节点继续观察。"),14)
 	note.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	add_child(note)
 	branch_picker=OptionButton.new()
-	for label: String in Relations.LABELS: branch_picker.add_item(label)
+	for label: String in I18n.strings(Relations.LABELS): branch_picker.add_item(label)
 	branch_picker.item_selected.connect(func(index: int) -> void: set_branch(Relations.BRANCHES[index]))
 	add_child(branch_picker)
 	relation_picker=OptionButton.new()
@@ -38,7 +39,7 @@ func configure(experience: Node) -> void:
 	explanation.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	add_child(explanation)
 	source_link=LinkButton.new()
-	source_link.text="本条关系的资料依据 ↗"
+	source_link.text=I18n.text(I18n.text("本条关系的资料依据 ↗"))
 	source_link.pressed.connect(func() -> void: OS.shell_open(str(data.edges[selected].source)))
 	add_child(source_link)
 	set_branch("reef")
@@ -61,7 +62,7 @@ func set_branch(id: String) -> void:
 		button.add_theme_color_override("font_disabled_color",Color(.66,.78,.81))
 		button.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 		button.disabled=str(item.topic).is_empty()
-		button.tooltip_text="仅作关系解释，尚无对应三维对象" if button.disabled else "进入相关三维观察"
+		button.tooltip_text=I18n.text("仅作关系解释，尚无对应三维对象") if button.disabled else I18n.text("进入相关三维观察")
 		button.set_meta("ecology_node",item.id)
 		graph.add_child(button)
 		nodes[item.id]=button
@@ -74,7 +75,7 @@ func select_relation(index: int) -> void:
 	if index<0 or index>=data.edges.size(): return
 	selected=index
 	relation_picker.select(index)
-	explanation.text=str(data.edges[index].note)
+	explanation.text=I18n.text(str(data.edges[index].note))
 	for id: String in nodes:
 		nodes[id].modulate=Color(1,1,1) if id in [data.edges[index].from,data.edges[index].to] else Color(.67,.75,.78)
 	graph.queue_redraw()

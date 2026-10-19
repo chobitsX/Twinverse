@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Four authored small birds in a synthetic park, driven by the one world clock.
 ## Pedestrian proximity is a bounded teaching response, not a measured FID.
 const SOURCE: String = "https://www.allaboutbirds.org/guide/Eurasian_Tree_Sparrow/id"
@@ -69,9 +70,9 @@ static func sample(time: float, index: int, walkers: Array[Vector3] = []) -> Dic
 	peck *= 1.0-alert
 	if step_away.length_squared()>.000001:
 		heading=lerp_angle(heading,-atan2(step_away.y,step_away.x),alert)
-	var activity: String = "短跳" if phase<HOP_SECONDS else "地面查看 / 啄食示意"
-	if alert>.50: activity="行人靠近 · 警觉停啄 / 草地短跳"
-	elif alert>.05: activity="留意附近行人 · 地面查看"
+	var activity: String = I18n.text("短跳") if phase<HOP_SECONDS else I18n.text("地面查看 / 啄食示意")
+	if alert>.50: activity=I18n.text("行人靠近 · 警觉停啄 / 草地短跳")
+	elif alert>.05: activity=I18n.text("留意附近行人 · 地面查看")
 	return {"position":position,"heading":heading,"peck":peck,
 		"activity":activity,"segment":segment,"alert":alert,
 		"nearest_pedestrian_m":nearest_m,"nearest_pedestrian_at":nearest_at}
@@ -87,7 +88,7 @@ static func build(stage: Node) -> void:
 		birds.append(bird)
 	stage.set_meta("city_sparrows",birds)
 	stage.set_meta("city_sparrow_targets",[{"node":birds[0],
-		"label":"欧亚树麻雀 · Passer montanus","role":"原创成鸟形态参考：栗色头顶、白颊黑斑与短圆锥喙；行人靠近时的警觉停啄/短跳使用作者阈值，不是实测起飞距离或城市种群。",
+		"label":I18n.text("欧亚树麻雀 · Passer montanus"),"role":I18n.text("原创成鸟形态参考：栗色头顶、白颊黑斑与短圆锥喙；行人靠近时的警觉停啄/短跳使用作者阈值，不是实测起飞距离或城市种群。"),
 		"source_url":SOURCE,"distance":.72,"min_distance":.34,
 		"focus_height":.09,"view_offset":Vector3(.55,.35,.45)}])
 

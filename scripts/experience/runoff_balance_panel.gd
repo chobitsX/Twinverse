@@ -1,4 +1,5 @@
 extends VBoxContainer
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Four disjoint water compartments from the original equal-area experiment.
 const Model = preload("res://scripts/core/urban_runoff.gd")
 const KEYS: Array[String] = ["surface", "soil", "runoff", "drained"]
@@ -26,7 +27,7 @@ func _init() -> void:
 	header=label("")
 	add_child(header)
 	for index: int in range(2):
-		add_child(label("硬地 · 不入渗" if index==0 else "绿地 · 入渗是内部转移"))
+		add_child(label(I18n.text("硬地 · 不入渗") if index==0 else I18n.text("绿地 · 入渗是内部转移")))
 		var bar: WaterBar = WaterBar.new()
 		bar.custom_minimum_size.y=12
 		bar.mouse_filter=Control.MOUSE_FILTER_IGNORE
@@ -45,11 +46,11 @@ func _init() -> void:
 			row.append(value)
 		add_child(grid)
 		amounts.append(row)
-	add_child(label("合计=降雨 · 占比非水深"))
+	add_child(label(I18n.text("合计=降雨 · 占比非水深")))
 
 func label(text: String) -> Label:
 	var value: Label=Label.new()
-	value.text=text
+	value.text=I18n.text(text)
 	value.add_theme_font_size_override("font_size",18)
 	value.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	value.mouse_filter=Control.MOUSE_FILTER_IGNORE
@@ -57,8 +58,8 @@ func label(text: String) -> Label:
 
 func present(state: Dictionary) -> void:
 	total_l=float(state.rain_mm)*Model.AREA_M2
-	header.text="每区降雨 %.1f L · 示意 %.1f min" % [total_l,int(state.steps)*Model.STEP]
-	if total_l==0.0: header.text+="\n尚无降雨 · 空条不表示百分比"
+	header.text=I18n.text(I18n.text("每区降雨 %.1f L · 示意 %.1f min") % [total_l,int(state.steps)*Model.STEP])
+	if total_l==0.0: header.text+=I18n.text(I18n.text("\n尚无降雨 · 空条不表示百分比"))
 	last_values_l.clear()
 	for index: int in range(2):
 		var values: Array[float] = []
@@ -68,4 +69,4 @@ func present(state: Dictionary) -> void:
 		bars[index].total_l=total_l
 		bars[index].queue_redraw()
 		for part: int in range(4):
-			amounts[index][part].text="%s %.1f L" % [["地表暂存","土壤现存","累计径流","累计深排水"][part],values[part]]
+			amounts[index][part].text=I18n.text("%s %.1f L" % [[I18n.text("地表暂存"),I18n.text("土壤现存"),I18n.text("累计径流"),I18n.text("累计深排水")][part],values[part]])

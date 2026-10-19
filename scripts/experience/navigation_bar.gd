@@ -1,4 +1,5 @@
 extends HBoxContainer
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Observation-only navigation. No world checkpoint or simulation rewind.
 const Catalog = preload("res://scripts/core/scale_catalog.gd")
 const UI = preload("res://scripts/experience/interface_theme.gd")
@@ -28,10 +29,10 @@ func configure(experience: Node) -> void:
 	path_scroll.resized.connect(_scroll_to_current)
 	add_child(path_scroll)
 	path_row=HBoxContainer.new(); path_scroll.add_child(path_row)
-	earth_button=host._button("回地球",jump.bind("earth")); add_child(earth_button)
-	galaxy_button=host._button("回银河",jump.bind("galaxy")); add_child(galaxy_button)
-	return_button=UI.icon("return","返回原观察位置",return_to_origin); UI.flat_button(return_button); add_child(return_button)
-	return_button.tooltip_text="返回上次成功跳转前的观察位置；世界时间继续，不倒放模拟。"
+	earth_button=host._button(I18n.text("回地球"),jump.bind("earth")); add_child(earth_button)
+	galaxy_button=host._button(I18n.text("回银河"),jump.bind("galaxy")); add_child(galaxy_button)
+	return_button=UI.icon("return",I18n.text("返回原观察位置"),return_to_origin); UI.flat_button(return_button); add_child(return_button)
+	return_button.tooltip_text=I18n.text("返回上次成功跳转前的观察位置；世界时间继续，不倒放模拟。")
 	UI.flat_button(earth_button); UI.flat_button(galaxy_button)
 	earth_button.hide(); galaxy_button.hide()
 	refresh()
@@ -58,7 +59,7 @@ func arrived() -> void:
 		stage.camera.size=float(pending_restore.size); stage.camera.fov=float(pending_restore.fov)
 		host._orbit_target=pending_restore.target
 		stage.set_pose(pending_restore.position,pending_restore.target,pending_restore.up)
-		host.message_label.text="已返回原观察位置 · 世界时间继续"
+		host.message_label.text=I18n.text(I18n.text("已返回原观察位置 · 世界时间继续"))
 	if not departure.is_empty(): origin=departure.duplicate(true)
 	departure.clear(); pending_restore.clear()
 	refresh()
@@ -98,7 +99,7 @@ func refresh() -> void:
 			if scale_id==id:
 				button.add_theme_color_override("font_disabled_color",UI.TEXT)
 
-			button.tooltip_text="当前位置" if scale_id==id else "返回 · "+button.text
+			button.tooltip_text=I18n.text("当前位置") if scale_id==id else I18n.text("返回 · ")+button.text
 			path_row.add_child(button); path_buttons.append(button)
 		_scroll_to_current.call_deferred()
 	var busy: bool=host.coordinator.is_busy() or not host.world.foreground
@@ -106,7 +107,7 @@ func refresh() -> void:
 	earth_button.disabled=busy or id=="earth"
 	galaxy_button.disabled=busy or id=="galaxy"
 	return_button.disabled=busy or origin.is_empty()
-	return_button.tooltip_text="返回 · "+str(Catalog.describe(str(origin.scale)).label)+"（原观察位置；不倒放世界时间）" if not origin.is_empty() else "成功跳转后可返回原观察位置"
+	return_button.tooltip_text=I18n.text("返回 · ")+str(Catalog.describe(str(origin.scale)).label)+I18n.text("（原观察位置；不倒放世界时间）") if not origin.is_empty() else I18n.text("成功跳转后可返回原观察位置")
 
 func _scroll_to_current() -> void:
 	# Container minimum sizes settle after the new path has been laid out.

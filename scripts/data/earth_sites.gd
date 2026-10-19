@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Regional context and authored lighting references have deliberately different meanings.
 const REEF_LAT: float = -14.6666666667
 const REEF_LON: float = 145.4666666667
@@ -15,7 +16,7 @@ static func latitude_label(latitude: float) -> String:
 	return "%.1f°%s" % [absf(latitude), "S" if latitude < 0.0 else "N"]
 
 static func for_scale(id: String) -> Dictionary:
-	for site: Dictionary in SITES:
+	for site: Dictionary in I18n.dictionaries(SITES):
 		if site.scale==id: return site
 	return {}
 

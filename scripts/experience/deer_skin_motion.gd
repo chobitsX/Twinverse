@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Original doe skin, evaluated from the host clock. Not biomechanics.
 const SkinPose = preload("res://scripts/experience/human_skin_motion.gd")
 const SOURCE: String = "https://www.nps.gov/yell/learn/nature/white-tailed-deer.htm"
@@ -41,7 +42,7 @@ static func sample(time: float, index: int) -> Dictionary:
 	var angle: float = travel*.055+index*1.5
 	var rx: float = 3.+index*.5
 	var rz: float = 2.+index*.4
-	return {"position":Vector3(2.5+cos(angle)*rx,0,-1.5+sin(angle)*rz),"heading":atan2(-cos(angle)*rz,-sin(angle)*rx),"moving":moving,"grazing":smoothstep(13.,16.,cycle)*(1.-smoothstep(35.,38.,cycle)),"step_phase":travel*.055*sqrt((rx*rx+rz*rz)*.5)/(.30/.64),"activity":"缓行 · 寻找取食点" if cycle<12 else "低头 · 植物食物示意" if cycle<38 else "停步 · 抬头观察"}
+	return {"position":Vector3(2.5+cos(angle)*rx,0,-1.5+sin(angle)*rz),"heading":atan2(-cos(angle)*rz,-sin(angle)*rx),"moving":moving,"grazing":smoothstep(13.,16.,cycle)*(1.-smoothstep(35.,38.,cycle)),"step_phase":travel*.055*sqrt((rx*rx+rz*rz)*.5)/(.30/.64),"activity":I18n.text("缓行 · 寻找取食点") if cycle<12 else I18n.text("低头 · 植物食物示意") if cycle<38 else I18n.text("停步 · 抬头观察")}
 
 static func pose(root: Node3D, time: float, moving: float, grazing: float, phase: float) -> void:
 	var data: Dictionary = root.get_meta("deer_skin")

@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Navigation context, not a claim of causal coupling or simulated scale extent.
 
 const GOLDEN_PATH: Array[String] = [
@@ -44,7 +45,7 @@ static func contains(scale_id: String) -> bool:
 
 
 static func describe(scale_id: String) -> Dictionary:
-	return SCALES.get(scale_id, {}).duplicate(true)
+	return I18n.dictionary(SCALES.get(scale_id, {})).duplicate(true)
 
 
 static func neighbors(scale_id: String) -> Array[String]:

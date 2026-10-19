@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## A second life-stage reference on the existing plant, not a growth simulation.
 const SOURCE: String = "https://mjv.nyc3.cdn.digitaloceanspaces.com/documents/Education-Grown-up-Guides/Grown-up-Guide-Life-Cycle.pdf"
 const STABLE_ID: String = "3dworld:teaching:monarch-larva:0000"
@@ -48,7 +49,7 @@ static func build(stage: Node) -> void:
 	for name: String in ["MandibleL","MandibleR","TentacleFrontL","TentacleFrontR","TentacleRearL","TentacleRearR"]:
 		joints[name]=node.find_child(name,true,false)
 	stage.set_meta("monarch_larva",{"node":node,"plant":plant,"leaf":leaves,"joints":joints,"support":support})
-	stage.set_meta("larva_targets",[{"node":node,"label":"帝王蝶幼虫 · 乳草叶上的生命阶段","role":"幼虫吃乳草叶，成虫吸花蜜；三对胸足与五对腹足用途不同。当前为晚龄幼虫形态参考。","source_url":SOURCE,"distance":.16,"focus_height":.004,"view_offset":Vector3(.055,.075,.145)}])
+	stage.set_meta("larva_targets",[{"node":node,"label":I18n.text("帝王蝶幼虫 · 乳草叶上的生命阶段"),"role":I18n.text("幼虫吃乳草叶，成虫吸花蜜；三对胸足与五对腹足用途不同。当前为晚龄幼虫形态参考。"),"source_url":SOURCE,"distance":.16,"focus_height":.004,"view_offset":Vector3(.055,.075,.145)}])
 
 static func _fit_feet(node: Node3D, leaves: MeshInstance3D) -> void:
 	# Fit the authored static resting pose once. Deform real limb/pad vertices,
@@ -91,11 +92,11 @@ static func animate(stage: Node, time: float) -> void:
 		joints["TentacleRear"+suffix].rotation.x=side*.035*sin(time*.8+.7)
 
 static func readout(_host: Node) -> String:
-	return "同一物种 · 不同生命阶段\n幼虫：乳草叶 · 成虫：花蜜\n模型体长约4.5 cm；原尺寸附在同株叶片上。"
+	return I18n.text("同一物种 · 不同生命阶段\n幼虫：乳草叶 · 成虫：花蜜\n模型体长约4.5 cm；原尺寸附在同株叶片上。")
 
 static func marks(host: Node) -> Array[Dictionary]:
 	var node: Node3D=host.coordinator.active_scene.get_meta("monarch_larva").node
 	return [
-		{"at":node.find_child("LarvaThoraxMark",true,false).global_position,"label":"胸足 · 三对关节足","offset":Vector2(90,95)},
-		{"at":node.find_child("LarvaProlegMark",true,false).global_position,"label":"腹足 · 五对支撑足","offset":Vector2(-110,95)},
-		{"at":node.find_child("TentacleRearL",true,false).global_position,"label":"前后肉质丝状突起 · 不是触角","offset":Vector2(-45,-100)}]
+		{"at":node.find_child("LarvaThoraxMark",true,false).global_position,"label":I18n.text("胸足 · 三对关节足"),"offset":Vector2(90,95)},
+		{"at":node.find_child("LarvaProlegMark",true,false).global_position,"label":I18n.text("腹足 · 五对支撑足"),"offset":Vector2(-110,95)},
+		{"at":node.find_child("TentacleRearL",true,false).global_position,"label":I18n.text("前后肉质丝状突起 · 不是触角"),"offset":Vector2(-45,-100)}]

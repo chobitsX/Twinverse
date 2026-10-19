@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## One ground observer and the existing date authority; authored terrain/exposure.
 const Geometry = preload("res://scripts/core/ground_sky.gd")
 const Orientation = preload("res://scripts/core/celestial_orientation.gd")
@@ -41,7 +42,7 @@ static func build(stage: Node) -> void:
 	stage.environment.glow_enabled=true; stage.environment.glow_intensity=.3; stage.environment.glow_bloom=.03
 	stage.environment.tonemap_exposure=1.0
 	stage.set_meta("local_unit_m",1.0)
-	stage.set_meta("scientific_label","固定J2000明亮星表 · 同日地平坐标\n合成地形与增强曝光；非肉眼亮度或实时天气。")
+	I18n.set_meta_text(stage,"scientific_label","固定J2000明亮星表 · 同日地平坐标\n合成地形与增强曝光；非肉眼亮度或实时天气。")
 	var dome_material: ShaderMaterial=_shader(stage,DOME)
 	dome_material.render_priority=-128
 	if stage.textures.has("galaxy_map"):

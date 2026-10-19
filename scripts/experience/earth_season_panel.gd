@@ -1,4 +1,5 @@
 extends VBoxContainer
+const I18n = preload("res://scripts/core/app_text.gd")
 const Reference = preload("res://scripts/experience/earth_season_orbit.gd")
 const Seasons = preload("res://scripts/experience/season_observation.gd")
 const Orientation = preload("res://scripts/core/celestial_orientation.gd")
@@ -16,7 +17,7 @@ func configure(experience: Node) -> void:
 	var row: HBoxContainer = HBoxContainer.new()
 	add_child(row)
 	for index: int in range(4):
-		var button: Button = host._button(["3月","6月","9月","12月"][index],choose_date.bind(index))
+		var button: Button = host._button([I18n.text("3月"),I18n.text("6月"),I18n.text("9月"),I18n.text("12月")][index],choose_date.bind(index))
 		button.add_theme_font_size_override("font_size",18)
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		row.add_child(button)
@@ -24,16 +25,16 @@ func configure(experience: Node) -> void:
 	readout = host._label("",13)
 	add_child(readout)
 	distance = CheckButton.new()
-	distance.text = "轨道距离同比 · 天体仍放大"
+	distance.text = I18n.text(I18n.text("轨道距离同比 · 天体仍放大"))
 	distance.add_theme_font_size_override("font_size",18)
 	distance.toggled.connect(func(value: bool) -> void:
 		if _available():
 			host.set_solar_distance(value)
 			_frame())
 	add_child(distance)
-	earth_button = host._button("进入同日期地球昼长",enter_earth)
+	earth_button = host._button(I18n.text("进入同日期地球昼长"),enter_earth)
 	add_child(earth_button)
-	var note: Label = host._label("四日期参考副本 · 北轴/太阳方向\n地球大小与轴长为观察符号，倾角沿原模型。",12)
+	var note: Label = host._label(I18n.text("四日期参考副本 · 北轴/太阳方向\n地球大小与轴长为观察符号，倾角沿原模型。"),12)
 	note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	note.custom_minimum_size.x = 300
 	add_child(note)
@@ -73,9 +74,9 @@ func _frame() -> void:
 func present() -> void:
 	if _view_size!=host.get_window().size: _frame()
 	distance.set_pressed_no_signal(host.solar_true_distance)
-	readout.text = Orientation.timestamp(host.solar_jd)+"\n北纬35° / 南纬35° · 几何昼长"
+	readout.text = I18n.text(Orientation.timestamp(host.solar_jd)+I18n.text("\n北纬35° / 南纬35° · 几何昼长"))
 	for index: int in range(4):
 		var jd: float = Seasons.preset(index,"earth")
-		readout.text += "\n%s  %.1f / %.1f h · %.3f AU" % [["3月","6月","9月","12月"][index],Orientation.latitude_daylight_hours(35,jd),Orientation.latitude_daylight_hours(-35,jd),Orbit.position_au(2,jd).length()]
-	readout.text += "\n两半球向阳与昼长互换；未模拟温度/天气。"
+		readout.text += I18n.text("\n%s  %.1f / %.1f h · %.3f AU" % [[I18n.text("3月"),I18n.text("6月"),I18n.text("9月"),I18n.text("12月")][index],Orientation.latitude_daylight_hours(35,jd),Orientation.latitude_daylight_hours(-35,jd),Orbit.position_au(2,jd).length()])
+	readout.text += I18n.text(I18n.text("\n两半球向阳与昼长互换；未模拟温度/天气。"))
 	earth_button.disabled = not host.world.foreground or host.coordinator.is_busy()

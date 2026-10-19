@@ -1,4 +1,5 @@
 extends Control
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Screen-space annotations projected from the live scene; never takes input.
 const School = preload("res://scripts/experience/school_observation.gd")
 const Topics = preload("res://scripts/experience/learning_topics.gd")
@@ -74,19 +75,22 @@ func _draw() -> void:
 		if mark.has("link") and available[int(mark.link)]:
 			draw_line(p,points[int(mark.link)],Color(.82,.83,.47,.75),2,true)
 		var text: String = mark.label
-		var width: float = font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,16).x+20
+		var available_width: float = size.x-left-20
+		if available_width < 100: continue
+		var width: float = minf(font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,16).x+20,available_width)
+		var height: float = maxf(32,font.get_multiline_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,width-20,16).y+12)
 		var at: Vector2 = p+Vector2(mark.offset)
 		at.x = clampf(at.x,left,maxf(left,size.x-width-20))
 		at.y = clampf(at.y,140.0,maxf(140,size.y-185))
-		var rect: Rect2 = Rect2(at,Vector2(width,32))
+		var rect: Rect2 = Rect2(at,Vector2(width,height))
 		for previous: Rect2 in occupied:
-			if rect.intersects(previous): rect.position.y = minf(previous.end.y+8,size.y-175)
+			if rect.intersects(previous): rect.position.y = minf(previous.end.y+8,size.y-height-140)
 		occupied.append(rect)
 		draw_line(p,rect.get_center(),Color(.51,.92,.83,.8),1.5,true)
 		draw_circle(p,4,color)
 		draw_rect(rect,Color(.012,.037,.044,.95))
 		draw_rect(rect,Color(.36,.70,.65,.65),false,1)
-		draw_string(font,rect.position+Vector2(10,22),text,HORIZONTAL_ALIGNMENT_LEFT,-1,16,Color(.87,.98,.96))
+		draw_multiline_string(font,rect.position+Vector2(10,6+font.get_ascent(16)),text,HORIZONTAL_ALIGNMENT_LEFT,width-20,16,-1,Color(.87,.98,.96))
 		last_visible_marks += 1
 	_draw_local_ruler(occupied)
 
@@ -113,7 +117,7 @@ func _draw_earth_season_labels(occupied: Array[Rect2]) -> void:
 		var tip: Vector3 = entry.node.global_position+entry.pole*1.7*factor
 		if camera.is_position_behind(tip): continue
 		var point: Vector2 = local_point(camera.unproject_position(tip))
-		var text: String = ["3月参考","6月参考","9月参考","12月参考"][index]+" · N"
+		var text: String = [I18n.text("3月参考"),I18n.text("6月参考"),I18n.text("9月参考"),I18n.text("12月参考")][index]+" · N"
 		var dimensions: Vector2 = Vector2(font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,16).x+20,30)
 		var rect: Rect2 = _solar_name_slot(point,dimensions,0,safe,obstacles)
 		if not rect.has_area(): continue
@@ -142,7 +146,7 @@ func _draw_local_ruler(topic_rects: Array[Rect2]) -> void:
 	last_ruler["rect"] = rect
 	var font: Font = get_theme_default_font()
 	draw_style_box(_solar_box, rect)
-	draw_string(font, rect.position + Vector2(12, 21), "观察中心 · 参考尺", HORIZONTAL_ALIGNMENT_LEFT, -1, 16, Color(.72, .88, .88))
+	draw_string(font, rect.position + Vector2(12, 21), I18n.text("观察中心 · 参考尺"), HORIZONTAL_ALIGNMENT_LEFT, -1, 16, Color(.72, .88, .88))
 	var start: Vector2 = rect.position + Vector2(12, 36)
 	var finish: Vector2 = start + Vector2(float(measured.pixels), 0.0)
 	var color: Color = Color(.51, .92, .83)

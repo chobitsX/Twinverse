@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 const Model = preload("res://scripts/core/urban_runoff.gd")
 const Forms = preload("res://scripts/experience/life_forms.gd")
 const HARD_AT: Vector3 = Vector3(22,.22,43)
@@ -62,7 +63,7 @@ static func build(stage: Node) -> void:
 	var anchor: Node3D = Node3D.new()
 	stage.world_root.add_child(anchor)
 	anchor.position=Vector3(24.5,1.,43.5)
-	stage.set_meta("runoff_targets",[{"node":anchor,"pick_nodes":[plots[0].root,plots[1].root],"topic":"runoff","spatial_hint":"点实验阀门开关降雨 · 双击实验台看说明","label":"雨水去向 · 硬地与绿地对照","role":"两块各9m²的剖面示意台，比较同量降雨的地表暂存、入渗、径流与深排水。作者参数，不是街区水文实测。","source_url":Model.SOURCE,"distance":18.,"view_offset":Vector3(-2.5,10.,14.5)}])
+	stage.set_meta("runoff_targets",[{"node":anchor,"pick_nodes":[plots[0].root,plots[1].root],"topic":"runoff","spatial_hint":I18n.text("点实验阀门开关降雨 · 双击实验台看说明"),"label":I18n.text("雨水去向 · 硬地与绿地对照"),"role":I18n.text("两块各9m²的剖面示意台，比较同量降雨的地表暂存、入渗、径流与深排水。作者参数，不是街区水文实测。"),"source_url":Model.SOURCE,"distance":18.,"view_offset":Vector3(-2.5,10.,14.5)}])
 	# A small physical valve operates this local teaching experiment. It is
 	# neither a weather simulation nor a new source of water in the model.
 	var valve: Node3D = Node3D.new()
@@ -90,7 +91,7 @@ static func build(stage: Node) -> void:
 	caption.modulate=Color(.79,.94,.95)
 	valve.add_child(caption)
 	stage.set_meta("runoff_valve",{"node":valve,"handle":handle,"caption":caption})
-	stage.set_meta("spatial_controls",[{"node":valve,"observer":anchor,"topic":"runoff","action":"runoff_rain","label":"局部降雨实验阀门","spatial_hint":"再点阀门开关降雨 · 不改变世界时间"}])
+	stage.set_meta("spatial_controls",[{"node":valve,"observer":anchor,"topic":"runoff","action":"runoff_rain","label":I18n.text("局部降雨实验阀门"),"spatial_hint":I18n.text("再点阀门开关降雨 · 不改变世界时间")}])
 	animate(stage,stage.world_snapshot.get("simulation_time_s",0.0))
 
 static func animate(stage: Node, time: float) -> void:
@@ -100,7 +101,7 @@ static func animate(stage: Node, time: float) -> void:
 	var valve: Dictionary = stage.get_meta("runoff_valve",{})
 	if not valve.is_empty():
 		valve.handle.rotation.y=PI*.5 if state.raining else 0.0
-		valve.caption.text="局部实验降雨 · "+("开" if state.raining else "关")+"\n点阀门开关 · 非真实天气\n径流：硬地 %.0f / 绿地 %.0f L" % [state.runoff[0]*Model.AREA_M2,state.runoff[1]*Model.AREA_M2]
+		valve.caption.text=I18n.text(I18n.text("局部实验降雨 · ")+(I18n.text("开") if state.raining else I18n.text("关"))+I18n.text("\n点阀门开关 · 非真实天气\n径流：硬地 %.0f / 绿地 %.0f L") % [state.runoff[0]*Model.AREA_M2,state.runoff[1]*Model.AREA_M2])
 	for i: int in range(2):
 		var plot: Dictionary = stage.get_meta("runoff_plots")[i]
 		plot.wet.visible=float(state.surface[i])>.00001
@@ -129,11 +130,11 @@ static func animate(stage: Node, time: float) -> void:
 
 static func readout(host: Node) -> String:
 	var state: Dictionary = host.world.runoff.snapshot()
-	return "每区降雨 %.1f L · 示意 %.1f min\n径流：硬地 %.1f / 绿地 %.1f L\n绿地入渗 %.1f L · 现存 %.1f L\n深排水 %.1f L · 暂存 %.1f / %.1f L" % [state.rain_mm*Model.AREA_M2,state.steps*Model.STEP,state.runoff[0]*Model.AREA_M2,state.runoff[1]*Model.AREA_M2,state.infiltrated[1]*Model.AREA_M2,state.soil[1]*Model.AREA_M2,state.drained[1]*Model.AREA_M2,state.surface[0]*Model.AREA_M2,state.surface[1]*Model.AREA_M2]
+	return I18n.text("每区降雨 %.1f L · 示意 %.1f min\n径流：硬地 %.1f / 绿地 %.1f L\n绿地入渗 %.1f L · 现存 %.1f L\n深排水 %.1f L · 暂存 %.1f / %.1f L") % [state.rain_mm*Model.AREA_M2,state.steps*Model.STEP,state.runoff[0]*Model.AREA_M2,state.runoff[1]*Model.AREA_M2,state.infiltrated[1]*Model.AREA_M2,state.soil[1]*Model.AREA_M2,state.drained[1]*Model.AREA_M2,state.surface[0]*Model.AREA_M2,state.surface[1]*Model.AREA_M2]
 
 static func marks(stage: Node) -> Array[Dictionary]:
 	var plots: Array = stage.get_meta("runoff_plots",[])
 	if plots.size()!=2: return []
-	return [{"at":plots[0].root.position+Vector3(0,.85,0),"label":"硬地 · 不入渗","offset":Vector2(-85,-105)},
-		{"at":plots[1].root.position+Vector3(0,.85,0),"label":"绿地 · 储水有上限","offset":Vector2(40,-105)},
-		{"at":plots[1].root.position+Vector3(0,.45,1.52),"label":"入渗 / 深排水 · 剖面示意","offset":Vector2(30,90)}]
+	return [{"at":plots[0].root.position+Vector3(0,.85,0),"label":I18n.text("硬地 · 不入渗"),"offset":Vector2(-85,-105)},
+		{"at":plots[1].root.position+Vector3(0,.85,0),"label":I18n.text("绿地 · 储水有上限"),"offset":Vector2(40,-105)},
+		{"at":plots[1].root.position+Vector3(0,.45,1.52),"label":I18n.text("入渗 / 深排水 · 剖面示意"),"offset":Vector2(30,90)}]

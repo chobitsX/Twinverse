@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Original listening aids, not field recordings or scientific sonification.
 ## One host-owned sample clock; no writes to simulation state.
 
@@ -58,15 +59,15 @@ static func land_profile(scale_id: String) -> Vector2:
 
 static func description(scale_id: String) -> String:
 	match scale_id:
-		"night_sky": return "合成山地微风；非现场录音或日期天气。"
-		"desert": return "合成微风氛围；没有加入野生动物录音或水流。"
-		"arctic": return "合成极地微风与开阔水面氛围；非实测北极风浪或日期天气。"
-		"polar": return "合成微风与近岸海水氛围；不对应实测风浪、企鹅录音或日期天气。"
-		"woodland": return "合成风叶、水流与泛化鸟声；非物种录音。"
-		"city": return "合成远处道路氛围；不定位具体车辆。"
-		"universe", "galaxy", "solar_system", "earth", "earth_moon", "jupiter_moons", "mars_moons", "saturn_moons", "uranus_moons", "neptune_moons": return "太空声音为听觉辅助，非真空传声。"
-		"heart", "cardiomyocyte", "mitochondrion", "molecule", "atom": return "体内与微观声音为听觉辅助，非实测录音。"
-		_: return "合成环境氛围，非现场采集或声学预测。"
+		"night_sky": return I18n.text("合成山地微风；非现场录音或日期天气。")
+		"desert": return I18n.text("合成微风氛围；没有加入野生动物录音或水流。")
+		"arctic": return I18n.text("合成极地微风与开阔水面氛围；非实测北极风浪或日期天气。")
+		"polar": return I18n.text("合成微风与近岸海水氛围；不对应实测风浪、企鹅录音或日期天气。")
+		"woodland": return I18n.text("合成风叶、水流与泛化鸟声；非物种录音。")
+		"city": return I18n.text("合成远处道路氛围；不定位具体车辆。")
+		"universe", "galaxy", "solar_system", "earth", "earth_moon", "jupiter_moons", "mars_moons", "saturn_moons", "uranus_moons", "neptune_moons": return I18n.text("太空声音为听觉辅助，非真空传声。")
+		"heart", "cardiomyocyte", "mitochondrion", "molecule", "atom": return I18n.text("体内与微观声音为听觉辅助，非实测录音。")
+		_: return I18n.text("合成环境氛围，非现场采集或声学预测。")
 
 func cue(kind: String) -> void:
 	# Preserve the current sample when a second UI action interrupts a cue.

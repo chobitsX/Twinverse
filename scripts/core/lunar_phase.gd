@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Read-only phase geometry: Moon98 lunar series and approximate solar direction.
 const Orientation = preload("res://scripts/core/celestial_orientation.gd")
 const Orbit = preload("res://scripts/core/solar_ephemeris.gd")
@@ -11,7 +12,7 @@ static func cycle(jd: float) -> float:
 	return fposmod(atan2(-moon.z,moon.x)-atan2(-sun.z,sun.x),TAU)/TAU
 
 static func phase_name(jd: float) -> String:
-	var names: Array[String] = ["新月附近","蛾眉月","上弦附近","盈凸月","满月附近","亏凸月","下弦附近","残月"]
+	var names: Array[String] = [I18n.text("新月附近"),I18n.text("蛾眉月"),I18n.text("上弦附近"),I18n.text("盈凸月"),I18n.text("满月附近"),I18n.text("亏凸月"),I18n.text("下弦附近"),I18n.text("残月")]
 	return names[int(floor(cycle(jd)*8.0+.5))%8]
 
 static func next_phase(jd: float, quarter: int) -> float:

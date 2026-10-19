@@ -1,4 +1,5 @@
 extends Control
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Read-only scale illustration. Owns no world state, date or orbit positions.
 const Ephemeris = preload("res://scripts/core/solar_ephemeris.gd")
 const SUN_RADIUS_KM: float = 695700.0 # IAU 2015 B3 nominal conversion constant.
@@ -43,22 +44,22 @@ func configure(experience: Node, style: StyleBoxFlat) -> void:
 	page_scroll.add_child(rows)
 	var heading: HBoxContainer=HBoxContainer.new()
 	rows.add_child(heading)
-	var title: Label=host._label("天体大小 · 同一比例",26)
+	var title: Label=host._label(I18n.text("天体大小 · 同一比例"),26)
 	title.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	heading.add_child(title)
-	close_button=host.InterfaceTheme.icon("close","返回观察 · Esc",close)
+	close_button=host.InterfaceTheme.icon("close",I18n.text("返回观察 · Esc"),close)
 	heading.add_child(close_button)
 	var controls: HBoxContainer=HBoxContainer.new()
 	controls.add_theme_constant_override("separation",12)
 	rows.add_child(controls)
-	controls.add_child(host._label("对照天体",16))
+	controls.add_child(host._label(I18n.text("对照天体"),16))
 	picker=OptionButton.new()
 	picker.custom_minimum_size=Vector2(150,38)
-	for label: String in Ephemeris.NAMES: picker.add_item(label)
-	picker.add_item("太阳（名义半径）")
+	for label: String in I18n.strings(Ephemeris.NAMES): picker.add_item(label)
+	picker.add_item(I18n.text("太阳（名义半径）"))
 	picker.item_selected.connect(select_body)
 	controls.add_child(picker)
-	controls.add_child(host._label("参照：地球平均半径",15,Color(.60,.66,.72)))
+	controls.add_child(host._label(I18n.text("参照：地球平均半径"),15,Color(.60,.66,.72)))
 	ratio_text=host._label("",18,Color(.85,.90,.92))
 	ratio_text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	rows.add_child(ratio_text)
@@ -78,9 +79,9 @@ func configure(experience: Node, style: StyleBoxFlat) -> void:
 	rows.add_child(boundary_text)
 	var sources: HFlowContainer=HFlowContainer.new()
 	rows.add_child(sources)
-	for entry: Array in [["JPL · 行星平均半径 ↗",PLANET_SOURCE],["IAU · 太阳名义半径 ↗",SUN_SOURCE]]:
+	for entry: Array in [[I18n.text("JPL · 行星平均半径 ↗"),PLANET_SOURCE],[I18n.text("IAU · 太阳名义半径 ↗"),SUN_SOURCE]]:
 		var link: LinkButton=LinkButton.new()
-		link.text=entry[0]
+		link.text=I18n.text(entry[0])
 		link.pressed.connect(OS.shell_open.bind(str(entry[1])))
 		sources.add_child(link)
 	visibility_changed.connect(func() -> void:
@@ -149,16 +150,16 @@ func select_body(index: int) -> void:
 	picker.select(index)
 	var physical: Array[float]=[radius_km(index),radius_km(2)]
 	var km_per_unit: float=maxf(physical[0],physical[1])/1.7
-	var names: Array[String]=["太阳" if index==8 else Ephemeris.NAMES[index],"地球"]
+	var names: Array[String]=[I18n.text("太阳") if index==8 else I18n.strings(Ephemeris.NAMES)[index],I18n.text("地球")]
 	for i: int in range(2):
 		var size: float=physical[i]/km_per_unit
 		bodies[i].scale=Vector3.ONE*size
 		bodies[i].position=Vector3(-2.2 if i==0 else 2.2,-1.7+size,0)
 		bodies[i].material_override.albedo_color=COLOURS[index if i==0 else 2]
-		captions[i].text="%s\n半径 %s km" % [names[i],str(physical[i])]
-	ratio_text.text="%s的直径约为地球的 %.3f 倍" % [names[0],physical[0]/physical[1]]
-	boundary_text.text="两球使用同一比例和正交视角；间距只是排布，不代表轨道距离。颜色仅作区分；行星用平均半径球体，不含扁率、星环或大气。"
-	if index==8: boundary_text.text+="太阳采用IAU名义半径这一换算常数，不是精确实测太阳边界。"
+		captions[i].text=I18n.text(I18n.text("%s\n半径 %s km") % [names[i],str(physical[i])])
+	ratio_text.text=I18n.text(I18n.text("%s的直径约为地球的 %.3f 倍") % [names[0],physical[0]/physical[1]])
+	boundary_text.text=I18n.text(I18n.text("两球使用同一比例和正交视角；间距只是排布，不代表轨道距离。颜色仅作区分；行星用平均半径球体，不含扁率、星环或大气。"))
+	if index==8: boundary_text.text+=I18n.text(I18n.text("太阳采用IAU名义半径这一换算常数，不是精确实测太阳边界。"))
 	set_meta("km_per_unit",km_per_unit)
 
 func fit_window(window_size: Vector2i) -> void:

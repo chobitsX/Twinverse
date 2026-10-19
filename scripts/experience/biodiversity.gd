@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 const Grazing = preload("res://scripts/core/algal_grazing.gd")
 const School = preload("res://scripts/core/schooling.gd")
 const Zooplankton = preload("res://scripts/core/zooplankton_lesson.gd")
@@ -52,7 +53,7 @@ static func build(stage: Node) -> void:
 			LifeMotion.prepare_materials(node)
 			stage.world_root.add_child(node)
 			node.set_meta("stable_id","3dworld:teaching:marine:%d:%03d" % [kind,index])
-			var actor: Dictionary = {"node":node,"kind":kind,"index":index,"label":LABELS[kind],"role":ROLES[kind],"source_url":SOURCES[kind],"meshes":[]}
+			var actor: Dictionary = {"node":node,"kind":kind,"index":index,"label":I18n.strings(LABELS)[kind],"role":I18n.strings(ROLES)[kind],"source_url":SOURCES[kind],"meshes":[]}
 			if kind<3 or kind==4: actor.meshes = _fish_materials(node,materials,kind==4)
 			if kind==4: RayObservation.prepare(node)
 			if kind==3:
@@ -63,8 +64,8 @@ static func build(stage: Node) -> void:
 				actor.fins = fins
 			actors.append(actor)
 	stage.set_meta("marine_actors",actors)
-	stage.set_meta("marine_counts", {"海葵鱼":2,"褐吊":6,"四带笛鲷":12,"青绿雀鲷":24,"绿海龟":1,"蓝斑条尾魟":1})
-	stage.set_meta("content_summary","海洋生命：海葵鱼与褐吊、四带笛鲷、青绿雀鲷、绿海龟与蓝斑条尾魟参考形态。\n选择对象，比较身体结构、活动空间与食物角色。物种采用参考模型；节律、数量与轨迹均为作者设定，不是实测种群或生态预测。")
+	stage.set_meta("marine_counts", {I18n.text("海葵鱼"):2,I18n.text("褐吊"):6,I18n.text("四带笛鲷"):12,I18n.text("青绿雀鲷"):24,I18n.text("绿海龟"):1,I18n.text("蓝斑条尾魟"):1})
+	I18n.set_meta_text(stage,"content_summary","海洋生命：海葵鱼与褐吊、四带笛鲷、青绿雀鲷、绿海龟与蓝斑条尾魟参考形态。\n选择对象，比较身体结构、活动空间与食物角色。物种采用参考模型；节律、数量与轨迹均为作者设定，不是实测种群或生态预测。")
 	# Six low rock/algally coloured feeding patches, away from the target anemone.
 	var patches: Array[Vector3] = []
 	var patch_materials: Array[ShaderMaterial]=[]
@@ -118,7 +119,7 @@ static func animate(stage: Node, time: float) -> void:
 		var radius: float = [0.7,1.7,2.0,2.6,1.5][kind]
 		var position: Vector3 = center + Vector3(cos(angle)*radius,sin(angle*1.7+index)*0.055+(index%3)*0.05,sin(angle)*radius*0.32)
 		actor.node.rotation = Vector3(0,atan2(-cos(angle)*0.32,-sin(angle)),0)
-		var activity: String = ["巡游 · 接近藻毯","礁区群游 · 捕食角色示意","水层集群 · 浮游动物取食示意","划水游动 · 礁区穿行","贴近海床游动"][kind]
+		var activity: String = [I18n.text("巡游 · 接近藻毯"),I18n.text("礁区群游 · 捕食角色示意"),I18n.text("水层集群 · 浮游动物取食示意"),I18n.text("划水游动 · 礁区穿行"),I18n.text("贴近海床游动")][kind]
 		if kind==0:
 			var target_index: int=int(resources.targets[index]) if not resources.is_empty() else index
 			var start: float=float(resources.get("started_at_s",0.))
@@ -138,9 +139,9 @@ static func animate(stage: Node, time: float) -> void:
 			actor.node.rotation.z = -0.8*feeding
 			actor.node.set_meta("grazing_target",target_index)
 			actor.node.set_meta("grazing_approach",feeding)
-			activity="下一取食点 · 斑块%d" % (target_index+1)
-			if feeding>.995 and bool(resources.get("enabled",true)): activity="刮食斑块%d · 藻量随摄食减少" % (target_index+1)
-			elif not bool(resources.get("enabled",true)): activity="停止刮食 · 教学对照中"
+			activity=I18n.text("下一取食点 · 斑块%d") % (target_index+1)
+			if feeding>.995 and bool(resources.get("enabled",true)): activity=I18n.text("刮食斑块%d · 藻量随摄食减少") % (target_index+1)
+			elif not bool(resources.get("enabled",true)): activity=I18n.text("停止刮食 · 教学对照中")
 		elif kind==1:
 			var pose: Dictionary = SnapperMotion.sample(time,index)
 			position = pose.position
@@ -152,7 +153,7 @@ static func animate(stage: Node, time: float) -> void:
 				position=School.vector(state.positions[index])
 				var velocity: Vector3 = School.vector(state.velocities[index])
 				actor.node.rotation=Vector3(0,atan2(-velocity.z,velocity.x),atan2(velocity.y,Vector2(velocity.x,velocity.z).length()))
-				activity="局部避挤 / 聚合 · "+("方向对齐开启" if state.alignment else "方向对齐关闭")
+				activity=I18n.text("局部避挤 / 聚合 · ")+(I18n.text("方向对齐开启") if state.alignment else I18n.text("方向对齐关闭"))
 		elif kind==3:
 			var pose: Dictionary = TurtleMotion.sample(time,actor.node)
 			position=pose.position
@@ -164,7 +165,7 @@ static func animate(stage: Node, time: float) -> void:
 			position = Vector3(-4.2+cos(angle)*.65,0.0,2.8+sin(angle)*.40)
 			position.y = stage.builder._terrain_height(stage,position.x,position.z)+.08
 			actor.node.rotation.y = atan2(-cos(angle)*.40,-sin(angle)*.65)
-			activity = "砂底巡游 · 胸鳍波动；底栖食物角色示意"
+			activity = I18n.text("砂底巡游 · 胸鳍波动；底栖食物角色示意")
 		actor.node.position = position
 		actor.node.set_meta("activity",activity)
 		if kind<3 or kind==4:

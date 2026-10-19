@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## View-only presets computed with the existing solar geometry and date authority.
 const Orientation = preload("res://scripts/core/celestial_orientation.gd")
 const Sites = preload("res://scripts/data/earth_sites.gd")
@@ -35,4 +36,4 @@ static func sample(jd: float, scale_id: String) -> Dictionary:
 static func readout(host: Node) -> String:
 	var value: Dictionary = sample(host.solar_jd,host.world.current_scale_id)
 	if value.is_empty(): return ""
-	return "%s\n太阳高度 %.1f° · 昼长 %.1f h\n%s参考光照 · %s" % [Orientation.timestamp(host.solar_jd),value.elevation,value.daylight,Sites.latitude_label(float(Sites.for_scale(host.world.current_scale_id).lat)),"随日期变化" if host.ground_light_preview else "当前为固定展示光照"]
+	return I18n.text("%s\n太阳高度 %.1f° · 昼长 %.1f h\n%s参考光照 · %s") % [Orientation.timestamp(host.solar_jd),value.elevation,value.daylight,Sites.latitude_label(float(Sites.for_scale(host.world.current_scale_id).lat)),I18n.text("随日期变化") if host.ground_light_preview else I18n.text("当前为固定展示光照")]

@@ -1,4 +1,5 @@
 extends Node
+const I18n = preload("res://scripts/core/app_text.gd")
 const LifeMaterials=preload("res://scripts/experience/life_asset_motion.gd")
 ## Each local scale owns one World3D and its render target; state arrives from the host.
 
@@ -99,7 +100,10 @@ func _ready() -> void:
 	add_child(presentation)
 	set_view_size(Vector2i(get_viewport().get_texture().get_size()), float(get_window().get_meta("experience_render_ratio", 1.0)))
 	reduced_motion = bool(get_window().get_meta("experience_reduced_motion", false))
+	# Stage metadata is canonical source text; UI localizes copies when displayed.
+	I18n.source_depth += 1
 	builder.build(self)
+	I18n.source_depth -= 1
 	set_pose(default_position, default_target)
 	set_world_time(float(world_snapshot.simulation_time_s))
 	RenderingServer.viewport_set_measure_render_time(viewport.get_viewport_rid(), true)

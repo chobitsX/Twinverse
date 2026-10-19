@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 const EcologySurface = preload("res://scripts/experience/ecology_surface_material.gd")
 ## Species-reference plants alongside the unidentified background habitat.
 const LEAF = preload("res://shaders/plant_leaf.gdshader")
@@ -40,10 +41,10 @@ static func build(stage: Node) -> void:
 		node.position = Vector3(at.x,stage.builder._height(at.x,at.y),at.y)
 		stage.world_root.add_child(node)
 		_materials(node,leaf,stage,cache)
-		var label: String = "北美白橡 · Quercus alba" if is_oak else "东部白松 · Pinus strobus"
+		var label: String = I18n.text("北美白橡 · Quercus alba") if is_oak else I18n.text("东部白松 · Pinus strobus")
 		var source: String = OAK_SOURCE if is_oak else PINE_SOURCE
-		var role: String = "落叶阔叶树；互生单叶、圆裂片与楔形叶基。当前为原创幼树参考形态，季节落叶未模拟。" if is_oak else "常绿针叶树；枝条轮生，柔软针叶通常五针一束。当前为原创幼树参考形态，针叶更新未模拟。"
-		node.set_meta("activity","幼树参考形态 · "+label)
+		var role: String = I18n.text("落叶阔叶树；互生单叶、圆裂片与楔形叶基。当前为原创幼树参考形态，季节落叶未模拟。") if is_oak else I18n.text("常绿针叶树；枝条轮生，柔软针叶通常五针一束。当前为原创幼树参考形态，针叶更新未模拟。")
+		node.set_meta("activity",I18n.text("幼树参考形态 · ")+label)
 		targets.append({"node":node,"label":label,"role":role,"source_url":source,"distance":3.5,"focus_height":1.0,"view_offset":Vector3(1.1,.9,3.0)})
 		var anchor: Node3D = node.find_child("LeafObservationAnchor" if is_oak else "NeedleObservationAnchor",true,false) as Node3D
 		var base: Node3D = node.find_child("LeafBaseAnchor" if is_oak else "NeedleBaseAnchor",true,false) as Node3D
@@ -52,11 +53,11 @@ static func build(stage: Node) -> void:
 		stage.world_root.add_child(detail)
 		detail.position = anchor.global_position
 		detail.set_meta("plant_root",node)
-		detail.set_meta("activity","北美白橡叶片 · 观察圆裂片与叶脉" if is_oak else "东部白松 · 数一束中的五枚针叶")
-		var marks: Array[Dictionary] = [{"at":base.global_position,"label":"叶柄连接处" if is_oak else "五针共用的束基部","offset":Vector2(-155,70)}]
+		detail.set_meta("activity",I18n.text("北美白橡叶片 · 观察圆裂片与叶脉") if is_oak else I18n.text("东部白松 · 数一束中的五枚针叶"))
+		var marks: Array[Dictionary] = [{"at":base.global_position,"label":I18n.text("叶柄连接处") if is_oak else I18n.text("五针共用的束基部"),"offset":Vector2(-155,70)}]
 		if is_oak:
 			var lobe: Node3D = node.find_child("LeafLobeAnchor",true,false) as Node3D
-			marks.append({"at":lobe.global_position,"label":"圆裂片 · 无刺尖","offset":Vector2(80,-70)})
+			marks.append({"at":lobe.global_position,"label":I18n.text("圆裂片 · 无刺尖"),"offset":Vector2(80,-70)})
 		else:
 			var offsets: Array[Vector2] = [Vector2(-125,-80),Vector2(-150,15),Vector2(15,85),Vector2(120,20),Vector2(95,-85)]
 			for i: int in range(1,6):
@@ -69,8 +70,8 @@ static func build(stage: Node) -> void:
 					if at_world.distance_squared_to(base.global_position)>distance:
 						distance = at_world.distance_squared_to(base.global_position)
 						tip = at_world
-				marks.append({"at":tip,"label":"针叶 "+str(i),"offset":offsets[i-1]})
+				marks.append({"at":tip,"label":I18n.text("针叶 ")+str(i),"offset":offsets[i-1]})
 		detail.set_meta("plant_markers",marks)
-		details.append({"node":detail,"label":"北美白橡 · 叶片近看" if is_oak else "东部白松 · 针叶束近看","role":role,"source_url":source,"distance":.32,"view_offset":Vector3(.02,.27,.16) if is_oak else Vector3(.07,.14,.27)})
+		details.append({"node":detail,"label":I18n.text("北美白橡 · 叶片近看") if is_oak else I18n.text("东部白松 · 针叶束近看"),"role":role,"source_url":source,"distance":.32,"view_offset":Vector3(.02,.27,.16) if is_oak else Vector3(.07,.14,.27)})
 	targets.append_array(details)
 	stage.set_meta("plant_targets",targets)

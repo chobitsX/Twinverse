@@ -1,4 +1,5 @@
 extends Node
+const I18n = preload("res://scripts/core/app_text.gd")
 ## The only owner of world state, navigation, sound and experience input.
 
 const Oxygen = preload("res://scripts/core/oxygen_atom.gd")
@@ -233,7 +234,7 @@ func _ready() -> void:
 			return
 	get_tree().auto_accept_quit = false
 	get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
-	get_window().title = "孪生宇宙"
+	get_window().title = I18n.text("孪生宇宙")
 	# Keep camera pixels native; only presentation Controls use logical points.
 	_apply_ui_scale()
 	if DisplayServer.get_name()!="headless" and not "--resolution" in OS.get_cmdline_args():
@@ -320,8 +321,9 @@ func _ready() -> void:
 	coordinator.recovery_changed.connect(_update_recovery)
 	coordinator.transition_failed.connect(_on_failure)
 	coordinator.transition_cancelled.connect(_on_cancelled)
-	coordinator.recovery_required.connect(func(_reason: String) -> void: message_label.text = "加载仍在收尾，当前场景可继续观察")
+	coordinator.recovery_required.connect(func(_reason: String) -> void: message_label.text = I18n.text(I18n.text("加载仍在收尾，当前场景可继续观察")))
 	_build_hud()
+	get_node("/root/AppLanguage").language_changed.connect(_language_changed)
 	get_window().size_changed.connect(_resize)
 	if get_window().has_signal("dpi_changed"): get_window().connect("dpi_changed",_resize)
 	var path: String = _path_for(_start_scale)
@@ -341,9 +343,9 @@ func _ready() -> void:
 	_resize()
 	_update_ui()
 	_apply_saved_view(stage)
-	pause_button.text = "继续时间" if world.paused else "暂停时间"
-	message_label.text = _restore_notice
-	if night_preset: message_label.text="已切至观星点的夜空预设 · 下方显示同一天文日期"
+	pause_button.text = I18n.text(I18n.text("继续时间") if world.paused else I18n.text("暂停时间"))
+	message_label.text = I18n.text(_restore_notice)
+	if night_preset: message_label.text=I18n.text(I18n.text("已切至观星点的夜空预设 · 下方显示同一天文日期"))
 	world.record_observation("continued" if not world.habitat.events.is_empty() else "started")
 	_remember_view()
 	_setup_sound()
@@ -408,13 +410,13 @@ func _open_world() -> void:
 		_muted = bool(preferences.muted)
 		for key: String in ["master", "environment_volume", "music_volume", "effects_volume"]:
 			soundscape.set(key, float(preferences[key]))
-		_restore_notice = "已继续上次观察 · 离线期间时间保持不变" if result.status == "ok" else "已从上一份可用存档恢复，继续观察"
+		_restore_notice = I18n.text("已继续上次观察 · 离线期间时间保持不变") if result.status == "ok" else I18n.text("已从上一份可用存档恢复，继续观察")
 	elif result.status == "missing":
 		_first_visit = not temporary
 		if _first_visit: _start_scale = "earth"
-		_restore_notice = "世界会自动保存，下次打开可继续观察"
+		_restore_notice = I18n.text("世界会自动保存，下次打开可继续观察")
 	else:
-		_restore_notice = "存档版本不兼容，本次观察不会覆盖原存档" if result.status == "incompatible" else "存档暂时无法读取，本次观察不会覆盖原存档"
+		_restore_notice = I18n.text("存档版本不兼容，本次观察不会覆盖原存档") if result.status == "incompatible" else I18n.text("存档暂时无法读取，本次观察不会覆盖原存档")
 	print("WORLD_SESSION ", JSON.stringify({"status": result.status, "scale": _start_scale, "simulation_time_s": world.simulation_time_s}))
 
 
@@ -583,13 +585,13 @@ func _apply_saved_view(stage: Node) -> void:
 
 func save_world(show_feedback: bool = false) -> String:
 	if is_trial():
-		if show_feedback: message_label.text = "临时试览不覆盖原世界；返回后继续保存"
+		if show_feedback: message_label.text = I18n.text(I18n.text("临时试览不覆盖原世界；返回后继续保存"))
 		return "trial"
 	if not _persistence_enabled or _store == null: return "disabled"
 	if not is_instance_valid(coordinator.active_scene): return "not_ready"
 	if (coordinator.is_busy() and coordinator.phase != Coordinator.Phase.DRAINING) or not coordinator.active_scene.is_prepared():
 		_save_requested = true
-		if show_feedback: message_label.text = "到达可观察位置后自动保存"
+		if show_feedback: message_label.text = I18n.text(I18n.text("到达可观察位置后自动保存"))
 		return "queued"
 	_remember_view()
 	var preferences: Dictionary = {"render_ratio": _render_ratio, "reduced_motion": _reduced_motion, "muted": _muted}
@@ -600,14 +602,14 @@ func save_world(show_feedback: bool = false) -> String:
 	_save_requested = false
 	_next_save_us = Time.get_ticks_usec() + AUTOSAVE_INTERVAL_US
 	if status == "ok":
-		save_button.tooltip_text = "已保存至 %.1f 秒 · ⌘S 手动保存；下次打开从这里继续。" % world.simulation_time_s
-		if show_feedback: message_label.text = "世界已保存 · 下次打开从这里继续"
+		save_button.tooltip_text = I18n.text("已保存至 %.1f 秒 · ⌘S 手动保存；下次打开从这里继续。") % world.simulation_time_s
+		if show_feedback: message_label.text = I18n.text(I18n.text("世界已保存 · 下次打开从这里继续"))
 	elif _store.protected:
-		save_button.text = "存档已保护"
+		save_button.text = I18n.text(I18n.text("存档已保护"))
 		save_button.disabled = true
-		if status == "changed_on_disk": message_label.text = "存档已有更新，本窗口停止覆盖保存"
+		if status == "changed_on_disk": message_label.text = I18n.text(I18n.text("存档已有更新，本窗口停止覆盖保存"))
 	elif is_instance_valid(message_label):
-		message_label.text = "世界暂未保存，请检查磁盘空间或目录权限后重试"
+		message_label.text = I18n.text(I18n.text("世界暂未保存，请检查磁盘空间或目录权限后重试"))
 	print("WORLD_SAVE ", JSON.stringify({"status": status, "scale": world.current_scale_id, "simulation_time_s": world.simulation_time_s}))
 	return status
 
@@ -660,8 +662,8 @@ func _process(delta: float) -> void:
 	_update_solar_camera(delta)
 	_finish_guide_visit()
 	_fill_audio()
-	if sound_panel.visible: sound_context_label.text = Soundscape.description(world.current_scale_id)
-	time_label.text = (Ephemeris.date_label(solar_jd)+" · 天文推演") if (Satellites.is_system(world.current_scale_id) or world.current_scale_id in ["solar_system","earth","earth_moon"]) else ("t  %05.1f s   ·   %s×" % [world.simulation_time_s, str(world.time_scale)])
+	if sound_panel.visible: sound_context_label.text = I18n.text(Soundscape.description(world.current_scale_id))
+	time_label.text = I18n.text((Ephemeris.date_label(solar_jd)+I18n.text(" · 天文推演")) if (Satellites.is_system(world.current_scale_id) or world.current_scale_id in ["solar_system","earth","earth_moon"]) else ("t  %05.1f s   ·   %s×" % [world.simulation_time_s, str(world.time_scale)]))
 	var active: Node = coordinator.active_scene
 	# Exploration is attached to scene geometry; the old floating entry button
 	# remains only as a compatibility handle for keyboard/diagnostic callers.
@@ -674,7 +676,7 @@ func _process(delta: float) -> void:
 	science_badge.hide() # Full text remains in the on-demand source inspector.
 	debug_label.visible = _debug_visible
 	if _debug_visible:
-		debug_label.text = "%d FPS · %s\n%s / %s · %d Viewport\nID %s\n估算准入 %.0f MB · 实测请查看采集文件" % [Engine.get_frames_per_second(), str(get_viewport().get_texture().get_size()), RenderingServer.get_current_rendering_method(), RenderingServer.get_current_rendering_driver_name(), scene_host.get_child_count(), WorldState.TARGET_FISH_ID, coordinator.reserved_estimated_mb()]
+		debug_label.text = I18n.text(I18n.text("%d FPS · %s\n%s / %s · %d Viewport\nID %s\n估算准入 %.0f MB · 实测请查看采集文件") % [Engine.get_frames_per_second(), str(get_viewport().get_texture().get_size()), RenderingServer.get_current_rendering_method(), RenderingServer.get_current_rendering_driver_name(), scene_host.get_child_count(), WorldState.TARGET_FISH_ID, coordinator.reserved_estimated_mb()])
 	if _recording:
 		var viewports: Array[Viewport] = [get_viewport()]
 		for stage: Node in scene_host.get_children():
@@ -732,8 +734,8 @@ func _advance_or_city_view() -> void:
 func selected_spatial_choice() -> Dictionary:
 	# Resolve the current observer, including an individual picked in 3D. A
 	# remembered mouse pixel is only for the second half of a double click.
-	if world.current_scale_id=="solar_system" and solar_follow>=0 and solar_follow<Ephemeris.NAMES.size():
-		return {"planet":solar_follow,"label":Ephemeris.NAMES[solar_follow]}
+	if world.current_scale_id=="solar_system" and solar_follow>=0 and solar_follow<I18n.strings(Ephemeris.NAMES).size():
+		return {"planet":solar_follow,"label":I18n.strings(Ephemeris.NAMES)[solar_follow]}
 	var targets: Array[Dictionary] = content_targets()
 	return targets[_content_follow] if _content_follow>=0 and _content_follow<targets.size() else {}
 
@@ -748,12 +750,12 @@ func spatial_destination(choice: Dictionary) -> String:
 
 
 func spatial_hint(choice: Dictionary) -> String:
-	if choice.get("sky",false): return "拖动环顾 · 双指缩放视野 · R恢复全景"
-	if choice.has("action"): return "再点或 Enter 操作"
-	if choice.has("topic"): return "双击 / Enter 查看实验"
-	if choice.has("planet") and int(choice.planet)>=3 and Satellites.available(solar_jd): return "指向卫星查看名字 · 双指缩放继续探索"
-	if not spatial_destination(choice).is_empty(): return "双击 / Enter / 靠近深入"
-	return "仅支持近看 · 拖动环绕 / 双指缩放"
+	if choice.get("sky",false): return I18n.text("拖动环顾 · 双指缩放视野 · R恢复全景")
+	if choice.has("action"): return I18n.text("再点或 Enter 操作")
+	if choice.has("topic"): return I18n.text("双击 / Enter 查看实验")
+	if choice.has("planet") and int(choice.planet)>=3 and Satellites.available(solar_jd): return I18n.text("指向卫星查看名字 · 双指缩放继续探索")
+	if not spatial_destination(choice).is_empty(): return I18n.text("双击 / Enter / 靠近深入")
+	return I18n.text("仅支持近看 · 拖动环绕 / 双指缩放")
 
 
 func enter_spatial_choice(choice: Dictionary) -> void:
@@ -765,12 +767,12 @@ func enter_spatial_choice(choice: Dictionary) -> void:
 	else:
 		var destination: String = spatial_destination(choice)
 		if not destination.is_empty(): observe_scale(destination)
-		else: message_label.text="正在观察 · "+str(choice.get("label","当前对象"))+" · "+spatial_hint(choice)
+		else: message_label.text=I18n.text(I18n.text("正在观察 · ")+str(choice.get("label",I18n.text("当前对象")))+" · "+spatial_hint(choice))
 
 
 func _toggle_city_people_view() -> void:
 	if coordinator.is_busy() or world.current_scale_id!="city": return
-	message_label.text=""
+	message_label.text=I18n.text("")
 	if _city_street_view:
 		_reset_camera()
 		return
@@ -793,7 +795,7 @@ func _toggle_city_people_view() -> void:
 
 func _refresh_city_view_button() -> void:
 	if not is_instance_valid(next_button): return
-	next_button.text = ("街区全景" if _city_street_view else "从街道看城市" if _city_people_view else "走近人群") if world.current_scale_id=="city" else ("进入地域" if not earth_entry_panel.selected.is_empty() else "进入大气") if world.current_scale_id=="earth" else "继续深入"
+	next_button.text = I18n.text((I18n.text("街区全景") if _city_street_view else I18n.text("从街道看城市") if _city_people_view else I18n.text("走近人群")) if world.current_scale_id=="city" else (I18n.text("进入地域") if not earth_entry_panel.selected.is_empty() else I18n.text("进入大气")) if world.current_scale_id=="earth" else I18n.text("继续深入"))
 	next_button.hide()
 
 
@@ -801,7 +803,7 @@ func navigate_to(target_id: String) -> void:
 	if is_instance_valid(clean_observation): clean_observation.set_active(false)
 	if coordinator.is_busy() or not world.foreground: return
 	if not ResourceLoader.exists(_path_for(target_id)):
-		message_label.text = "该尺度正在制作中，当前场景可继续探索"
+		message_label.text = I18n.text(I18n.text("该尺度正在制作中，当前场景可继续探索"))
 		return
 	if not _switching_observation:
 		_remember_view()
@@ -832,7 +834,7 @@ func _on_intent(request_id: int, target_id: String) -> void:
 	if is_instance_valid(earth_entry_panel): earth_entry_panel.hide()
 	# Keep the last 3D frame while dependencies upload; the root HUD still draws.
 	coordinator.active_scene.set_render_update_mode(SubViewport.UPDATE_DISABLED)
-	message_label.text = "正在接近 · " + str(Catalog.describe(target_id).label)
+	message_label.text = I18n.text(I18n.text("正在接近 · ") + str(Catalog.describe(target_id).label))
 	_acknowledge_visible_response(request_id)
 
 
@@ -1111,7 +1113,7 @@ func _on_interactive(_request_id: int, _target_id: String, active: Node) -> void
 	active.set_opacity(1.0)
 	if _target_id=="night_sky":
 		if _prepare_ground_sky(active):
-			message_label.text="已切至观星点的夜空预设 · 下方显示同一天文日期"
+			message_label.text=I18n.text(I18n.text("已切至观星点的夜空预设 · 下方显示同一天文日期"))
 	_orbit_target = active.default_target
 	_pan_offset = Vector3.ZERO
 	_incoming = null
@@ -1119,7 +1121,7 @@ func _on_interactive(_request_id: int, _target_id: String, active: Node) -> void
 	_earth_flight.clear()
 	_earth_bridge.clear()
 	_satellite_bridge.clear()
-	if _target_id!="night_sky": message_label.text = ""
+	if _target_id!="night_sky": message_label.text = I18n.text("")
 	_update_ui()
 	if _solar_overview_entry(source,_target_id):
 		_reset_camera()
@@ -1178,7 +1180,7 @@ func _on_interactive(_request_id: int, _target_id: String, active: Node) -> void
 		_trial_return.clear()
 		_trial_views.clear()
 		_returning_from_trial = false
-		message_label.text = "已返回原世界"
+		message_label.text = I18n.text(I18n.text("已返回原世界"))
 	elif is_trial() and _switching_observation and world.habitat.events.is_empty():
 		world.record_observation("started")
 	elif not _switching_observation:
@@ -1217,7 +1219,7 @@ func _on_failure(_request_id: int, reason: String) -> void:
 	coordinator.active_scene.set_render_update_mode(SubViewport.UPDATE_ALWAYS)
 	soundscape.cue("failure")
 	_restore_view()
-	message_label.text = "暂时无法进入，已保留当前世界；可稍后重试"
+	message_label.text = I18n.text(I18n.text("暂时无法进入，已保留当前世界；可稍后重试"))
 	print("TRANSITION_FAILURE ", reason)
 
 
@@ -1229,8 +1231,8 @@ func _update_recovery() -> void:
 	if recovery.is_empty(): return
 	var ready: bool = bool(recovery.ready)
 	retry_button.disabled = not ready
-	retry_button.text = "重试 · " + str(Catalog.describe(str(recovery.target)).label) if ready else "等待加载完成…"
-	message_label.text = "未能进入，当前世界已保留；可以重试" if ready else "当前世界已保留，目标仍在加载；完成后可重试"
+	retry_button.text = I18n.text(I18n.text("重试 · ") + str(Catalog.describe(str(recovery.target)).label) if ready else I18n.text("等待加载完成…"))
+	message_label.text = I18n.text(I18n.text("未能进入，当前世界已保留；可以重试") if ready else I18n.text("当前世界已保留，目标仍在加载；完成后可重试"))
 
 
 func _retry_transition() -> void:
@@ -1244,7 +1246,7 @@ func _retry_transition() -> void:
 func _dismiss_recovery() -> void:
 	_recovery_guide.clear()
 	coordinator.dismiss_recovery()
-	message_label.text = "已取消重试，后台仍在收尾；当前世界可继续观察" if coordinator.is_busy() else "继续观察当前世界"
+	message_label.text = I18n.text(I18n.text("已取消重试，后台仍在收尾；当前世界可继续观察") if coordinator.is_busy() else I18n.text("继续观察当前世界"))
 
 
 func _on_cancelled(_request_id: int, reason: String) -> void:
@@ -1254,7 +1256,7 @@ func _on_cancelled(_request_id: int, reason: String) -> void:
 	coordinator.active_scene.set_render_update_mode(SubViewport.UPDATE_ALWAYS)
 	soundscape.cue("cancel")
 	_restore_view()
-	message_label.text = "已暂停接近，返回窗口后可继续" if reason in ["application_focus_lost", "window_unavailable"] else "已取消接近，继续观察当前尺度"
+	message_label.text = I18n.text(I18n.text("已暂停接近，返回窗口后可继续") if reason in ["application_focus_lost", "window_unavailable"] else I18n.text("已取消接近，继续观察当前尺度"))
 
 
 func _input(event: InputEvent) -> void:
@@ -1321,13 +1323,13 @@ func _escape_navigation() -> void:
 	elif coordinator.is_busy(): coordinator.cancel()
 	elif _clear_observation_selection(): pass
 	elif not Catalog.relative(world.current_scale_id,-1).is_empty(): _navigate_relative(-1)
-	else: message_label.text="已在银河系 · 可通过世界导览继续探索"
+	else: message_label.text=I18n.text(I18n.text("已在银河系 · 可通过世界导览继续探索"))
 
 
 func _clear_observation_selection() -> bool:
 	if world.current_scale_id=="earth" and not earth_entry_panel.selected.is_empty():
 		earth_entry_panel.clear_selection()
-		message_label.text="已取消地域选择 · 地球视角保持"
+		message_label.text=I18n.text(I18n.text("已取消地域选择 · 地球视角保持"))
 		return true
 	var stage: Node=coordinator.active_scene
 	var atom_selected: bool=stage.has_meta("oxygen_atom") and (int(stage.get_meta("oxygen_atom").mode)!=0 or bool(stage.get_meta("oxygen_atom").section))
@@ -1339,7 +1341,7 @@ func _clear_observation_selection() -> bool:
 	if not selected: return false
 	explorer_panel.clear_topic()
 	_reset_camera()
-	message_label.text="已取消选择 · 再按 Esc 返回上层"
+	message_label.text=I18n.text(I18n.text("已取消选择 · 再按 Esc 返回上层"))
 	return true
 
 
@@ -1572,7 +1574,7 @@ func _toggle_pause() -> void:
 	soundscape.cue("time")
 	world.set_paused(not world.paused)
 	world.record_observation("paused" if world.paused else "running")
-	pause_button.text = "继续时间" if world.paused else "暂停时间"
+	pause_button.text = I18n.text(I18n.text("继续时间") if world.paused else I18n.text("暂停时间"))
 
 
 func _reset_camera() -> void:
@@ -1582,7 +1584,7 @@ func _reset_camera() -> void:
 	var previous_target: Vector3=_orbit_target
 	var previous_fov: float=coordinator.active_scene.camera.fov
 	_solar_camera_motion.clear()
-	if message_label.text.begins_with("正在观察 · "): message_label.text = ""
+	if message_label.text.begins_with(I18n.text("正在观察 · ")): message_label.text = I18n.text("")
 	_pan_offset = Vector3.ZERO
 	_city_people_view = false
 	_city_street_view = false
@@ -1667,14 +1669,14 @@ func _set_render_quality(value: float) -> void:
 	_render_ratio = value
 	get_window().set_meta("experience_render_ratio", _render_ratio)
 	_resize()
-	quality_button.text = "画质：" + RenderQuality.label(_render_ratio)
-	message_label.text = "节能画质 · 保留场景效果与清晰文字，远处细节会稍柔和" if value == RenderQuality.ECONOMY else "已提高画面清晰度" if value == RenderQuality.CLEAR else "流畅画质 · 平衡清晰度与硬件开销"
+	quality_button.text = I18n.text(I18n.text("画质：") + RenderQuality.label(_render_ratio))
+	message_label.text = I18n.text(I18n.text("节能画质 · 保留场景效果与清晰文字，远处细节会稍柔和") if value == RenderQuality.ECONOMY else I18n.text("已提高画面清晰度") if value == RenderQuality.CLEAR else I18n.text("流畅画质 · 平衡清晰度与硬件开销"))
 
 
 
 func _button(text_value: String, action: Callable) -> Button:
 	var button: Button = Button.new()
-	button.text = text_value
+	button.text = I18n.text(I18n.text(text_value))
 	button.custom_minimum_size.y = InterfaceTheme.CONTROL_HEIGHT
 	button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	button.pressed.connect(action)
@@ -1683,7 +1685,7 @@ func _button(text_value: String, action: Callable) -> Button:
 
 func _label(text_value: String, size: int, color: Color = Color(0.90, 0.96, 0.97)) -> Label:
 	var label: Label = Label.new()
-	label.text = text_value
+	label.text = I18n.text(I18n.text(text_value))
 	if size>=19: label.theme_type_variation="Heading"
 	label.add_theme_font_size_override("font_size", InterfaceTheme.readable_size(size))
 	label.add_theme_color_override("font_color", color)
@@ -1717,9 +1719,9 @@ func _build_hud() -> void:
 	immersive_interface.header_row.add_child(navigation_bar)
 	navigation_bar.configure(self)
 	immersive_interface.add_tools()
-	clean_button = _button("纯净观察 · F9",func() -> void: clean_observation.toggle())
+	clean_button = _button(I18n.text("纯净观察 · F9"),func() -> void: clean_observation.toggle())
 	hud.add_child(clean_button); clean_button.hide()
-	target_button = _button("观察",_navigate_relative.bind(1))
+	target_button = _button(I18n.text("观察"),_navigate_relative.bind(1))
 	hud.add_child(target_button); target_button.hide()
 	earth_entry_panel = EarthEntryPanel.new()
 	hud.add_child(earth_entry_panel)
@@ -1754,8 +1756,8 @@ func _build_hud() -> void:
 	info_column.add_theme_constant_override("separation",14)
 	info_panel.add_child(info_column)
 	var info_heading: HBoxContainer = HBoxContainer.new(); info_column.add_child(info_heading)
-	var info_title: Label = _label("依据与边界",22); info_title.size_flags_horizontal = Control.SIZE_EXPAND_FILL; info_heading.add_child(info_title)
-	info_heading.add_child(InterfaceTheme.icon("close","关闭科学说明 · Esc",info_panel.hide))
+	var info_title: Label = _label(I18n.text("依据与边界"),22); info_title.size_flags_horizontal = Control.SIZE_EXPAND_FILL; info_heading.add_child(info_title)
+	info_heading.add_child(InterfaceTheme.icon("close",I18n.text("关闭科学说明 · Esc"),info_panel.hide))
 	info_label.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	info_column.add_child(info_label)
 	info_panel.visible = false
@@ -1763,7 +1765,7 @@ func _build_hud() -> void:
 	hud.add_child(anatomy_controls)
 	anatomy_controls.position = Vector2(33, 165)
 	anatomy_controls.add_theme_constant_override("separation", 7)
-	cutaway_button = _button("查看外形  C", _toggle_cutaway)
+	cutaway_button = _button(I18n.text("查看外形  C"), _toggle_cutaway)
 	anatomy_controls.add_child(cutaway_button)
 	anatomy_controls.visible = false
 	debug_label = _label("", 12)
@@ -1825,9 +1827,9 @@ func _build_sound_panel(style: StyleBoxFlat) -> void:
 	rows.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroller.add_child(rows)
 	var heading: HBoxContainer = HBoxContainer.new(); rows.add_child(heading)
-	var sound_title: Label = _label("声音",22); sound_title.size_flags_horizontal = Control.SIZE_EXPAND_FILL; heading.add_child(sound_title)
-	heading.add_child(InterfaceTheme.icon("close","关闭声音设置",sound_panel.hide))
-	var labels: Dictionary = {"master": "主音量", "environment_volume": "环境声", "music_volume": "音乐", "effects_volume": "效果音"}
+	var sound_title: Label = _label(I18n.text("声音"),22); sound_title.size_flags_horizontal = Control.SIZE_EXPAND_FILL; heading.add_child(sound_title)
+	heading.add_child(InterfaceTheme.icon("close",I18n.text("关闭声音设置"),sound_panel.hide))
+	var labels: Dictionary = {"master": I18n.text("主音量"), "environment_volume": I18n.text("环境声"), "music_volume": I18n.text("音乐"), "effects_volume": I18n.text("效果音")}
 	for property: String in labels:
 		var row: HBoxContainer = HBoxContainer.new()
 		rows.add_child(row)
@@ -1843,7 +1845,7 @@ func _build_sound_panel(style: StyleBoxFlat) -> void:
 		slider.tooltip_text = labels[property]
 		slider.value_changed.connect(func(value: float) -> void: soundscape.set(property, value))
 		row.add_child(slider)
-	sound_mute_button = _button("开启声音  M" if _muted else "静音  M", _toggle_mute)
+	sound_mute_button = _button(I18n.text("开启声音  M") if _muted else I18n.text("静音  M"), _toggle_mute)
 	rows.add_child(sound_mute_button)
 	sound_context_label = _label("",12)
 	sound_context_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -1853,7 +1855,7 @@ func _build_sound_panel(style: StyleBoxFlat) -> void:
 
 func _toggle_mute() -> void:
 	_muted = not _muted
-	if is_instance_valid(sound_mute_button): sound_mute_button.text = "开启声音  M" if _muted else "静音  M"
+	if is_instance_valid(sound_mute_button): sound_mute_button.text = I18n.text(I18n.text("开启声音  M") if _muted else I18n.text("静音  M"))
 
 
 func _update_ui() -> void:
@@ -1864,17 +1866,17 @@ func _update_ui() -> void:
 	earth_entry_panel.visible = id == "earth" and not coordinator.is_busy() and not explorer_panel.visible and not (is_instance_valid(guided_journey) and guided_journey.visible) and not (is_instance_valid(learning_overlay) and learning_overlay.topic=="earth_daylight")
 	anatomy_controls.visible = id == "heart"
 	if id == "heart": _update_cutaway_button()
-	var science_text: String = str(coordinator.active_scene.get_meta("scientific_label", ""))
-	science_badge.text = science_text
-	title_label.text = str(Catalog.describe(id).label)
-	subtitle_label.text = SUBTITLES.get(id, "TWINVERSE  /  A JOURNEY THROUGH SCALE")
-	context_label.text = "   孪生宇宙 / " + ("地球分支" if id in ["woodland","city","desert","polar","arctic","earth_moon"] else "跨尺度观察")
+	var science_text: String = I18n.meta_text(coordinator.active_scene,"scientific_label", "")
+	science_badge.text = I18n.text(science_text)
+	title_label.text = I18n.text(str(Catalog.describe(id).label))
+	subtitle_label.text = I18n.text(SUBTITLES.get(id, "TWINVERSE  /  A JOURNEY THROUGH SCALE"))
+	context_label.text = I18n.text(I18n.text("   孪生宇宙 / ") + (I18n.text("地球分支") if id in ["woodland","city","desert","polar","arctic","earth_moon"] else I18n.text("跨尺度观察")))
 	previous_button.disabled = Catalog.relative(id,-1).is_empty()
 	next_button.disabled = Catalog.relative(id,1).is_empty() and id!="city"
-	previous_button.text = "返回太阳系" if Satellites.is_system(id) else "返回地球" if id in ["woodland","city","desert","polar","arctic","earth_moon"] else "返回上层"
+	previous_button.text = I18n.text(I18n.text("返回太阳系") if Satellites.is_system(id) else I18n.text("返回地球") if id in ["woodland","city","desert","polar","arctic","earth_moon"] else I18n.text("返回上层"))
 	target_button.hide()
 	var next_id: String = Catalog.relative(id,1)
-	target_button.text = "⊙  " + str(Catalog.describe(next_id).get("label",""))
+	target_button.text = I18n.text("⊙  " + str(Catalog.describe(next_id).get("label","")))
 	if _follow_scale!=id:
 		_city_people_view = false
 		_city_street_view = false
@@ -1893,17 +1895,17 @@ func _update_ui() -> void:
 				coordinator.active_scene.builder.set_solar_focus(coordinator.active_scene,solar_follow)
 		_follow_scale = id
 	_refresh_city_view_button()
-	info_label.text = "[b]" + title_label.text + "[/b]\n\n" + ScienceReference.text_for(id) + "\n\n[b]场景说明[/b]\n"
+	info_label.text = I18n.text("[b]" + title_label.text + "[/b]\n\n" + ScienceReference.text_for(id) + I18n.text("\n\n[b]场景说明[/b]\n"))
 	if id in ["pacific", "reef", "school", "fish"]:
-		info_label.text += "蜥蜴岛 · 北大堡礁\n海葵双锯鱼 [i]Amphiprion percula[/i]\n宿主：壮丽海葵\n\n80 mm 个体、约 5 m 水深及场景布局为作者化设定。海葵鱼留在局部宿主附近；背景包含褐吊、四带笛鲷、青绿雀鲷、绿海龟和蓝斑条尾魟参考形态；不当作实测物种分布或生态模拟。\n\n礁区→行为→循环→细胞→ATP已接入统一时间的完整参考模型。点击“影响链 / 记录”切换情境并查看曲线、收支与来源；全部生理参数尚待物种标定。"
+		info_label.text += I18n.text(I18n.text("蜥蜴岛 · 北大堡礁\n海葵双锯鱼 [i]Amphiprion percula[/i]\n宿主：壮丽海葵\n\n80 mm 个体、约 5 m 水深及场景布局为作者化设定。海葵鱼留在局部宿主附近；背景包含褐吊、四带笛鲷、青绿雀鲷、绿海龟和蓝斑条尾魟参考形态；不当作实测物种分布或生态模拟。\n\n礁区→行为→循环→细胞→ATP已接入统一时间的完整参考模型。点击“影响链 / 记录”切换情境并查看曲线、收支与来源；全部生理参数尚待物种标定。"))
 	elif id == "heart":
-		info_label.text += "[b]科学示意 · 示意放大[/b]\n\n一般成年硬骨鱼结构参考，并非该目标鱼的扫描重建。\n\n静脉窦 → 心房 → 心室 → 动脉球 → 鳃。\n\n组织运动与血流颗粒用于解释方向，未对应实测心率或流速。"
+		info_label.text += I18n.text(I18n.text("[b]科学示意 · 示意放大[/b]\n\n一般成年硬骨鱼结构参考，并非该目标鱼的扫描重建。\n\n静脉窦 → 心房 → 心室 → 动脉球 → 鳃。\n\n组织运动与血流颗粒用于解释方向，未对应实测心率或流速。"))
 	else:
-		info_label.text += str(coordinator.active_scene.get_meta("scientific_label", coordinator.active_scene.get_meta("scientific_note", "局部尺度与结构解释原型；非实时科学测量。")))
+		info_label.text += I18n.text(I18n.meta_text(coordinator.active_scene,"scientific_label",I18n.meta_text(coordinator.active_scene,"scientific_note",I18n.text("局部尺度与结构解释原型；非实时科学测量。"))))
 
 
 func _update_cutaway_button() -> void:
-	cutaway_button.text = "查看外形  C" if bool(coordinator.active_scene.get_meta("anatomy_cutaway_active", true)) else "展开剖面  C"
+	cutaway_button.text = I18n.text(I18n.text("查看外形  C") if bool(coordinator.active_scene.get_meta("anatomy_cutaway_active", true)) else I18n.text("展开剖面  C"))
 
 
 func _toggle_cutaway() -> void:
@@ -1921,10 +1923,10 @@ func _select_heart_region(region_id: String) -> void:
 	for region: Dictionary in stage.builder.get_regions(stage):
 		if region.id == region_id:
 			soundscape.cue("select")
-			info_label.text = "[b]" + str(region.label) + "[/b]\n\n" + str(region.description) + "\n\n" + str(stage.get_meta("scientific_label")) + "\n\n" + ScienceReference.text_for("heart")
+			info_label.text = I18n.text("[b]" + str(region.label) + "[/b]\n\n" + str(region.description) + "\n\n" + I18n.meta_text(stage,"scientific_label") + "\n\n" + ScienceReference.text_for("heart"))
 			observation_panel.hide()
 			info_panel.visible = true
-			message_label.text = "已选择 · " + str(region.label)
+			message_label.text = I18n.text(I18n.text("已选择 · ") + str(region.label))
 			return
 
 
@@ -1971,7 +1973,7 @@ func _toggle_reduced_motion() -> void:
 	for stage: Node in scene_host.get_children():
 		stage.reduced_motion = _reduced_motion
 		if stage.builder.has_method("set_reduced_motion"): stage.builder.set_reduced_motion(stage, _reduced_motion)
-	message_label.text = "减少镜头运动：" + ("开" if _reduced_motion else "关")
+	message_label.text = I18n.text(I18n.text("减少镜头运动：") + (I18n.text("开") if _reduced_motion else I18n.text("关")))
 
 
 func _fill_audio() -> void:
@@ -2034,10 +2036,10 @@ func _quit(code: int = 0, discard_unsaved: bool = false) -> void:
 			if not is_instance_valid(_save_failure_dialog):
 				_save_failure_dialog = ConfirmationDialog.new()
 				_save_failure_dialog.theme = hud.theme
-				_save_failure_dialog.title = "本次观察尚未保存"
-				_save_failure_dialog.dialog_text = "未能保存本次观察。\n可以返回观察，检查磁盘空间或目录权限后重试。"
-				_save_failure_dialog.ok_button_text = "仍然退出"
-				_save_failure_dialog.cancel_button_text = "返回观察"
+				_save_failure_dialog.title = I18n.text("本次观察尚未保存")
+				_save_failure_dialog.dialog_text = I18n.text("未能保存本次观察。\n可以返回观察，检查磁盘空间或目录权限后重试。")
+				_save_failure_dialog.ok_button_text = I18n.text("仍然退出")
+				_save_failure_dialog.cancel_button_text = I18n.text("返回观察")
 				_save_failure_dialog.confirmed.connect(_quit.bind(0, true))
 				add_child(_save_failure_dialog)
 			_save_failure_dialog.popup_centered(Vector2i(440, 160))
@@ -2112,9 +2114,9 @@ func is_trial() -> bool:
 
 
 func _refresh_observation_controls() -> void:
-	pause_button.text = "继续时间" if world.paused else "暂停时间"
+	pause_button.text = I18n.text(I18n.text("继续时间") if world.paused else I18n.text("暂停时间"))
 	save_button.disabled = is_trial() or not _persistence_enabled or (_store != null and _store.protected)
-	save_button.text = "临时试览" if is_trial() else ("存档已保护" if _store != null and _store.protected else "保存世界")
+	save_button.text = I18n.text(I18n.text("临时试览") if is_trial() else (I18n.text("存档已保护") if _store != null and _store.protected else I18n.text("保存世界")))
 	if observation_panel.visible: observation_panel.refresh()
 
 
@@ -2126,7 +2128,7 @@ func toggle_trial() -> void:
 		_remember_view()
 		var status: String = save_world(false)
 		if status not in ["ok", "disabled"]:
-			message_label.text = "原世界尚未保存，请稍后重试"
+			message_label.text = I18n.text(I18n.text("原世界尚未保存，请稍后重试"))
 			return
 		_trial_return = world.checkpoint()
 		_trial_views = _views.duplicate(true)
@@ -2155,7 +2157,7 @@ func toggle_trial() -> void:
 	else:
 		navigate_to(target_id)
 	_refresh_observation_controls()
-	message_label.text = "正在返回原世界" if _returning_from_trial else ("临时试览 · 原世界已保留" if is_trial() else "已返回原世界")
+	message_label.text = I18n.text(I18n.text("正在返回原世界") if _returning_from_trial else (I18n.text("临时试览 · 原世界已保留") if is_trial() else I18n.text("已返回原世界")))
 
 
 func _toggle_info() -> void:
@@ -2206,7 +2208,7 @@ func _finish_guide_visit() -> void:
 	explorer_panel.clear_topic()
 	if not topic.is_empty(): explorer_panel.select_topic(topic,preserve_date)
 	elif world.current_scale_id in ["fish","heart"]:
-		message_label.text = "继续深入可进入下一层；影响链 / 记录可比较氧的输送与利用。"
+		message_label.text = I18n.text(I18n.text("继续深入可进入下一层；影响链 / 记录可比较氧的输送与利用。"))
 	if earth_polar_reference and topic=="earth_daylight" and world.current_scale_id=="earth":
 		explorer_panel.earth_daylight_controls.focus_polar()
 	explorer_panel.scroll.scroll_vertical = 0
@@ -2244,7 +2246,7 @@ func _restore_solar_view() -> void:
 
 func set_solar_date(value: float) -> void:
 	if Satellites.is_system(world.current_scale_id) and not Satellites.available(value):
-		message_label.text = "卫星位置支持1995—2050；保持当前日期"
+		message_label.text = I18n.text(I18n.text("卫星位置支持1995—2050；保持当前日期"))
 		return
 	solar_demo_auto = false
 	solar_manual_setting = true
@@ -2253,13 +2255,13 @@ func set_solar_date(value: float) -> void:
 	solar_jd = clampf(value,Ephemeris.START_JD,Ephemeris.END_JD)
 	_solar_origin_jd = solar_jd
 	_solar_origin_time = world.simulation_time_s
-	if Satellites.is_system(world.current_scale_id) and message_label.text.contains("卫星缓存"):
-		message_label.text=""
+	if Satellites.is_system(world.current_scale_id) and message_label.text.contains(I18n.text("卫星缓存")):
+		message_label.text=I18n.text("")
 
 func set_solar_rate(value: float) -> void:
 	if Satellites.is_system(world.current_scale_id) and not Satellites.available(solar_jd):
 		solar_rate=0.0
-		message_label.text="当前日期超出1995—2050卫星位置范围"
+		message_label.text=I18n.text(I18n.text("当前日期超出1995—2050卫星位置范围"))
 		return
 	set_solar_date(solar_jd)
 	solar_rate = value
@@ -2457,7 +2459,7 @@ func follow_planet(index: int, _detail: bool = false) -> void:
 	_pan_offset=pose.offset
 	_begin_solar_camera(pose.position,pose.target,_orbit_target,50.0)
 	immersive_interface.refresh()
-	message_label.text="正在观察 · "+Ephemeris.NAMES[index]+" · "+spatial_hint({"planet":index})
+	message_label.text=I18n.text(I18n.text("正在观察 · ")+I18n.strings(Ephemeris.NAMES)[index]+" · "+spatial_hint({"planet":index}))
 
 
 func frame_satellite_system(owner: int = -1, key: String = "", animate: bool = true) -> bool:
@@ -2498,7 +2500,7 @@ func frame_satellite_system(owner: int = -1, key: String = "", animate: bool = t
 		_solar_camera_motion.clear(); _orbit_target=pose.target; stage.camera.fov=pose.fov
 		stage.set_pose(pose.position,pose.target,pose.up)
 	immersive_interface.refresh()
-	message_label.text=""
+	message_label.text=I18n.text("")
 	return true
 
 
@@ -2547,7 +2549,7 @@ func look_solar_context(index: int) -> void:
 	stage.set_meta("solar_lookaround",true)
 	_pan_offset=target-earth.position
 	_begin_solar_camera(eye,target,previous_target)
-	message_label.text="地球近景 · 正在望向"+("太阳" if index==8 else "月球")+" · 右键拖动环顾"
+	message_label.text=I18n.text(I18n.text("地球近景 · 正在望向")+(I18n.text("太阳") if index==8 else I18n.text("月球"))+I18n.text(" · 右键拖动环顾"))
 
 
 func _solar_observation_frame() -> Rect2:
@@ -2668,33 +2670,37 @@ func _solar_orbit_frame_scale(stage: Node) -> float:
 	return 4.0*maxf(1.0,maxf(horizontal_fit,vertical_fit))
 
 func content_targets(use_direct: bool = true) -> Array[Dictionary]:
+	return I18n.present_dictionaries(_content_targets_source(use_direct))
+
+
+func _content_targets_source(use_direct: bool = true) -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
 	var stage: Node = coordinator.active_scene
 	if stage.scale_id=="night_sky":
 		result.assign(GroundSky.targets(stage))
 	elif stage.scale_id == "universe":
-		result.append({"node":stage.world_root.get_node("MilkyWaySemanticAnchor"),"label":"银河系 · 进入我们的恒星家园","distance":4.0,"min_distance":1.1,"entry_distance":2.7,"destination":"galaxy","primary":true})
+		result.append({"node":stage.world_root.get_node("MilkyWaySemanticAnchor"),"label":I18n.text("银河系 · 进入我们的恒星家园"),"distance":4.0,"min_distance":1.1,"entry_distance":2.7,"destination":"galaxy","primary":true})
 	elif stage.scale_id == "galaxy":
-		result.append({"node":stage.world_root.find_child("SolarSystemSemanticAnchor", true, false), "label":"太阳系 · 银河中的教学锚点", "distance":1.6, "min_distance":.35, "entry_distance":1.05, "destination":"solar_system", "primary":true})
+		result.append({"node":stage.world_root.find_child("SolarSystemSemanticAnchor", true, false), "label":I18n.text("太阳系 · 银河中的教学锚点"), "distance":1.6, "min_distance":.35, "entry_distance":1.05, "destination":"solar_system", "primary":true})
 	elif stage.scale_id == "solar_system":
-		result.append({"node":stage.world_root.get_node("Sun_AuthoredPhotosphere"),"label":"太阳","sun":true,"pick_nodes":[stage.get_meta("solar_physical").points[8]],"distance":5.8,"min_distance":2.2,"primary":false})
+		result.append({"node":stage.world_root.get_node("Sun_AuthoredPhotosphere"),"label":I18n.text("太阳"),"sun":true,"pick_nodes":[stage.get_meta("solar_physical").points[8]],"distance":5.8,"min_distance":2.2,"primary":false})
 		var moon: Dictionary = stage.get_meta("solar_moon")
 		var factor: float = absf(moon.node.scale.x)
-		result.append({"node":moon.node,"label":"月球","moon":true,"pick_nodes":[stage.get_meta("solar_physical").points[9]],"distance":.55*factor,"min_distance":.15*factor,"entry_distance":.18*factor,"destination":"earth_moon","primary":false})
+		result.append({"node":moon.node,"label":I18n.text("月球"),"moon":true,"pick_nodes":[stage.get_meta("solar_physical").points[9]],"distance":.55*factor,"min_distance":.15*factor,"entry_distance":.18*factor,"destination":"earth_moon","primary":false})
 		result.append_array(SolarSatellites.targets(stage))
 	elif stage.scale_id == "atmosphere":
-		result.append({"node":stage.world_root.find_child("LizardTangentPatch", true, false), "label":"蜥蜴岛海面 · 接近海洋", "focus_position":stage.target_position, "distance":100.0, "entry_distance":42.0, "destination":"pacific", "primary":true})
+		result.append({"node":stage.world_root.find_child("LizardTangentPatch", true, false), "label":I18n.text("蜥蜴岛海面 · 接近海洋"), "focus_position":stage.target_position, "distance":100.0, "entry_distance":42.0, "destination":"pacific", "primary":true})
 	elif stage.scale_id == "heart":
 		for region: Dictionary in stage.builder.get_regions(stage):
 			result.append({"node":region.external_node, "cutaway_node":region.cutaway_node, "label":region.label, "region":region.id, "focus_position":region.position, "distance":maxf(.5, float(region.radius) * 3.0), "min_distance":.22, "entry_distance":.30, "destination":"cardiomyocyte" if region.id == "ventricle" else "", "primary":region.id == "ventricle", "role":region.description})
 	elif stage.scale_id == "cardiomyocyte":
-		result.append({"node":stage.world_root.find_child("SelectedMitochondrion", true, false), "label":"所选线粒体 · 科学示意", "distance":2.0, "min_distance":.42, "entry_distance":1.15, "destination":"mitochondrion", "primary":true})
+		result.append({"node":stage.world_root.find_child("SelectedMitochondrion", true, false), "label":I18n.text("所选线粒体 · 科学示意"), "distance":2.0, "min_distance":.42, "entry_distance":1.15, "destination":"mitochondrion", "primary":true})
 	elif stage.scale_id in ["mitochondrion", "molecule"]:
-		result.append({"node":stage.world_root.find_child("SelectedO2EntrySymbolNotPhysicalScale" if stage.scale_id == "mitochondrion" else "O2AtomicCenterSymbols", true, false), "label":"O₂结构符号" if stage.scale_id == "mitochondrion" else "氧原子中心 · 进入密度教学视图", "focus_position":stage.target_position, "distance":1.4 if stage.scale_id == "mitochondrion" else 2.2, "min_distance":.42, "entry_distance":.85 if stage.scale_id == "mitochondrion" else 1.0, "destination":"molecule" if stage.scale_id == "mitochondrion" else "atom", "primary":true})
+		result.append({"node":stage.world_root.find_child("SelectedO2EntrySymbolNotPhysicalScale" if stage.scale_id == "mitochondrion" else "O2AtomicCenterSymbols", true, false), "label":I18n.text("O₂结构符号") if stage.scale_id == "mitochondrion" else I18n.text("氧原子中心 · 进入密度教学视图"), "focus_position":stage.target_position, "distance":1.4 if stage.scale_id == "mitochondrion" else 2.2, "min_distance":.42, "entry_distance":.85 if stage.scale_id == "mitochondrion" else 1.0, "destination":"molecule" if stage.scale_id == "mitochondrion" else "atom", "primary":true})
 	elif stage.has_meta("lunar"):
 		var lunar: Dictionary = stage.get_meta("lunar")
-		result.append({"node":lunar.earth,"label":"地球 · 昼夜分界与自转轴","distance":3.6,"destination":"earth","primary":true})
-		result.append({"node":lunar.moon,"label":"月球 · 同步自转与受光面","distance":1.1,"min_distance":.62})
+		result.append({"node":lunar.earth,"label":I18n.text("地球 · 昼夜分界与自转轴"),"distance":3.6,"destination":"earth","primary":true})
+		result.append({"node":lunar.moon,"label":I18n.text("月球 · 同步自转与受光面"),"distance":1.1,"min_distance":.62})
 	elif stage.has_meta("natural_satellites"):
 		result.assign(SatelliteBuilder.targets(stage))
 	elif stage.has_meta("jovian"):
@@ -2710,7 +2716,7 @@ func content_targets(use_direct: bool = true) -> Array[Dictionary]:
 		for item: Dictionary in stage.get_meta("coral_targets",[]): result.append(item)
 		for item: Dictionary in stage.get_meta("seagrass_targets",[]): result.append(item)
 		if stage.has_meta("target_node"):
-			result.append({"node":stage.get_meta("target_node"),"label":"目标海葵双锯鱼 · Amphiprion percula","distance":.42,"primary":true,"role":"局部宿主附近的目标个体；双击继续深入既有观察路径。"})
+			result.append({"node":stage.get_meta("target_node"),"label":I18n.text("目标海葵双锯鱼 · Amphiprion percula"),"distance":.42,"primary":true,"role":I18n.text("局部宿主附近的目标个体；双击继续深入既有观察路径。")})
 		for item: Dictionary in stage.get_meta("clam_targets",[]): result.append(item)
 		for item: Dictionary in stage.get_meta("holothuria_targets",[]): result.append(item)
 		for item: Dictionary in stage.get_meta("octopus_targets",[]): result.append(item)
@@ -2768,7 +2774,7 @@ func follow_content(index: int, direct: Dictionary = {}) -> void:
 		coordinator.active_scene.builder.set_solar_focus(coordinator.active_scene,-1)
 		coordinator.active_scene.set_meta("solar_satellite_selected_key",str(direct.get("satellite_key","")))
 	if Satellites.is_system(world.current_scale_id) and not Satellites.available(solar_jd):
-		message_label.text="当前日期超出1995—2050卫星位置范围"
+		message_label.text=I18n.text(I18n.text("当前日期超出1995—2050卫星位置范围"))
 		return
 	_pan_offset=Vector3.ZERO
 	_city_people_view=false
@@ -2812,7 +2818,7 @@ func follow_content(index: int, direct: Dictionary = {}) -> void:
 	if world.current_scale_id=="night_sky":
 		GroundSky.focus(coordinator.active_scene,_content_follow)
 		_orbit_target=item.node.global_position
-		message_label.text="正在观察 · "+str(item.label)+" · "+spatial_hint(item)
+		message_label.text=I18n.text(I18n.text("正在观察 · ")+str(item.label)+" · "+spatial_hint(item))
 		return
 	_orbit_target = item.get("focus_position", item.node.position+Vector3(0,float(item.get("focus_height",0.0)),0))
 	var direction: Vector3 = Vector3(0.35,0.28,1).normalized()
@@ -2834,7 +2840,7 @@ func follow_content(index: int, direct: Dictionary = {}) -> void:
 		_begin_solar_camera(arrival,_orbit_target,previous_target,detail_lens)
 	elif framing_owner>=2: _begin_solar_camera(_orbit_target+offset,_orbit_target,previous_target,detail_lens)
 	else: coordinator.active_scene.set_pose(_orbit_target+offset,_orbit_target)
-	message_label.text = "正在观察 · "+str(item.label)+" · "+spatial_hint(item)
+	message_label.text = I18n.text(I18n.text("正在观察 · ")+str(item.label)+" · "+spatial_hint(item))
 
 func perform_spatial_action(action: String) -> void:
 	if coordinator.is_busy() or not world.foreground or world_guide.visible or size_comparison.visible: return
@@ -2842,19 +2848,19 @@ func perform_spatial_action(action: String) -> void:
 		"runoff_rain":
 			if world.current_scale_id!="city" or learning_overlay.topic!="runoff": return
 			world.set_runoff_rain(not world.runoff.raining)
-			message_label.text="局部实验降雨已"+("开启 · 继续时间观察雨水去向" if world.runoff.raining else "关闭 · 原有水量继续排出")
+			message_label.text=I18n.text(I18n.text("局部实验降雨已")+(I18n.text("开启 · 继续时间观察雨水去向") if world.runoff.raining else I18n.text("关闭 · 原有水量继续排出")))
 		"browse_protection":
 			if world.current_scale_id!="woodland" or learning_overlay.topic!="browse": return
 			world.set_browse_protected(not world.browse.protected_left)
-			message_label.text="左侧样方已"+("保护 · 继续时间比较恢复" if world.browse.protected_left else "开放 · 继续时间比较取食")
+			message_label.text=I18n.text(I18n.text("左侧样方已")+(I18n.text("保护 · 继续时间比较恢复") if world.browse.protected_left else I18n.text("开放 · 继续时间比较取食")))
 		"deadwood_condition":
 			if world.current_scale_id!="woodland" or learning_overlay.topic!="deadwood": return
 			world.set_deadwood_mode((world.deadwood.left_mode+1)%world.Deadwood.MODES.size())
-			message_label.text="左侧枯木："+world.Deadwood.LABELS[world.deadwood.left_mode]+" · 右侧持续干燥，继续时间观察碳去向"
+			message_label.text=I18n.text(I18n.text("左侧枯木：")+world.Deadwood.LABELS[world.deadwood.left_mode]+I18n.text(" · 右侧持续干燥，继续时间观察碳去向"))
 		"coral_heat":
 			if world.current_scale_id not in ["pacific","reef","school","fish"] or learning_overlay.topic!="coral_symbiosis": return
 			world.set_coral_heat(not world.symbiosis.heated)
-			message_label.text="热压力教学已"+("开启 · 继续时间观察共生颜色" if world.symbiosis.heated else "解除 · 此教学例假定仍可恢复")
+			message_label.text=I18n.text(I18n.text("热压力教学已")+(I18n.text("开启 · 继续时间观察共生颜色") if world.symbiosis.heated else I18n.text("解除 · 此教学例假定仍可恢复")))
 		_: return
 	soundscape.cue("select")
 
@@ -2883,11 +2889,11 @@ func _update_exploration() -> void:
 		_solar_origin_time=world.simulation_time_s
 		solar_rate=0.0
 		raw_jd=_solar_origin_jd
-		message_label.text="已到卫星位置日期边界，天文推演暂停"
+		message_label.text=I18n.text(I18n.text("已到卫星位置日期边界，天文推演暂停"))
 	solar_jd = clampf(raw_jd,Ephemeris.START_JD,Ephemeris.END_JD)
 	if raw_jd>Ephemeris.END_JD or raw_jd<Ephemeris.START_JD:
 		set_solar_rate(0.0)
-		if world.current_scale_id=="solar_system": message_label.text = "已到行星位置有效日期边界，天文推演暂停"
+		if world.current_scale_id=="solar_system": message_label.text = I18n.text(I18n.text("已到行星位置有效日期边界，天文推演暂停"))
 	for stage: Node in scene_host.get_children():
 		if stage.get("scale_id")=="galaxy":
 			stage.builder.Galactic.update(stage,world.current_scale_id=="galaxy" and learning_overlay.topic=="galactic_structure" and learning_overlay.enabled)
@@ -3012,7 +3018,7 @@ func open_size_comparison() -> void:
 
 
 func select_atom_view(mode: int, section: bool=false) -> void:
-	if coordinator.is_busy() or world.current_scale_id!="atom" or mode<0 or mode>=Oxygen.LABELS.size(): return
+	if coordinator.is_busy() or world.current_scale_id!="atom" or mode<0 or mode>=I18n.strings(Oxygen.LABELS).size(): return
 	_pan_offset=Vector3.ZERO
 	var stage: Node=coordinator.active_scene
 	stage.builder.set_atom_view(stage,mode,section)
@@ -3024,4 +3030,76 @@ func select_atom_view(mode: int, section: bool=false) -> void:
 	var pose: Vector3=Vector3(.6,.35,1.9) if mode==4 else stage.default_position
 	if section and mode!=4: pose=Vector3(0,0,7.2)
 	stage.set_pose(pose*factor,Vector3.ZERO)
-	message_label.text="原子核已单独放大 · 不与电子云同比例" if mode==4 else "轨道形状参考 · 不改变原子或世界状态"
+	message_label.text=I18n.text(I18n.text("原子核已单独放大 · 不与电子云同比例") if mode==4 else I18n.text("轨道形状参考 · 不改变原子或世界状态"))
+
+
+func _language_changed(_locale: String) -> void:
+	get_window().title = I18n.text("孪生宇宙")
+	_rebuild_localized_hud.call_deferred()
+
+
+func _rebuild_localized_hud() -> void:
+	if not is_instance_valid(hud): return
+	var panels: Dictionary = {}
+	for key: String in ["info_panel", "explorer_panel", "sound_panel", "observation_panel", "world_guide", "guided_journey", "size_comparison"]:
+		panels[key] = get(key).visible
+	var topic_id: String = str(explorer_panel._topic.get("id", ""))
+	var section_flags: Array[bool] = [explorer_panel._astro_open, explorer_panel._observation_open, explorer_panel._science_open]
+	var explorer_scroll: int = explorer_panel.scroll.scroll_vertical
+	var guide_first_visit: bool = world_guide.first_visit_view
+	var guide_query: String = world_guide.search.text
+	var atlas: Node = world_guide.species_atlas
+	var atlas_filter: Dictionary = {"query":atlas.search.text,"area":atlas.area_ids[atlas.area_filter.selected],"kind":atlas.kind_ids[atlas.kind_filter.selected]}
+	var ecology_filter: Dictionary = {"branch":world_guide.ecology_map.branch,"selected":world_guide.ecology_map.selected}
+	var size_body: int = size_comparison.selected
+	var journey_transient: Dictionary = {}
+	for key: String in ["pending","_lesson_visit","_framing_factor","_last_width"]: journey_transient[key] = guided_journey.get(key)
+	var subpanels: Dictionary = {"solar_comparison":explorer_panel.solar_comparison.visible,"earth_season_controls":explorer_panel.earth_season_controls.visible}
+	var guide_page: String = "species" if world_guide.species_atlas.visible else "ecology" if world_guide.ecology_map.visible else "topics"
+	var guide_scroll: int = world_guide.scroll.scroll_vertical
+	var region: String = earth_entry_panel.selected
+	var clean: bool = clean_observation.active
+	var marker_topic: String = learning_overlay.topic
+	var marker_branch: String = learning_overlay.branch
+	var markers_enabled: bool = learning_overlay.enabled
+	var origin: Dictionary = navigation_bar.origin.duplicate(true)
+	_journey_restore = guided_journey.checkpoint()
+	var rate: float = solar_rate
+	var old_layer: CanvasLayer = hud.get_parent() as CanvasLayer
+	remove_child(old_layer)
+	old_layer.free()
+	_build_hud()
+	earth_entry_panel.selected = region
+	navigation_bar.origin = origin
+	for key: String in journey_transient: guided_journey.set(key,journey_transient[key])
+	size_comparison.select_body(size_body)
+	learning_overlay.topic = marker_topic
+	learning_overlay.branch = marker_branch
+	learning_overlay.enabled = markers_enabled
+	for key: String in panels: get(key).visible = panels[key]
+	# Refresh text without invoking lesson actions or clearing camera/reference state.
+	explorer_panel.restore_localized_topic(topic_id)
+	explorer_panel._astro_open = section_flags[0]
+	explorer_panel._observation_open = section_flags[1]
+	explorer_panel._science_open = section_flags[2]
+	explorer_panel._present_sections()
+	for key: String in subpanels: explorer_panel.get(key).visible = subpanels[key]
+	explorer_panel.scroll.set_deferred("scroll_vertical", explorer_scroll)
+	world_guide.refresh_context(guide_first_visit)
+	world_guide.search.text = guide_query
+	atlas = world_guide.species_atlas
+	atlas.area_filter.select(maxi(0,atlas.area_ids.find(atlas_filter.area)))
+	atlas.kind_filter.select(maxi(0,atlas.kind_ids.find(atlas_filter.kind)))
+	atlas.search.text = str(atlas_filter.query)
+	atlas._apply_filters()
+	world_guide.ecology_map.set_branch(str(ecology_filter.branch))
+	world_guide.ecology_map.select_relation(int(ecology_filter.selected))
+	world_guide._show_page(guide_page)
+	world_guide.scroll.set_deferred("scroll_vertical", guide_scroll)
+	learning_overlay.topic = marker_topic
+	learning_overlay.branch = marker_branch
+	learning_overlay.enabled = markers_enabled
+	_update_ui()
+	solar_rate = rate
+	clean_observation.set_active(clean)
+	_resize()

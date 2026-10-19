@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Compact DE440 heliocentric positions. The observer date remains owned by Experience.
 const START_JD: float = 2378496.5
 const END_JD: float = 2469807.5
@@ -20,7 +21,7 @@ static func _open(index: int) -> bool:
 	var file: FileAccess = FileAccess.open(path, FileAccess.READ)
 	if file == null:
 		_failed[index] = "missing"
-		push_warning("DE440离线星历不可读：" + path)
+		push_warning(I18n.text("DE440离线星历不可读：") + path)
 		return false
 	file.big_endian = false
 	var magic: String = file.get_buffer(8).get_string_from_ascii()
@@ -33,7 +34,7 @@ static func _open(index: int) -> bool:
 	var expected_count: int = int(ceil((END_JD - START_JD) / float(STEPS_DAYS[index]))) + 1
 	if magic != MAGIC or planet != index or step != STEPS_DAYS[index] or count != expected_count or reserved != 0 or first != START_JD or last != END_JD or file.get_length() != HEADER_BYTES + count * RECORD_BYTES:
 		_failed[index] = "invalid_header"
-		push_warning("DE440离线星历头或长度无效：" + path)
+		push_warning(I18n.text("DE440离线星历头或长度无效：") + path)
 		return false
 	_series[index] = {"file": file, "step": step, "count": count, "node": -1}
 	return true

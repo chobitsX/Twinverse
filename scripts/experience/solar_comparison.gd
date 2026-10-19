@@ -1,4 +1,5 @@
 extends VBoxContainer
+const I18n = preload("res://scripts/core/app_text.gd")
 ## One dated view of existing heliocentric data; owns no simulation state.
 const Ephemeris = preload("res://scripts/core/solar_ephemeris.gd")
 const Orientation = preload("res://scripts/core/celestial_orientation.gd")
@@ -24,15 +25,15 @@ func configure(experience: Node) -> void:
 	add_child(date_text)
 	var controls: HFlowContainer=HFlowContainer.new()
 	controls.add_theme_constant_override("separation",5)
-	back_button=host._button("−1天",step_date.bind(-1.0))
-	forward_button=host._button("+1天",step_date.bind(1.0))
-	overview_button=host._button("太阳系全景",select_body.bind(-1))
+	back_button=host._button(I18n.text("−1天"),step_date.bind(-1.0))
+	forward_button=host._button(I18n.text("+1天"),step_date.bind(1.0))
+	overview_button=host._button(I18n.text("太阳系全景"),select_body.bind(-1))
 	for button: Button in [back_button,forward_button,overview_button]:
 		button.add_theme_font_size_override("font_size",18)
 		controls.add_child(button)
 	add_child(controls)
-	light_reference=host._label("光走1 AU ≈ 8分19秒 · 单程",12,Color(.60,.93,.82))
-	light_reference.tooltip_text="固定单位参考；每行按当前日期太阳中心至对应质心距离÷真空光速。"
+	light_reference=host._label(I18n.text("光走1 AU ≈ 8分19秒 · 单程"),12,Color(.60,.93,.82))
+	light_reference.tooltip_text=I18n.text("固定单位参考；每行按当前日期太阳中心至对应质心距离÷真空光速。")
 	add_child(light_reference)
 	var grid: GridContainer=GridContainer.new()
 	grid.columns=4
@@ -40,17 +41,17 @@ func configure(experience: Node) -> void:
 	grid.custom_minimum_size.x=280
 	grid.add_theme_constant_override("h_separation",6)
 	grid.add_theme_constant_override("v_separation",2)
-	for title: String in ["行星", "日心距离\nAU", "几何速率\nkm/s", "单程光时\n分钟"]:
+	for title: String in [I18n.text("行星"), I18n.text("日心距离\nAU"), I18n.text("几何速率\nkm/s"), I18n.text("单程光时\n分钟")]:
 		var label: Label=host._label(title,12)
-		label.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT if title!="行星" else HORIZONTAL_ALIGNMENT_LEFT
+		label.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT if title!=I18n.text("行星") else HORIZONTAL_ALIGNMENT_LEFT
 		grid.add_child(label)
-	for index: int in range(Ephemeris.NAMES.size()):
+	for index: int in range(I18n.strings(Ephemeris.NAMES).size()):
 		var button: LinkButton=LinkButton.new()
-		button.text=Ephemeris.NAMES[index]+" →"
+		button.text=I18n.text(I18n.strings(Ephemeris.NAMES)[index]+" →")
 		button.add_theme_font_size_override("font_size",18)
 		button.custom_minimum_size=Vector2(76,44)
 		button.pressed.connect(select_body.bind(index))
-		button.tooltip_text="观察同一日期的"+Ephemeris.NAMES[index]
+		button.tooltip_text=I18n.text("观察同一日期的")+I18n.strings(Ephemeris.NAMES)[index]
 		body_buttons.append(button)
 		grid.add_child(button)
 		var distance: Label=host._label("",14)
@@ -95,10 +96,10 @@ func _process(_delta: float) -> void:
 
 func _refresh_values() -> void:
 	date_jd=host.solar_jd
-	date_text.text=Orientation.timestamp(date_jd)
+	date_text.text=I18n.text(Orientation.timestamp(date_jd))
 	entries.clear()
 	var all_cached: bool=true
-	for index: int in range(Ephemeris.NAMES.size()):
+	for index: int in range(I18n.strings(Ephemeris.NAMES).size()):
 		var cached: Vector3=Ephemeris.De440.position_au(index,date_jd)
 		var position: Vector3=cached if cached.is_finite() else Ephemeris.position_au(index,date_jd)
 		var speed: float=Ephemeris.speed_km_s(index,date_jd)
@@ -106,9 +107,9 @@ func _refresh_values() -> void:
 		var distance_source: String="de440" if cached.is_finite() else "approximate"
 		var light: Dictionary=LightTravel.row(distance,distance_source)
 		all_cached=all_cached and cached.is_finite() and is_finite(speed)
-		distances[index].text=("%.3f" % distance)+( "*" if not cached.is_finite() else "") if is_finite(distance) else "—"
-		speeds[index].text="%.2f" % speed if is_finite(speed) else "—"
-		light_times[index].text=light.text
-		light_times[index].tooltip_text="当天日心距离÷真空光速；单程几何参考，未算传播中天体移动。"
-		entries.append({"index":index,"name":Ephemeris.NAMES[index],"jd":date_jd,"distance_au":distance,"speed_km_s":speed,"distance_source":distance_source,"speed_source":"de440" if is_finite(speed) else "unavailable","light_seconds":light.seconds,"light_minutes":light.minutes,"light_source":light.source})
-	source_note.text=("DE440离线日心数据 · 1800–2050 TDB" if all_cached else "部分缓存不可用：带*距离/光时取近似椭圆；缺失值显示—")+"\n地球对应地月共同重心；木星及以外对应行星与卫星共同重心。\n数值不随画面距离压缩改变。点行星可走近观察。\n光时按当天太阳中心到表中质心的距离÷真空光速估算；单程，未算传播中移动、光线弯曲或地面视位置。\n光速：BIPM SI；AU：IAU 2012 B2。依据见科学说明。"
+		distances[index].text=I18n.text(("%.3f" % distance)+( "*" if not cached.is_finite() else "") if is_finite(distance) else "—")
+		speeds[index].text=I18n.text("%.2f" % speed if is_finite(speed) else "—")
+		light_times[index].text=I18n.text(light.text)
+		light_times[index].tooltip_text=I18n.text("当天日心距离÷真空光速；单程几何参考，未算传播中天体移动。")
+		entries.append({"index":index,"name":I18n.strings(Ephemeris.NAMES)[index],"jd":date_jd,"distance_au":distance,"speed_km_s":speed,"distance_source":distance_source,"speed_source":"de440" if is_finite(speed) else "unavailable","light_seconds":light.seconds,"light_minutes":light.minutes,"light_source":light.source})
+	source_note.text=I18n.text((I18n.text("DE440离线日心数据 · 1800–2050 TDB") if all_cached else I18n.text("部分缓存不可用：带*距离/光时取近似椭圆；缺失值显示—"))+I18n.text("\n地球对应地月共同重心；木星及以外对应行星与卫星共同重心。\n数值不随画面距离压缩改变。点行星可走近观察。\n光时按当天太阳中心到表中质心的距离÷真空光速估算；单程，未算传播中移动、光线弯曲或地面视位置。\n光速：BIPM SI；AU：IAU 2012 B2。依据见科学说明。"))

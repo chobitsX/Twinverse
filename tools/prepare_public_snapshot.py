@@ -16,9 +16,12 @@ TEXT_RESOURCES = {".gd", ".gdshader", ".gdshaderinc", ".tscn", ".tres", ".cfg", 
 ROOT_FILES = ["README.md", "README.zh-CN.md", "README.en.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md",
               "SECURITY.md", "ROADMAP.md", "LICENSE", "LICENSING.md", "THIRD_PARTY_NOTICES.md",
               "project.godot", "export_presets.cfg", ".godot-version", ".gitattributes",
-              "tests/tools/test_public_snapshot.py"]
+              "tests/tools/test_public_snapshot.py", "tests/tools/test_localization.py",
+              "tests/core/test_app_language.gd", "tests/core/test_language_restart.gd",
+              "tests/core/test_localized_content.gd", "tests/integration/i18n_smoke.gd",
+              "tests/integration/i18n_visual.gd", "docs/LOCALIZATION.md", "localization/exclusions.json"]
 TOOL_FILES = ["godot.sh", "export_macos.sh", "project_runtime_guard.py", "sync_export_resources.py",
-              "check_reef_placements.gd", "asset_cost_report.py", "check_community.py",
+              "check_reef_placements.gd", "asset_cost_report.py", "check_community.py", "check_localization.py",
               "prepare_public_snapshot.py", "public_snapshot.gitignore"]
 
 

@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Author-created microstructure illustrations. Geometry is not a fish-specific scan.
 
 const Oxygen = preload("res://scripts/core/oxygen_atom.gd")
@@ -46,7 +47,7 @@ static func build(stage: Node) -> void:
 	stage.set_meta("micro_geometry_stats", stats)
 	stage.set_meta("orbit_min_distance", 0.42)
 	stage.set_meta("orbit_max_distance", 18.0)
-	stage.set_meta("scientific_label", "科学示意 · 形状、颜色、密度与运动经观察简化\n不是 A. percula 活体扫描或分子动力学；过程速度读取参考ATP通量，粒子数不是分子计数。")
+	I18n.set_meta_text(stage,"scientific_label","科学示意 · 形状、颜色、密度与运动经观察简化\n不是 A. percula 活体扫描或分子动力学；过程速度读取参考ATP通量，粒子数不是分子计数。")
 	match stage.scale_id:
 		"cardiomyocyte": _build_cell(stage)
 		"mitochondrion": _build_mitochondrion(stage)
@@ -153,7 +154,7 @@ static func _build_cell(stage: Node) -> void:
 	stage.target_position = Vector3(0.45, 0.17, 1.58)
 	stage.target_radius = 0.34
 	stage.close_position = stage.target_position + MITO_ENTRY_CAMERA_OFFSET
-	stage.set_meta("scientific_label", "心肌细胞局部片段 · 科学示意\n肌原纤维、条纹与线粒体布置为作者化重建；非完整细胞或 A. percula 扫描。")
+	I18n.set_meta_text(stage,"scientific_label","心肌细胞局部片段 · 科学示意\n肌原纤维、条纹与线粒体布置为作者化重建；非完整细胞或 A. percula 扫描。")
 	var fiber_material: ShaderMaterial = _surface(stage, Color(0.58, 0.33, 0.30), 0.62)
 	fiber_material.set_shader_parameter("fiber_strength", 1.0)
 	var fibers: Array[Transform3D] = []
@@ -216,7 +217,7 @@ static func _build_molecule(stage: Node) -> void:
 	stage.close_position = Vector3(0.90, 0.20, 0.90)
 	_add_oxygen_model(stage, Vector3.ZERO, 1.0, "O2AtomicCenterSymbols")
 	_particles(stage, 6144, Vector3(4.2, 3.1, 3.5), 0.010, Color(0.42, 0.70, 0.78, 0.035), 0.11, 384)
-	stage.set_meta("scientific_label", "O₂ · 两个氧原子中心的结构符号\n球半径、连接棒与颜色不是电子云或实测外观；尺寸为局部示意，不显示未经核验的键长。")
+	I18n.set_meta_text(stage,"scientific_label","O₂ · 两个氧原子中心的结构符号\n球半径、连接棒与颜色不是电子云或实测外观；尺寸为局部示意，不显示未经核验的键长。")
 	stage.set_meta("micro_region_labels", ["O₂ 双原子结构", "连接棒仅表示键连通", "进入概率密度教学视图"])
 	stage.get_meta("micro_geometry_stats")["oxygen_centers"] = 2
 
@@ -245,7 +246,7 @@ static func _build_atom(stage: Node) -> void:
 	stage.close_position = Vector3(0.5, 0.35, 1.7)
 	stage.environment.ssao_enabled = false
 	stage.environment.background_color = Color(0.014, 0.025, 0.043)
-	stage.set_meta("scientific_label", "中性氧 · 8个电子 · 1s² 2s² 2p⁴
+	I18n.set_meta_text(stage,"scientific_label","中性氧 · 8个电子 · 1s² 2s² 2p⁴
 孤立原子组成教学；云形使用类氢参考函数，不是O₂分子或氧原子的精确电子密度。")
 	var volume: ShaderMaterial = ShaderMaterial.new()
 	volume.shader = DENSITY

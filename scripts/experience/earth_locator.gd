@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 const Sites = preload("res://scripts/data/earth_sites.gd")
 const RADIUS: float = 3.0
 
@@ -15,7 +16,7 @@ static func build(stage: Node) -> void:
 	var marker: MeshInstance3D = stage.add_mesh(sphere,material,normal*3.07)
 	marker.name = "LizardRegionalMarker"
 	marker.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-	var label: Label3D = _label(stage,"蜥蜴岛 · 海洋区域",Color(.64,1.0,.92))
+	var label: Label3D = _label(stage,I18n.text("蜥蜴岛 · 海洋区域"),Color(.64,1.0,.92))
 	label.position = normal*3.13+Vector3.UP*.08
 	var mesh: ImmediateMesh = ImmediateMesh.new()
 	mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
@@ -26,13 +27,13 @@ static func build(stage: Node) -> void:
 	var band: MeshInstance3D = stage.add_mesh(mesh,band_material)
 	band.name = "TeachingLatitude35N"
 	band.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-	var band_label: Label3D = _label(stage,"35°N · 教学参考纬度",Color(1.0,.83,.53))
+	var band_label: Label3D = _label(stage,I18n.text("35°N · 教学参考纬度"),Color(1.0,.83,.53))
 	stage.set_meta("earth_locator",{"marker":marker,"region_label":label,"band":band,"band_label":band_label,"selection":"reef","latitude":35.0})
 	update(stage)
 
 static func _label(stage: Node, text: String, color: Color) -> Label3D:
 	var label: Label3D = Label3D.new()
-	label.text = text
+	label.text = I18n.text(text)
 	var font: SystemFont = SystemFont.new()
 	font.font_names = PackedStringArray(["PingFang SC","SF Pro Display","Arial"])
 	label.font = font
@@ -60,7 +61,7 @@ static func update(stage: Node) -> void:
 		mesh.surface_end()
 		data.band.mesh=mesh
 		data.latitude=float(site.lat)
-	data.band_label.text="%s · 教学参考纬度" % Sites.latitude_label(float(data.latitude))
+	data.band_label.text=I18n.text(I18n.text("%s · 教学参考纬度") % Sites.latitude_label(float(data.latitude)))
 	data.marker.visible = regional
 	data.region_label.visible = regional and front_facing(data.marker.position,stage.camera.position)
 	data.band.visible = not regional

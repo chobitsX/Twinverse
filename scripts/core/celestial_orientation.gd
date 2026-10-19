@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Pure astronomical observation geometry. No authority or independent clock.
 ## NAIF pck00011 text-PCK orientation; Earth EOP not included.
 const RotationData = preload("res://scripts/data/planet_rotations.gd")
@@ -25,7 +26,7 @@ static func sun_basis(jd: float) -> Basis:
 
 static func rotation_label(index: int) -> String:
 	var days: float = absf(rotation_days(index))
-	return "IAU参考自转 %.2f 小时" % (days*24.0) if days<2.0 else "恒星自转 %.2f 天" % days
+	return I18n.text("IAU参考自转 %.2f 小时") % (days*24.0) if days<2.0 else I18n.text("恒星自转 %.2f 天") % days
 
 static func orientation_basis(data: Dictionary, jd: float) -> Basis:
 	var days: float = jd-Orbit.EPOCH

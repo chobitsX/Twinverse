@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## A transient lesson on the original Earth; all dates and solar geometry are shared.
 const Orientation = preload("res://scripts/core/celestial_orientation.gd")
 const Sites = preload("res://scripts/data/earth_sites.gd")
@@ -103,8 +104,8 @@ static func rows(jd: float) -> Array[Dictionary]:
 	return result
 
 static func hours_text(hours: float) -> String:
-	if hours>=24.0-1e-8: return "24.0 · 极昼"
-	if hours<=1e-8: return "0.0 · 极夜"
+	if hours>=24.0-1e-8: return I18n.text("24.0 · 极昼")
+	if hours<=1e-8: return I18n.text("0.0 · 极夜")
 	return "%.1f" % hours
 
 static func focus(host: Node, keep_direction: bool = false) -> void:
@@ -143,9 +144,9 @@ static func marks(host: Node) -> Array[Dictionary]:
 		if bool(data.polar_reference) and latitude==-70.0: continue
 		var at: Vector3 = Sites.normal(latitude,longitude)*(RADIUS+.01)
 		if at.normalized().dot(stage.camera.position-at)<=0.0: continue
-		result.append({"label":"赤道" if latitude==0.0 else Sites.latitude_label(latitude),"at":at,"offset":Vector2(52,-17)})
+		result.append({"label":I18n.text("赤道") if latitude==0.0 else Sites.latitude_label(latitude),"at":at,"offset":Vector2(52,-17)})
 	if bool(data.polar_reference):
 		var at: Vector3 = data.reference_normal*(RADIUS+.09)
 		if at.normalized().dot(stage.camera.position-at)>0.0:
-			result.append({"label":"南极光照参考\n66.5°S / 0°","at":at,"offset":Vector2(48,-30)})
+			result.append({"label":I18n.text("南极光照参考\n66.5°S / 0°"),"at":at,"offset":Vector2(48,-30)})
 	return result

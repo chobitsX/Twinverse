@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## A camera-plane reference for the existing metre-authored local scenes.
 
 const SCALES: Array[String] = ["pacific", "reef", "school", "fish", "woodland", "city", "desert", "polar"]
@@ -19,8 +20,8 @@ static func nice_length(value: float) -> float:
 
 
 static func length_label(metres: float) -> String:
-	var unit: String = "米" if metres >= 1.0 else "厘米" if metres >= .01 else "毫米"
-	var value: float = metres if unit == "米" else metres * 100.0 if unit == "厘米" else metres * 1000.0
+	var unit: String = I18n.text("米") if metres >= 1.0 else I18n.text("厘米") if metres >= .01 else I18n.text("毫米")
+	var value: float = metres if unit == I18n.text("米") else metres * 100.0 if unit == I18n.text("厘米") else metres * 1000.0
 	var text: String = "%.3f" % value
 	while text.ends_with("0"): text = text.substr(0, text.length() - 1)
 	if text.ends_with("."): text = text.substr(0, text.length() - 1)

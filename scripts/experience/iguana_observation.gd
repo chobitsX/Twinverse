@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Authored locomotion on the actual terrain triangles, evaluated from host time.
 const Terrain = preload("res://scripts/experience/desert_terrain.gd")
 const Life = preload("res://scripts/experience/life_asset_motion.gd")
@@ -19,7 +20,7 @@ static func sample(time: float) -> Dictionary:
 		travel=6.5+u-pow(u,3)+.5*pow(u,4)
 	else: travel=7.
 	var distance: float = (floor(time/PERIOD)*7.+travel)*STRIDE
-	return {"distance":distance,"phase":distance/STRIDE,"moving":moving,"activity":"灌木旁短行 · 四足与长尾配合" if cycle<8. else "停步观察 · 植物为主要食物（未模拟摄食）"}
+	return {"distance":distance,"phase":distance/STRIDE,"moving":moving,"activity":I18n.text("灌木旁短行 · 四足与长尾配合") if cycle<8. else I18n.text("停步观察 · 植物为主要食物（未模拟摄食）")}
 
 static func path(distance: float) -> Transform3D:
 	var angle: float = distance/1.15+.3
@@ -130,14 +131,14 @@ static func build(stage: Node) -> void:
 	stage.set_meta("iguana",root)
 	pose(root,0.)
 	var targets: Array = stage.get_meta("desert_targets")
-	var role: String = "沙漠鬣蜥Dipsosaurus dorsalis。浅色网纹、钝头和背中线低矮棱鳞；主要吃植物，常见于三齿拉瑞阿灌丛。吻肛长14 cm、尾长24 cm为作者尺寸；运动是教学示意，没有摄食消耗或体温求解。"
-	targets.append({"node":root,"label":"沙漠鬣蜥 · 四足与长尾","role":role,"source_url":SOURCE,"distance":.96,"min_distance":.26,"focus_height":.025,"view_offset":Vector3(.686,.49,.462)})
+	var role: String = I18n.text("沙漠鬣蜥Dipsosaurus dorsalis。浅色网纹、钝头和背中线低矮棱鳞；主要吃植物，常见于三齿拉瑞阿灌丛。吻肛长14 cm、尾长24 cm为作者尺寸；运动是教学示意，没有摄食消耗或体温求解。")
+	targets.append({"node":root,"label":I18n.text("沙漠鬣蜥 · 四足与长尾"),"role":role,"source_url":SOURCE,"distance":.96,"min_distance":.26,"focus_height":.025,"view_offset":Vector3(.686,.49,.462)})
 	var anchor: Node3D = Node3D.new()
 	anchor.name="IguanaHeadObserver"
 	stage.world_root.add_child(anchor)
 	anchor.set_meta("reference_root",root)
 	stage.set_meta("iguana_head_observer",anchor)
-	targets.append({"node":anchor,"label":"沙漠鬣蜥 · 头部与背鳞","role":role,"source_url":SHAPE_SOURCE,"distance":.20,"min_distance":.11,"view_offset":Vector3(.12,.09,.12)})
+	targets.append({"node":anchor,"label":I18n.text("沙漠鬣蜥 · 头部与背鳞"),"role":role,"source_url":SHAPE_SOURCE,"distance":.20,"min_distance":.11,"view_offset":Vector3(.12,.09,.12)})
 	stage.set_meta("desert_targets",targets)
 	animate(stage,0.)
 
@@ -151,12 +152,12 @@ static func animate(stage: Node, time: float) -> void:
 
 static func readout(host: Node) -> String:
 	var state: Dictionary = sample(host.world.simulation_time_s)
-	return "%s\n14 cm吻肛长 + 24 cm尾长（作者尺寸）\n短行/停步由统一世界时间驱动，非实测速度或热调节。" % state.activity
+	return I18n.text("%s\n14 cm吻肛长 + 24 cm尾长（作者尺寸）\n短行/停步由统一世界时间驱动，非实测速度或热调节。") % state.activity
 
 static func marks(host: Node) -> Array[Dictionary]:
 	var root: Node3D = host.coordinator.active_scene.get_meta("iguana")
 	var data: Dictionary = root.get_meta("iguana_skin")
 	var skeleton: Skeleton3D = data.skeleton
 	var head: Transform3D = skeleton.get_bone_global_pose(data.bones.Head.id)*data.bones.Head.rest.affine_inverse()
-	return [{"at":skeleton.to_global(head*Vector3(.070,.055,.010)),"label":"钝头 · 浅色网纹","offset":Vector2(90,-105)},
-		{"at":root.to_global(Vector3(0,.057,0)),"label":"低矮背中线棱鳞","offset":Vector2(-100,-130)}]
+	return [{"at":skeleton.to_global(head*Vector3(.070,.055,.010)),"label":I18n.text("钝头 · 浅色网纹"),"offset":Vector2(90,-105)},
+		{"at":root.to_global(Vector3(0,.057,0)),"label":I18n.text("低矮背中线棱鳞"),"offset":Vector2(-100,-130)}]

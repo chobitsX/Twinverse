@@ -19,3 +19,7 @@ jobs:
         run: python3 tools/check_community.py
       - name: Check snapshot dependency boundaries
         run: python3 -m unittest discover -s tests/tools -p test_public_snapshot.py
+      - name: Validate application translations
+        run: python3 tools/check_localization.py
+      - name: Check localization source auditing
+        run: python3 -m unittest discover -s tests/tools -p test_localization.py

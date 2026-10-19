@@ -1,4 +1,5 @@
 extends Control
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Presentation only. All actions delegate to the existing world/observer owner.
 const UI = preload("res://scripts/experience/interface_theme.gd")
 const Topics = preload("res://scripts/experience/learning_topics.gd")
@@ -59,9 +60,9 @@ func configure(experience: Node) -> void:
 	top_style.content_margin_top = 10; top_style.content_margin_bottom = 10
 	header.add_theme_stylebox_override("panel",top_style)
 	header_row = HBoxContainer.new(); header_row.add_theme_constant_override("separation",10); header.add_child(header_row)
-	var brand: Label = host._label("孪生宇宙",20)
+	var brand: Label = host._label(I18n.text("孪生宇宙"),20)
 	brand.custom_minimum_size.x = 114; header_row.add_child(brand)
-	host.previous_button = UI.icon("back","返回上一级 · Backspace",host._navigate_relative.bind(-1))
+	host.previous_button = UI.icon("back",I18n.text("返回上一级 · Backspace"),host._navigate_relative.bind(-1))
 	UI.flat_button(host.previous_button); header_row.add_child(host.previous_button)
 	# NavigationBar is mounted here by host, before the tools.
 	title_box = VBoxContainer.new(); add_child(title_box)
@@ -87,14 +88,14 @@ func configure(experience: Node) -> void:
 	context_title = host._label("",22); context_title.clip_text = true; context_title.add_theme_font_override("font",editorial); column.add_child(context_title)
 	context_note = host._label("",12,Color(.73,.78,.82)); context_note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART; column.add_child(context_note)
 	context_path = host._label("",11,UI.MUTED); context_path.clip_text = true; column.add_child(context_path)
-	details_button = UI.icon("book","查看所选对象的知识",_show_details); context_row.add_child(details_button)
+	details_button = UI.icon("book",I18n.text("查看所选对象的知识"),_show_details); context_row.add_child(details_button)
 	transport_space = Control.new(); transport_space.custom_minimum_size.x = 208; context_row.add_child(transport_space)
 	context_panel.hide()
 	transport = PanelContainer.new(); add_child(transport)
 	transport.add_theme_stylebox_override("panel",UI.surface(Color(.04,.055,.075,.9),4,22))
 	var time_row: HBoxContainer = HBoxContainer.new(); time_row.add_theme_constant_override("separation",4); transport.add_child(time_row)
-	host.pause_button = UI.icon("pause","暂停或继续世界时间 · Space",host._toggle_pause); UI.flat_button(host.pause_button); time_row.add_child(host.pause_button)
-	rate_button = MenuButton.new(); rate_button.text = "1×"; rate_button.custom_minimum_size = Vector2(96,44); rate_button.tooltip_text = "世界时间倍率"; UI.flat_button(rate_button); time_row.add_child(rate_button)
+	host.pause_button = UI.icon("pause",I18n.text("暂停或继续世界时间 · Space"),host._toggle_pause); UI.flat_button(host.pause_button); time_row.add_child(host.pause_button)
+	rate_button = MenuButton.new(); rate_button.text = I18n.text("1×"); rate_button.custom_minimum_size = Vector2(96,44); rate_button.tooltip_text = I18n.text("世界时间倍率"); UI.flat_button(rate_button); time_row.add_child(rate_button)
 	for value: float in RATES: rate_button.get_popup().add_radio_check_item(str(value)+"×")
 	rate_button.get_popup().id_pressed.connect(_set_rate)
 	host.time_label = host._label("",11,UI.MUTED); host.time_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER; host.time_label.custom_minimum_size.x = 118; time_row.add_child(host.time_label)
@@ -108,11 +109,11 @@ func configure(experience: Node) -> void:
 	host.time_label.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	host.time_label.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
 	# Existing keyboard and state callers retain handles without redundant UI.
-	for pair: Array in [["next_button","继续深入",host._advance_or_city_view],["save_button","保存世界",host.save_world.bind(true)],["quality_button","画质：流畅",host._toggle_render_quality]]:
+	for pair: Array in [["next_button",I18n.text("继续深入"),host._advance_or_city_view],["save_button",I18n.text("保存世界"),host.save_world.bind(true)],["quality_button",I18n.text("画质：流畅"),host._toggle_render_quality]]:
 		var handle: Button = host._button(pair[1],pair[2]); add_child(handle); handle.hide(); host.set(pair[0],handle)
 	host.recovery_actions = HBoxContainer.new(); add_child(host.recovery_actions)
-	host.retry_button = host._button("重试",host._retry_transition); host.recovery_actions.add_child(host.retry_button)
-	host.recovery_actions.add_child(host._button("取消重试",host._dismiss_recovery)); host.recovery_actions.hide()
+	host.retry_button = host._button(I18n.text("重试"),host._retry_transition); host.recovery_actions.add_child(host.retry_button)
+	host.recovery_actions.add_child(host._button(I18n.text("取消重试"),host._dismiss_recovery)); host.recovery_actions.hide()
 	host.context_label = host._label("",12); add_child(host.context_label); host.context_label.hide()
 	sky_credit=host._scene_caption("ESA/Gaia/DPAC · A. Moitinho · CC BY-SA 3.0 IGO",9,UI.MUTED)
 	sky_credit.theme=host.hud.theme
@@ -121,18 +122,22 @@ func configure(experience: Node) -> void:
 	fit_window(host.ui_view_size())
 
 func add_tools() -> void:
-	search_button = UI.icon("search","搜索世界与观察主题",host._open_guide); UI.flat_button(search_button); header_row.add_child(search_button)
-	knowledge_button = UI.icon("book","所选对象与观察主题",host._toggle_explorer); UI.flat_button(knowledge_button); header_row.add_child(knowledge_button)
-	menu_button = MenuButton.new(); menu_button.text = "···"; menu_button.custom_minimum_size = Vector2(44,44); menu_button.tooltip_text = "观察工具与设置"; UI.flat_button(menu_button); header_row.add_child(menu_button)
+	search_button = UI.icon("search",I18n.text("搜索世界与观察主题"),host._open_guide); UI.flat_button(search_button); header_row.add_child(search_button)
+	knowledge_button = UI.icon("book",I18n.text("所选对象与观察主题"),host._toggle_explorer); UI.flat_button(knowledge_button); header_row.add_child(knowledge_button)
+	menu_button = MenuButton.new(); menu_button.text = I18n.text("···"); menu_button.custom_minimum_size = Vector2(44,44); menu_button.tooltip_text = I18n.text("观察工具与设置"); UI.flat_button(menu_button); header_row.add_child(menu_button)
 	var popup: PopupMenu = menu_button.get_popup()
-	for item: Array in [["科学说明与来源",0],["影响链与观察记录",1],["声音",2],["保存当前世界  ⌘S",3],["重置观察视角  R",4],["返回原观察位置",5],["回到地球",6],["回到银河系",7]]: popup.add_item(item[0],item[1])
+	for item: Array in [[I18n.text("科学说明与来源"),0],[I18n.text("影响链与观察记录"),1],[I18n.text("声音"),2],[I18n.text("保存当前世界  ⌘S"),3],[I18n.text("重置观察视角  R"),4],[I18n.text("返回原观察位置"),5],[I18n.text("回到地球"),6],[I18n.text("回到银河系"),7]]: popup.add_item(item[0],item[1])
 	popup.add_separator()
-	popup.add_radio_check_item("画质 · 清晰",8)
-	popup.add_radio_check_item("画质 · 流畅（默认）",12)
-	popup.add_radio_check_item("画质 · 节能",13)
+	popup.add_radio_check_item(I18n.text("画质 · 清晰"),8)
+	popup.add_radio_check_item(I18n.text("画质 · 流畅（默认）"),12)
+	popup.add_radio_check_item(I18n.text("画质 · 节能"),13)
 	popup.add_separator()
-	popup.add_check_item("减少运动",9); popup.add_check_item("纯净观察  F9",10)
-	popup.add_separator(); popup.add_item("重播宇宙膨胀演示",11)
+	popup.add_check_item(I18n.text("减少运动"),9); popup.add_check_item(I18n.text("纯净观察  F9"),10)
+	popup.add_separator(); popup.add_item(I18n.text("重播宇宙膨胀演示"),11)
+	popup.add_separator()
+	popup.add_radio_check_item(I18n.text("语言 · 跟随系统 / System"),20)
+	popup.add_radio_check_item("简体中文",21)
+	popup.add_radio_check_item("English",22)
 	popup.id_pressed.connect(_menu_action)
 	popup.about_to_popup.connect(_refresh_menu)
 
@@ -160,9 +165,10 @@ func fit_window(view_size: Vector2i) -> void:
 	sky_credit.scale=Vector2.ONE*host.ui_scale
 	sky_credit.position=Vector2(24,view_size.y-28)*host.ui_scale; sky_credit.size=Vector2(view_size.x-48,26)
 	if is_instance_valid(search_button):
-		for pair: Array in [[search_button,"导览"],[knowledge_button,"知识"]]:
+		for pair: Array in [[search_button,I18n.text("导览")],[knowledge_button,I18n.text("知识")]]:
 			pair[0].set("caption",pair[1] if view_size.x>=850 else "")
-			pair[0].custom_minimum_size.x=90 if view_size.x>=850 else 44
+			var caption_width: float = pair[0].get_theme_font("font").get_string_size(str(pair[0].get("caption")),HORIZONTAL_ALIGNMENT_LEFT,-1,17).x
+			pair[0].custom_minimum_size.x=ceilf(54+caption_width) if view_size.x>=850 else 44
 			pair[0].queue_redraw()
 	_layout_transport(view_size)
 
@@ -193,6 +199,8 @@ func _set_rate(index: int) -> void:
 	host.world.set_time_scale(values[index]); host.world.record_observation("speed")
 
 func _refresh_menu() -> void:
+	for pair: Array in [[20,"auto"],[21,"zh_CN"],[22,"en"]]:
+		menu_button.get_popup().set_item_checked(menu_button.get_popup().get_item_index(pair[0]),get_node("/root/AppLanguage").preference==pair[1])
 	var popup: PopupMenu = menu_button.get_popup()
 	popup.set_item_disabled(popup.get_item_index(11),host.world.current_scale_id!="universe" or host.coordinator.is_busy())
 	popup.set_item_disabled(popup.get_item_index(3),host.is_trial() or not host._persistence_enabled or (host._store!=null and host._store.protected))
@@ -200,6 +208,10 @@ func _refresh_menu() -> void:
 	for pair: Array in [[8,host._render_ratio==1.0],[12,host._render_ratio==0.75],[13,host._render_ratio==0.5],[9,host._reduced_motion],[10,host.clean_observation.active]]: popup.set_item_checked(popup.get_item_index(pair[0]),pair[1])
 
 func _menu_action(id: int) -> void:
+	if id in [20,21,22]:
+		var error: Error = get_node("/root/AppLanguage").set_language({20:"auto",21:"zh_CN",22:"en"}[id])
+		if error != OK: host.message_label.text = I18n.text(tr("无法保存语言偏好，请检查本机存储权限"))
+		return
 	match id:
 		11:
 			if host.world.current_scale_id=="universe" and not host.coordinator.is_busy(): host.coordinator.active_scene.get_meta("cosmic_panorama").epoch = host.world.simulation_time_s
@@ -222,12 +234,12 @@ func _context_data() -> Dictionary:
 	if id=="earth":
 		var region: String = host.earth_entry_panel.selected
 		if region.is_empty(): return {}
-		return {"title":NAMES[region],"note":"Paranal参考方向 · 合成山地平台" if region=="night_sky" else "蜥蜴岛区域 · 礁区布局为教学设定" if region=="reef" else "合成教学场景 · 光照参考区域，非实地地址","path":"地球  ›  大气  ›  海面  ›  珊瑚礁" if region=="reef" else "地球  ›  "+NAMES[region]+"  ·  再点区域或双指靠近","region":region}
+		return {"title":I18n.dictionary(NAMES)[region],"note":I18n.text("Paranal参考方向 · 合成山地平台") if region=="night_sky" else I18n.text("蜥蜴岛区域 · 礁区布局为教学设定") if region=="reef" else I18n.text("合成教学场景 · 光照参考区域，非实地地址"),"path":I18n.text("地球  ›  大气  ›  海面  ›  珊瑚礁") if region=="reef" else I18n.text("地球  ›  ")+I18n.dictionary(NAMES)[region]+I18n.text("  ·  再点区域或双指靠近"),"region":region}
 	var framing_stage: Node=host.coordinator.active_scene
 	if host.SatelliteFraming.is_pair(framing_stage):
 		var framing: Dictionary=host.SatelliteFraming.state(framing_stage)
 		var pair: Dictionary=host.SatelliteFraming.subjects(framing_stage,int(framing.owner),str(framing.key))
-		if not pair.is_empty(): return {"title":host.Ephemeris.NAMES[int(framing.owner)]+" · "+str(pair.label),"note":"透视同框 · 随行镜头 · 距离与半径同比","path":"拖动转入主体环绕 · 指向星体放大 · 拉远看轨道全景"}
+		if not pair.is_empty(): return {"title":I18n.strings(host.Ephemeris.NAMES)[int(framing.owner)]+" · "+str(pair.label),"note":I18n.text("透视同框 · 随行镜头 · 距离与半径同比"),"path":I18n.text("拖动转入主体环绕 · 指向星体放大 · 拉远看轨道全景")}
 	var choice: Dictionary = host.selected_spatial_choice()
 	var topic: String = host.learning_overlay.topic
 	if choice.is_empty() and topic.is_empty(): return {}
@@ -235,30 +247,30 @@ func _context_data() -> Dictionary:
 	var note: String = ""
 	if id=="night_sky" and not choice.is_empty():
 		var direction: Vector3=(choice.node.global_position-host.GroundSky.EYE).normalized()
-		note="高度 %.1f° · 方位 %.1f°" % [rad_to_deg(asin(clampf(direction.y,-1,1))),fposmod(rad_to_deg(atan2(direction.x,-direction.z)),360.0)]
-		if choice.has("vmag"): note+=" · 星等 %.2f" % float(choice.vmag)
-		elif int(choice.get("body",-1))==8: note+=" · 受光 %.0f%%" % (host.Orientation.illumination(host.solar_jd)*100.0)
+		note=I18n.text("高度 %.1f° · 方位 %.1f°") % [rad_to_deg(asin(clampf(direction.y,-1,1))),fposmod(rad_to_deg(atan2(direction.x,-direction.z)),360.0)]
+		if choice.has("vmag"): note+=I18n.text(" · 星等 %.2f") % float(choice.vmag)
+		elif int(choice.get("body",-1))==8: note+=I18n.text(" · 受光 %.0f%%") % (host.Orientation.illumination(host.solar_jd)*100.0)
 	elif id=="solar_system" and choice.has("planet"):
 		var planet: int = int(choice.planet)
-		note = host.Orientation.rotation_label(planet)+" · 公转 %.2f 年" % host.Ephemeris.PERIOD_YEARS[planet]
+		note = host.Orientation.rotation_label(planet)+I18n.text(" · 公转 %.2f 年") % host.Ephemeris.PERIOD_YEARS[planet]
 	elif id=="solar_system" and bool(choice.get("moon",false)):
-		note = "公转 / 自转约27.3天 · 近景距离与半径同比"
+		note = I18n.text("公转 / 自转约27.3天 · 近景距离与半径同比")
 	elif id=="solar_system" and bool(choice.get("sun",false)):
-		note = "IAU参考自转约25.38天 · 非各纬度云气转速"
+		note = I18n.text("IAU参考自转约25.38天 · 非各纬度云气转速")
 	elif Satellites.is_system(id) and not choice.is_empty():
-		note = str(choice.node.get_meta("activity","同日期几何星历 · 距离与半径同比")).split("\n")[0]
-	for item: Dictionary in Topics.for_scale(id):
+		note = str(choice.node.get_meta("activity",I18n.text("同日期几何星历 · 距离与半径同比"))).split("\n")[0]
+	for item: Dictionary in I18n.dictionaries(Topics.for_scale(id)):
 		if str(item.id)==topic:
 			if title.is_empty(): title = str(item.title)
 			note = str(item.get("observe",item.get("description",""))).split("\n")[0]
 			break
 	if title.is_empty(): return {}
-	var path: String = host.spatial_hint(choice) if not choice.is_empty() else "拖动环绕 · 双指靠近 · 查看知识"
+	var path: String = host.spatial_hint(choice) if not choice.is_empty() else I18n.text("拖动环绕 · 双指靠近 · 查看知识")
 	if id=="solar_system" and int(host.coordinator.active_scene.get_meta("solar_physical",{}).get("owner",-1))==2:
-		path="左拖环绕 · 右拖环顾 · ☀ / ☾ 定位 · ⊕ 回地球"
-		if bool(host.coordinator.active_scene.get_meta("solar_lookaround",false)): path="右拖环顾 · 双指光学缩放 · ⊕ 回地球近景"
-	if is_instance_valid(host.SolarCloseup.subject(host)): path="拖动环绕 · 指向方位标记放大，点击飞近 · 拉远同框"
-	if note.is_empty(): note = str(TAGS.get(id,"参考模型"))+" · "+str(host.Catalog.describe(id).label)
+		path=I18n.text("左拖环绕 · 右拖环顾 · ☀ / ☾ 定位 · ⊕ 回地球")
+		if bool(host.coordinator.active_scene.get_meta("solar_lookaround",false)): path=I18n.text("右拖环顾 · 双指光学缩放 · ⊕ 回地球近景")
+	if is_instance_valid(host.SolarCloseup.subject(host)): path=I18n.text("拖动环绕 · 指向方位标记放大，点击飞近 · 拉远同框")
+	if note.is_empty(): note = str(I18n.dictionary(TAGS).get(id,I18n.text("参考模型")))+" · "+str(host.Catalog.describe(id).label)
 	return {"title":title,"note":note,"path":path,"topic":topic}
 
 func _show_details() -> void:
@@ -266,67 +278,67 @@ func _show_details() -> void:
 		host._toggle_info()
 		if host.info_panel.visible:
 			var site: Dictionary = host.Sites.for_scale(str(context.region))
-			host.info_label.text = "[b]"+context.title+"[/b]\n\n"+str(site.description)+"\n\n"+host.ScienceReference.text_for("earth")
+			host.info_label.text = I18n.text("[b]"+context.title+"[/b]\n\n"+str(site.description)+"\n\n"+host.ScienceReference.text_for("earth"))
 	elif not str(context.get("topic","")).is_empty(): host.explorer_panel.open_topic(str(context.topic))
 	else: host._toggle_explorer()
 
 func refresh() -> void:
 	if not is_instance_valid(host.coordinator.active_scene): return
 	var id: String = host.world.current_scale_id
-	host.subtitle_label.text = str(SUBHEADS.get(id,"孪生宇宙"))
-	host.title_label.text = str(TITLES.get(id,host.Catalog.describe(id).label))
+	host.subtitle_label.text = I18n.text(str(I18n.dictionary(SUBHEADS).get(id,I18n.text("孪生宇宙"))))
+	host.title_label.text = I18n.text(str(I18n.dictionary(TITLES).get(id,host.Catalog.describe(id).label)))
 	context = _context_data()
 	var unobstructed: bool = not host.coordinator.is_busy() and not host.explorer_panel.visible and not host.observation_panel.visible and not host.info_panel.visible and not host.guided_journey.visible and not host.world_guide.visible and not host.size_comparison.visible
 	context_panel.visible = unobstructed and not context.is_empty()
 	title_box.visible = unobstructed and context.is_empty()
 	if context_panel.visible:
-		context_title.text = context.title; context_note.text = context.note; context_path.text = context.path
+		context_title.text = I18n.text(context.title); context_note.text = I18n.text(context.note); context_path.text = I18n.text(context.path)
 		if id=="solar_system" and not host.SatelliteFraming.is_pair(host.coordinator.active_scene):
-			context_note.text+="\n距离与半径同比 · 远距识别点非大小" if bool(host.coordinator.active_scene.get_meta("solar_physical_active",false)) else "\n全景示意 · 距离压缩、大小放大"
-	gesture.text = "旋转地球 · 选择区域 · 双指靠近" if id=="earth" else "拖动环绕 · 点击对象 · 双指靠近"
-	if id=="atmosphere": gesture.text = "观察大气弧面与云层 · 继续靠近海面"
-	if id=="pacific": gesture.text = "观察海面与地平线 · 双指靠近珊瑚礁"
+			context_note.text+=I18n.text(I18n.text("\n距离与半径同比 · 远距识别点非大小") if bool(host.coordinator.active_scene.get_meta("solar_physical_active",false)) else I18n.text("\n全景示意 · 距离压缩、大小放大"))
+	gesture.text = I18n.text(I18n.text("旋转地球 · 选择区域 · 双指靠近") if id=="earth" else I18n.text("拖动环绕 · 点击对象 · 双指靠近"))
+	if id=="atmosphere": gesture.text = I18n.text(I18n.text("观察大气弧面与云层 · 继续靠近海面"))
+	if id=="pacific": gesture.text = I18n.text(I18n.text("观察海面与地平线 · 双指靠近珊瑚礁"))
 	if id=="night_sky":
-		host.subtitle_label.text="地球 / 阿塔卡马高原 · 24.6°S"
-		host.title_label.text="仰望星河"
-		gesture.text="拖动环顾 · 点击亮星或月球 · 双指缩放视野"
-	source_button.text = str(TAGS.get(id,"参考模型"))+"  ·  依据与边界"
+		host.subtitle_label.text=I18n.text(I18n.text("地球 / 阿塔卡马高原 · 24.6°S"))
+		host.title_label.text=I18n.text(I18n.text("仰望星河"))
+		gesture.text=I18n.text(I18n.text("拖动环顾 · 点击亮星或月球 · 双指缩放视野"))
+	source_button.text = I18n.text(str(I18n.dictionary(TAGS).get(id,I18n.text("参考模型")))+I18n.text("  ·  依据与边界"))
 	source_button.visible=id!="night_sky" or host.ui_view_size().x>=900
-	if id=="night_sky" and not source_button.visible: host.subtitle_label.text+=" · 曝光增强"
+	if id=="night_sky" and not source_button.visible: host.subtitle_label.text+=I18n.text(I18n.text(" · 曝光增强"))
 	if id=="solar_system":
-		source_button.text = "日期保持 · 位置星历 · 全景示意" if host.solar_rate==0 else "1小时 / 世界秒 · 全系统同倍率 · 全景示意" if host.solar_rate<1 else "%.0f天 / 世界秒 · 全系统同倍率 · 全景示意" % host.solar_rate
-	elif id=="galaxy": source_button.text = "时间压缩 · 理想化转动示意 · 依据与边界"
-	elif id=="night_sky": source_button.text="太阳高度 %.1f° · 星表方向 · 曝光增强" % float(host.coordinator.active_scene.get_meta("sun_elevation",0.0))
+		source_button.text = I18n.text(I18n.text("日期保持 · 位置星历 · 全景示意") if host.solar_rate==0 else I18n.text("1小时 / 世界秒 · 全系统同倍率 · 全景示意") if host.solar_rate<1 else I18n.text("%.0f天 / 世界秒 · 全系统同倍率 · 全景示意") % host.solar_rate)
+	elif id=="galaxy": source_button.text = I18n.text(I18n.text("时间压缩 · 理想化转动示意 · 依据与边界"))
+	elif id=="night_sky": source_button.text=I18n.text(I18n.text("太阳高度 %.1f° · 星表方向 · 曝光增强") % float(host.coordinator.active_scene.get_meta("sun_elevation",0.0)))
 	sky_credit.visible=id=="night_sky" and host.coordinator.active_scene.get_meta("ground_sky",{}).get("credit",false)
-	if id=="universe": gesture.text = "拖动环顾星系网络 · 点击中央银河 · 双指靠近"
+	if id=="universe": gesture.text = I18n.text(I18n.text("拖动环顾星系网络 · 点击中央银河 · 双指靠近"))
 	host.pause_button.set("symbol","play" if host.world.paused else "pause"); host.pause_button.queue_redraw()
-	host.pause_button.tooltip_text = "继续世界时间 · Space" if host.world.paused else "暂停世界时间 · Space"
+	host.pause_button.tooltip_text = I18n.text("继续世界时间 · Space") if host.world.paused else I18n.text("暂停世界时间 · Space")
 	var astronomy: bool = id in ["solar_system","earth_moon","night_sky"] or Satellites.is_system(id)
 	var ground: bool=id=="night_sky"
 	if astronomy!=_astronomy_menu or ground!=_ground_menu:
 		_astronomy_menu = astronomy
 		_ground_menu=ground
 		rate_button.get_popup().clear()
-		for label: String in (["日期保持","1分钟 / 世界秒","6分钟 / 世界秒","1小时 / 世界秒","6小时 / 世界秒","1天 / 世界秒"] if ground else ["日期保持","自转观察 · 1小时/秒","缓慢自转 · 1天/秒","公转全景 · 10天/秒","较快公转 · 15天/秒","快速公转 · 30天/秒","外行星 · 100天/秒"] if astronomy else ["0.25×","0.5×","1×","2×","4×"]): rate_button.get_popup().add_radio_check_item(label)
+		for label: String in ([I18n.text("日期保持"),I18n.text("1分钟 / 世界秒"),I18n.text("6分钟 / 世界秒"),I18n.text("1小时 / 世界秒"),I18n.text("6小时 / 世界秒"),I18n.text("1天 / 世界秒")] if ground else [I18n.text("日期保持"),I18n.text("自转观察 · 1小时/秒"),I18n.text("缓慢自转 · 1天/秒"),I18n.text("公转全景 · 10天/秒"),I18n.text("较快公转 · 15天/秒"),I18n.text("快速公转 · 30天/秒"),I18n.text("外行星 · 100天/秒")] if astronomy else ["0.25×","0.5×","1×","2×","4×"]): rate_button.get_popup().add_radio_check_item(label)
 	var auto_item: int=rate_button.get_popup().get_item_index(100)
 	if id=="solar_system" and auto_item<0:
 		rate_button.get_popup().add_separator()
-		rate_button.get_popup().add_check_item("近景自动慢放",100)
+		rate_button.get_popup().add_check_item(I18n.text("近景自动慢放"),100)
 	elif id!="solar_system" and auto_item>=0:
 		rate_button.get_popup().remove_item(auto_item)
 		rate_button.get_popup().remove_item(auto_item-1)
-	rate_button.text = ("日期保持" if host.solar_rate==0 else "1小时/秒" if host.solar_rate<1 else "%.0f天/秒" % host.solar_rate) if astronomy else str(host.world.time_scale)+"×"
-	if ground: rate_button.text="日期保持" if host.solar_rate==0 else "%.0f分/秒" % (host.solar_rate*1440.0) if host.solar_rate<1.0/24.0 else "%.0f时/秒" % (host.solar_rate*24.0) if host.solar_rate<1.0 else "1天/秒"
-	rate_button.tooltip_text = "太阳、八行星、月球的自转与公转共用此倍率。30天/秒下木星约72转/秒，画面会滤除无法分辨的自转细节；切到1小时/秒观察真实速度关系。天文推演不让生命跨年。" if astronomy else "世界时间倍率"
+	rate_button.text = I18n.text((I18n.text("日期保持") if host.solar_rate==0 else I18n.text("1小时/秒") if host.solar_rate<1 else I18n.text("%.0f天/秒") % host.solar_rate) if astronomy else str(host.world.time_scale)+"×")
+	if ground: rate_button.text=I18n.text(I18n.text("日期保持") if host.solar_rate==0 else I18n.text("%.0f分/秒") % (host.solar_rate*1440.0) if host.solar_rate<1.0/24.0 else I18n.text("%.0f时/秒") % (host.solar_rate*24.0) if host.solar_rate<1.0 else I18n.text("1天/秒"))
+	rate_button.tooltip_text = I18n.text("太阳、八行星、月球的自转与公转共用此倍率。30天/秒下木星约72转/秒，画面会滤除无法分辨的自转细节；切到1小时/秒观察真实速度关系。天文推演不让生命跨年。") if astronomy else I18n.text("世界时间倍率")
 	if id=="solar_system":
-		rate_button.tooltip_text="全系统共用此倍率。近景自动切至1小时/秒，返回全景恢复原倍率；手动调速或选择日期后保留选择，可在菜单重新开启近景自动慢放。太阳/水星等可选全局1天/秒观察。"
+		rate_button.tooltip_text=I18n.text("全系统共用此倍率。近景自动切至1小时/秒，返回全景恢复原倍率；手动调速或选择日期后保留选择，可在菜单重新开启近景自动慢放。太阳/水星等可选全局1天/秒观察。")
 		rate_button.get_popup().set_item_checked(rate_button.get_popup().get_item_index(100),not host.solar_manual_setting)
-	if ground: rate_button.tooltip_text="地球自转、星空、月球与行星沿用同一天文日期；1分钟/世界秒看缓慢升落，1小时/世界秒比较昼夜。"
+	if ground: rate_button.tooltip_text=I18n.text("地球自转、星空、月球与行星沿用同一天文日期；1分钟/世界秒看缓慢升落，1小时/世界秒比较昼夜。")
 	var values: Array[float] = SKY_RATES if ground else ASTRONOMY_RATES if astronomy else RATES
 	for i: int in range(values.size()): rate_button.get_popup().set_item_checked(i,is_equal_approx(host.solar_rate if astronomy else host.world.time_scale,values[i]))
-	host.time_label.text = host.Ephemeris.date_label(host.solar_jd) if astronomy else host.Ephemeris.date_label(host.solar_jd).split(" ")[0] if id in ["earth","earth_moon","jupiter_moons"] else "转动示意" if id=="galaxy" else "膨胀示意" if id=="universe" else "%.1f 秒" % host.world.simulation_time_s
+	host.time_label.text = I18n.text(host.Ephemeris.date_label(host.solar_jd) if astronomy else host.Ephemeris.date_label(host.solar_jd).split(" ")[0] if id in ["earth","earth_moon","jupiter_moons"] else I18n.text("转动示意") if id=="galaxy" else I18n.text("膨胀示意") if id=="universe" else I18n.text("%.1f 秒") % host.world.simulation_time_s)
 	if astronomy and host.solar_rate<1.0:
-		host.time_label.text=host.Orientation.timestamp(host.solar_jd).left(16)+" TDB"
+		host.time_label.text=I18n.text(host.Orientation.timestamp(host.solar_jd).left(16)+" TDB")
 	host.time_label.tooltip_text=host.Orientation.timestamp(host.solar_jd) if astronomy else ""
 	_layout_transport(host.ui_view_size())
 
@@ -340,5 +352,5 @@ func _process(delta: float) -> void:
 	refresh()
 	if host.message_label.text!=last_message: last_message = host.message_label.text; toast_age = 0.0
 	toast_age += delta
-	var repeated_selection: bool=context_panel.visible and last_message.begins_with("正在观察 · ")
+	var repeated_selection: bool=(context_panel.visible or host.explorer_panel.visible) and last_message.begins_with(I18n.text("正在观察 · "))
 	host.message_label.visible = not repeated_selection and not last_message.is_empty() and (toast_age<5.0 or host.recovery_actions.visible)

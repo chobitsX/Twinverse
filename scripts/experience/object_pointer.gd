@@ -1,4 +1,5 @@
 extends Control
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Pointer access to existing observation targets. No physics world or render pass.
 const SUPPORTED: Array[String] = ["mars_moons","saturn_moons","uranus_moons","neptune_moons","night_sky","universe","galaxy","solar_system","atmosphere","earth_moon","jupiter_moons","reef","school","fish","heart","cardiomyocyte","mitochondrion","molecule","pacific","woodland","city","desert","polar"]
 const DRAG_DISTANCE: float = 6.0
@@ -109,7 +110,7 @@ func _process(delta: float) -> void:
 	if tooltip.visible:
 		hover_node_position=hovered.node.global_position
 		hover_camera=stage.camera.global_transform
-		tooltip.text=str(hovered.label) if host.world.current_scale_id in ["solar_system","night_sky"] else str(hovered.label)+"\n点击近看 · "+host.spatial_hint(hovered)
+		tooltip.text=I18n.text(str(hovered.label) if host.world.current_scale_id in ["solar_system","night_sky"] else str(hovered.label)+I18n.text("\n点击近看 · ")+host.spatial_hint(hovered))
 		tooltip.reset_size()
 		var gap: float=12*host.ui_scale
 		var dimensions: Vector2=tooltip.size*host.ui_scale
@@ -146,9 +147,9 @@ func activate(point: Vector2) -> void:
 		host.follow_content(int(choice.index)+1,choice)
 	if choice.has("topic"):
 		host.learning_overlay.select(str(choice.topic))
-		host.message_label.text="正在观察 · "+str(choice.label)+" · "+str(choice.get("spatial_hint",host.spatial_hint(choice)))
+		host.message_label.text=I18n.text(I18n.text("正在观察 · ")+str(choice.label)+" · "+str(choice.get("spatial_hint",host.spatial_hint(choice))))
 		return
-	host.message_label.text="" if host.SatelliteFraming.is_pair(stage) else "正在观察 · "+str(choice.label)+" · "+host.spatial_hint(choice)
+	host.message_label.text=I18n.text("" if host.SatelliteFraming.is_pair(stage) else I18n.text("正在观察 · ")+str(choice.label)+" · "+host.spatial_hint(choice))
 
 func clear_index() -> void:
 	stage=null; choices.clear(); surfaces.clear(); batches.clear(); selectable_batches.clear(); triangles.clear()
@@ -168,7 +169,7 @@ func rebuild(current: Node) -> void:
 			for alias: Node3D in item.get("pick_nodes",[]): choices[alias.get_instance_id()]=item
 		for i: int in range(bodies.size()):
 			var destination: String = host.spatial_destination({"planet":i})
-			choices[bodies[i].node.get_instance_id()]={"node":bodies[i].node,"label":host.Ephemeris.NAMES[i],"planet":i,"destination":destination,"primary":not destination.is_empty()}
+			choices[bodies[i].node.get_instance_id()]={"node":bodies[i].node,"label":I18n.strings(host.Ephemeris.NAMES)[i],"planet":i,"destination":destination,"primary":not destination.is_empty()}
 			for alias: Node3D in bodies[i].get("pick_nodes",[]): choices[alias.get_instance_id()]=choices[bodies[i].node.get_instance_id()]
 	else:
 		var targets: Array[Dictionary]=host.content_targets(false)
@@ -222,7 +223,7 @@ func rebuild(current: Node) -> void:
 					if targets[i].node.has_meta("architecture_category") and int(targets[i].node.get_meta("architecture_category"))==(0 if category==0 else 1):
 						var item: Dictionary=targets[i].duplicate()
 						item.node=building; item.index=i
-						item.label=["临街商铺 · 建筑观察","住宅 · 建筑观察","办公楼 · 建筑观察"][category]
+						item.label=[I18n.text("临街商铺 · 建筑观察"),I18n.text("住宅 · 建筑观察"),I18n.text("办公楼 · 建筑观察")][category]
 						if category==2: item.view_offset=Vector3(-25,16,28); item.focus_height=12.
 						choices[building.get_instance_id()]=item
 						break

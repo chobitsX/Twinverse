@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Frozen identities and geometric states; all positions read the owner's TDB date.
 const PATH: String = "res://assets/data/satellites273/catalogue.json"
 const Span = preload("res://scripts/core/satellite_ephemeris_span.gd")
@@ -47,7 +48,7 @@ static func count(host: String) -> int:
 
 static func name(host: String) -> String:
 	var index: int = HOSTS.find(host)
-	return NAMES[index] if index >= 0 else host
+	return I18n.strings(NAMES)[index] if index >= 0 else host
 
 static func sample(item: Dictionary, jd: float) -> Dictionary:
 	if item.get("ephemeris_status","") != "vectors": return {"valid":false}
@@ -107,18 +108,18 @@ static func world_position(state: Dictionary, radius_km: float) -> Vector3:
 	return Vector3(p[0]/radius_km,p[2]/radius_km,-p[1]/radius_km)
 
 static func description(item: Dictionary) -> String:
-	var text: String = str(item.display_name)+"\n"+name(str(item.host))+"的天然卫星 · JPL/IAU名录"
+	var text: String = I18n.text(str(item.display_name))+"\n"+name(str(item.host))+I18n.text("的天然卫星 · JPL/IAU名录")
 	var physical: Dictionary = item.get("physical",{})
-	if physical.get("mean_radius_km") != null: text += "\n平均半径 %s km" % str(physical.mean_radius_km)
-	else: text += "\n此数据表未提供平均半径；点标不代表真实大小。"
+	if physical.get("mean_radius_km") != null: text += I18n.text("\n平均半径 %s km") % str(physical.mean_radius_km)
+	else: text += I18n.text("\n此数据表未提供平均半径；点标不代表真实大小。")
 	if item.get("rotation") != null:
 		var w: float = float(item.rotation.polynomials[2][1])
-		if absf(w)>0.0: text += "\nIAU参考自转约 %.3f 天" % (360.0/absf(w))
-	else: text += "\n没有采用自转模型；不以静止示意球声称无自转。"
-	if item.get("code")!=null and int(item.code)==607: text += "\n土卫七存在混沌自转，不能假定始终同面朝向土星。"
+		if absf(w)>0.0: text += I18n.text("\nIAU参考自转约 %.3f 天") % (360.0/absf(w))
+	else: text += I18n.text("\n没有采用自转模型；不以静止示意球声称无自转。")
+	if item.get("code")!=null and int(item.code)==607: text += I18n.text("\n土卫七存在混沌自转，不能假定始终同面朝向土星。")
 	if item.get("ephemeris_status","")=="vectors":
-		text += "\nJPL几何星历：1995—2050 TDB。" if date_range(item)[0]==START_JD else "\nHorizons几何星历：2026-09-01—12-01 TDB。"
-		text += "轨迹取自星历，非平均轨道推算。"
-	elif item.get("ephemeris_status","")=="existing_lunar": text += "\n月球使用既有ERFA位置与NAIF朝向，共享世界日期。"
-	else: text += "\n当前离线星历未覆盖，保留完整身份；不绘制猜测位置。"
+		text += I18n.text("\nJPL几何星历：1995—2050 TDB。") if date_range(item)[0]==START_JD else I18n.text("\nHorizons几何星历：2026-09-01—12-01 TDB。")
+		text += I18n.text("轨迹取自星历，非平均轨道推算。")
+	elif item.get("ephemeris_status","")=="existing_lunar": text += I18n.text("\n月球使用既有ERFA位置与NAIF朝向，共享世界日期。")
+	else: text += I18n.text("\n当前离线星历未覆盖，保留完整身份；不绘制猜测位置。")
 	return text

@@ -1,4 +1,5 @@
 extends PanelContainer
+const I18n = preload("res://scripts/core/app_text.gd")
 ## One small, on-demand optical rendering of the selected existing body. Meshes
 ## and textures are shared, poses/materials are read from the authoritative scene.
 ## This World3D is a render sandbox only: no simulation, animation player or clock.
@@ -38,9 +39,9 @@ func configure(experience: Node) -> void:
 	picture=TextureRect.new(); picture.custom_minimum_size=Vector2(210,158)
 	picture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE; picture.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	picture.mouse_filter=Control.MOUSE_FILTER_IGNORE; column.add_child(picture)
-	detail=host._label("光学放大 · 同一时刻与视向",14); detail.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART; column.add_child(detail)
-	fly_button=host._button("飞近观察",fly); column.add_child(fly_button)
-	frame_button=host._button("与卫星同框",frame_pair); column.add_child(frame_button)
+	detail=host._label(I18n.text("光学放大 · 同一时刻与视向"),14); detail.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART; column.add_child(detail)
+	fly_button=host._button(I18n.text("飞近观察"),fly); column.add_child(fly_button)
+	frame_button=host._button(I18n.text("与卫星同框"),frame_pair); column.add_child(frame_button)
 	hide()
 
 func available() -> bool:
@@ -91,12 +92,12 @@ func present(item: Dictionary, anchor: Vector2) -> void:
 	if not same:
 		popup_anchor=anchor
 		build_proxy()
-		caption.text=str(item.get("label",item.node.name))
+		caption.text=I18n.text(str(item.get("label",item.node.name)))
 		var selected: MeshInstance3D=Closeup.subject(host)
 		fly_button.visible=selected!=item.node
 		var owner: int=int(item.get("planet",item.get("host_planet",2 if bool(item.get("moon",false)) else -1)))
 		frame_button.visible=(source_stage.scale_id=="solar_system" and owner>=2 and owner==int(source_stage.get_meta("solar_physical",{}).get("owner",-2))) or source_stage.has_meta("natural_satellites") or source_stage.scale_id=="earth_moon"
-		frame_button.text="与行星同框" if item.has("satellite_key") or bool(item.get("moon",false)) else "与卫星同框"
+		frame_button.text=I18n.text(I18n.text("与行星同框") if item.has("satellite_key") or bool(item.get("moon",false)) else I18n.text("与卫星同框"))
 		show(); reset_size(); sampled_jd=-INF; update_optics()
 		fit_popup.call_deferred()
 
@@ -180,7 +181,7 @@ func update_optics() -> void:
 	if absf(direction.dot(up))>.98: up=Vector3.RIGHT if absf(direction.x)<.9 else Vector3.UP
 	lens_camera.look_at(Vector3.ZERO,up)
 	var hidden: bool=host.SolarContextCompass.choice_occluded(source_stage,body)
-	detail.text="独立放大 · 主视野中被遮挡" if hidden else "光学放大 · 同一时刻与视向"
+	detail.text=I18n.text(I18n.text("独立放大 · 主视野中被遮挡") if hidden else I18n.text("光学放大 · 同一时刻与视向"))
 	sampled_jd=host.solar_jd; sampled_basis=body.global_basis; sampled_direction=direction
 	lens.render_target_update_mode=SubViewport.UPDATE_ONCE; render_count+=1
 

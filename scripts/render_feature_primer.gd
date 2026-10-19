@@ -1,4 +1,5 @@
 extends Node
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Register the sample's render features before loading its large model library.
 ## No world state, asset cache or parallel simulation belongs to this startup node.
 
@@ -16,7 +17,7 @@ func prepare() -> void:
 	center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	overlay.add_child(center)
 	var label: Label = Label.new()
-	label.text = "正在准备世界"
+	label.text = I18n.text("正在准备世界")
 	label.add_theme_font_size_override("font_size", 24)
 	label.modulate = Color(0.74, 0.84, 0.91)
 	center.add_child(label)

@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 const Traffic = preload("res://scripts/core/city_traffic.gd")
 const Lesson = preload("res://scripts/core/city_traffic_lesson.gd")
 const Forms = preload("res://scripts/experience/life_forms.gd")
@@ -52,7 +53,7 @@ static func build(stage: Node, pavement: Material, dark: Material) -> void:
 	var targets: Array = stage.get_meta("urban_targets")
 	var signal_nodes: Array[Node3D] = []
 	for signal_data: Dictionary in stage.get_meta("pedestrian_signals",[]): signal_nodes.append(signal_data.node)
-	targets.append({"node":target,"pick_nodes":signal_nodes,"topic":"crossing","spatial_hint":"双击信号灯查看过街用时对照","label":"路口 · 行人过街与停等","role":"两位参考行人沿西侧斑马线过街；分相和速度为作者教学规则。","distance":50.0,"focus_height":1.0,"view_offset":Vector3(-39,27,2)})
+	targets.append({"node":target,"pick_nodes":signal_nodes,"topic":"crossing","spatial_hint":I18n.text("双击信号灯查看过街用时对照"),"label":I18n.text("路口 · 行人过街与停等"),"role":I18n.text("两位参考行人沿西侧斑马线过街；分相和速度为作者教学规则。"),"distance":50.0,"focus_height":1.0,"view_offset":Vector3(-39,27,2)})
 	stage.set_meta("crossing_target",target)
 
 static func update(stage: Node, time: float, walk_duration: float = Traffic.WALK_DURATION) -> void:
@@ -61,7 +62,7 @@ static func update(stage: Node, time: float, walk_duration: float = Traffic.WALK
 	var clearance: bool = p>=Traffic.ENTRY_END and p<Traffic.clear_end(walk_duration)
 	var color: Color = Color(.1,.85,.35) if entry else Color(1.0,.6,.1) if clearance else Color(.95,.12,.06)
 	for signal_data: Dictionary in stage.get_meta("pedestrian_signals",[]):
-		signal_data.label.text = "行人 · 通行" if entry else "行人 · 清空" if clearance else "行人 · 等待"
+		signal_data.label.text = I18n.text(I18n.text("行人 · 通行") if entry else I18n.text("行人 · 清空") if clearance else I18n.text("行人 · 等待"))
 		signal_data.label.modulate = color
 		signal_data.material.albedo_color = color
 		signal_data.material.emission = color
@@ -71,13 +72,13 @@ static func readout(host: Node) -> String:
 	var state: Dictionary=host.world.city_traffic.snapshot(host.world.simulation_time_s)
 	var p: float=float(state.phase_s)
 	var end: float=20.0 if p<20.0 else 24.0 if p<24.0 else 26.0 if p<26.0 else float(state.clear_end_s) if p<float(state.clear_end_s) else float(state.period_s)
-	var phase_name: String="横向通行" if p<20.0 else "清空路口" if p<24.0 else "行人开始" if p<26.0 else "行人清空" if p<float(state.clear_end_s) else "清空路口"
-	return "同一%.1f m平面路线 · %.0f秒走完\n平均 %.2f m/s · 周期 %.0f秒\n%s · 本段剩余 %.1f秒\n%s\n横向红灯最长 %.0f秒（固定分相）" % [float(state.route_m),float(state.walk_duration_s),float(state.mean_speed_m_s),float(state.period_s),phase_name,end-p,Traffic.readout(float(state.elapsed_s),float(state.walk_duration_s)),float(state.period_s)-20.0]
+	var phase_name: String=I18n.text("横向通行") if p<20.0 else I18n.text("清空路口") if p<24.0 else I18n.text("行人开始") if p<26.0 else I18n.text("行人清空") if p<float(state.clear_end_s) else I18n.text("清空路口")
+	return I18n.text("同一%.1f m平面路线 · %.0f秒走完\n平均 %.2f m/s · 周期 %.0f秒\n%s · 本段剩余 %.1f秒\n%s\n横向红灯最长 %.0f秒（固定分相）") % [float(state.route_m),float(state.walk_duration_s),float(state.mean_speed_m_s),float(state.period_s),phase_name,end-p,Traffic.readout(float(state.elapsed_s),float(state.walk_duration_s)),float(state.period_s)-20.0]
 
 static func marks(host: Node) -> Array[Dictionary]:
 	var stage: Node = host.coordinator.active_scene
 	var person: Node3D = stage.get_meta("crossing_people")[0]
 	return [
-		{"at":person.position+Vector3(0,1.5,0),"label":str(person.get_meta("activity","行人")),"offset":Vector2(30,-80)},
-		{"at":Vector3(-15.8,.08,3),"label":"车辆在过街带前停等","offset":Vector2(-125,65)},
-		{"at":Vector3(Traffic.CROSS_X,.055,0),"label":"西侧斑马线 · 观察关系","offset":Vector2(70,-10)}]
+		{"at":person.position+Vector3(0,1.5,0),"label":str(person.get_meta("activity",I18n.text("行人"))),"offset":Vector2(30,-80)},
+		{"at":Vector3(-15.8,.08,3),"label":I18n.text("车辆在过街带前停等"),"offset":Vector2(-125,65)},
+		{"at":Vector3(Traffic.CROSS_X,.055,0),"label":I18n.text("西侧斑马线 · 观察关系"),"offset":Vector2(70,-10)}]

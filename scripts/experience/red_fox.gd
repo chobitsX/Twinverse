@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## One authored fox. Pose and route sample the existing world seconds only.
 const SkinPose = preload("res://scripts/experience/human_skin_motion.gd")
 const LifeMotion = preload("res://scripts/experience/life_asset_motion.gd")
@@ -46,7 +47,7 @@ static func sample(time: float) -> Dictionary:
 	travel_s += floor(time/PERIOD_S)*11.25
 	var distance: float = travel_s*.18
 	var angle: float = distance/RADIUS_M+.35
-	return {"position":Vector3(-5.+cos(angle)*RADIUS_M,0,5.+sin(angle)*RADIUS_M),"heading":atan2(-cos(angle),-sin(angle)),"moving":moving,"step_phase":distance/(.16/.64),"distance":distance,"activity":"缓行 · 林缘作者路线" if cycle<13. else "停步 · 头部与耳尾微动"}
+	return {"position":Vector3(-5.+cos(angle)*RADIUS_M,0,5.+sin(angle)*RADIUS_M),"heading":atan2(-cos(angle),-sin(angle)),"moving":moving,"step_phase":distance/(.16/.64),"distance":distance,"activity":I18n.text("缓行 · 林缘作者路线") if cycle<13. else I18n.text("停步 · 头部与耳尾微动")}
 
 static func pose(root: Node3D,time: float,state: Dictionary) -> void:
 	var data: Dictionary = root.get_meta("fox_skin")
@@ -100,8 +101,8 @@ static func build(stage: Node) -> void:
 	stage.world_root.add_child(head_view)
 	stage.set_meta("red_fox",{"root":root,"head_view":head_view})
 	stage.set_meta("red_fox_targets",[
-		{"node":root,"label":"赤狐 · Vulpes vulpes","role":"林缘犬科/杂食性参考；一个米制参考个体沿作者路线缓行、停步。没有实际猎物或捕猎求解。","source_url":SOURCE,"distance":1.85,"min_distance":.70,"focus_height":.33,"view_offset_local":Vector3(1.2,.42,1.4)},
-		{"node":head_view,"label":"赤狐 · 同一只的尖吻与尖耳","role":"近看同一只赤狐的细长吻、黑鼻、尖耳和浅色喉部；不是标本、亚种或个体鉴定。","source_url":SHAPE_SOURCE,"distance":.55,"min_distance":.22,"view_offset_local":Vector3(.40,.06,.38)}])
+		{"node":root,"label":I18n.text("赤狐 · Vulpes vulpes"),"role":I18n.text("林缘犬科/杂食性参考；一个米制参考个体沿作者路线缓行、停步。没有实际猎物或捕猎求解。"),"source_url":SOURCE,"distance":1.85,"min_distance":.70,"focus_height":.33,"view_offset_local":Vector3(1.2,.42,1.4)},
+		{"node":head_view,"label":I18n.text("赤狐 · 同一只的尖吻与尖耳"),"role":I18n.text("近看同一只赤狐的细长吻、黑鼻、尖耳和浅色喉部；不是标本、亚种或个体鉴定。"),"source_url":SHAPE_SOURCE,"distance":.55,"min_distance":.22,"view_offset_local":Vector3(.40,.06,.38)}])
 	animate(stage,float(stage.world_snapshot.simulation_time_s))
 
 static func animate(stage: Node,time: float) -> void:
@@ -122,9 +123,9 @@ static func animate(stage: Node,time: float) -> void:
 
 static func readout(host: Node,topic: String) -> String:
 	var data: Dictionary = host.coordinator.active_scene.get_meta("red_fox",{})
-	if data.is_empty(): return "赤狐参考未载入"
-	if topic=="red_fox_head": return "同一只赤狐 · 尖吻、尖耳和浅色喉部\n头部观察点随原骨骼与世界秒更新"
-	return "赤狐 · 1只作者参考个体\n"+str(data.root.get_meta("activity",""))+"\n肩高约40厘米；40秒作者节律"
+	if data.is_empty(): return I18n.text("赤狐参考未载入")
+	if topic=="red_fox_head": return I18n.text("同一只赤狐 · 尖吻、尖耳和浅色喉部\n头部观察点随原骨骼与世界秒更新")
+	return I18n.text("赤狐 · 1只作者参考个体\n")+str(data.root.get_meta("activity",""))+I18n.text("\n肩高约40厘米；40秒作者节律")
 
 static func marks(host: Node,topic: String) -> Array[Dictionary]:
 	var data: Dictionary = host.coordinator.active_scene.get_meta("red_fox",{})
@@ -132,7 +133,7 @@ static func marks(host: Node,topic: String) -> Array[Dictionary]:
 	var root: Node3D = data.root
 	var skin: Dictionary = root.get_meta("fox_skin")
 	if topic=="red_fox_head":
-		return [{"at":point(root,"Head",skin.muzzle_rest),"label":"细长尖吻","offset":Vector2(85,35)},
-			{"at":point(root,"EarL",skin.bones.EarL.origin+Vector3(0,.05,0)),"label":"尖耳","offset":Vector2(-85,-55)}]
-	return [{"at":point(root,"Head",skin.bones.Head.origin),"label":"尖耳与尖吻","offset":Vector2(75,-70)},
-		{"at":point(root,"Tail3",skin.bones.Tail3.origin+Vector3(-.05,-.03,0)),"label":"白尾端","offset":Vector2(-85,45)}]
+		return [{"at":point(root,"Head",skin.muzzle_rest),"label":I18n.text("细长尖吻"),"offset":Vector2(85,35)},
+			{"at":point(root,"EarL",skin.bones.EarL.origin+Vector3(0,.05,0)),"label":I18n.text("尖耳"),"offset":Vector2(-85,-55)}]
+	return [{"at":point(root,"Head",skin.bones.Head.origin),"label":I18n.text("尖耳与尖吻"),"offset":Vector2(75,-70)},
+		{"at":point(root,"Tail3",skin.bones.Tail3.origin+Vector3(-.05,-.03,0)),"label":I18n.text("白尾端"),"offset":Vector2(-85,45)}]

@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 const EcologySurface = preload("res://scripts/experience/ecology_surface_material.gd")
 ## Original marine flowering plant reference; regional context, authored placement.
 const SOURCE: String = "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:431761-1/general-information"
@@ -27,7 +28,7 @@ static func build(stage: Node) -> void:
 	stage.world_root.add_child(root)
 	root.transform=ground_pose(stage,CENTRE,0.)
 	root.set_meta("stable_id","3dworld:teaching:halophila-ovalis:reference")
-	root.set_meta("activity","3对有柄叶 · 叶长18mm · 根与根茎埋在砂中")
+	root.set_meta("activity",I18n.text("3对有柄叶 · 叶长18mm · 根与根茎埋在砂中"))
 	for mesh: MeshInstance3D in root.find_children("*","MeshInstance3D",true,false): mesh.material_override=material
 	var source: Node3D = stage.assets.halophila_ovalis_shoot.instantiate()
 	var mesh: MeshInstance3D = source.find_child("HalophilaShoot",true,false) as MeshInstance3D
@@ -68,16 +69,16 @@ static func build(stage: Node) -> void:
 	var whole: Node3D = Node3D.new()
 	stage.world_root.add_child(whole)
 	whole.position=root.position+Vector3(0,.015,0)
-	whole.set_meta("activity","360个叶对丛与1段参考根茎 · 布局和密度为作者设置")
+	whole.set_meta("activity",I18n.text("360个叶对丛与1段参考根茎 · 布局和密度为作者设置"))
 	var detail: Node3D = Node3D.new()
 	stage.world_root.add_child(detail)
 	detail.position=root.find_child("LeafCentreAnchor",true,false).global_position
-	detail.set_meta("activity","同一植株叶片 · 18×9mm · 10对横脉 · 镜头近看")
-	var role: String = "卵叶喜盐草Halophila ovalis是海洋开花植物，成对具柄叶、平滑叶缘和叶脉有形态依据。海草为绿海龟等提供食物；此处仅展示结构与生态角色，未模拟啃食、生长、开花、光合或碳储量。砂底斑块为区域参考的作者布局，不是该坐标的实测群落；根和根茎埋在砂中。"
+	detail.set_meta("activity",I18n.text("同一植株叶片 · 18×9mm · 10对横脉 · 镜头近看"))
+	var role: String = I18n.text("卵叶喜盐草Halophila ovalis是海洋开花植物，成对具柄叶、平滑叶缘和叶脉有形态依据。海草为绿海龟等提供食物；此处仅展示结构与生态角色，未模拟啃食、生长、开花、光合或碳储量。砂底斑块为区域参考的作者布局，不是该坐标的实测群落；根和根茎埋在砂中。")
 	stage.set_meta("seagrass_targets",[
-		{"node":whole,"label":"卵叶喜盐草 · 砂底斑块","role":role,"source_url":ECOLOGY_SOURCE,"distance":1.1,"view_offset":Vector3(.30,.65,.85),"min_distance":.08},
-		{"node":detail,"label":"卵叶喜盐草 · 同株叶片近看","role":role,"source_url":SOURCE,"distance":.065,"view_offset":Vector3(.018,.053,.033),"min_distance":.026}])
-	stage.set_meta("content_summary",str(stage.get_meta("content_summary"))+"\n卵叶喜盐草是海洋开花植物；可比较砂底斑块与同株叶脉。尺寸/布局/微摆为作者设置，非现场调查或生长模型。")
+		{"node":whole,"label":I18n.text("卵叶喜盐草 · 砂底斑块"),"role":role,"source_url":ECOLOGY_SOURCE,"distance":1.1,"view_offset":Vector3(.30,.65,.85),"min_distance":.08},
+		{"node":detail,"label":I18n.text("卵叶喜盐草 · 同株叶片近看"),"role":role,"source_url":SOURCE,"distance":.065,"view_offset":Vector3(.018,.053,.033),"min_distance":.026}])
+	I18n.set_meta_text(stage,"content_summary",{"parts":[I18n.meta_message(stage,"content_summary"),"\n卵叶喜盐草是海洋开花植物；可比较砂底斑块与同株叶脉。尺寸/布局/微摆为作者设置，非现场调查或生长模型。"]})
 
 static func point(stage: Node, name: String) -> Vector3:
 	var root: Node3D = stage.get_meta("seagrass_root")
@@ -90,8 +91,8 @@ static func point(stage: Node, name: String) -> Vector3:
 static func marks(stage: Node, detail: bool) -> Array[Dictionary]:
 	if not stage.has_meta("seagrass_root"): return []
 	if not detail:
-		return [{"at":stage.get_meta("seagrass_root").position+Vector3(0,.023,0),"label":"海洋开花植物 · 叶片成对","offset":Vector2(50,-75)}]
+		return [{"at":stage.get_meta("seagrass_root").position+Vector3(0,.023,0),"label":I18n.text("海洋开花植物 · 叶片成对"),"offset":Vector2(50,-75)}]
 	return [
-		{"at":point(stage,"PetioleAnchor"),"label":"有柄叶 · 同株近看","offset":Vector2(-85,78)},
-		{"at":point(stage,"LeafVeinAnchor"),"label":"横脉连接中脉与近叶缘脉","offset":Vector2(35,-90)},
-		{"at":point(stage,"LeafMarginAnchor"),"label":"平滑叶缘 · 无叶毛","offset":Vector2(90,40)}]
+		{"at":point(stage,"PetioleAnchor"),"label":I18n.text("有柄叶 · 同株近看"),"offset":Vector2(-85,78)},
+		{"at":point(stage,"LeafVeinAnchor"),"label":I18n.text("横脉连接中脉与近叶缘脉"),"offset":Vector2(35,-90)},
+		{"at":point(stage,"LeafMarginAnchor"),"label":I18n.text("平滑叶缘 · 无叶毛"),"offset":Vector2(90,40)}]

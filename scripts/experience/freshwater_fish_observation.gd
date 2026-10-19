@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## One authored freshwater reference in the existing woodland channel.
 ## The small group is an observable time-driven layout, not a population or flow solver.
 const Woodland = preload("res://scripts/experience/woodland_environment.gd")
@@ -26,7 +27,7 @@ static func build(stage: Node) -> void:
 		LifeAssetMotion.prepare_materials(node)
 		node.name="GoldenShiner%02d" % i
 		node.set_meta("stable_id","3dworld:teaching:golden-shiner:%04d" % i)
-		node.set_meta("activity","金色鲦 · 缓流水层中的作者小群")
+		node.set_meta("activity",I18n.text("金色鲦 · 缓流水层中的作者小群"))
 		stage.world_root.add_child(node)
 		fish.append(node)
 		var tail: Node3D=node.find_child("TailPivot",true,false) as Node3D
@@ -40,13 +41,13 @@ static func build(stage: Node) -> void:
 	var school: Node3D=Node3D.new()
 	school.name="FreshwaterSchoolCenter"
 	school.set_meta("stable_id","3dworld:teaching:freshwater-school:overview")
-	school.set_meta("activity","缓流河道的金色鲦小群 · 作者路线")
+	school.set_meta("activity",I18n.text("缓流河道的金色鲦小群 · 作者路线"))
 	stage.world_root.add_child(school)
 	stage.set_meta("freshwater_school",{"fish":fish,"tails":tails,"center":school,"eye":eye,"gill":gill,"caudal":caudal})
 	stage.set_meta("freshwater_targets",[
-		{"node":school,"label":"淡水鱼群 · 缓流河道的水下层","role":"八尾金色鲦参考在同一合成河道小群活动；水下视角用于看清真实量级鱼体，不是透明河流或实测群体密度。","source_url":HABITAT_SOURCE,"distance":2.6,"view_offset":Vector3(.20,.09,2.55)},
-		{"node":fish[0],"label":"金色鲦 · Notemigonus crysoleucas","role":"深体形、小而上翘的口、橄榄背与银金侧面；原创约20厘米成鱼参考。路径与八尾数量是作者设置。","source_url":SOURCE,"distance":.55,"min_distance":.25,"view_offset":Vector3(.12,.05,.51),"view_from_subject_side":true,"view_side_sign":-1.0},
-		{"node":eye,"label":"金色鲦 · 眼、鳃盖与侧线","role":"近看实际鱼体上的眼和鳃盖，侧线只作形态线索；不能从这个模型读取真实感知或呼吸速率。","source_url":SOURCE,"distance":.42,"min_distance":.22,"view_offset":Vector3(.08,.05,.39),"view_from_subject_side":true,"view_side_sign":-1.0}])
+		{"node":school,"label":I18n.text("淡水鱼群 · 缓流河道的水下层"),"role":I18n.text("八尾金色鲦参考在同一合成河道小群活动；水下视角用于看清真实量级鱼体，不是透明河流或实测群体密度。"),"source_url":HABITAT_SOURCE,"distance":2.6,"view_offset":Vector3(.20,.09,2.55)},
+		{"node":fish[0],"label":I18n.text("金色鲦 · Notemigonus crysoleucas"),"role":I18n.text("深体形、小而上翘的口、橄榄背与银金侧面；原创约20厘米成鱼参考。路径与八尾数量是作者设置。"),"source_url":SOURCE,"distance":.55,"min_distance":.25,"view_offset":Vector3(.12,.05,.51),"view_from_subject_side":true,"view_side_sign":-1.0},
+		{"node":eye,"label":I18n.text("金色鲦 · 眼、鳃盖与侧线"),"role":I18n.text("近看实际鱼体上的眼和鳃盖，侧线只作形态线索；不能从这个模型读取真实感知或呼吸速率。"),"source_url":SOURCE,"distance":.42,"min_distance":.22,"view_offset":Vector3(.08,.05,.39),"view_from_subject_side":true,"view_side_sign":-1.0}])
 	animate(stage,float(stage.world_snapshot.simulation_time_s))
 
 static func animate(stage: Node,time: float) -> void:
@@ -62,17 +63,17 @@ static func animate(stage: Node,time: float) -> void:
 		fish.position=sample.position+offset+drift
 		fish.rotation.y=sample.heading+.10*sin(time*.55+float(i)*.7)
 		data.tails[i].rotation.y=.19*sin(time*4.3+float(i)*.8)
-		fish.set_meta("activity","金色鲦 · 小群游动（世界时间 %.1f s，作者路线）" % time)
+		fish.set_meta("activity",I18n.text("金色鲦 · 小群游动（世界时间 %.1f s，作者路线）") % time)
 
 static func readout(host: Node, topic: String) -> String:
-	if topic=="freshwater_school": return "8尾金色鲦 · 同一条合成缓流河道\n水下视角揭示真实量级个体；不是种群密度或水流计算。"
-	return "金色鲦 · 约20厘米原创参考\n橄榄背、银金侧面、小而上翘的口；游动读取唯一世界时间。"
+	if topic=="freshwater_school": return I18n.text("8尾金色鲦 · 同一条合成缓流河道\n水下视角揭示真实量级个体；不是种群密度或水流计算。")
+	return I18n.text("金色鲦 · 约20厘米原创参考\n橄榄背、银金侧面、小而上翘的口；游动读取唯一世界时间。")
 
 static func marks(host: Node,topic: String) -> Array[Dictionary]:
 	if topic!="golden_shiner": return []
 	var stage: Node=host.coordinator.active_scene
 	if not stage.has_meta("freshwater_school"): return []
 	var data: Dictionary=stage.get_meta("freshwater_school")
-	return [{"at":data.eye.global_position,"label":"眼与上翘的口","offset":Vector2(-78,-76)},
-		{"at":data.gill.global_position,"label":"鳃盖","offset":Vector2(105,28)},
-		{"at":data.caudal.global_position,"label":"叉形尾鳍","offset":Vector2(52,72)}]
+	return [{"at":data.eye.global_position,"label":I18n.text("眼与上翘的口"),"offset":Vector2(-78,-76)},
+		{"at":data.gill.global_position,"label":I18n.text("鳃盖"),"offset":Vector2(105,28)},
+		{"at":data.caudal.global_position,"label":I18n.text("叉形尾鳍"),"offset":Vector2(52,72)}]

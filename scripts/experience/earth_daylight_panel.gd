@@ -1,4 +1,5 @@
 extends VBoxContainer
+const I18n = preload("res://scripts/core/app_text.gd")
 const Daylight = preload("res://scripts/experience/earth_daylight.gd")
 const Orientation = preload("res://scripts/core/celestial_orientation.gd")
 const Seasons = preload("res://scripts/experience/season_observation.gd")
@@ -20,7 +21,7 @@ func configure(experience: Node) -> void:
 	buttons.add_theme_constant_override("separation",5)
 	add_child(buttons)
 	for index: int in range(Seasons.DATES.size()):
-		var button: Button = host._button(["3月参考","6月参考","9月参考","12月参考"][index],choose_date.bind(index))
+		var button: Button = host._button([I18n.text("3月参考"),I18n.text("6月参考"),I18n.text("9月参考"),I18n.text("12月参考")][index],choose_date.bind(index))
 		button.add_theme_font_size_override("font_size",18)
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.toggle_mode = true
@@ -29,7 +30,7 @@ func configure(experience: Node) -> void:
 		date_buttons.append(button)
 	date_label = _label("",13)
 	add_child(date_label)
-	var legend: Label = _label("暖线受光 / 蓝线背光 · 几何昼长",13)
+	var legend: Label = _label(I18n.text("暖线受光 / 蓝线背光 · 几何昼长"),13)
 	legend.add_theme_color_override("font_color",Color(.76,.86,.94))
 	add_child(legend)
 	table = GridContainer.new()
@@ -37,10 +38,10 @@ func configure(experience: Node) -> void:
 	table.add_theme_constant_override("h_separation",8)
 	table.add_theme_constant_override("v_separation",1)
 	add_child(table)
-	for heading: String in ["纬度","北半球 / 小时","南半球 / 小时"]:
+	for heading: String in [I18n.text("纬度"),I18n.text("北半球 / 小时"),I18n.text("南半球 / 小时")]:
 		table.add_child(_label(heading,13))
 	for latitude: float in Daylight.PAIRS:
-		table.add_child(_label("赤道" if latitude==0.0 else "%d°" % latitude,15))
+		table.add_child(_label(I18n.text("赤道") if latitude==0.0 else "%d°" % latitude,15))
 		for side: int in range(2):
 			var value: Label = _label("",15)
 			value.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -49,11 +50,11 @@ func configure(experience: Node) -> void:
 	var reference_row: HBoxContainer = HBoxContainer.new()
 	reference_row.add_theme_constant_override("separation",5)
 	add_child(reference_row)
-	reference_button = host._button("地球参考点",focus_polar)
+	reference_button = host._button(I18n.text("地球参考点"),focus_polar)
 	reference_button.toggle_mode = true
-	coast_button = host._button("到南极海岸",visit_polar)
-	coast_button.tooltip_text = "保留同一观察日期和速率，到原海岸看随日期变化的日照。"
-	exit_button = host._button("返回地球观察入口",leave)
+	coast_button = host._button(I18n.text("到南极海岸"),visit_polar)
+	coast_button.tooltip_text = I18n.text("保留同一观察日期和速率，到原海岸看随日期变化的日照。")
+	exit_button = host._button(I18n.text("返回地球观察入口"),leave)
 	for button: Button in [reference_button,coast_button,exit_button]:
 		button.add_theme_font_size_override("font_size",18)
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -72,7 +73,7 @@ func _compact_button(button: Button) -> void:
 
 func _label(text: String, font_size: int) -> Label:
 	var label: Label = Label.new()
-	label.text = text
+	label.text = I18n.text(text)
 	label.add_theme_font_size_override("font_size",host.InterfaceTheme.readable_size(font_size))
 	return label
 
@@ -83,15 +84,15 @@ func present() -> void:
 		button.disabled = host.coordinator.is_busy() or not host.world.foreground
 	if _date==host.solar_jd: return
 	_date = host.solar_jd
-	date_label.text = Orientation.timestamp(_date)
+	date_label.text = I18n.text(Orientation.timestamp(_date))
 	var rows: Array[Dictionary] = Daylight.rows(_date)
 	for index: int in range(rows.size()):
-		values[index*2].text = Daylight.hours_text(float(rows[index].north))
-		values[index*2+1].text = Daylight.hours_text(float(rows[index].south))
+		values[index*2].text = I18n.text(Daylight.hours_text(float(rows[index].north)))
+		values[index*2+1].text = I18n.text(Daylight.hours_text(float(rows[index].south)))
 	for index: int in range(date_buttons.size()):
 		date_buttons[index].set_pressed_no_signal(absf(_date-Seasons.preset(index,"earth"))<1e-8)
 	var local: Dictionary = Seasons.sample(_date,"polar")
-	reference_label.text = "66.5°S / 0° · 教学光照参考\n太阳高度 %.1f° · 几何昼长 %.1f h" % [local.elevation,local.daylight]
+	reference_label.text = I18n.text(I18n.text("66.5°S / 0° · 教学光照参考\n太阳高度 %.1f° · 几何昼长 %.1f h") % [local.elevation,local.daylight])
 
 func focus_polar() -> void:
 	if not _can_visit(): return

@@ -8,7 +8,7 @@
 
 Twinverse is an open-source educational 3D exploration and simulation application. Rotate Earth, approach different habitats, observe celestial motion, or follow a fish into organ, cell and molecular reference views. Developers, artists, educators, scientists and curious explorers are welcome to help improve its accuracy, accessibility and performance.
 
-**Current version: 0.4.187 (build 285).** Representative scenes are playable. Native validation currently focuses on Apple Silicon Macs; Windows and lower-end hardware remain unverified. No public binary release is available yet. The in-app interface is primarily Chinese.
+**Current version: 0.4.188 (build 286).** Representative scenes are playable. Native validation currently focuses on Apple Silicon Macs; Windows and lower-end hardware remain unverified. No public binary release is available yet. The interface supports English and Simplified Chinese. Choose a language or follow the system in the top-right “···” menu; the preference is saved locally.
 
 ## Explore
 

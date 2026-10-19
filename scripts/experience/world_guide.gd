@@ -1,4 +1,5 @@
 extends Control
+const I18n = preload("res://scripts/core/app_text.gd")
 ## A view onto the existing navigation and lesson actions; owns no world state.
 const Catalog = preload("res://scripts/core/scale_catalog.gd")
 const Topics = preload("res://scripts/experience/learning_topics.gd")
@@ -14,6 +15,7 @@ const ROUTES: Array[Dictionary] = [
 	{"label":"07  /  索诺兰荒漠", "question":"动植物怎样生活在荒漠灌丛？", "detail":"比较仙人掌、三齿拉瑞阿、牧豆树、Ocotillo与Brittlebush的株形，观察鬣蜥和袋鼠鼠；夜间可追踪有限教学种子。", "actions":[["沙漠鬣蜥与灌丛","desert","desert_iguana"],["仙人掌与刺座","desert","desert_cactus"],["灌木成对小叶","desert","desert_leaf"],["牧豆树与荚果","desert","desert_mesquite"],["Ocotillo多茎与花序","desert","desert_ocotillo"],["Ocotillo茎刺近看","desert","desert_ocotillo_spine"],["Ocotillo梢端红花","desert","desert_ocotillo_flower"],["Brittlebush灰白叶冠与黄花","desert","desert_brittlebush"],["Brittlebush灰白叶片","desert","desert_brittlebush_leaf"],["Brittlebush黄色花头","desert","desert_brittlebush_flower"],["袋鼠鼠夜间采种","desert","desert_rat"],["夏冬日照","desert","season_light"]]},
 	{"label":"08  /  深入生命", "question":"一条鱼怎样把氧送到细胞？", "detail":"从目标鱼深入心脏、心肌与线粒体。", "actions":[["氧原子与轨道","atom","oxygen_atom"],["从目标鱼开始","fish",""],["心脏结构","heart",""]]}
 ]
+var first_visit_view: bool = false
 var host: Node
 var panel: PanelContainer
 var grid: GridContainer
@@ -57,25 +59,25 @@ func configure(experience: Node, style: StyleBoxFlat) -> void:
 	page_scroll.add_child(column)
 	var heading: HBoxContainer = HBoxContainer.new()
 	column.add_child(heading)
-	title = host._label("探索世界",28)
+	title = host._label(I18n.text("探索世界"),28)
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	heading.add_child(title)
-	resume_button = host.InterfaceTheme.icon("close","返回观察 · Esc",return_to_observation)
+	resume_button = host.InterfaceTheme.icon("close",I18n.text("返回观察 · Esc"),return_to_observation)
 	heading.add_child(resume_button)
 	context = host._label("",14,Color(.68,.84,.89))
 	context.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	column.add_child(context)
 	var modes: HFlowContainer = HFlowContainer.new(); modes.add_theme_constant_override("h_separation",8); column.add_child(modes)
-	world_tour_button=host._button("世界漫游",func() -> void: host.guided_journey.open("world"))
+	world_tour_button=host._button(I18n.text("世界漫游"),func() -> void: host.guided_journey.open("world"))
 	modes.add_child(world_tour_button)
-	journey_button=host._button("跨尺度之旅",func() -> void: host.guided_journey.open())
+	journey_button=host._button(I18n.text("跨尺度之旅"),func() -> void: host.guided_journey.open())
 	modes.add_child(journey_button)
-	ecology_button=host._button("生态关系",func() -> void: show_ecology(not ecology_map.visible))
+	ecology_button=host._button(I18n.text("生态关系"),func() -> void: show_ecology(not ecology_map.visible))
 	modes.add_child(ecology_button)
-	species_button=host._button("生命图鉴",func() -> void: show_species(not species_atlas.visible))
+	species_button=host._button(I18n.text("生命图鉴"),func() -> void: show_species(not species_atlas.visible))
 	modes.add_child(species_button)
 	search = LineEdit.new()
-	search.placeholder_text = "搜索主题：海龟、月相、城市……"
+	search.placeholder_text = I18n.text("搜索主题：海龟、月相、城市……")
 	search.clear_button_enabled = true
 	search.custom_minimum_size.y = 44
 	search.add_theme_font_size_override("font_size",18)
@@ -107,7 +109,7 @@ func configure(experience: Node, style: StyleBoxFlat) -> void:
 	species_atlas.configure(host, frame, scroll)
 	species_atlas.visit_requested.connect(host.start_guide_visit)
 	species_atlas.hide()
-	for entry: Dictionary in ROUTES:
+	for entry: Dictionary in I18n.dictionaries(ROUTES):
 		var card: PanelContainer = PanelContainer.new()
 		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var card_style: StyleBoxFlat = frame.duplicate()
@@ -128,7 +130,7 @@ func configure(experience: Node, style: StyleBoxFlat) -> void:
 			text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			content.add_child(text)
 		var actions: HFlowContainer = HFlowContainer.new()
-		var expand: Button = host._button("查看观察主题  ›",func() -> void: actions.visible=not actions.visible)
+		var expand: Button = host._button(I18n.text("查看观察主题  ›"),func() -> void: actions.visible=not actions.visible)
 		expand.add_theme_font_size_override("font_size",18); host.InterfaceTheme.flat_button(expand)
 		expand.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
 		content.add_child(expand)
@@ -146,18 +148,20 @@ func configure(experience: Node, style: StyleBoxFlat) -> void:
 				if topic.id==action[2]: lesson_title=str(topic.title)
 			button.set_meta("guide_search",("%s %s %s %s" % [entry.label,entry.question,action[0],lesson_title]).to_lower())
 		cards.append({"node":card,"buttons":card_buttons,"actions":actions})
-	empty_results = host._label("没有找到相关主题，试试物种、天体或场景名称。",16)
+	empty_results = host._label(I18n.text("没有找到相关主题，试试物种、天体或场景名称。"),16)
 	empty_results.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	column.add_child(empty_results)
 	column.move_child(empty_results,result_count.get_index()+1)
 	_filter_routes("")
-	var note: Label = host._label("天文使用注明范围的近似模型；生态与城市含教学活动；生命内部为参考模型。各场景可查看依据与边界。",12,Color(.65,.78,.83))
+	var note: Label = host._label(I18n.text("天文使用注明范围的近似模型；生态与城市含教学活动；生命内部为参考模型。各场景可查看依据与边界。"),12,Color(.65,.78,.83))
 	note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	column.add_child(note)
 	fit_window(Vector2i(host.ui_view_size()))
 	hide()
 
 func fit_window(window_size: Vector2i) -> void:
+	# Keep the longer English footer reachable without shrinking text.
+	scroll.custom_minimum_size.y = minf(240,maxf(120,float(window_size.y)-520))
 	var width: float = minf(1120,float(window_size.x)-48)
 	panel.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	panel.offset_left = (window_size.x-width)*.5
@@ -171,17 +175,21 @@ func open(first_visit: bool = false) -> void:
 	show_ecology(false)
 	if is_instance_valid(host.guided_journey):
 		journey_button.tooltip_text=host.guided_journey.entry_label("life")
-		journey_button.text=journey_button.tooltip_text.split(" · ")[0]
+		journey_button.text=I18n.text(journey_button.tooltip_text.split(" · ")[0])
 		world_tour_button.tooltip_text=host.guided_journey.entry_label("world")
-		world_tour_button.text=world_tour_button.tooltip_text.split(" · ")[0]
-	var welcome: String = "欢迎来到孪生宇宙。任选一个问题开始，世界会自动保存。" if host._persistence_enabled else "欢迎来到孪生宇宙。任选一个问题开始；本次临时体验不保存进度。"
-	context.text = welcome if first_visit else "当前观察：%s。选择主题前往其他场景，或返回这里继续。" % Catalog.describe(host.world.current_scale_id).label
-	resume_button.text = "返回世界漫游" if host.guided_journey.has_lesson_return() else "先看看地球  Esc" if first_visit else "返回当前观察  Esc"
-	search.text = ""
+		world_tour_button.text=I18n.text(world_tour_button.tooltip_text.split(" · ")[0])
+	refresh_context(first_visit)
+	search.text = I18n.text("")
 	_filter_routes("")
 	scroll.scroll_vertical = 0
 	show()
 	resume_button.grab_focus()
+
+func refresh_context(first_visit: bool) -> void:
+	first_visit_view = first_visit
+	var welcome: String = I18n.text("欢迎来到孪生宇宙。任选一个问题开始，世界会自动保存。") if host._persistence_enabled else I18n.text("欢迎来到孪生宇宙。任选一个问题开始；本次临时体验不保存进度。")
+	context.text = I18n.text(welcome if first_visit else I18n.text("当前观察：%s。选择主题前往其他场景，或返回这里继续。") % Catalog.describe(host.world.current_scale_id).label)
+	resume_button.text = I18n.text(I18n.text("返回世界漫游") if host.guided_journey.has_lesson_return() else I18n.text("先看看地球  Esc") if first_visit else I18n.text("返回当前观察  Esc"))
 
 func return_to_observation() -> void:
 	if host.guided_journey.has_lesson_return(): host.guided_journey.return_to_route()
@@ -206,9 +214,9 @@ func _show_page(page: String) -> void:
 	world_tour_button.visible = topics
 	ecology_button.visible = page != "species"
 	species_button.visible = page != "ecology"
-	ecology_button.text = "返回全部主题" if page == "ecology" else "生态关系"
-	species_button.text = "返回全部主题" if page == "species" else "生命图鉴"
-	title.text = "生命图鉴" if page == "species" else "探索世界"
+	ecology_button.text = I18n.text(I18n.text("返回全部主题") if page == "ecology" else I18n.text("生态关系"))
+	species_button.text = I18n.text(I18n.text("返回全部主题") if page == "species" else I18n.text("生命图鉴"))
+	title.text = I18n.text(I18n.text("生命图鉴") if page == "species" else I18n.text("探索世界"))
 	scroll.scroll_vertical=0
 
 func _no_results() -> bool:
@@ -231,6 +239,6 @@ func _filter_routes(query: String) -> void:
 		card.node.visible=visible_buttons>0
 		card.actions.visible=not terms.is_empty()
 		matched+=visible_buttons
-	result_count.text="%d 个观察主题 · 按问题探索" % route_buttons.size() if terms.is_empty() else "找到 %d / %d 个入口" % [matched,route_buttons.size()]
+	result_count.text=I18n.text(I18n.text("%d 个观察主题 · 按问题探索") % route_buttons.size() if terms.is_empty() else I18n.text("找到 %d / %d 个入口") % [matched,route_buttons.size()])
 	empty_results.visible=matched==0
 	scroll.scroll_vertical=0

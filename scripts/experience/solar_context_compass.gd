@@ -1,4 +1,5 @@
 extends Control
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Sightline markers, not enlarged bodies. Hidden when the actual disc is readable.
 const UI = preload("res://scripts/experience/interface_theme.gd")
 const Closeup = preload("res://scripts/experience/solar_closeup.gd")
@@ -38,7 +39,7 @@ static func occluded(stage: Node, index: int) -> bool:
 func _button(key: int) -> Button:
 	if buttons.has(key): return buttons[key]
 	var button: Button=Button.new()
-	button.text=GLYPHS[key] if key<10 else "·"
+	button.text=I18n.text(GLYPHS[key] if key<10 else "·")
 	button.custom_minimum_size=Vector2(36,36)
 	button.add_theme_font_size_override("font_size",21 if key<10 else 28)
 	button.add_theme_color_override("font_color",Color(.92,.76,.47,.8) if key==8 else Color(.62,.79,.83,.65))
@@ -63,7 +64,7 @@ func collect(stage: Node) -> Dictionary:
 	var result: Dictionary={}
 	if stage.scale_id=="solar_system":
 		for index: int in range(8):
-			result[index]={"node":stage.get_meta("solar_bodies")[index].node,"label":host.Ephemeris.NAMES[index],"planet":index}
+			result[index]={"node":stage.get_meta("solar_bodies")[index].node,"label":I18n.strings(host.Ephemeris.NAMES)[index],"planet":index}
 	var items: Array[Dictionary]=host.content_targets(false)
 	for index: int in range(items.size()):
 		var item: Dictionary=items[index]
@@ -125,7 +126,7 @@ func _process(delta: float) -> void:
 		var line_anchor: Vector2=pixel_point(state.anchor)
 		state.line=center.distance_to(line_anchor)>(16.0 if bool(state.get("line",false)) else 24.0)
 		if state.line: leaders.append(Vector4(line_anchor.x,line_anchor.y,center.x,center.y))
-		var tip: String=str(choices[key].label)+" · 指向放大，点击飞近"+("\n主视野中被遮挡" if blocked else "\n方位标记，不表示天体大小")
+		var tip: String=str(choices[key].label)+I18n.text(" · 指向放大，点击飞近")+(I18n.text("\n主视野中被遮挡") if blocked else I18n.text("\n方位标记，不表示天体大小"))
 		if button.tooltip_text!=tip: button.tooltip_text=tip
 	# Hiding and showing every frame also churns GUI hover, even when paused.
 	for key: int in buttons:

@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Curated entries point to existing observations and own no simulation state.
 const AREAS: Dictionary = {"reef":"海洋", "woodland":"林地与河岸", "desert":"荒漠", "city":"城市", "polar":"南极海岸"}
 const KINDS: Dictionary = {"fish":"鱼类", "mammal":"哺乳类", "bird":"鸟类", "reptile":"爬行类", "amphibian":"两栖类", "insect":"昆虫", "invertebrate":"其他无脊椎动物", "plant":"植物", "fungus":"真菌"}
@@ -50,4 +51,4 @@ static func area(entry: Dictionary) -> String:
 	return "reef" if entry.scale == "fish" else str(entry.scale)
 
 static func searchable(entry: Dictionary) -> String:
-	return ("%s %s %s %s %s" % [entry.name, entry.scientific, KINDS[entry.kind], AREAS[area(entry)], entry.detail]).to_lower()
+	return ("%s %s %s %s %s" % [entry.name, entry.scientific, I18n.dictionary(KINDS)[entry.kind], I18n.dictionary(AREAS)[area(entry)], entry.detail]).to_lower()

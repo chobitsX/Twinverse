@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 const EcologySurface = preload("res://scripts/experience/ecology_surface_material.gd")
 ## One original reef-floor reference. Time is supplied by the existing host.
 const SkinShader = preload("res://shaders/day_octopus_skin.gdshader")
@@ -56,7 +57,7 @@ static func build(stage: Node) -> void:
 	root.position = Vector3(PLACE.x, floor, PLACE.y)
 	root.rotation.y = -.15
 	root.set_meta("stable_id", "3dworld:teaching:octopus-cyanea:0000")
-	root.set_meta("activity", "礁底参考个体 · 作者腕端微动")
+	root.set_meta("activity", I18n.text("礁底参考个体 · 作者腕端微动"))
 	stage.world_root.add_child(root)
 	stage.set_meta("octopus_floor", floor)
 	var materials: Array[ShaderMaterial] = []
@@ -72,13 +73,13 @@ static func build(stage: Node) -> void:
 	stage.set_meta("day_octopus", {"root":root, "arm_view":arm_view, "local_anchor":local_anchor,
 		"materials":materials, "pale":false})
 	animate(stage, float(stage.world_snapshot.simulation_time_s))
-	var role: String = "日间章鱼 Octopus cyanea 是礁区头足类参考：八腕、两列吸盘及腕间膜。外套膜约12厘米、448个简化吸盘、姿态和低幅腕端活动均为作者设置；并非实测个体或捕食、爬行、吸附力模型。"
+	var role: String = I18n.text("日间章鱼 Octopus cyanea 是礁区头足类参考：八腕、两列吸盘及腕间膜。外套膜约12厘米、448个简化吸盘、姿态和低幅腕端活动均为作者设置；并非实测个体或捕食、爬行、吸附力模型。")
 	stage.set_meta("octopus_targets", [
-		{"node":root, "label":"日间章鱼 · Octopus cyanea", "role":role, "source_url":SOURCE,
+		{"node":root, "label":I18n.text("日间章鱼 · Octopus cyanea"), "role":role, "source_url":SOURCE,
 			"distance":1.90, "focus_height":.090, "min_distance":.50, "view_offset":Vector3(.78,.80,1.57)},
-		{"node":arm_view, "label":"日间章鱼 · 同一条腕的双列吸盘", "role":role, "source_url":MORPHOLOGY_SOURCE,
+		{"node":arm_view, "label":I18n.text("日间章鱼 · 同一条腕的双列吸盘"), "role":role, "source_url":MORPHOLOGY_SOURCE,
 			"distance":.26, "min_distance":.17, "view_offset":Vector3(.25,.025,.045)}])
-	stage.set_meta("content_summary", str(stage.get_meta("content_summary")) + "\n日间章鱼增加八腕/双列吸盘的头足类近看；体色为两种作者参考，腕端微动不表示抓取、爬行或自动伪装。")
+	I18n.set_meta_text(stage,"content_summary",{"parts":[I18n.meta_message(stage,"content_summary"),"\n日间章鱼增加八腕/双列吸盘的头足类近看；体色为两种作者参考，腕端微动不表示抓取、爬行或自动伪装。"]})
 
 
 static func animate(stage: Node, time: float) -> void:
@@ -106,7 +107,7 @@ static func readout(host: Node) -> String:
 	var stage: Node = host.coordinator.active_scene
 	if not stage.has_meta("day_octopus"): return ""
 	var pale: bool = bool(stage.get_meta("day_octopus").pale)
-	return "同一只个体 · 外套膜约12 cm · 八腕\n%s · 体色对照不表示自动伪装\n腕端16秒作者微动；暂停后姿态保持" % ("较浅参考体色" if pale else "褐斑参考体色")
+	return I18n.text("同一只个体 · 外套膜约12 cm · 八腕\n%s · 体色对照不表示自动伪装\n腕端16秒作者微动；暂停后姿态保持") % (I18n.text("较浅参考体色") if pale else I18n.text("褐斑参考体色"))
 
 
 static func marks(host: Node, close_arm: bool) -> Array[Dictionary]:
@@ -115,7 +116,7 @@ static func marks(host: Node, close_arm: bool) -> Array[Dictionary]:
 	var data: Dictionary = stage.get_meta("day_octopus")
 	var root: Node3D = data.root
 	if close_arm:
-		return [{"at":data.arm_view.global_position, "label":"两列吸盘 · 数量简化", "offset":Vector2(55,-70)},
-			{"at":root.to_global(Vector3(.012,.110,.071)), "label":"头部的真眼", "offset":Vector2(-75,45)}]
-	return [{"at":root.to_global(Vector3(-.09,.165,0)), "label":"外套膜 · 约12 cm", "offset":Vector2(-80,-65)},
-		{"at":root.to_global(Vector3(.06,.070,0)), "label":"八腕与腕间膜", "offset":Vector2(110,65)}]
+		return [{"at":data.arm_view.global_position, "label":I18n.text("两列吸盘 · 数量简化"), "offset":Vector2(55,-70)},
+			{"at":root.to_global(Vector3(.012,.110,.071)), "label":I18n.text("头部的真眼"), "offset":Vector2(-75,45)}]
+	return [{"at":root.to_global(Vector3(-.09,.165,0)), "label":I18n.text("外套膜 · 约12 cm"), "offset":Vector2(-80,-65)},
+		{"at":root.to_global(Vector3(.06,.070,0)), "label":I18n.text("八腕与腕间膜"), "offset":Vector2(110,65)}]

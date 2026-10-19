@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Original metre-scale terrestrial turtle; all activity reads the one world time.
 const SkinPose = preload("res://scripts/experience/human_skin_motion.gd")
 const LifeMotion = preload("res://scripts/experience/life_asset_motion.gd")
@@ -26,7 +27,7 @@ static func sample(time: float) -> Dictionary:
 	travel_s += floor(time/PERIOD_S)*14.
 	var distance: float = travel_s*.014
 	var angle: float = distance/RADIUS_M+.25
-	return {"position":Vector3(cos(angle)*RADIUS_M,0,sin(angle)*RADIUS_M),"heading":atan2(-cos(angle),-sin(angle)),"moving":moving,"step_phase":distance/(STRIDE_M/.64),"distance":distance,"activity":"短步慢行 · 作者路线" if cycle<16. else "停步 · 头部轻微查看"}
+	return {"position":Vector3(cos(angle)*RADIUS_M,0,sin(angle)*RADIUS_M),"heading":atan2(-cos(angle),-sin(angle)),"moving":moving,"step_phase":distance/(STRIDE_M/.64),"distance":distance,"activity":I18n.text("短步慢行 · 作者路线") if cycle<16. else I18n.text("停步 · 头部轻微查看")}
 
 static func bend(hip: Vector3,knee: Vector3,ankle: Vector3,target: Vector3) -> Dictionary:
 	var upper: float = hip.distance_to(knee)
@@ -163,8 +164,8 @@ static func build(stage: Node) -> void:
 	var clearing: Dictionary = _clearing(stage)
 	stage.set_meta("box_turtle",{"root":root,"head_view":head,"clearing":clearing})
 	stage.set_meta("box_turtle_targets",[
-		{"node":root,"label":"东部箱龟 · Terrapene carolina carolina","role":"陆生箱龟参考：高拱背甲、黄橙斑纹、带铰链腹甲和有趾足。一个作者个体短步慢行/停步；资料中的杂食角色尚未接摄食求解。","source_url":SOURCE,"distance":.40,"min_distance":.18,"focus_height":.036,"view_offset_local":Vector3(.28,.16,.25)},
-		{"node":head,"label":"东部箱龟 · 同一只的头部","role":"近看同一只箱龟的钩状上颌、鼻孔、眼与颈部斑纹，头部观察点跟随原骨骼。尺寸不随镜头放大。","source_url":SHAPE_SOURCE,"distance":.145,"min_distance":.065,"view_offset_local":Vector3(.095,.047,.100)}])
+		{"node":root,"label":I18n.text("东部箱龟 · Terrapene carolina carolina"),"role":I18n.text("陆生箱龟参考：高拱背甲、黄橙斑纹、带铰链腹甲和有趾足。一个作者个体短步慢行/停步；资料中的杂食角色尚未接摄食求解。"),"source_url":SOURCE,"distance":.40,"min_distance":.18,"focus_height":.036,"view_offset_local":Vector3(.28,.16,.25)},
+		{"node":head,"label":I18n.text("东部箱龟 · 同一只的头部"),"role":I18n.text("近看同一只箱龟的钩状上颌、鼻孔、眼与颈部斑纹，头部观察点跟随原骨骼。尺寸不随镜头放大。"),"source_url":SHAPE_SOURCE,"distance":.145,"min_distance":.065,"view_offset_local":Vector3(.095,.047,.100)}])
 	animate(stage,float(stage.world_snapshot.simulation_time_s))
 
 static func animate(stage: Node,time: float) -> void:
@@ -188,13 +189,13 @@ static func near_clip(stage: Node) -> float:
 
 static func readout(host: Node,topic: String) -> String:
 	var data: Dictionary = host.coordinator.active_scene.get_meta("box_turtle",{})
-	if data.is_empty(): return "箱龟参考未载入"
-	if topic=="box_turtle_head": return "同一只箱龟 · 钩状上颌与颈部斑纹\n观察点跟随原头骨；性别未指定"
-	return "东部箱龟 · 1只陆生参考\n"+str(data.root.get_meta("activity",""))+"\n生成外形未作标本尺寸标定；40秒作者节律\n双叶腹甲铰链为静态参考，未演示闭壳"
+	if data.is_empty(): return I18n.text("箱龟参考未载入")
+	if topic=="box_turtle_head": return I18n.text("同一只箱龟 · 钩状上颌与颈部斑纹\n观察点跟随原头骨；性别未指定")
+	return I18n.text("东部箱龟 · 1只陆生参考\n")+str(data.root.get_meta("activity",""))+I18n.text("\n生成外形未作标本尺寸标定；40秒作者节律\n双叶腹甲铰链为静态参考，未演示闭壳")
 
 static func marks(host: Node,topic: String) -> Array[Dictionary]:
 	var data: Dictionary = host.coordinator.active_scene.get_meta("box_turtle",{})
 	if data.is_empty(): return []
 	var root: Node3D = data.root
-	if topic=="box_turtle_head": return [{"at":point(root,"Head",Vector3(.109,.026,.004)),"label":"钩状上颌","offset":Vector2(105,55)},{"at":point(root,"Neck",Vector3(.068,.043,.014)),"label":"有斑纹的头颈","offset":Vector2(-105,-55)}]
-	return [{"at":root.to_global(Vector3(0,.076,0)),"label":"高拱背甲 · 生成外形参考","offset":Vector2(-105,-75)},{"at":point(root,"HindLPaw",Vector3(-.018,.003,.073)),"label":"后足四趾 · 陆地支撑","offset":Vector2(105,60)}]
+	if topic=="box_turtle_head": return [{"at":point(root,"Head",Vector3(.109,.026,.004)),"label":I18n.text("钩状上颌"),"offset":Vector2(105,55)},{"at":point(root,"Neck",Vector3(.068,.043,.014)),"label":I18n.text("有斑纹的头颈"),"offset":Vector2(-105,-55)}]
+	return [{"at":root.to_global(Vector3(0,.076,0)),"label":I18n.text("高拱背甲 · 生成外形参考"),"offset":Vector2(-105,-75)},{"at":point(root,"HindLPaw",Vector3(-.018,.003,.073)),"label":I18n.text("后足四趾 · 陆地支撑"),"offset":Vector2(105,60)}]

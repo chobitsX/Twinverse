@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 const Model = preload("res://scripts/core/natural_satellites.gd")
 const Cosmos = preload("res://scripts/experience/cosmos_builder.gd")
 const Orientation = preload("res://scripts/core/celestial_orientation.gd")
@@ -91,7 +92,7 @@ static func attach(stage: Node, host: String, planet: MeshInstance3D, material: 
 	stage.camera.far=maxf(10000.0,extent*6.0)
 	stage.set_meta("orbit_max_distance",extent*5.0)
 	stage.set_meta("natural_satellites",{"host":host,"index":index,"radius_km":radius,"planet":planet,"planet_material":material,"root":root,"bodies":bodies,"selected":-1,"valid":false,"true_size":false,"extent":extent,"inner_extent":inner})
-	stage.set_meta("content_summary","%s · 完整%d颗天然卫星名录\n近域可观察主要卫星；全域显示已缓存小卫星。距离始终同比缩放，已知卫星距离与半径同比，点标仅用于识别。选择或指向时显示名字。" % [Model.name(host),Model.count(host)])
+	I18n.set_meta_text(stage,"content_summary",{"format":"%s · 完整%d颗天然卫星名录\n近域可观察主要卫星；全域显示已缓存小卫星。距离始终同比缩放，已知卫星距离与半径同比，点标仅用于识别。选择或指向时显示名字。","args":[Model.name(host),Model.count(host)]})
 
 static func set_view(stage: Node, jd: float, true_size: bool) -> void:
 	if not stage.has_meta("natural_satellites"): return
@@ -108,7 +109,7 @@ static func set_view(stage: Node, jd: float, true_size: bool) -> void:
 		data.ring_material.set_shader_parameter("sun_direction",direction)
 	if not data.valid:
 		for body: Dictionary in data.bodies: body.node.set_meta("activity","当前日期无卫星位置 · 主要卫星支持1995—2050")
-		stage.set_meta("scientific_label","卫星位置支持1995—2050 TDB；当前日期不在覆盖范围，不外推轨迹。")
+		I18n.set_meta_text(stage,"scientific_label","卫星位置支持1995—2050 TDB；当前日期不在覆盖范围，不外推轨迹。")
 		return
 	var covered: int = 0
 	for body: Dictionary in data.bodies:
@@ -128,10 +129,10 @@ static func set_view(stage: Node, jd: float, true_size: bool) -> void:
 				body.node.basis=basis
 				body.material.set_shader_parameter("sun_direction",direction)
 		body.point.position=body.node.position
-		body.node.set_meta("activity","距%s中心 %.0f km · %s\n%s" % [Model.name(str(data.host)),state.distance_km,"识别点标，尺寸未知" if float(body.radius_km)==0.0 else "半径与距离同比","历史影像" if body.reused else "中性示意球，未提供真实表面影像" if float(body.radius_km)>0.0 else "位置来自同日期Horizons星历"])
+		body.node.set_meta("activity",I18n.format_text("距%s中心 %.0f km · %s\n%s",[Model.name(str(data.host)),state.distance_km,"识别点标，尺寸未知" if float(body.radius_km)==0.0 else "半径与距离同比","历史影像" if body.reused else "中性示意球，未提供真实表面影像" if float(body.radius_km)>0.0 else "位置来自同日期Horizons星历"]))
 	data.available_count=covered
-	stage.set_meta("scientific_label","%s：名录%d颗，同日期可定位%d颗\nJPL几何星历 · 主要卫星1995—2050；其它条目日期范围见名录。距离同比，%s；灰色球为尺寸示意，点标不是大小。" % [Model.name(str(data.host)),Model.count(str(data.host)),covered,"真实半径；识别点不代表大小"])
-	if str(data.host)=="saturn": stage.set_meta("scientific_label",str(stage.get_meta("scientific_label"))+"土星环宽/条带为显示示意。")
+	I18n.set_meta_text(stage,"scientific_label",{"format":"%s：名录%d颗，同日期可定位%d颗\nJPL几何星历 · 主要卫星1995—2050；其它条目日期范围见名录。距离同比，%s；灰色球为尺寸示意，点标不是大小。","args":[Model.name(str(data.host)),Model.count(str(data.host)),covered,"真实半径；识别点不代表大小"]})
+	if str(data.host)=="saturn": I18n.set_meta_text(stage,"scientific_label",{"parts":[I18n.meta_message(stage,"scientific_label"),"土星环宽/条带为显示示意。"]})
 	update_camera(stage)
 	_update_orbits(stage,jd)
 
@@ -193,7 +194,7 @@ static func _update_orbits(stage: Node, jd: float) -> void:
 
 static func readout(host: Node) -> String:
 	var data: Dictionary = host.coordinator.active_scene.get_meta("natural_satellites")
-	return "%s名录%d颗 · 同日期可定位%d颗\n自转与公转共用TDB日期和倍率。靠近看主要卫星，拉远自然显现远方小卫星。\n线条取自有效日期内的几何星历；灰色球仅表示平均半径。\n主要卫星1995—2050，其它条目日期范围见名录；缺位置/尺寸/朝向的数据明确标注，不推算猜测轨迹。名录冻结于2026-10-13。" % [Model.name(str(data.host)),Model.count(str(data.host)),int(data.get("available_count",0))]
+	return I18n.format_text("%s名录%d颗 · 同日期可定位%d颗\n自转与公转共用TDB日期和倍率。靠近看主要卫星，拉远自然显现远方小卫星。\n线条取自有效日期内的几何星历；灰色球仅表示平均半径。\n主要卫星1995—2050，其它条目日期范围见名录；缺位置/尺寸/朝向的数据明确标注，不推算猜测轨迹。名录冻结于2026-10-13。",[Model.name(str(data.host)),Model.count(str(data.host)),int(data.get("available_count",0))])
 
 static func entry_pose(stage: Node, _source: String) -> Dictionary:
 	return {"position":stage.default_position*1.2,"target":Vector3.ZERO}

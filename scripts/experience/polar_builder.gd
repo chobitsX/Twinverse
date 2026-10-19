@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## A synthetic Antarctic coastal cross-section. No mapped ice or wildlife state.
 const Forms = preload("res://scripts/experience/life_forms.gd")
 const LifeMotion = preload("res://scripts/experience/life_asset_motion.gd")
@@ -248,8 +249,8 @@ static func build(stage: Node) -> void:
 	stage.world_root.add_child(sky_overview)
 	targets.append({"node":sky_overview, "label":"南极夜空与极光演示", "role":"共同日期星位，光幕为作者示意，非当日预报。", "source_url":PolarEnvironment.AURORA_SOURCE, "distance":150.0, "min_distance":50.0, "view_offset":Vector3(0, -39, 140)})
 	stage.set_meta("polar_targets", targets)
-	stage.set_meta("scientific_label", "南极海岸 · 合成教学参考\n66.5°S用于同日期日照与星位；冰川/浮冰为作者布局，极光为暗夜演示，非实测地址、当日冰缘或天气。")
-	stage.set_meta("content_summary", "南极海岸参考：裸岩、海水和12块作者海冰 · 4只阿德利企鹅 · 12只同种冰磷虾\n企鹅主题可比较原第3只的迈足、入水、鳍划水与上岸，或进入原近岸水下看约3厘米磷虾。冰磷虾是企鹅近岸食物的一种，场景未模拟捕食。海冰、数量和80秒往返为作者设置；太阳读取共同日期，动物活动读取唯一世界时间。")
+	I18n.set_meta_text(stage,"scientific_label","南极海岸 · 合成教学参考\n66.5°S用于同日期日照与星位；冰川/浮冰为作者布局，极光为暗夜演示，非实测地址、当日冰缘或天气。")
+	I18n.set_meta_text(stage,"content_summary","南极海岸参考：裸岩、海水和12块作者海冰 · 4只阿德利企鹅 · 12只同种冰磷虾\n企鹅主题可比较原第3只的迈足、入水、鳍划水与上岸，或进入原近岸水下看约3厘米磷虾。冰磷虾是企鹅近岸食物的一种，场景未模拟捕食。海冰、数量和80秒往返为作者设置；太阳读取共同日期，动物活动读取唯一世界时间。")
 	animate(stage, float(stage.world_snapshot.simulation_time_s))
 
 static func _build_arctic(stage: Node) -> void:
@@ -316,8 +317,8 @@ static func _build_arctic(stage: Node) -> void:
 	stage.set_meta("polar_targets", [
 		{"node":overview, "label":"北冰洋海冰与开阔水面", "distance":52.0, "min_distance":18.0, "view_offset":Vector3(9, 8, 36), "source_url":PolarEnvironment.POLES_SOURCE, "role":"固定海冰参考 · 78°N日照"},
 		{"node":aurora, "label":"北极夜空与极光演示", "distance":210.0, "min_distance":50.0, "view_offset":Vector3(0, -49, 185), "source_url":PolarEnvironment.AURORA_SOURCE, "role":"同日期星位 · 极光为作者演示"}])
-	stage.set_meta("content_summary", "北冰洋合成海冰观察点：积雪、蓝冰断面、开阔水面与冰脊。78°N/0°仅用于日照和星位；极光光幕为作者演示，暗夜可见，不是当日预测。没有南极企鹅或大陆冰川。")
-	stage.set_meta("scientific_label", "北极海冰合成参考 · 同日期日照与J2000星表\n海冰形体/覆盖、纹理、波纹与极光强度均为作者展示，不是天气、融冻或极光预报。")
+	I18n.set_meta_text(stage,"content_summary","北冰洋合成海冰观察点：积雪、蓝冰断面、开阔水面与冰脊。78°N/0°仅用于日照和星位；极光光幕为作者演示，暗夜可见，不是当日预测。没有南极企鹅或大陆冰川。")
+	I18n.set_meta_text(stage,"scientific_label","北极海冰合成参考 · 同日期日照与J2000星表\n海冰形体/覆盖、纹理、波纹与极光强度均为作者展示，不是天气、融冻或极光预报。")
 	stage.set_meta("local_unit_m", 1.0)
 	stage.set_meta("daylight_enabled", false)
 	set_daylight(stage, 2451545.0, false)

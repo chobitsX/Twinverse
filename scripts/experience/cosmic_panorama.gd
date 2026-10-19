@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Observer demonstration derived from World time. No cosmological state/solver.
 const POINT_SHADER: Shader = preload("res://shaders/cosmic_points.gdshader")
 const GALAXY_SHADER: Shader = preload("res://shaders/cosmic_galaxy.gdshader")
@@ -19,7 +20,7 @@ static func build(stage: Node) -> void:
 	stage.set_meta("orbit_max_distance", MAXIMUM_DISTANCE)
 	stage.environment.glow_intensity = 0.38
 	stage.set_meta("scientific_category", "procedural_cosmic_web_and_expansion_demonstration")
-	stage.set_meta("scientific_label", "宇宙结构全景 · 星系团、丝状结构与空洞的作者示意\n间距随世界时间增加，表示膨胀趋势；星系本身不被拉大。每次进入重播相对间距演示，非真实宇宙年代或实测星系图。\n银河作为观察参考，不代表宇宙中心；点光、颜色与亮度增强以便辨认，暗物质丝状结构并非肉眼可见的发光绳。")
+	I18n.set_meta_text(stage,"scientific_label","宇宙结构全景 · 星系团、丝状结构与空洞的作者示意\n间距随世界时间增加，表示膨胀趋势；星系本身不被拉大。每次进入重播相对间距演示，非真实宇宙年代或实测星系图。\n银河作为观察参考，不代表宇宙中心；点光、颜色与亮度增强以便辨认，暗物质丝状结构并非肉眼可见的发光绳。")
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	rng.seed = 261006
 	var knots: Array[Vector3] = [Vector3.ZERO]

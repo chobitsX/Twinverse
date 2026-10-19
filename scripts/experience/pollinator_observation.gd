@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## A small flowering clearing, evaluated from the host time. No population model.
 const Life = preload("res://scripts/experience/life_asset_motion.gd")
 const SOURCE: String = "https://www.nps.gov/articles/monarch-butterfly.htm"
@@ -16,7 +17,7 @@ static func sample(time: float, index: int) -> Dictionary:
 	var basis: Basis = Basis.IDENTITY
 	var moving: float = smoothstep(10,12,p)*(1-smoothstep(36,38,p))
 	var visiting: bool = p<9.0 or p>39.0
-	var activity: String = "访花 · 口器伸向花蜜" if visiting else "合拢口器 · 展翼准备" if p<12 else "飞行 · 返回同一花序" if p<36 else "接近花序 · 收翼停留"
+	var activity: String = I18n.text("访花 · 口器伸向花蜜") if visiting else I18n.text("合拢口器 · 展翼准备") if p<12 else I18n.text("飞行 · 返回同一花序") if p<36 else I18n.text("接近花序 · 收翼停留")
 	if p>=12 and p<36:
 		var u: float = smoothstep(0,1,(p-12)/24)
 		var angle: float = TAU*u
@@ -39,7 +40,7 @@ static func build(stage: Node) -> void:
 		var at: Vector2 = positions[index]
 		plant.position = Vector3(at.x,stage.builder._height(at.x,at.y),at.y)
 		stage.world_root.add_child(plant)
-		plant.set_meta("activity","普通乳草 · 对生叶与夏季花序参考")
+		plant.set_meta("activity",I18n.text("普通乳草 · 对生叶与夏季花序参考"))
 		plants.append(plant)
 		anchors.append(plant.find_child("NectarFlowerAnchor",true,false) as Node3D)
 	var actors: Array[Dictionary] = []
@@ -48,8 +49,8 @@ static func build(stage: Node) -> void:
 	stage.set_meta("pollinators",actors)
 	stage.set_meta("milkweed_plants",plants)
 	var targets: Array[Dictionary] = [
-		{"node":actors[0].node,"label":"帝王蝶 · Danaus plexippus","role":"成虫吸食多种花的花蜜；幼虫取食乳草叶片。可切换幼虫主题比较叶片上的另一生命阶段。","source_url":SOURCE,"distance":.34,"focus_height":.004,"view_offset":Vector3(.12,.21,.27)},
-		{"node":plants[0],"label":"普通乳草 · Asclepias syriaca","role":"开花草本参考：对生长圆叶与粉色伞形花序，提供花蜜，也是帝王蝶幼虫寄主；当前为固定花期。","source_url":PLANT_SOURCE,"distance":1.8,"focus_height":.54,"view_offset":Vector3(-.4,.6,-1.8)}]
+		{"node":actors[0].node,"label":I18n.text("帝王蝶 · Danaus plexippus"),"role":I18n.text("成虫吸食多种花的花蜜；幼虫取食乳草叶片。可切换幼虫主题比较叶片上的另一生命阶段。"),"source_url":SOURCE,"distance":.34,"focus_height":.004,"view_offset":Vector3(.12,.21,.27)},
+		{"node":plants[0],"label":I18n.text("普通乳草 · Asclepias syriaca"),"role":I18n.text("开花草本参考：对生长圆叶与粉色伞形花序，提供花蜜，也是帝王蝶幼虫寄主；当前为固定花期。"),"source_url":PLANT_SOURCE,"distance":1.8,"focus_height":.54,"view_offset":Vector3(-.4,.6,-1.8)}]
 	stage.set_meta("pollinator_targets",targets)
 
 static func _actor(stage: Node, index: int, anchor: Node3D, prefix: String) -> Dictionary:
@@ -94,14 +95,14 @@ static func build_city(stage: Node) -> void:
 		plant.position = Vector3(CITY_PLANT_POSITIONS[index].x,.27,CITY_PLANT_POSITIONS[index].y)
 		plant.rotation.y = float(index)*1.73
 		if index==0: plant.set_meta("stable_id","3dworld:teaching:city-milkweed:0000")
-		plant.set_meta("activity","普通乳草 · 教学种植花序，静态花期")
+		plant.set_meta("activity",I18n.text("普通乳草 · 教学种植花序，静态花期"))
 		stage.world_root.add_child(plant)
 		if index==0:
 			var leaf: Node3D = plant.find_child("MilkweedLeafAnchor",true,false) as Node3D
 			var flower: Node3D = plant.find_child("NectarFlowerAnchor",true,false) as Node3D
 			plant.set_meta("plant_markers",[
-				{"at":leaf.global_position,"label":"对生叶 · 幼虫寄主组织","offset":Vector2(-150,50)},
-				{"at":flower.global_position,"label":"花序 · 成虫花蜜资源","offset":Vector2(110,-65)}])
+				{"at":leaf.global_position,"label":I18n.text("对生叶 · 幼虫寄主组织"),"offset":Vector2(-150,50)},
+				{"at":flower.global_position,"label":I18n.text("花序 · 成虫花蜜资源"),"offset":Vector2(110,-65)}])
 		plants.append(plant)
 		anchors.append(plant.find_child("NectarFlowerAnchor",true,false) as Node3D)
 	var actors: Array[Dictionary] = []
@@ -111,8 +112,8 @@ static func build_city(stage: Node) -> void:
 	stage.set_meta("milkweed_plants",plants)
 	stage.set_meta("city_pollinator_bed",CITY_BED_CENTER)
 	stage.set_meta("pollinator_targets",[
-		{"node":actors[0].node,"label":"城市种植片区 · 帝王蝶成虫","role":"原创北美物种参考，成虫可吸食花蜜；访花动作与个体数量是作者示意，不计算授粉、迁徙或城市种群。","source_url":SOURCE,"distance":1.0,"view_offset":Vector3(.6,.45,.8)},
-		{"node":plants[0],"label":"种植片区 · 普通乳草","role":"普通乳草是帝王蝶幼虫的寄主，也能为成虫提供花蜜；此处是合成城市里的北美植物教学样本，并非光照坐标所指地点的本地种植推荐。","source_url":PLANT_SOURCE,"distance":2.1,"focus_height":.65,"view_offset":Vector3(-.9,.9,-1.7)}])
+		{"node":actors[0].node,"label":I18n.text("城市种植片区 · 帝王蝶成虫"),"role":I18n.text("原创北美物种参考，成虫可吸食花蜜；访花动作与个体数量是作者示意，不计算授粉、迁徙或城市种群。"),"source_url":SOURCE,"distance":1.0,"view_offset":Vector3(.6,.45,.8)},
+		{"node":plants[0],"label":I18n.text("种植片区 · 普通乳草"),"role":I18n.text("普通乳草是帝王蝶幼虫的寄主，也能为成虫提供花蜜；此处是合成城市里的北美植物教学样本，并非光照坐标所指地点的本地种植推荐。"),"source_url":PLANT_SOURCE,"distance":2.1,"focus_height":.65,"view_offset":Vector3(-.9,.9,-1.7)}])
 
 static func animate(stage: Node, time: float) -> void:
 	for actor: Dictionary in stage.get_meta("pollinators",[]):
@@ -140,7 +141,7 @@ static func tracking_target(stage: Node) -> Vector3:
 
 static func readout(host: Node) -> String:
 	var actor: Dictionary = host.coordinator.active_scene.get_meta("pollinators")[0]
-	return "%s\n口器端点与花序参考点 %.2f m（场景尺度）" % [actor.node.get_meta("activity"),float(actor.node.get_meta("flower_distance_m",0))]
+	return I18n.text("%s\n口器端点与花序参考点 %.2f m（场景尺度）") % [actor.node.get_meta("activity"),float(actor.node.get_meta("flower_distance_m",0))]
 
 static func marks(host: Node) -> Array[Dictionary]:
 	var actor: Dictionary = host.coordinator.active_scene.get_meta("pollinators")[0]
@@ -149,6 +150,6 @@ static func marks(host: Node) -> Array[Dictionary]:
 	var flying: bool = float(node.get_meta("flower_distance_m",0.0))>.03
 	var mouth: MeshInstance3D = actor.joints.ProboscisCoiled as MeshInstance3D
 	return [
-		{"at":mesh.to_global(mesh.get_aabb().get_center()),"label":"帝王蝶 · 两对翅","offset":Vector2(-150,75) if flying else Vector2(-110,-70)},
-		{"at":actor.joints.ProboscisTip.global_position if actor.joints.ProboscisExtended.visible else mouth.to_global(mouth.get_aabb().get_center()),"label":"口器 · 吸食花蜜" if actor.joints.ProboscisExtended.visible else "口器 · 飞行时收拢","offset":Vector2(85,125) if flying else Vector2(115,-45)},
-		{"at":actor.anchor.global_position,"label":"乳草花序 · 花蜜来源","offset":Vector2(65,70),"link":1}]
+		{"at":mesh.to_global(mesh.get_aabb().get_center()),"label":I18n.text("帝王蝶 · 两对翅"),"offset":Vector2(-150,75) if flying else Vector2(-110,-70)},
+		{"at":actor.joints.ProboscisTip.global_position if actor.joints.ProboscisExtended.visible else mouth.to_global(mouth.get_aabb().get_center()),"label":I18n.text("口器 · 吸食花蜜") if actor.joints.ProboscisExtended.visible else I18n.text("口器 · 飞行时收拢"),"offset":Vector2(85,125) if flying else Vector2(115,-45)},
+		{"at":actor.anchor.global_position,"label":I18n.text("乳草花序 · 花蜜来源"),"offset":Vector2(65,70),"link":1}]

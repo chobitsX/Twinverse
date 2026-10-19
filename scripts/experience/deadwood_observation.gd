@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## A visible paired experiment beside the existing static fungus reference.
 const Model = preload("res://scripts/core/deadwood_decomposition.gd")
 const Forms = preload("res://scripts/experience/life_forms.gd")
@@ -72,7 +73,7 @@ static func build(stage: Node) -> void:
 	anchor.name="DeadwoodComparisonView"
 	stage.world_root.add_child(anchor)
 	anchor.position=Vector3(CENTER.x,stage.builder._height(CENTER.x,CENTER.y)+.18,CENTER.y)
-	stage.set_meta("deadwood_targets",[{"node":anchor,"pick_nodes":[plots[0].root,plots[1].root],"topic":"deadwood","spatial_hint":"点条件旋钮切换左侧 · 双击样方看碳去向","label":"枯木分解 · 水分与碳去向","role":"两份相同枯木的局部教学对照：右侧持续干燥，改变左侧水分/供氧条件；碳从木材转入有机留存和呼吸释放。不是实际年数、克数或云芝速率预测。","source_url":Model.SOURCE,"distance":5.4,"view_offset":Vector3(.9,2.2,4.5)}])
+	stage.set_meta("deadwood_targets",[{"node":anchor,"pick_nodes":[plots[0].root,plots[1].root],"topic":"deadwood","spatial_hint":I18n.text("点条件旋钮切换左侧 · 双击样方看碳去向"),"label":I18n.text("枯木分解 · 水分与碳去向"),"role":I18n.text("两份相同枯木的局部教学对照：右侧持续干燥，改变左侧水分/供氧条件；碳从木材转入有机留存和呼吸释放。不是实际年数、克数或云芝速率预测。"),"source_url":Model.SOURCE,"distance":5.4,"view_offset":Vector3(.9,2.2,4.5)}])
 	var dial: Node3D = Node3D.new()
 	dial.name="DeadwoodTeachingConditionDial"
 	stage.world_root.add_child(dial)
@@ -101,7 +102,7 @@ static func build(stage: Node) -> void:
 	dial.add_child(caption)
 	stage.set_meta("deadwood_dial",{"node":dial,"pointer":pointer,"caption":caption})
 	var controls: Array = stage.get_meta("spatial_controls",[]).duplicate()
-	controls.append({"node":dial,"observer":anchor,"topic":"deadwood","action":"deadwood_condition","label":"枯木左样方 · 条件旋钮","spatial_hint":"再点旋钮：干燥→湿润→浸水 · 右侧始终干燥"})
+	controls.append({"node":dial,"observer":anchor,"topic":"deadwood","action":"deadwood_condition","label":I18n.text("枯木左样方 · 条件旋钮"),"spatial_hint":I18n.text("再点旋钮：干燥→湿润→浸水 · 右侧始终干燥")})
 	stage.set_meta("spatial_controls",controls)
 	animate(stage)
 
@@ -112,7 +113,7 @@ static func animate(stage: Node) -> void:
 	var dial: Dictionary = stage.get_meta("deadwood_dial",{})
 	if not dial.is_empty():
 		dial.pointer.rotation.y=(int(state.left_mode)-1)*TAU/3.
-		dial.caption.text="条件旋钮 · 再点切换\n左："+["干燥","湿润有氧","浸水缺氧"][int(state.left_mode)]+" / 右：干燥\n教学条件 · 非真实气候"
+		dial.caption.text=I18n.text(I18n.text("条件旋钮 · 再点切换\n左：")+[I18n.text("干燥"),I18n.text("湿润有氧"),I18n.text("浸水缺氧")][int(state.left_mode)]+I18n.text(" / 右：干燥\n教学条件 · 非真实气候"))
 	for i: int in range(2):
 		var plot: Dictionary = stage.get_meta("deadwood_plots")[i]
 		var mode: int = int(state.left_mode) if i==0 else 0
@@ -121,7 +122,7 @@ static func animate(stage: Node) -> void:
 			material.set_shader_parameter("remaining",remaining)
 			material.set_shader_parameter("moisture",0. if mode==0 else .55 if mode==1 else 1.)
 		plot.water.visible=mode==2
-		plot.label.text=("左 · " if i==0 else "右 · ")+["持续干燥","湿润有氧","浸水缺氧"][mode]+"\n剩余木材碳 %.1f / 100" % state.wood[i]
+		plot.label.text=I18n.text((I18n.text("左 · ") if i==0 else I18n.text("右 · "))+[I18n.text("持续干燥"),I18n.text("湿润有氧"),I18n.text("浸水缺氧")][mode]+I18n.text("\n剩余木材碳 %.1f / 100") % state.wood[i])
 		var stock: Array[float] = [float(state.wood[i]),float(state.organic[i]),float(state.respired[i])]
 		var edge: float = -.56
 		for part: int in range(3):
@@ -133,10 +134,10 @@ static func animate(stage: Node) -> void:
 
 static func readout(host: Node) -> String:
 	var value: Dictionary = host.world.deadwood.snapshot()
-	return "局部教学对照 · %.1f s（非现实年数）\n左：%s\n木材 %.1f · 有机留存 %.1f · 呼吸释放 %.1f\n右：持续干燥，木材 %.1f\n棕＝木材　金＝有机留存　青＝释放\n每份初始100相对碳单位；三项总和守恒。" % [value.steps*Model.STEP,Model.LABELS[int(value.left_mode)],value.wood[0],value.organic[0],value.respired[0],value.wood[1]]
+	return I18n.text("局部教学对照 · %.1f s（非现实年数）\n左：%s\n木材 %.1f · 有机留存 %.1f · 呼吸释放 %.1f\n右：持续干燥，木材 %.1f\n棕＝木材　金＝有机留存　青＝释放\n每份初始100相对碳单位；三项总和守恒。") % [value.steps*Model.STEP,I18n.strings(Model.LABELS)[int(value.left_mode)],value.wood[0],value.organic[0],value.respired[0],value.wood[1]]
 
 static func marks(host: Node) -> Array[Dictionary]:
 	var plots: Array = host.coordinator.active_scene.get_meta("deadwood_plots")
-	return [{"at":plots[0].root.to_global(Vector3(0,.24,0)),"label":"左 · 条件可切换","offset":Vector2(-90,-90)},
-		{"at":plots[1].root.to_global(Vector3(0,.24,0)),"label":"右 · 干燥对照","offset":Vector2(60,-80)},
-		{"at":plots[0].root.to_global(Vector3(0,.085,.305)),"label":"色条 · 三种碳去向","offset":Vector2(25,70)}]
+	return [{"at":plots[0].root.to_global(Vector3(0,.24,0)),"label":I18n.text("左 · 条件可切换"),"offset":Vector2(-90,-90)},
+		{"at":plots[1].root.to_global(Vector3(0,.24,0)),"label":I18n.text("右 · 干燥对照"),"offset":Vector2(60,-80)},
+		{"at":plots[0].root.to_global(Vector3(0,.085,.305)),"label":I18n.text("色条 · 三种碳去向"),"offset":Vector2(25,70)}]

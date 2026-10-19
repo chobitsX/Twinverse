@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## A dimensional reference in an authored galaxy, not a Galactic coordinate map.
 const LIGHT_YEAR_M: float = 9460730472580800.0
 const REFERENCE_DIAMETER_LY: float = 100000.0
@@ -52,10 +53,10 @@ static func update(stage: Node, visible: bool) -> void:
 		mesh.surface_end(); radius.mesh = mesh
 
 static func readout(_host: Node) -> String:
-	return "太阳距银心约 2.6 万光年\n参考星盘直径约 10 万光年\n太阳绕银心一周约 2.3 亿年\n光年是距离：光走一年约9.46万亿公里\n理想化差速与旋臂转动均为时间压缩示意"
+	return I18n.text("太阳距银心约 2.6 万光年\n参考星盘直径约 10 万光年\n太阳绕银心一周约 2.3 亿年\n光年是距离：光走一年约9.46万亿公里\n理想化差速与旋臂转动均为时间压缩示意")
 
 static func marks(host: Node) -> Array[Dictionary]:
 	var stage: Node=host.coordinator.active_scene
-	return [{"at":Vector3.ZERO,"label":"银心 · 中央隆起","offset":Vector2(-135,-70)},
-		{"at":stage.target_position,"label":"太阳系 · 距银心约2.6万光年","offset":Vector2(25,-45),"link":0},
-		{"at":Vector3(-15,0,0),"label":"参考盘径约10万光年 · 非硬边界","offset":Vector2(-30,65)}]
+	return [{"at":Vector3.ZERO,"label":I18n.text("银心 · 中央隆起"),"offset":Vector2(-135,-70)},
+		{"at":stage.target_position,"label":I18n.text("太阳系 · 距银心约2.6万光年"),"offset":Vector2(25,-45),"link":0},
+		{"at":Vector3(-15,0,0),"label":I18n.text("参考盘径约10万光年 · 非硬边界"),"offset":Vector2(-30,65)}]

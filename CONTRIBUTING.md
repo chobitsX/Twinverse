@@ -16,6 +16,7 @@
 
 ## 项目约定
 
+- 应用翻译先看[本地化说明](docs/LOCALIZATION.md)，保留科学边界、占位符与稳定ID；在真实场景验证语言切换和排版。
 - 使用typed GDScript。保持唯一世界时间与明确的场景资源所有权。
 - 画质、帧率和演示倍率不得偷偷改变科学运行规律。显示放大、距离压缩和教学近似需要在界面说明。
 - 天文/生物知识变化提供可核对的主要来源，优先机构资料、研究论文及数据集；区分事实、模型假设和美术表现。
@@ -33,3 +34,5 @@
 ## English summary
 
 Issues and PRs are welcome in Chinese or English. Pick a small task, describe the user-visible result, and report only validation you actually performed. Use typed GDScript and preserve shared world time. Science changes need primary references and explicit assumptions. Assets need source, credit, license and modification records. Project-owned code/docs are MIT; project-owned artwork is CC BY 4.0. Third-party terms remain in force. Keep feedback respectful and remove credentials or private details from reports.
+
+Application translation guidance: [Localizing Twinverse](docs/LOCALIZATION.md). Keep scientific limitations, placeholders, IDs and numeric data intact; verify language switching and layout in real scenes.

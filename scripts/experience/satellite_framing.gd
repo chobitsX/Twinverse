@@ -1,4 +1,5 @@
 extends RefCounted
+const I18n = preload("res://scripts/core/app_text.gd")
 ## Observer-only framing. This class never changes a celestial transform or clock.
 const Ephemeris = preload("res://scripts/core/solar_ephemeris.gd")
 const Model = preload("res://scripts/core/natural_satellites.gd")
@@ -19,7 +20,7 @@ static func subjects(stage: Node, owner: int, key: String = "") -> Dictionary:
 	var planet: MeshInstance3D
 	var moon: MeshInstance3D
 	var record: Dictionary = {}
-	var label: String = "月球"
+	var label: String = I18n.text("月球")
 	var moon_key: String = "moon"
 	if stage.scale_id=="solar_system":
 		if owner<2 or owner>7: return {}
@@ -43,7 +44,7 @@ static func subjects(stage: Node, owner: int, key: String = "") -> Dictionary:
 				moon=body.node; record=body.record; break
 	else: return {}
 	if not is_instance_valid(planet) or not is_instance_valid(moon): return {}
-	if not record.is_empty(): label=str(record.display_name); moon_key=str(record.key)
+	if not record.is_empty(): label=I18n.text(str(record.display_name)); moon_key=str(record.key)
 	return {"planet":planet,"moon":moon,"owner":owner,"key":moon_key,"label":label,
 		"radius":float(planet.mesh.radius)*absf(planet.scale.x),"moon_radius":float(moon.mesh.radius)*absf(moon.scale.x),"record":record}
 
