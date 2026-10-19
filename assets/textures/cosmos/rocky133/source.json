@@ -1,0 +1,70 @@
+{
+  "maps": [
+    {
+      "name": "mercury",
+      "raw_file": "assets/source/cosmos/rocky133/mercury_messenger_mosaic_global_1024.jpg",
+      "raw_sha256": "c9f5848c66ecc6c2a87f058ab4633506dcfc4b2f0ba6aa5ac258ba1c81468b22",
+      "source_size": [
+        1024,
+        513
+      ],
+      "runtime_file": "assets/textures/cosmos/rocky133/mercury.png",
+      "runtime_size": [
+        1024,
+        512
+      ],
+      "runtime_sha256": "b2866aa18f7d450d3054faca62603f272fc993dfac3964d44075bf0cf3acf91b",
+      "longitude_direction": "positive east",
+      "longitude_domain": [
+        -180,
+        180
+      ],
+      "latitude_top_bottom": [
+        90,
+        -90
+      ],
+      "prime_meridian_uv": [
+        0.5,
+        0.5
+      ],
+      "shader_axes": "+Z prime meridian; +X east; +Y north",
+      "edge_rounding_m": null
+    },
+    {
+      "name": "mars",
+      "raw_file": "assets/source/cosmos/rocky133/mars_viking_mdim21_clrmosaic_1km.jpg",
+      "raw_sha256": "fdfcd335559c3dc67052b7e8a9565d850e336ac0d1f3ea7f5eb7826ffb44ecb2",
+      "source_size": [
+        21339,
+        10670
+      ],
+      "runtime_file": "assets/textures/cosmos/rocky133/mars.png",
+      "runtime_size": [
+        4096,
+        2048
+      ],
+      "runtime_sha256": "48c2d6db5ae09e3c64362e6a9fc9c6889c5227e4db64aa504c6e9305f92a5410",
+      "longitude_direction": "positive east",
+      "longitude_domain": [
+        -180,
+        180
+      ],
+      "latitude_top_bottom": [
+        90,
+        -90
+      ],
+      "prime_meridian_uv": [
+        0.5,
+        0.5
+      ],
+      "shader_axes": "+Z prime meridian; +X east; +Y north",
+      "edge_rounding_m": 554.445804880932
+    }
+  ],
+  "processing": "Pillow RGB/Lanczos to PNG; no colour correction, retouching, inpainting or added terrain. Mercury retains catalog 1024x513 browse resized to 1024x512; Mars downsampled from official 1-km JPEG.",
+  "credits": {
+    "mercury": "MESSENGER Team / Arizona State University / Applied Coherent Technology Corporation / USGS Astrogeology",
+    "mars": "NASA Ames / NASA Viking / USGS Astrogeology"
+  },
+  "limits": "Historical mosaics, not current imagery or true-colour albedo. Mercury grayscale/low resolution with original polar artifacts retained; Mars artistically colourized MDIM2.1 with baked illumination. Spheres have no DEM relief; original map resolution is not runtime resolution."
+}

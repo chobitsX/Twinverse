@@ -1,0 +1,29 @@
+Ground observer / 262
+
+NASA HEASARC BSC5P (Hoffleit & Warren 1991, corrections 1996):
+https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html
+https://heasarc.gsfc.nasa.gov/FTP/heasarc/dbase/tdat_files/heasarc_bsc5p.tdat.gz
+Public astronomical catalog. Original TDAT retained; derived fixed J2000 subset
+contains 8404 stars with V <= 6.5, excluding the 14 published non-stellar entries.
+No individual proper motion, stellar parallax or calibrated brightness prediction.
+
+ESA Gaia EDR3 all-sky colour, equirectangular projection (2020-12-03):
+https://sci.esa.int/web/gaia/-/the-colour-of-the-sky-from-gaia-s-early-data-release-3-equirectangular-projection
+ESA/Gaia/DPAC; CC BY-SA 3.0 IGO. Acknowledgement: A. Moitinho.
+https://creativecommons.org/licenses/by-sa/3.0/igo/
+Original 4000 x 2000 PNG retained without pixel editing; source SHA in manifest.
+Godot imports/compresses this image for the authored exposure sky dome. The map
+is in Galactic longitude/latitude, centre l=0, b=0, longitude increasing left.
+The map and its image adaptations retain CC BY-SA 3.0 IGO. No ESA endorsement.
+Visible attribution remains in the ground observer, including clean observation.
+
+ESO Paranal coordinates/altitude reference:
+https://www.hq.eso.org/sci/facilities/paranal/astroclimate/site.html
+Coordinates rounded to -24.6272 deg / -70.4044 deg, altitude 2635 m.
+Terrain, platform, telescope, glow, twilight colours and fill light are authored
+teaching presentation, not measured Paranal scenery or weather.
+
+ERFA / SOFA fixed ICRS-to-Galactic rotation:
+https://github.com/liberfa/erfa/blob/master/src/icrs2g.c
+The project retains existing ERFA/SOFA lunar source and licence records.
+Moon image: existing NASA LROC asset and its original licence record unchanged.

@@ -1,0 +1,20 @@
+{
+  "source_page": "https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/base-map/",
+  "download_url": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/bmng/bmng-base/january/world.200401.3x5400x2700.jpg",
+  "download_date": "2026-09-07",
+  "data_period": "2004-01 monthly composite; frozen historical data, not current weather",
+  "provider": "NASA Earth Observatory, Blue Marble: Next Generation",
+  "credit": "NASA Earth Observatory / Blue Marble: Next Generation",
+  "published_resolution_description": "5400x2700, 8 km/pixel download variant; full collection also offers 500m source products",
+  "file": "assets/textures/cosmos/earth_bmng_200401_5400x2700.jpg",
+  "dimensions": [
+    5400,
+    2700
+  ],
+  "bytes": 1884678,
+  "sha256": "99f5faad74efe985fbf1714c8be7296ca9999759a1215b65f99b7f1df278dde5",
+  "modifications": "None; original JPEG packaged unchanged. Runtime sphere mapping and lighting are project-authored.",
+  "usage_guidelines": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+  "usage_scope": "Educational / informational graphical simulation; acknowledge NASA, do not imply endorsement. No NASA insignia used.",
+  "clouds": "Separate NASA MODIS multi-day mosaic published 2002, with original bytes and credit in cloud-source.json; runtime opacity mapping and 3D shape are authored, not current weather."
+}

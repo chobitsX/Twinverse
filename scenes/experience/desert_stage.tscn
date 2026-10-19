@@ -1,0 +1,15 @@
+[gd_scene load_steps=10 format=3]
+[ext_resource type="Script" path="res://scripts/experience/visual_stage.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/experience/desert_builder.gd" id="2"]
+[ext_resource type="PackedScene" path="res://assets/models/ecology269/saguaro_graft.glb" id="3"]
+[ext_resource type="PackedScene" path="res://assets/models/ecology269/creosote_bush_hybrid.glb" id="4"]
+[ext_resource type="PackedScene" path="res://assets/models/ecology269/desert_iguana_reference_hybrid.glb" id="5"]
+[ext_resource type="PackedScene" path="res://assets/models/ecology269/velvet_mesquite_hybrid.glb" id="6"]
+[ext_resource type="PackedScene" path="res://assets/models/ecology269/merriams_kangaroo_rat_reference.glb" id="7"]
+[ext_resource type="PackedScene" path="res://assets/models/ecology269/ocotillo_hybrid.glb" id="8"]
+[ext_resource type="PackedScene" path="res://assets/models/ecology269/brittlebush_hybrid.glb" id="9"]
+[node name="DesertStage" type="Node"]
+script = ExtResource("1")
+builder = ExtResource("2")
+asset_keys = Array[String](["saguaro", "creosote_bush", "desert_iguana", "velvet_mesquite", "merriams_kangaroo_rat", "ocotillo", "brittlebush"])
+asset_scenes = Array[PackedScene]([ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("6"), ExtResource("7"), ExtResource("8"), ExtResource("9")])

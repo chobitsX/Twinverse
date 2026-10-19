@@ -1,0 +1,7 @@
+# Frozen source material and diagnostic evidence must retain their exact bytes.
+# Upstream formatting and terminal output are not project whitespace defects.
+/assets/source/** -text -whitespace
+/docs/references/** -text -whitespace
+/docs/evidence/** -text -whitespace
+/assets/data/** -text
+/data/environment/** -text

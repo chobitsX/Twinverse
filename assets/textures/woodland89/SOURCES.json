@@ -1,0 +1,178 @@
+{
+  "access_date": "2026-09-16",
+  "provider": "Poly Haven",
+  "powered_by": "https://polyhaven.com",
+  "files": [
+    {
+      "path": "assets/textures/woodland89/forrest_ground_01_diff_1k.jpg",
+      "slug": "forrest_ground_01",
+      "map": "Diffuse",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forrest_ground_01/forrest_ground_01_diff_1k.jpg",
+      "author": {
+        "Rob Tuytel": "All"
+      },
+      "asset_url": "https://polyhaven.com/a/forrest_ground_01",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "sha256": "3dd6875cb3908e022a3c45ebbffa5e84c670ff2691fbbb6dc9ea4bff88523800",
+      "bytes": 833711,
+      "api_dimensions_mm": [
+        2000,
+        2000
+      ],
+      "scope": "Art surface material, not species/geography data"
+    },
+    {
+      "path": "assets/textures/woodland89/forrest_ground_01_nor_gl_1k.jpg",
+      "slug": "forrest_ground_01",
+      "map": "nor_gl",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forrest_ground_01/forrest_ground_01_nor_gl_1k.jpg",
+      "author": {
+        "Rob Tuytel": "All"
+      },
+      "asset_url": "https://polyhaven.com/a/forrest_ground_01",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "sha256": "32528a7cdee962cc0b248ee4023a74d0df175737ea90e1eb425122351e0bdab4",
+      "bytes": 1428763,
+      "api_dimensions_mm": [
+        2000,
+        2000
+      ],
+      "scope": "Art surface material, not species/geography data"
+    },
+    {
+      "path": "assets/textures/woodland89/forrest_ground_01_arm_1k.jpg",
+      "slug": "forrest_ground_01",
+      "map": "arm",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forrest_ground_01/forrest_ground_01_arm_1k.jpg",
+      "author": {
+        "Rob Tuytel": "All"
+      },
+      "asset_url": "https://polyhaven.com/a/forrest_ground_01",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "sha256": "22eb09a2ed951377f339c08be9f1665f0db7391ed9ba0b0e91e55aea2dbef315",
+      "bytes": 296969,
+      "api_dimensions_mm": [
+        2000,
+        2000
+      ],
+      "scope": "Art surface material, not species/geography data"
+    },
+    {
+      "path": "assets/textures/woodland89/bark_brown_02_diff_1k.jpg",
+      "slug": "bark_brown_02",
+      "map": "Diffuse",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bark_brown_02/bark_brown_02_diff_1k.jpg",
+      "author": {
+        "Rob Tuytel": "All"
+      },
+      "asset_url": "https://polyhaven.com/a/bark_brown_02",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "sha256": "920fa0bed0c9d78c1d530e99795113afd532d7db746de440f4a85d7c83ed0f1a",
+      "bytes": 659592,
+      "api_dimensions_mm": [
+        999.9990463256836,
+        999.998927116394
+      ],
+      "scope": "Art surface material, not species/geography data"
+    },
+    {
+      "path": "assets/textures/woodland89/bark_brown_02_nor_gl_1k.jpg",
+      "slug": "bark_brown_02",
+      "map": "nor_gl",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bark_brown_02/bark_brown_02_nor_gl_1k.jpg",
+      "author": {
+        "Rob Tuytel": "All"
+      },
+      "asset_url": "https://polyhaven.com/a/bark_brown_02",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "sha256": "0d5e691e8ad8bcd093a3587887fda2a6b4a948b5708a4f256f7919584c6eb857",
+      "bytes": 1015623,
+      "api_dimensions_mm": [
+        999.9990463256836,
+        999.998927116394
+      ],
+      "scope": "Art surface material, not species/geography data"
+    },
+    {
+      "path": "assets/textures/woodland89/bark_brown_02_arm_1k.jpg",
+      "slug": "bark_brown_02",
+      "map": "arm",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bark_brown_02/bark_brown_02_arm_1k.jpg",
+      "author": {
+        "Rob Tuytel": "All"
+      },
+      "asset_url": "https://polyhaven.com/a/bark_brown_02",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "sha256": "6bd86d37b3b9b40cc30a4b661e382ec41fa7463a8b1144ff44708b19fa675af1",
+      "bytes": 232742,
+      "api_dimensions_mm": [
+        999.9990463256836,
+        999.998927116394
+      ],
+      "scope": "Art surface material, not species/geography data"
+    },
+    {
+      "path": "assets/textures/woodland89/rock_surface_diff_1k.jpg",
+      "slug": "rock_surface",
+      "map": "Diffuse",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_surface/rock_surface_diff_1k.jpg",
+      "author": {
+        "Amal Kumar": "All"
+      },
+      "asset_url": "https://polyhaven.com/a/rock_surface",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "sha256": "07edda2bbe4715b01aae2e4bac9f21f204cf4aae37b4733ef01de33281e5e60e",
+      "bytes": 886291,
+      "api_dimensions_mm": [
+        2000,
+        2000
+      ],
+      "scope": "Art surface material, not species/geography data"
+    },
+    {
+      "path": "assets/textures/woodland89/rock_surface_nor_gl_1k.jpg",
+      "slug": "rock_surface",
+      "map": "nor_gl",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_surface/rock_surface_nor_gl_1k.jpg",
+      "author": {
+        "Amal Kumar": "All"
+      },
+      "asset_url": "https://polyhaven.com/a/rock_surface",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "sha256": "c645af7f6a20bf77421765e6f998873834821e1950a3a0a21c5ee9ced32cecc1",
+      "bytes": 1152344,
+      "api_dimensions_mm": [
+        2000,
+        2000
+      ],
+      "scope": "Art surface material, not species/geography data"
+    },
+    {
+      "path": "assets/textures/woodland89/rock_surface_arm_1k.jpg",
+      "slug": "rock_surface",
+      "map": "arm",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_surface/rock_surface_arm_1k.jpg",
+      "author": {
+        "Amal Kumar": "All"
+      },
+      "asset_url": "https://polyhaven.com/a/rock_surface",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "sha256": "8de45a3aa0be70f8baf5c609603bb6bba0274ee4eb8c8e47dad455258d5d7f2d",
+      "bytes": 775175,
+      "api_dimensions_mm": [
+        2000,
+        2000
+      ],
+      "scope": "Art surface material, not species/geography data"
+    }
+  ]
+}

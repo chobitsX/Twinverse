@@ -1,0 +1,64 @@
+{
+  "name": "科学纠错 / Science correction",
+  "description": "指出事实、单位、来源或显示误导 / Data, units, sources or misleading presentation",
+  "title": "[Science] ",
+  "body": [
+    {
+      "type": "markdown",
+      "attributes": {
+        "value": "欢迎中文或英文反馈。请勿上传API Key、带访问令牌的下载链接、设备序列号或真实用户存档。 Chinese and English are welcome; keep private data out of reports."
+      }
+    },
+    {
+      "type": "input",
+      "id": "topic",
+      "attributes": {
+        "label": "场景或主题 / Scene or topic"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "current",
+      "attributes": {
+        "label": "目前的表述或画面 / Current claim or display"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "correction",
+      "attributes": {
+        "label": "建议更正与理由 / Proposed correction and reasoning"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "sources",
+      "attributes": {
+        "label": "主要来源 / Primary references",
+        "description": "附机构资料、论文或数据集的具体章节/表格。"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "scope",
+      "attributes": {
+        "label": "适用范围与不确定性 / Scope and uncertainty"
+      },
+      "validations": {
+        "required": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,227 @@
+{
+  "original_record": "assets/source/jovian117/SOURCES.json",
+  "record": {
+    "maps": [
+      {
+        "name": "io",
+        "page_file": "docs/references/science/jovian117/io-map-page.html",
+        "page_sha256": "a52e2f4a985d9c1a7933982575794956a3987688facd523c7fbe011b67e134a0",
+        "observed_tif_urls": [
+          "https://planetarymaps.usgs.gov/mosaic/Io_GalileoSSI-Voyager_Global_Mosaic_ClrMerge_1km.tif"
+        ],
+        "map_file_downloaded": true,
+        "licence_review_complete": true,
+        "latitude_longitude_mapping_review_complete": true,
+        "raw_file": "assets/source/jovian117/io.tif",
+        "raw_sha256": "135f88cb645bfdb4e045b380971ab2ba14e230590c96c9c86cfe7310fda881ac",
+        "raw_bytes": 196637696,
+        "credit": "NASA/JPL/USGS",
+        "licence": "US public domain; individual dataset Access Constraints=public domain, Use Constraints=None",
+        "runtime_file": "assets/textures/cosmos/jovian117/io.jpg",
+        "runtime_size": [
+          2048,
+          1024
+        ],
+        "runtime_sha256": "1a8761a815dfe5b588ae3bf3e98bc5586a9873e75701653059ff825ff0a55118",
+        "runtime_bytes": 750532,
+        "source_size": [
+          11445,
+          5723
+        ],
+        "source_mode": "RGB",
+        "projection_radius_m": 1821460.0,
+        "projection_center_longitude_degrees": 0.0,
+        "geotiff_pixel_scale": [
+          1000.0,
+          1000.0,
+          0.0
+        ],
+        "geotiff_tiepoint": [
+          0.0,
+          0.0,
+          0.0,
+          -5723000.0,
+          2862000.0,
+          0.0
+        ],
+        "resample_pixel_box": [
+          0.7146451923353597,
+          0.8573225961676799,
+          11445.0,
+          5723.0
+        ],
+        "longitude_shader_offset": 0.5,
+        "coverage_file": "assets/textures/cosmos/jovian117/io-coverage.png",
+        "coverage_sha256": "2e8aa1a02dbafa711a33bedc7319c7eac3e484c8f97c7f342b6b0e9500eef3ed",
+        "source_nodata": 0,
+        "coverage_mean": 1.0
+      },
+      {
+        "name": "europa",
+        "page_file": "docs/references/science/jovian117/europa_voyager_galileo_ssi_global_mosaic_500m.html",
+        "page_sha256": "efca9961e96b89ed586679a1ab66ccdc55781d3405008a038a0a94f205c291ce",
+        "observed_tif_urls": [
+          "https://planetarymaps.usgs.gov/mosaic/Europa_Voyager_GalileoSSI_global_mosaic_500m.tif"
+        ],
+        "map_file_downloaded": true,
+        "licence_review_complete": true,
+        "latitude_longitude_mapping_review_complete": true,
+        "raw_file": "assets/source/jovian117/europa.tif",
+        "raw_sha256": "a323f0c9ccb47d5af9902ea8297fe81f9a9708795645b80801f103c3f7c9a624",
+        "raw_bytes": 192777263,
+        "credit": "NASA/JPL/USGS",
+        "licence": "USGS-produced public-domain data policy; Europa dataset Access/Use Constraints=None",
+        "runtime_file": "assets/textures/cosmos/jovian117/europa.jpg",
+        "runtime_size": [
+          2048,
+          1024
+        ],
+        "runtime_sha256": "68dc896daa1d2183b978710b2eaf0f04c328eb1cc584867ac99d48da67a0e58c",
+        "runtime_bytes": 850412,
+        "source_size": [
+          19631,
+          9816
+        ],
+        "source_mode": "L",
+        "projection_radius_m": 1562089.9658,
+        "projection_center_longitude_degrees": 180.0,
+        "geotiff_pixel_scale": [
+          499.97456657942,
+          499.97456657942,
+          0.0
+        ],
+        "geotiff_tiepoint": [
+          0.0,
+          0.0,
+          0.0,
+          -4907750.3455436,
+          2453875.1727718,
+          0.0
+        ],
+        "resample_pixel_box": [
+          0.6000000000827848,
+          0.3000000000413924,
+          19631.0,
+          9815.699999999984
+        ],
+        "longitude_shader_offset": 0.0,
+        "coverage_file": "assets/textures/cosmos/jovian117/europa-coverage.png",
+        "coverage_sha256": "792d3c9aa2e093aed6f83d186f6606b9d7de0b3ab27c010786eda8265213962a",
+        "source_nodata": 0,
+        "coverage_mean": 0.9567638677709243
+      },
+      {
+        "name": "ganymede",
+        "page_file": "docs/references/science/jovian117/ganymede_voyager_galileo_ssi_global_mosaic_1km.html",
+        "page_sha256": "f505ef2c22ec5456678b9aadb8790e35d934e1b63a90da7b97d864aa67db53a2",
+        "observed_tif_urls": [
+          "https://planetarymaps.usgs.gov/mosaic/Ganymede_Voyager_GalileoSSI_global_mosaic_1km.tif"
+        ],
+        "map_file_downloaded": true,
+        "licence_review_complete": true,
+        "latitude_longitude_mapping_review_complete": true,
+        "raw_file": "assets/source/jovian117/ganymede.tif",
+        "raw_sha256": "c2c8d9506b8cf8f7a0a90d823d9052e91c8d9885cf7267fdce8de8216f4df888",
+        "raw_bytes": 136844537,
+        "credit": "NASA/JPL/USGS",
+        "licence": "US public domain; individual dataset Access Constraints=public domain, Use Constraints=None",
+        "runtime_file": "assets/textures/cosmos/jovian117/ganymede.jpg",
+        "runtime_size": [
+          2048,
+          1024
+        ],
+        "runtime_sha256": "b3ddb6d2d084c11a284b90d7b9367a35cab356c847d01dade08f1b9f793a89c5",
+        "runtime_bytes": 709591,
+        "source_size": [
+          16539,
+          8270
+        ],
+        "source_mode": "L",
+        "projection_radius_m": 2632344.9707,
+        "projection_center_longitude_degrees": 180.0,
+        "geotiff_pixel_scale": [
+          1000.0671917072,
+          1000.0671917072,
+          0.0
+        ],
+        "geotiff_tiepoint": [
+          0.0,
+          0.0,
+          0.0,
+          -8270555.6754185,
+          4135277.8377093,
+          0.0
+        ],
+        "resample_pixel_box": [
+          0.7999999999748585,
+          0.4000000000377173,
+          16539.0,
+          8269.600000000019
+        ],
+        "longitude_shader_offset": 0.0,
+        "coverage_file": "assets/textures/cosmos/jovian117/ganymede-coverage.png",
+        "coverage_sha256": "5e1834c2eb81e4ad6669570f6f980bb4574e07c470e4003cc5efdf46bb55b53a",
+        "source_nodata": 0,
+        "coverage_mean": 0.9646480653800217
+      },
+      {
+        "name": "callisto",
+        "page_file": "docs/references/science/jovian117/callisto_galileo_voyager_global_mosaic_1km.html",
+        "page_sha256": "3bed63550cbfcf8f13bf4bb1cccb31b72360dc1f561d0284716b789d38b9388f",
+        "observed_tif_urls": [
+          "https://planetarymaps.usgs.gov/mosaic/Callisto_Voyager_GalileoSSI_global_mosaic_1km.tif"
+        ],
+        "map_file_downloaded": true,
+        "licence_review_complete": true,
+        "latitude_longitude_mapping_review_complete": true,
+        "raw_file": "assets/source/jovian117/callisto.tif",
+        "raw_sha256": "e1f0bd2e0e05de605d067d6b5f5ededddaf31ca6c064562a1ca770f15a7dbaa3",
+        "raw_bytes": 114640717,
+        "credit": "NASA/JPL/USGS",
+        "licence": "US public domain; individual dataset Access Constraints=public domain, Use Constraints=None",
+        "runtime_file": "assets/textures/cosmos/jovian117/callisto.jpg",
+        "runtime_size": [
+          2048,
+          1024
+        ],
+        "runtime_sha256": "160f36cb95e486659b1edd07d593a91f08eb11d7f126df00d01c0225b2ff5641",
+        "runtime_bytes": 744368,
+        "source_size": [
+          15138,
+          7569
+        ],
+        "source_mode": "L",
+        "projection_radius_m": 2409300.0488,
+        "projection_center_longitude_degrees": 180.0,
+        "geotiff_pixel_scale": [
+          1000.0051966711,
+          1000.0051966711,
+          0.0
+        ],
+        "geotiff_tiepoint": [
+          0.0,
+          0.0,
+          0.0,
+          -7569039.3336036,
+          3784519.6668018,
+          0.0
+        ],
+        "resample_pixel_box": [
+          0.0,
+          0.0,
+          15138.0,
+          7569.0
+        ],
+        "longitude_shader_offset": 0.0,
+        "coverage_file": "assets/textures/cosmos/jovian117/callisto-coverage.png",
+        "coverage_sha256": "95c44c83f45adec70120583353e4fa8efd685117f9393490a4b007bf15009d82",
+        "source_nodata": 0,
+        "coverage_mean": 0.9610143568001541
+      }
+    ],
+    "policy_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
+    "render_derivatives_pending": false,
+    "processing": "GeoTIFF extent to 2048x1024 equirectangular, Lanczos downsample, original grayscale retained as RGB channels; no new colour/fill",
+    "surface_limitations": "Historical mosaics with mixed resolutions; Io uses fused colour and interpolated source poles, other selected maps monochrome. Projection reference radii differ from modern JPL mean-radius sphere sizes; angular coverage retained."
+  }
+}

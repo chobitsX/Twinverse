@@ -1,0 +1,32 @@
+; Whole-experience visual development. Exact editor build: .godot-version.
+config_version=5
+
+[application]
+config/name="3DWorld"
+config/description="3D 孪生宇宙 · 天文、生态与生命观察"
+config/version="0.4.187"
+run/main_scene="res://scenes/runtime_entry.tscn"
+run/max_fps=30
+config/features=PackedStringArray("4.7", "Forward Plus")
+
+[autoload]
+ResourceBudget="*res://scripts/core/resource_budget.gd"
+
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=1
+
+; Keep shared CPU work bounded on the primary MacBook; not a process-wide CPU cap.
+[threading]
+worker_pool/max_threads=2
+
+[rendering]
+renderer/rendering_method="forward_plus"
+rendering_device/driver.macos="metal"
+textures/vram_compression/import_etc2_astc=true
+anti_aliasing/quality/msaa_3d=2
+environment/defaults/default_clear_color=Color(0.018, 0.028, 0.05, 1)

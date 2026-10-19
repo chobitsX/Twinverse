@@ -1,0 +1,65 @@
+{
+  "name": "设备兼容反馈 / Device report",
+  "description": "帮助验证Mac和Windows等设备 / Report a first-run or performance result",
+  "title": "[Device] ",
+  "body": [
+    {
+      "type": "markdown",
+      "attributes": {
+        "value": "欢迎中文或英文反馈。请勿上传API Key、带访问令牌的下载链接、设备序列号或真实用户存档。 Chinese and English are welcome; keep private data out of reports."
+      }
+    },
+    {
+      "type": "input",
+      "id": "version",
+      "attributes": {
+        "label": "版本 / Version"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "device",
+      "attributes": {
+        "label": "系统、CPU/GPU与内存 / OS, CPU/GPU, RAM"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "settings",
+      "attributes": {
+        "label": "画质与窗口尺寸 / Quality and resolution"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "route",
+      "attributes": {
+        "label": "测试路径与观察 / Route and observation",
+        "description": "是否首次启动、进入了哪些场景、导入/旋转/缩放/返回是否正常。"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "measurement",
+      "attributes": {
+        "label": "测量方式 / Measurement method",
+        "description": "有帧率或内存数据时注明方法；主观流畅也可报告，不把感觉写成测量。"
+      },
+      "validations": {
+        "required": false
+      }
+    }
+  ]
+}

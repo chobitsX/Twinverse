@@ -1,0 +1,12 @@
+Tripo Studio H3.1 generated ecology references, 2026-10-09.
+Six selected outputs: Adelie penguin, white-tailed doe, red fox, green sea turtle,
+fictitious virtual male and female adults. Local geometry/skin/texture conditioning.
+Source tasks, prompts, references, editable sources and output hashes:
+assets/source/tripo267/SOURCES.json
+Terms: https://www.tripo3d.ai/terms (last updated July 11, 2025; checked Oct 9, 2026).
+Output rights depend on the applicable account plan under sections 5.2.1/5.2.2.
+The account's paid tier was not independently verified; these assets are not marked
+CC0, public domain, or wholly original mesh authorship. Commercial distribution
+rights remain unverified. Local development/testing does not establish them.
+Generated shapes and hand-authored motions are teaching references, not scans,
+anatomical measurements or biomechanical simulation.

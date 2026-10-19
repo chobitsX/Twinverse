@@ -1,0 +1,12 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/experience/visual_stage.gd" id="1_stage"]
+[ext_resource type="Script" path="res://scripts/experience/ground_sky_builder.gd" id="2_builder"]
+[ext_resource type="Texture2D" path="res://assets/textures/cosmos/lroc_color_2k.jpg" id="3_moon"]
+[ext_resource type="Texture2D" path="res://assets/textures/ground_sky262/gaia_edr3_4k.png" id="4_galaxy"]
+
+[node name="GroundSkyStage" type="Node"]
+script = ExtResource("1_stage")
+builder = ExtResource("2_builder")
+texture_keys = Array[String](["moon", "galaxy_map"])
+texture_assets = Array[Texture2D]([ExtResource("3_moon"), ExtResource("4_galaxy")])

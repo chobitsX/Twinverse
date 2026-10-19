@@ -1,0 +1,14 @@
+{
+  "original_record": "assets/source/reef/smithsonian_pocillopora44359/source.json",
+  "record": {
+    "media_page": "https://3d.si.edu/es/object/3d/pocillopora-damicornis%3A5dbbb9af-2a48-4665-839e-e66faf13ff85",
+    "download_url": "https://3d-api.si.edu/content/document/3d_package:5dbbb9af-2a48-4665-839e-e66faf13ff85/resources/usnm_44359-100k-2048_std.glb",
+    "sha256": "31fa5dce1d14edbea6a2fbef8fe91f01ee80c2e5455b9ff3b6234d2e3a29e40c",
+    "bytes": 6750216,
+    "license": "Specific 3D media page explicitly states public domain (copy, modify, distribute); metadata CC0. Other page photos or Voyager code are not claimed CC0.",
+    "attribution": "Smithsonian Institution, NMNH Invertebrate Zoology, USNM44359; J.I.Tracey, 1946, Bikini Atoll, Marshall Islands",
+    "preparation": "Dry",
+    "downloaded_at": "2026-09-10",
+    "status": "preserved original for morphology candidate, not live color/size/site truth"
+  }
+}

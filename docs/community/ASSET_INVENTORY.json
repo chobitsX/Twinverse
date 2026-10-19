@@ -1,0 +1,2233 @@
+{
+  "schema_version": 1,
+  "prepared": "2026-10-19",
+  "application_version": "0.4.187",
+  "owner_choices": {
+    "code_and_text": "MIT",
+    "project_owned_artwork": "CC-BY-4.0",
+    "tripo_generation_paid": "Confirmed by project owner on 2026-10-19; not an independently collected billing receipt"
+  },
+  "scope": "Selected runtime resources, not every historical source asset. SOURCE-POLICY is an attribution/policy category, not an SPDX license or a project grant of third-party rights. New or modified assets require renewed provenance review.",
+  "assets": [
+    {
+      "path": "assets/data/ground_sky262/bsc-visible.json",
+      "bytes": 334614,
+      "sha256": "e7513deeecc32373b6ca6461c8c1b0a622284b3cdbb0bf202e8c9d13f6ed681b",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/data/ground_sky262/manifest.json",
+      "bytes": 1619,
+      "sha256": "ee39ff01ae92cd6de6eda6edf92393ed37c806626943bcd9af14b35c9ef94fd0",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/data/jovian117/vectors.json",
+      "bytes": 1398825,
+      "sha256": "ad39262f1503f303457ae46b204165582238204cd12ad0752ec3d90c92648afb",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/data/reef/placements_v1.res",
+      "bytes": 109896,
+      "sha256": "cb49f68d56b8f6cfedbc82232dfd25fa65a458234b5e114af5ab472438177752",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Authored/generated artwork, baked display proxy or authored placement data; upstream credits retained."
+    },
+    {
+      "path": "assets/data/satellites273/catalogue.json",
+      "bytes": 377272,
+      "sha256": "2c252ca38ab7dd8f6638f4c51887ae6a6ec6f145f07c155b2809a7dd48e38d21",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/data/satellites273/holdouts.json",
+      "bytes": 194018,
+      "sha256": "281efe43a97f9e45edac1b0509555557bcdc5d9693f0fc637125fe5baa1547ee",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/data/satellites273/vectors.bin",
+      "bytes": 20806128,
+      "sha256": "7a0df6fa577c32cfb6c9867fd2fe4fbefb49a9205768fa5acc2150a708854f31",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/data/satellites275/controls.json",
+      "bytes": 43995,
+      "sha256": "87d5ed88fe28128666fe9c012a891bbc9cfb6fae9031f803cd71e20753439016",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/data/satellites275/major.bin",
+      "bytes": 60240313,
+      "sha256": "4bccdd5fd8f7049a9d12444728de20d469ab591b32a56f23db1b7d603f5ac631",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/data/satellites275/manifest.json",
+      "bytes": 15737,
+      "sha256": "458d6d21525f78194b994fd6c18ec63fe3ddd859322c9f466a7370de99f6a174",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/data/satellites275/outer-controls.json",
+      "bytes": 174690,
+      "sha256": "36662280084d5b168c719e8c13b1b7768b0239491ea17ceb748a18e8d73925d6",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/data/satellites275/outer.bin",
+      "bytes": 21145664,
+      "sha256": "9aea4533b2f0f45bfa824d7a60539dbdb398239e5ddab2f5f0fcbca168b1c6d7",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/data/satellites275/outer.json",
+      "bytes": 45166,
+      "sha256": "451cbd83824ae098f785276141c3910755ce5fccfcf64e0c3ed5fd96f5bcaf10",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/data/shared_model_textures.json",
+      "bytes": 16573,
+      "sha256": "6bd8fb28627506978433298cda95a01999aef231b9327bbdd4596eb832599740",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Authored import alias manifest, not an astronomical dataset."
+    },
+    {
+      "path": "assets/data/solar_de440_179/manifest.json",
+      "bytes": 5300,
+      "sha256": "e5d651fd73f022f639b81b11c75b4936a26d1621920a793f5500850c53da5535",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/data/solar_de440_179/planet_0.bin",
+      "bytes": 4383016,
+      "sha256": "7b47cb75e404d86626f6df6bc6ab13426f99a3af27b906c79717b827c29ba0b6",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/data/solar_de440_179/planet_1.bin",
+      "bytes": 2191576,
+      "sha256": "84815f13a8b5edebe0981ad130ac0e246aebb33921078119e4177aca2e4665a3",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/data/solar_de440_179/planet_2.bin",
+      "bytes": 2191576,
+      "sha256": "f90c40954b77215162370532631d4d56cd45a38495e0ec679d1caa8ca1196fbf",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/data/solar_de440_179/planet_3.bin",
+      "bytes": 1095832,
+      "sha256": "f201b5ad29be0b9b7c4ed370389c3d35629ea4b57ac18b0bc2dee2757a767a98",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/data/solar_de440_179/planet_4.bin",
+      "bytes": 547960,
+      "sha256": "2b151a80f6169343e5193c901c291d557ae4a8a7ecfe3b500b5cd64e3417dacf",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/data/solar_de440_179/planet_5.bin",
+      "bytes": 274024,
+      "sha256": "09e59ed1b0ac5cf4a4362b96bd130b76cc9c07258d3bddd8c8c9ef3f34a4ab2e",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/data/solar_de440_179/planet_6.bin",
+      "bytes": 274024,
+      "sha256": "91671d7c4e5d68d0a7a6d94629b2f1164e7b7c711a420b437aa9adc790a09351",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/data/solar_de440_179/planet_7.bin",
+      "bytes": 274024,
+      "sha256": "c0c9832cc546a17993b81430afb68893a5eb6851f3ef0bf1e676859c48ff2aa2",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA/JPL/NAIF or NASA HEASARC / Hoffleit & Warren, as recorded per dataset",
+      "upstream": [
+        "https://ssd.jpl.nasa.gov/horizons/",
+        "https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html"
+      ],
+      "note": "Finite reference data and derived cache; source attributions and scientific validity remain separate."
+    },
+    {
+      "path": "assets/models/city_shops188/shops_low.glb",
+      "bytes": 700092,
+      "sha256": "fba736530431c85a8c90bf64b777bb20a46e6e4aa9256b4336dd5378f615d979",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/city_shops188/shops_midrise.glb",
+      "bytes": 1131888,
+      "sha256": "3716d008ab564db1fda74e65739e5f44d466aed1ab599fc4c136d9ca90f19602",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology268/adelie_penguin.glb",
+      "bytes": 3541072,
+      "sha256": "01dade8ffb64b7bdb8ef4e2335567209febee3d5549d305e8c60d21fda3e72ec",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology268/green_sea_turtle.glb",
+      "bytes": 5626108,
+      "sha256": "f79e79600085652c0408801b76e58a3c93114434dbef2993ecdfe0194b71eafc",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology268/human_female_virtual.glb",
+      "bytes": 3393120,
+      "sha256": "4e8acd58a7d193af0ef8e7de2823fddb53a65addd23a873a04ee1ebc7ca645ee",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology268/human_male_virtual.glb",
+      "bytes": 3582812,
+      "sha256": "e8e4c4a788bede83b17230f7a12aedc2a9d658272f3df0b1ef7cb45434ea8a8a",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology268/red_fox.glb",
+      "bytes": 3541008,
+      "sha256": "4537684bb51ed91907d8909d133e0ccd388e149c20c3cf6a810ce60882576bd4",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology268/white_tailed_doe.glb",
+      "bytes": 4114756,
+      "sha256": "06bfe7a52d1092e3d5e7bce2c4f5f85e85ab00fa1698790ccb5a5c8ab05a4f9d",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/acropora_millepora_graft.glb",
+      "bytes": 1139388,
+      "sha256": "b7bc0fe84a52953ddd42b07c2aa6e2808a30fdc0475aea3ca2535db2c4e81fc0",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/american_bullfrog_reference.glb",
+      "bytes": 960456,
+      "sha256": "67ebce232c4d4aa5eb5763ae69b80ae3ed9990307316b584099026b454417017",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/american_robin269.glb",
+      "bytes": 2365592,
+      "sha256": "55a79e86b21f840865337b65c7dea635095f78cef5845b43525c76fb5820f66f",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/american_wild_celery_hybrid.glb",
+      "bytes": 291980,
+      "sha256": "00dce054c51c82d90ccdba94f2e13329196358faabec66e651955dbeb3058e84",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/banded_killifish_hybrid.glb",
+      "bytes": 1570020,
+      "sha256": "119373ceb09d9194b465f0d30455fe3a7ccf6531627f888d9148b831009a5300",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/blue_green_chromis.glb",
+      "bytes": 1038712,
+      "sha256": "9cf91a4bb47428cebfb6baffe93c18ce1152fd26223cf9756cd685852714ab54",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/bluespotted_ray_hybrid.glb",
+      "bytes": 4585424,
+      "sha256": "9d55c8b1283f4538e604a78440be337ed85266ccac6f4b0dd09f84bf6963bb9a",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/bluestriped_snapper.glb",
+      "bytes": 940844,
+      "sha256": "8770977e30bf0c9bbe54d13ccf07bb75bc09c444e4e7f348d3e2697fd7a2c0ed",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/box_turtle.glb",
+      "bytes": 1830172,
+      "sha256": "e70a73a8602d594a24344549c7552c01d3361db207bedd6ad62b04a5824818db",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/brittlebush_hybrid.glb",
+      "bytes": 1727836,
+      "sha256": "e6617dd13be9eb45db6b410c80913e27d19d2509b17a5bb8237e860ecbe6d34f",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/broadleaf_cattail_hybrid.glb",
+      "bytes": 420444,
+      "sha256": "47c88d31f90e8b03dec4127c76406bb0d45d458bb1185635ef195b28bc46b667",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/brown_tang.glb",
+      "bytes": 907480,
+      "sha256": "71dd8f7ca43270d12273903638258fcb1468984a5d2e14c82300b08659726428",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/city_ginkgo_hybrid.glb",
+      "bytes": 1875760,
+      "sha256": "a91ce8b343b8f68620935c55ff856219965938cf339ce84eed89837f75495848",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/common_green_darner_hybrid.glb",
+      "bytes": 580168,
+      "sha256": "13fb6ca22510ce1ab9b19c59b7f164b69d9892b1692d13d6fb7d01a67fbc545c",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/common_milkweed_hybrid.glb",
+      "bytes": 5150724,
+      "sha256": "f8c1ceac8acc791a1bfe17b2fab734da4b7550219f63f3ed5e13e1aa97563cb4",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/creosote_bush_hybrid.glb",
+      "bytes": 6743604,
+      "sha256": "28b243126aa86478e5c16991615391134f8e78688e339935a96cd6d8b7a3acab",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/desert_iguana_reference_hybrid.glb",
+      "bytes": 17067892,
+      "sha256": "4add086faf1b8da27453f95d7182c061dccc17d6822ce274dfdc335954492564",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/diadema_setosum_hybrid.glb",
+      "bytes": 2737776,
+      "sha256": "71adf5750511754aa62276f31e4d2db123953dd5b62faadc9ddd25516ac9537e",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/eastern_redbud_hybrid.glb",
+      "bytes": 2024472,
+      "sha256": "8b370702ee770ca4ed90738c979a3023b66e2025138e8c314576534776a003b4",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/eastern_white_pine_young_hybrid.glb",
+      "bytes": 7555548,
+      "sha256": "522bcf16d572b62aaf1ec26bc5a1ce2a2e72e858ada3063b6a977b4cddf8952e",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/eurasian_tree_sparrow.glb",
+      "bytes": 1071240,
+      "sha256": "f18e32aafbed2ab97823d006dcc6637a24960ee86ebcd876a1c548d06e7c0f8b",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/golden_shiner_hybrid.glb",
+      "bytes": 1497988,
+      "sha256": "5d24bc89771eb4eb0ef0b7df9606e5c5a9cc4f1269bfa8e92534dd0eaa10040c",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/halophila_ovalis_hybrid.glb",
+      "bytes": 625296,
+      "sha256": "904be8136f4ee80df47eac13b52e43cb68edd06772aca48aed5f9c1cac9418a2",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/halophila_ovalis_shoot_hybrid.glb",
+      "bytes": 258568,
+      "sha256": "f9da21d8fe67064385abe8bc257c600b03f1a0386430ec55668880315d626d53",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/holothuria_atra_hybrid.glb",
+      "bytes": 1343104,
+      "sha256": "4137a7a445719637c92bcfbfd24534cc1ce8e24d1cd4bfda3f421943b54619cc",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/ice_krill_hybrid.glb",
+      "bytes": 584212,
+      "sha256": "2d88da22683f6a94b1bdb888998ea3d2aafb39819d638fae93ed994ca327c2b5",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/mallard_drake.glb",
+      "bytes": 1077628,
+      "sha256": "b38ec6265f80356098d2a991cc6a28330b63101bd44c60fd8393f5afffa813ef",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/mallard_hen.glb",
+      "bytes": 1413868,
+      "sha256": "f9fbe8045c7293f581cd8782bf8248aa68ab93efb8a3479def4bcb8885a94352",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/merriams_kangaroo_rat_reference.glb",
+      "bytes": 1396616,
+      "sha256": "b37c3d9f73d57c95fa9c85db20c3c0132175940abcb603a26aa35a829aa15b90",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/monarch_egg_hybrid.glb",
+      "bytes": 1678848,
+      "sha256": "8a0de32e6989982ff96c1ae36d27b168dc8f12c5f7212fa8ed196e41a6c434df",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/monarch_graft.glb",
+      "bytes": 1206452,
+      "sha256": "3510f73e7c22b2843fa878e79787e4c25e5b3520c89d5a26986347683c81e58d",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/monarch_larva_hybrid.glb",
+      "bytes": 2808428,
+      "sha256": "694f8f3590e12d1fd087adb701be41506d18949d608b792ef4c3c4dca2dc0cee",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/monarch_pupa_hybrid.glb",
+      "bytes": 2289960,
+      "sha256": "886fd1a52310e468f6a1ca40a530f832726465e881bd9f55ed4ce3c906781ec5",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/ocotillo_hybrid.glb",
+      "bytes": 629964,
+      "sha256": "60284245d2242eb0d37086a250f19534c105d2dd622d0fff9b1d7f3cb03d6f2d",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/octopus_cyanea_hybrid.glb",
+      "bytes": 2687704,
+      "sha256": "7f3ca1442f85ae3cfb68fc59b2538274606918a0c929a613a9a393293226273d",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/percula.glb",
+      "bytes": 1185256,
+      "sha256": "76c113540724379dc794290f849c637d79b66dc9e6e6eb72d54b576f0aa168b8",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/percula_lod1.glb",
+      "bytes": 848732,
+      "sha256": "9bcdc2fe2c9121a8d97877f8333fd85431a8e7af2e7e20e6b82cb6e5903c7d23",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/red_maple_hybrid.glb",
+      "bytes": 3432676,
+      "sha256": "4a442c579df19d05ff2e69ab13abb8a2c5ab60fb3565b617fe803e7c6175885b",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/saguaro_graft.glb",
+      "bytes": 5409508,
+      "sha256": "570e3a8386c3c91e8272e455073e5179dde2d7334a6e2b95d27806c1537717e4",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/tridacna_maxima_hybrid.glb",
+      "bytes": 2357584,
+      "sha256": "94357ff26d7ef700dd7a79a7f4c665f6481aea93c8bf309eeaa0a43edf1317fc",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/turkey_tail_deadwood_hybrid.glb",
+      "bytes": 8439888,
+      "sha256": "2ed10e5497a6f1d4ab0e5ced299160bff0838be4288c56ad7e4f31c1fb058ca0",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/velvet_mesquite_hybrid.glb",
+      "bytes": 7681108,
+      "sha256": "efe19241bf3e09be6a2d812fc355122b115af69081a87945f054c67f1f80f86e",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/ecology269/white_oak_young_hybrid.glb",
+      "bytes": 3227564,
+      "sha256": "95db74d8cd77b8a3d2cf05bdd715013dc8622d4e1ab426123f510e5aefb64316",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Tripo-assisted asset creation",
+      "upstream": [
+        "Tripo Studio H3.1 paid outputs; project geometry/rig/surface adaptations"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/fish/v11/percula_v11_lod0.glb",
+      "bytes": 14304272,
+      "sha256": "494fac290fb0a194d26306fcbc2c9f83486ebe43e11ec8eec38dd461874c337c",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/fish/v11/percula_v11_lod0_percula_v3_basecolor.png",
+      "bytes": 1402570,
+      "sha256": "7ff164cf63ca3fe8d9fd62a778758424bb1872794dffaaf9063563d90bd41cb2",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/fish/v11/percula_v11_lod0_percula_v3_fin_rgba.png",
+      "bytes": 16157,
+      "sha256": "74c11e60fd9e8c86f615ecd907437776f8ebe50faca0620594ae3478cf618d7d",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/fish/v11/percula_v11_lod0_percula_v3_iris.png",
+      "bytes": 169554,
+      "sha256": "545e0c8e85ade14af911bbc93d590bde15dc33b3e29ab1c44275154e40387ea1",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/fish/v11/percula_v11_lod0_percula_v3_normal.png",
+      "bytes": 1918297,
+      "sha256": "018ca7fcbacb83cc263fee2786f2e42c3512ce91e07b9a1709b835c3fdf280e6",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/fish/v11/percula_v11_lod0_percula_v3_roughness.png",
+      "bytes": 1695877,
+      "sha256": "c4bd4648855de20223b92413c3953411562dbbb1f60ffb9c840e434082e26f63",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/fish/v12/percula_v12_lod1_percula_v3_basecolor.png",
+      "bytes": 1402570,
+      "sha256": "7ff164cf63ca3fe8d9fd62a778758424bb1872794dffaaf9063563d90bd41cb2",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/fish/v12/percula_v12_lod1_percula_v3_fin_rgba.png",
+      "bytes": 16157,
+      "sha256": "74c11e60fd9e8c86f615ecd907437776f8ebe50faca0620594ae3478cf618d7d",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/fish/v12/percula_v12_lod1_percula_v3_iris.png",
+      "bytes": 169554,
+      "sha256": "545e0c8e85ade14af911bbc93d590bde15dc33b3e29ab1c44275154e40387ea1",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/fish/v12/percula_v12_lod1_percula_v3_normal.png",
+      "bytes": 1918297,
+      "sha256": "018ca7fcbacb83cc263fee2786f2e42c3512ce91e07b9a1709b835c3fdf280e6",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/fish/v12/percula_v12_lod1_percula_v3_roughness.png",
+      "bytes": 1695877,
+      "sha256": "c4bd4648855de20223b92413c3953411562dbbb1f60ffb9c840e434082e26f63",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/heart/teleost_heart_cutaway.glb",
+      "bytes": 12265944,
+      "sha256": "e7015057305184e8db069d8bcc04cf71722d291247c4b40687ca3e265300f8b1",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/heart/teleost_heart_cutaway_Cut_myocardium_normal.png",
+      "bytes": 1498391,
+      "sha256": "cb13b2748304207413fbfef55f7dc3a49c0675229216ecee7d5823a2ced246eb",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/heart/teleost_heart_cutaway_Elastic_bulbus_basecolor.png",
+      "bytes": 1331109,
+      "sha256": "7253a2d21e7f1441a548628edf0bb7929f0b13937cd37185bcfa6a61db6d2fa2",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/heart/teleost_heart_cutaway_Elastic_bulbus_normal.png",
+      "bytes": 1498391,
+      "sha256": "cb13b2748304207413fbfef55f7dc3a49c0675229216ecee7d5823a2ced246eb",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/heart/teleost_heart_cutaway_Myocardium_basecolor.png",
+      "bytes": 1083645,
+      "sha256": "871cf3f39ea043d8150bbafba2d775728fd8b050c92946a40761bb736849c68c",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/heart/teleost_heart_cutaway_Myocardium_normal.png",
+      "bytes": 1498391,
+      "sha256": "cb13b2748304207413fbfef55f7dc3a49c0675229216ecee7d5823a2ced246eb",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/heart/teleost_heart_cutaway_Thin_atrial_wall_basecolor.png",
+      "bytes": 1089079,
+      "sha256": "472e16392404849052b95c48ac64e5a7d533a718c8ad805871dff3074655cd4e",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/heart/teleost_heart_cutaway_Thin_atrial_wall_normal.png",
+      "bytes": 1498391,
+      "sha256": "cb13b2748304207413fbfef55f7dc3a49c0675229216ecee7d5823a2ced246eb",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/heart/teleost_heart_lod0.glb",
+      "bytes": 9182384,
+      "sha256": "276fc2bd8f7b2d669c16c7714da6ea13a961104f1039a4468cc0a2e9f461b6bf",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/heart/teleost_heart_lod0_Elastic_bulbus_basecolor.png",
+      "bytes": 1331109,
+      "sha256": "7253a2d21e7f1441a548628edf0bb7929f0b13937cd37185bcfa6a61db6d2fa2",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/heart/teleost_heart_lod0_Elastic_bulbus_normal.png",
+      "bytes": 1498391,
+      "sha256": "cb13b2748304207413fbfef55f7dc3a49c0675229216ecee7d5823a2ced246eb",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/heart/teleost_heart_lod0_Myocardium_basecolor.png",
+      "bytes": 1083645,
+      "sha256": "871cf3f39ea043d8150bbafba2d775728fd8b050c92946a40761bb736849c68c",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/heart/teleost_heart_lod0_Myocardium_normal.png",
+      "bytes": 1498391,
+      "sha256": "cb13b2748304207413fbfef55f7dc3a49c0675229216ecee7d5823a2ced246eb",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/heart/teleost_heart_lod0_Thin_atrial_wall_basecolor.png",
+      "bytes": 1089079,
+      "sha256": "472e16392404849052b95c48ac64e5a7d533a718c8ad805871dff3074655cd4e",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/heart/teleost_heart_lod0_Thin_atrial_wall_normal.png",
+      "bytes": 1498391,
+      "sha256": "cb13b2748304207413fbfef55f7dc3a49c0675229216ecee7d5823a2ced246eb",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/anemone_v5/anemone_v5_lod1.glb",
+      "bytes": 11730056,
+      "sha256": "02d9fe8ff3d6c0694080584e648fe4aaecc16249a88e315757ceba18666300aa",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/anemone_v5/anemone_v5_lod1_anemone_disc_v4_basecolor.png",
+      "bytes": 177275,
+      "sha256": "438d41fc87fd661c2b68d46f2217233d792c34a5caf64ddb02e6bf9c2620470e",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/anemone_v5/anemone_v5_lod1_anemone_disc_v4_normal.png",
+      "bytes": 33712,
+      "sha256": "55e82cf776cf29789bc36e1ef6b8726147346cb585b9942134786a33f4ee78c9",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/anemone_v5/anemone_v5_lod1_anemone_disc_v4_roughness.png",
+      "bytes": 125912,
+      "sha256": "bb4d906e867902c21f77cfef62ed56196ddddee821855ab223a16fae64f2465f",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/anemone_v5/anemone_v5_lod1_anemone_tentacle_v4_basecolor.png",
+      "bytes": 174001,
+      "sha256": "b0c46a2e85cafb120714508065791ef36a7ef1b14cdacfd7696636f90dc2cda6",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/anemone_v5/anemone_v5_lod1_anemone_tentacle_v4_normal.png",
+      "bytes": 33712,
+      "sha256": "55e82cf776cf29789bc36e1ef6b8726147346cb585b9942134786a33f4ee78c9",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/anemone_v5/anemone_v5_lod1_anemone_tentacle_v4_roughness.png",
+      "bytes": 130748,
+      "sha256": "70d35c0de965a86af4dccf9838358ca7204049b2bbe92937c17b423a1fd52f8d",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/anemone_v5/anemone_v5_lod2.glb",
+      "bytes": 8134580,
+      "sha256": "421a7ab363c711e455a7e256b835da199e37c269091f111d2eaf468c7c779bb5",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/anemone_v5/anemone_v5_lod2_anemone_disc_v4_basecolor.png",
+      "bytes": 177275,
+      "sha256": "438d41fc87fd661c2b68d46f2217233d792c34a5caf64ddb02e6bf9c2620470e",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/anemone_v5/anemone_v5_lod2_anemone_disc_v4_normal.png",
+      "bytes": 33712,
+      "sha256": "55e82cf776cf29789bc36e1ef6b8726147346cb585b9942134786a33f4ee78c9",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/anemone_v5/anemone_v5_lod2_anemone_disc_v4_roughness.png",
+      "bytes": 125912,
+      "sha256": "bb4d906e867902c21f77cfef62ed56196ddddee821855ab223a16fae64f2465f",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/anemone_v5/anemone_v5_lod2_anemone_tentacle_v4_basecolor.png",
+      "bytes": 174001,
+      "sha256": "b0c46a2e85cafb120714508065791ef36a7ef1b14cdacfd7696636f90dc2cda6",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/anemone_v5/anemone_v5_lod2_anemone_tentacle_v4_normal.png",
+      "bytes": 33712,
+      "sha256": "55e82cf776cf29789bc36e1ef6b8726147346cb585b9942134786a33f4ee78c9",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/anemone_v5/anemone_v5_lod2_anemone_tentacle_v4_roughness.png",
+      "bytes": 130748,
+      "sha256": "70d35c0de965a86af4dccf9838358ca7204049b2bbe92937c17b423a1fd52f8d",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/branching_v4/branching_v4_cushion_lod0.glb",
+      "bytes": 18329852,
+      "sha256": "a7552d29ea8ba9c7029a6e6896203ce1776afb10816f6b8705cf95b5c0050ce9",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/branching_v4/branching_v4_cushion_lod0_branching_v4_cushion_LOD0_basecolor.png",
+      "bytes": 2956097,
+      "sha256": "66e9e9f23970398e67d15ab01b78f4f7ebef77884efc9e5b2fd10ce4a91f3d00",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/branching_v4/branching_v4_cushion_lod0_branching_v4_cushion_LOD0_normal.png",
+      "bytes": 7361869,
+      "sha256": "a35e2be88bf7aeb4799310413d304a97c45081c1a4f83179c59409381fc5e1c7",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/branching_v4/branching_v4_cushion_lod0_branching_v4_cushion_LOD0_roughness.png",
+      "bytes": 3059344,
+      "sha256": "aef588a28ddc6aa2c757cea98e48fb7228bd502444bfe32b29f753da4774dbb0",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/branching_v4/branching_v4_cushion_lod1.glb",
+      "bytes": 15158960,
+      "sha256": "cbaff47b596d4f6d64cd45340659fe6db038d622eea24e453844060cc9b510d9",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/branching_v4/branching_v4_cushion_lod1_branching_v4_cushion_LOD0_basecolor.png",
+      "bytes": 2956097,
+      "sha256": "66e9e9f23970398e67d15ab01b78f4f7ebef77884efc9e5b2fd10ce4a91f3d00",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/branching_v4/branching_v4_cushion_lod1_branching_v4_cushion_LOD0_normal.png",
+      "bytes": 7361869,
+      "sha256": "a35e2be88bf7aeb4799310413d304a97c45081c1a4f83179c59409381fc5e1c7",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/branching_v4/branching_v4_cushion_lod1_branching_v4_cushion_LOD0_roughness.png",
+      "bytes": 3059344,
+      "sha256": "aef588a28ddc6aa2c757cea98e48fb7228bd502444bfe32b29f753da4774dbb0",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/coast_rock_v1/coast_rocks_05_lod0.glb",
+      "bytes": 16822180,
+      "sha256": "54b8359b025b37b6efe49f68362da265de246f154fc654f7ac265d0ddc6a1179",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Rob Tuytel / Poly Haven",
+      "upstream": [
+        "Poly Haven Coast Rocks 05 / Rob Tuytel / CC0-1.0"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/coast_rock_v1/coast_rocks_05_lod0_coast_rocks_05_diff_2k.png",
+      "bytes": 6018891,
+      "sha256": "0b1397897dcaa814344c2d63aec489072fd81f04350d4b3afdbb6be60cd09cd6",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Rob Tuytel / Poly Haven",
+      "upstream": [
+        "Poly Haven Coast Rocks 05 / Rob Tuytel / CC0-1.0"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/coast_rock_v1/coast_rocks_05_lod0_coast_rocks_05_nor_gl_2k.png",
+      "bytes": 7610914,
+      "sha256": "b8523bbce3a73e8b240a58da95d146dc2e1dad0ee1d2f5447dca48203f6e3035",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Rob Tuytel / Poly Haven",
+      "upstream": [
+        "Poly Haven Coast Rocks 05 / Rob Tuytel / CC0-1.0"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/coast_rock_v1/coast_rocks_05_lod0_coast_rocks_05_rough_2k.png",
+      "bytes": 2431691,
+      "sha256": "3990dce8d105762dcff12b9d7f50f18696cffc299e4b311028a7799e0cdcde7b",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Rob Tuytel / Poly Haven",
+      "upstream": [
+        "Poly Haven Coast Rocks 05 / Rob Tuytel / CC0-1.0"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/coast_rock_v1/coast_rocks_05_lod1.glb",
+      "bytes": 16555292,
+      "sha256": "974d45bcfc11d5fb9eb45586013ee45b4d0e2d088ce3d2a78ba201dc3da2adc5",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Rob Tuytel / Poly Haven",
+      "upstream": [
+        "Poly Haven Coast Rocks 05 / Rob Tuytel / CC0-1.0"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/coast_rock_v1/coast_rocks_05_lod1_coast_rocks_05_diff_2k.png",
+      "bytes": 6018891,
+      "sha256": "0b1397897dcaa814344c2d63aec489072fd81f04350d4b3afdbb6be60cd09cd6",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Rob Tuytel / Poly Haven",
+      "upstream": [
+        "Poly Haven Coast Rocks 05 / Rob Tuytel / CC0-1.0"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/coast_rock_v1/coast_rocks_05_lod1_coast_rocks_05_nor_gl_2k.png",
+      "bytes": 7610914,
+      "sha256": "b8523bbce3a73e8b240a58da95d146dc2e1dad0ee1d2f5447dca48203f6e3035",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Rob Tuytel / Poly Haven",
+      "upstream": [
+        "Poly Haven Coast Rocks 05 / Rob Tuytel / CC0-1.0"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/coast_rock_v1/coast_rocks_05_lod1_coast_rocks_05_rough_2k.png",
+      "bytes": 2431691,
+      "sha256": "3990dce8d105762dcff12b9d7f50f18696cffc299e4b311028a7799e0cdcde7b",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Rob Tuytel / Poly Haven",
+      "upstream": [
+        "Poly Haven Coast Rocks 05 / Rob Tuytel / CC0-1.0"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/massive_coral_lod0.glb",
+      "bytes": 5056108,
+      "sha256": "f1f0e394026f972f12c51956ddaf3d7e46a3c484f1359f030c9566879f6f3f40",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/massive_coral_lod0_massive_coral_basecolor.png",
+      "bytes": 858030,
+      "sha256": "525f17846f219c5bc940a1caf9b16eda29fa368add59164487619f52945e65c3",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/massive_coral_lod0_massive_coral_normal.png",
+      "bytes": 1301015,
+      "sha256": "2a8160735f3c6bf2429ad8aee815deacf1191c6e71d084585f540c477f59c651",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/massive_coral_lod0_massive_coral_roughness.png",
+      "bytes": 695490,
+      "sha256": "bbb10335a022395ad7cbfa115f9cf4a50bb6accb6b471104423b32c07a8fd135",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/massive_coral_lod1.glb",
+      "bytes": 3607572,
+      "sha256": "0cc7327a8ca052ae8c523141b682f3454b0bf5576c75476fdf6a563cb9f0e7de",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/massive_coral_lod1_massive_coral_basecolor.png",
+      "bytes": 858030,
+      "sha256": "525f17846f219c5bc940a1caf9b16eda29fa368add59164487619f52945e65c3",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/massive_coral_lod1_massive_coral_normal.png",
+      "bytes": 1301015,
+      "sha256": "2a8160735f3c6bf2429ad8aee815deacf1191c6e71d084585f540c477f59c651",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/massive_coral_lod1_massive_coral_roughness.png",
+      "bytes": 695490,
+      "sha256": "bbb10335a022395ad7cbfa115f9cf4a50bb6accb6b471104423b32c07a8fd135",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_cup_lod0.glb",
+      "bytes": 4038160,
+      "sha256": "bd65063451141f51cf8d12cd3d9a3ccf6026f81c32f16683448b275ad1f204a8",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_cup_lod0_plate_v4_cup_LOD0_basecolor.png",
+      "bytes": 721165,
+      "sha256": "bc7f3c18f774ab91d6a1744a80d6a99ba1c977d8788e95a8308d9f7dbfc538db",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_cup_lod0_plate_v4_cup_LOD0_normal.png",
+      "bytes": 2136597,
+      "sha256": "485c7ff509bad5c53fe0d08adaee9000f939647ad42f0e24d0f4c27a1d57679a",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_cup_lod0_plate_v4_cup_LOD0_roughness.png",
+      "bytes": 849202,
+      "sha256": "9dbf94a5c12439409f1cdb6d6fae68e05485ee91444dd6b7632c24d43df304a9",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_cup_lod1.glb",
+      "bytes": 3874580,
+      "sha256": "244452bb50d27f9227682e48efa3bb1e1c373280e2ce9c258514c21c83962ff1",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_cup_lod1_plate_v4_cup_LOD0_basecolor.png",
+      "bytes": 721165,
+      "sha256": "bc7f3c18f774ab91d6a1744a80d6a99ba1c977d8788e95a8308d9f7dbfc538db",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_cup_lod1_plate_v4_cup_LOD0_normal.png",
+      "bytes": 2136597,
+      "sha256": "485c7ff509bad5c53fe0d08adaee9000f939647ad42f0e24d0f4c27a1d57679a",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_cup_lod1_plate_v4_cup_LOD0_roughness.png",
+      "bytes": 849202,
+      "sha256": "9dbf94a5c12439409f1cdb6d6fae68e05485ee91444dd6b7632c24d43df304a9",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_fan_lod0.glb",
+      "bytes": 4121448,
+      "sha256": "8c451c23ad65f2fdaeddbdffece611309636820bb81084cf25efee909e32006c",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_fan_lod0_plate_v4_fan_LOD0_basecolor.png",
+      "bytes": 719187,
+      "sha256": "d1884431b6f63e7bc19c1ffc0f7bf5d11442afd1628c5b4e8c77178b8b7d46f6",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_fan_lod0_plate_v4_fan_LOD0_normal.png",
+      "bytes": 2103772,
+      "sha256": "5ead22969c96f164dd014350db54f55cf46a0555e460a44b2f96208b3f0e5c8d",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_fan_lod0_plate_v4_fan_LOD0_roughness.png",
+      "bytes": 828189,
+      "sha256": "c8d2ed81342dc67587ff6b5ad72b6cad0975ab68f984d708e181226716a83fa4",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_fan_lod1.glb",
+      "bytes": 3888744,
+      "sha256": "a1ed15a8a98f6eaa7d1678004466de4a4fa9d8aff15cf41cb2ab3eb2534d0655",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_fan_lod1_plate_v4_fan_LOD0_basecolor.png",
+      "bytes": 719187,
+      "sha256": "d1884431b6f63e7bc19c1ffc0f7bf5d11442afd1628c5b4e8c77178b8b7d46f6",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_fan_lod1_plate_v4_fan_LOD0_normal.png",
+      "bytes": 2103772,
+      "sha256": "5ead22969c96f164dd014350db54f55cf46a0555e460a44b2f96208b3f0e5c8d",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_fan_lod1_plate_v4_fan_LOD0_roughness.png",
+      "bytes": 828189,
+      "sha256": "c8d2ed81342dc67587ff6b5ad72b6cad0975ab68f984d708e181226716a83fa4",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_lobed_lod0.glb",
+      "bytes": 4117664,
+      "sha256": "efdfee6e56ba9197bf94e77a9cbf3e93a986c5747c1a7a904c4a52b86c31492d",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_lobed_lod0_plate_v4_lobed_LOD0_basecolor.png",
+      "bytes": 688710,
+      "sha256": "5869b850c7cc7a606d9223e66ccb571d08fa026a89a1a3719262bb8430c226ea",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_lobed_lod0_plate_v4_lobed_LOD0_normal.png",
+      "bytes": 2121551,
+      "sha256": "de2bc82ad24f7a8e4962c70ece074f84ac16c8ff8803a344bacb8741975d6a6b",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_lobed_lod0_plate_v4_lobed_LOD0_roughness.png",
+      "bytes": 837089,
+      "sha256": "811aacc9dc1d518a7996cc76fbdfec25b2dd28e2be049189416a541ea9fc0d0b",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_lobed_lod1.glb",
+      "bytes": 3884960,
+      "sha256": "d1e58a14351b4fc1165ec6626c03f2133106b46839c6b6a5e22f412d0b59aedb",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_lobed_lod1_plate_v4_lobed_LOD0_basecolor.png",
+      "bytes": 688710,
+      "sha256": "5869b850c7cc7a606d9223e66ccb571d08fa026a89a1a3719262bb8430c226ea",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_lobed_lod1_plate_v4_lobed_LOD0_normal.png",
+      "bytes": 2121551,
+      "sha256": "de2bc82ad24f7a8e4962c70ece074f84ac16c8ff8803a344bacb8741975d6a6b",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/plate_v6/plate_v6_lobed_lod1_plate_v4_lobed_LOD0_roughness.png",
+      "bytes": 837089,
+      "sha256": "811aacc9dc1d518a7996cc76fbdfec25b2dd28e2be049189416a541ea9fc0d0b",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/pocillopora_v2/pocillopora_lod0.glb",
+      "bytes": 19077048,
+      "sha256": "f353a8d4b2964da2291b05f57ff2c6f9b0d26468368782d14071d0b3e7348c67",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Smithsonian Institution, NMNH, USNM44359; J. I. Tracey",
+      "upstream": [
+        "Smithsonian USNM44359 specific 3D media: public domain"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/pocillopora_v2/pocillopora_lod1.glb",
+      "bytes": 17816348,
+      "sha256": "274d722172a2411eaf520f5d2600bec43671cede62bae5b331444104a2f6d49f",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; Smithsonian Institution, NMNH, USNM44359; J. I. Tracey",
+      "upstream": [
+        "Smithsonian USNM44359 specific 3D media: public domain"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/reef_rock_lod0.glb",
+      "bytes": 3340804,
+      "sha256": "2c35c46d167bd6cd86f70c092d2b055a342211a3542d2e87747e160e5481dda4",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/reef_rock_lod0_reef_rock_basecolor.png",
+      "bytes": 1008289,
+      "sha256": "14085d30f710ab9dd86f931dd457605b8321cdb02a0adc98eec69534a8ad9e9f",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/reef_rock_lod0_reef_rock_normal.png",
+      "bytes": 1133729,
+      "sha256": "e95dd27a12393f10ba13017c15674df49a52e4be604a1f823ccfefa83b3736b0",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/reef_rock_lod0_reef_rock_roughness.png",
+      "bytes": 887685,
+      "sha256": "537b2959c000de8c3e3a8ecaab3b6088536c35213e92ac3c4cb7ffadabea40fd",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/reef_rock_lod1.glb",
+      "bytes": 3138964,
+      "sha256": "e3a79f399914ecc3e8f39ab456c16853ae5959094f138c1470cdcf95288febc0",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/reef_rock_lod1_reef_rock_basecolor.png",
+      "bytes": 1008289,
+      "sha256": "14085d30f710ab9dd86f931dd457605b8321cdb02a0adc98eec69534a8ad9e9f",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/reef_rock_lod1_reef_rock_normal.png",
+      "bytes": 1133729,
+      "sha256": "e95dd27a12393f10ba13017c15674df49a52e4be604a1f823ccfefa83b3736b0",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/reef/reef_rock_lod1_reef_rock_roughness.png",
+      "bytes": 887685,
+      "sha256": "537b2959c000de8c3e3a8ecaab3b6088536c35213e92ac3c4cb7ffadabea40fd",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/woodland125/broadleaf_a.glb",
+      "bytes": 1192176,
+      "sha256": "91031801c22dc2617e15b9b925a2189efefb92c85db14b1489e91e15dfbf94ba",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/woodland125/broadleaf_b.glb",
+      "bytes": 1192188,
+      "sha256": "d260dc3d66d76c864c054ea5c437f0fe95c91de8909312fc8e079e8a897ee248",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/woodland89/fallen_log.glb",
+      "bytes": 20796,
+      "sha256": "4d017bca86d78db51a55aed4a88b9182697401682b3d556359d78a681e128278",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; texture authors recorded by Poly Haven",
+      "upstream": [
+        "Poly Haven CC0 surface textures where embedded; see woodland89/SOURCES.json"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/woodland89/fern_cluster.glb",
+      "bytes": 87192,
+      "sha256": "8c50de15b0d469a92500664564b534b38de8813e568b3b53fd1b44fa25cd0476",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; texture authors recorded by Poly Haven",
+      "upstream": [
+        "Poly Haven CC0 surface textures where embedded; see woodland89/SOURCES.json"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/woodland89/rock_a.glb",
+      "bytes": 24192,
+      "sha256": "1fd609deaaf61ed36a6cf5ab6ffa0b395c9073d57a5fcaf743af1a548d024ced",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; texture authors recorded by Poly Haven",
+      "upstream": [
+        "Poly Haven CC0 surface textures where embedded; see woodland89/SOURCES.json"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/woodland89/rock_b.glb",
+      "bytes": 25220,
+      "sha256": "29fb04983fef6cd3b817d11d28808341217d1d69ec45adb551800ebb2b2a7ab7",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors; texture authors recorded by Poly Haven",
+      "upstream": [
+        "Poly Haven CC0 surface textures where embedded; see woodland89/SOURCES.json"
+      ],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/world_content_87/compact_sedan.glb",
+      "bytes": 300536,
+      "sha256": "be2edc1feb6a694e9e53f6c95aa3bb726aea3857c07f0f12e78367e2a5746ae6",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/world_content_87/compact_wagon.glb",
+      "bytes": 300596,
+      "sha256": "7929e5d41089f42cc0f8519727389a43f8cd7ec4ab3c3cc8e0aef8bf84020372",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/world_content_87/office_fins.glb",
+      "bytes": 1969116,
+      "sha256": "691c9c1862afbda4144ed5aed1e8f900ad4cb2156f770210c46a2ed4ef0d1f6b",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/world_content_87/residential_balconies.glb",
+      "bytes": 1447444,
+      "sha256": "8a3c36ad3b5eb77af3586256dee01964dc7d30c52361fa29037276b3f3b26aba",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/world_content_87/shops_terracotta.glb",
+      "bytes": 915996,
+      "sha256": "244936b7549e924246d69ec20e7b8d023d944c38454f982ab95ba79ad966e666",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/world_life_v1/oak_a.glb",
+      "bytes": 1402920,
+      "sha256": "bd5937b8f5967dfb4d3ded018f6540f6c4346f9cb1d385f278ff1d05ea7767f8",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/models/world_life_v1/oak_b.glb",
+      "bytes": 1402932,
+      "sha256": "f205eb68bb32e5fdf7d78a96c45e92073a55dbbf2774b6b389dd7bb951a132d9",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Project-owned modifications; upstream components retain their original rights."
+    },
+    {
+      "path": "assets/textures/cosmos/cloud_shape_v1.res",
+      "bytes": 253204,
+      "sha256": "5cf60fb78930c496c84374bdb3f745ed1d647a28ccf4d776e5027294d7af256e",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Authored/generated artwork, baked display proxy or authored placement data; upstream credits retained."
+    },
+    {
+      "path": "assets/textures/cosmos/earth_bmng_200401_5400x2700.jpg",
+      "bytes": 1884678,
+      "sha256": "99f5faad74efe985fbf1714c8be7296ca9999759a1215b65f99b7f1df278dde5",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA / JPL / USGS / ESA and named collaborators; see nearby source records",
+      "upstream": [
+        "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      ],
+      "note": "Individual historical media and coverage masks; no blanket CC0/MIT relicensing."
+    },
+    {
+      "path": "assets/textures/cosmos/jovian117/callisto-coverage.png",
+      "bytes": 10607,
+      "sha256": "95c44c83f45adec70120583353e4fa8efd685117f9393490a4b007bf15009d82",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA / JPL / USGS / ESA and named collaborators; see nearby source records",
+      "upstream": [
+        "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      ],
+      "note": "Individual historical media and coverage masks; no blanket CC0/MIT relicensing."
+    },
+    {
+      "path": "assets/textures/cosmos/jovian117/callisto.jpg",
+      "bytes": 744368,
+      "sha256": "160f36cb95e486659b1edd07d593a91f08eb11d7f126df00d01c0225b2ff5641",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA / JPL / USGS / ESA and named collaborators; see nearby source records",
+      "upstream": [
+        "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      ],
+      "note": "Individual historical media and coverage masks; no blanket CC0/MIT relicensing."
+    },
+    {
+      "path": "assets/textures/cosmos/jovian117/europa-coverage.png",
+      "bytes": 6978,
+      "sha256": "792d3c9aa2e093aed6f83d186f6606b9d7de0b3ab27c010786eda8265213962a",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA / JPL / USGS / ESA and named collaborators; see nearby source records",
+      "upstream": [
+        "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      ],
+      "note": "Individual historical media and coverage masks; no blanket CC0/MIT relicensing."
+    },
+    {
+      "path": "assets/textures/cosmos/jovian117/europa.jpg",
+      "bytes": 850412,
+      "sha256": "68dc896daa1d2183b978710b2eaf0f04c328eb1cc584867ac99d48da67a0e58c",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA / JPL / USGS / ESA and named collaborators; see nearby source records",
+      "upstream": [
+        "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      ],
+      "note": "Individual historical media and coverage masks; no blanket CC0/MIT relicensing."
+    },
+    {
+      "path": "assets/textures/cosmos/jovian117/ganymede-coverage.png",
+      "bytes": 9664,
+      "sha256": "5e1834c2eb81e4ad6669570f6f980bb4574e07c470e4003cc5efdf46bb55b53a",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA / JPL / USGS / ESA and named collaborators; see nearby source records",
+      "upstream": [
+        "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      ],
+      "note": "Individual historical media and coverage masks; no blanket CC0/MIT relicensing."
+    },
+    {
+      "path": "assets/textures/cosmos/jovian117/ganymede.jpg",
+      "bytes": 709591,
+      "sha256": "b3ddb6d2d084c11a284b90d7b9367a35cab356c847d01dade08f1b9f793a89c5",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA / JPL / USGS / ESA and named collaborators; see nearby source records",
+      "upstream": [
+        "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      ],
+      "note": "Individual historical media and coverage masks; no blanket CC0/MIT relicensing."
+    },
+    {
+      "path": "assets/textures/cosmos/jovian117/io-coverage.png",
+      "bytes": 4309,
+      "sha256": "2e8aa1a02dbafa711a33bedc7319c7eac3e484c8f97c7f342b6b0e9500eef3ed",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA / JPL / USGS / ESA and named collaborators; see nearby source records",
+      "upstream": [
+        "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      ],
+      "note": "Individual historical media and coverage masks; no blanket CC0/MIT relicensing."
+    },
+    {
+      "path": "assets/textures/cosmos/jovian117/io.jpg",
+      "bytes": 750532,
+      "sha256": "1a8761a815dfe5b588ae3bf3e98bc5586a9873e75701653059ff825ff0a55118",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA / JPL / USGS / ESA and named collaborators; see nearby source records",
+      "upstream": [
+        "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      ],
+      "note": "Individual historical media and coverage masks; no blanket CC0/MIT relicensing."
+    },
+    {
+      "path": "assets/textures/cosmos/lroc_color_2k.jpg",
+      "bytes": 457942,
+      "sha256": "f7130a1822681fa7512d7dcfd40db8c10b9ba4f06777910348698260ed7a2170",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA / JPL / USGS / ESA and named collaborators; see nearby source records",
+      "upstream": [
+        "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      ],
+      "note": "Individual historical media and coverage masks; no blanket CC0/MIT relicensing."
+    },
+    {
+      "path": "assets/textures/cosmos/nasa-clouds-2002-2048.jpg",
+      "bytes": 829367,
+      "sha256": "daddaad84d7a33bbbc86cdda3f591099f57cee8607b7bcf3b67eb7e4f7a1c793",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA / JPL / USGS / ESA and named collaborators; see nearby source records",
+      "upstream": [
+        "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      ],
+      "note": "Individual historical media and coverage masks; no blanket CC0/MIT relicensing."
+    },
+    {
+      "path": "assets/textures/cosmos/planets_v1/saturn_nasa.jpg",
+      "bytes": 275735,
+      "sha256": "d959a239e3d87630daf08e2a688dcbf315fe01b1fd474e55522770108f40aca7",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA / JPL / USGS / ESA and named collaborators; see nearby source records",
+      "upstream": [
+        "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      ],
+      "note": "Individual historical media and coverage masks; no blanket CC0/MIT relicensing."
+    },
+    {
+      "path": "assets/textures/cosmos/planets_v2/jupiter_hubble_2015.png",
+      "bytes": 6154903,
+      "sha256": "aa05f6a1fdad55e9e47d58cfeed3f5ca4520f0f67efc419aa03657254ac91101",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA / JPL / USGS / ESA and named collaborators; see nearby source records",
+      "upstream": [
+        "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      ],
+      "note": "Individual historical media and coverage masks; no blanket CC0/MIT relicensing."
+    },
+    {
+      "path": "assets/textures/cosmos/rocky133/mars.png",
+      "bytes": 14038873,
+      "sha256": "48c2d6db5ae09e3c64362e6a9fc9c6889c5227e4db64aa504c6e9305f92a5410",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA / JPL / USGS / ESA and named collaborators; see nearby source records",
+      "upstream": [
+        "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      ],
+      "note": "Individual historical media and coverage masks; no blanket CC0/MIT relicensing."
+    },
+    {
+      "path": "assets/textures/cosmos/rocky133/mercury.png",
+      "bytes": 501721,
+      "sha256": "b2866aa18f7d450d3054faca62603f272fc993dfac3964d44075bf0cf3acf91b",
+      "license": "SOURCE-POLICY",
+      "credit": "NASA / JPL / USGS / ESA and named collaborators; see nearby source records",
+      "upstream": [
+        "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      ],
+      "note": "Individual historical media and coverage masks; no blanket CC0/MIT relicensing."
+    },
+    {
+      "path": "assets/textures/environment/coral_ground_v1/coral_ground_02_arm_1k.png",
+      "bytes": 4894411,
+      "sha256": "b8055b8b84e8371e982cf5ea472032230bdc3bdf55b40b7585176d6bdda7c6fa",
+      "license": "CC0-1.0",
+      "credit": "Rob Tuytel / Poly Haven",
+      "upstream": [
+        "https://polyhaven.com/license"
+      ],
+      "note": "Original materials; some formats/resolutions converted for runtime."
+    },
+    {
+      "path": "assets/textures/environment/coral_ground_v1/coral_ground_02_diff_1k.png",
+      "bytes": 6593528,
+      "sha256": "4f87c9f25f4081a5fb0c88387dde95ebdb2ced1ccd11546cafc7b9306034e964",
+      "license": "CC0-1.0",
+      "credit": "Rob Tuytel / Poly Haven",
+      "upstream": [
+        "https://polyhaven.com/license"
+      ],
+      "note": "Original materials; some formats/resolutions converted for runtime."
+    },
+    {
+      "path": "assets/textures/environment/coral_ground_v1/coral_ground_02_nor_gl_1k.png",
+      "bytes": 6654542,
+      "sha256": "10f7f10f887c4720a88c8dfe771b36fb52f1432ab4aa08218e092bdc694e7b70",
+      "license": "CC0-1.0",
+      "credit": "Rob Tuytel / Poly Haven",
+      "upstream": [
+        "https://polyhaven.com/license"
+      ],
+      "note": "Original materials; some formats/resolutions converted for runtime."
+    },
+    {
+      "path": "assets/textures/environment/sand-albedo-v1.png",
+      "bytes": 3727456,
+      "sha256": "99c1687df66774ccc49ea0ef5d4d4caee28bb5de9ac8255548c343c33e50ef3d",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Authored/generated artwork, baked display proxy or authored placement data; upstream credits retained."
+    },
+    {
+      "path": "assets/textures/ground_sky262/gaia_edr3_4k.png",
+      "bytes": 18137183,
+      "sha256": "68fef2ee355015f84a43105bbf296f5a8d8b38d2fe8fe1a068ba1402e9ce5550",
+      "license": "CC-BY-SA-3.0-IGO",
+      "credit": "ESA/Gaia/DPAC; Acknowledgement: A. Moitinho",
+      "upstream": [
+        "https://creativecommons.org/licenses/by-sa/3.0/igo/"
+      ],
+      "note": "Original PNG pixels retained; map and image adaptations keep original license."
+    },
+    {
+      "path": "assets/textures/particles/marine-snow-v1.png",
+      "bytes": 534517,
+      "sha256": "acb7d357feeec6e282e1c86fb899fe9a9e82de18128affe1084aee4f4e0f3def",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Authored/generated artwork, baked display proxy or authored placement data; upstream credits retained."
+    },
+    {
+      "path": "assets/textures/reef/branching_v4_cushion_engine_proxy.png",
+      "bytes": 154619,
+      "sha256": "624c984957ed8f3d145b58ac529e959a1d2d71a5e8829de055d15c449a8ea5e4",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [],
+      "note": "Authored/generated artwork, baked display proxy or authored placement data; upstream credits retained."
+    },
+    {
+      "path": "assets/textures/reef/pocillopora_v2_engine_proxy.png",
+      "bytes": 332663,
+      "sha256": "0aaf1c26d76acaf4405a4673e295348bf340435d324440c85ef35ecfae695ea8",
+      "license": "CC-BY-4.0",
+      "credit": "Twinverse contributors",
+      "upstream": [
+        "Smithsonian USNM44359 specific media: public domain"
+      ],
+      "note": "Authored/generated artwork, baked display proxy or authored placement data; upstream credits retained."
+    },
+    {
+      "path": "assets/textures/woodland89/bark_brown_02_arm_1k.jpg",
+      "bytes": 232742,
+      "sha256": "6bd86d37b3b9b40cc30a4b661e382ec41fa7463a8b1144ff44708b19fa675af1",
+      "license": "CC0-1.0",
+      "credit": "Rob Tuytel / Poly Haven",
+      "upstream": [
+        "https://polyhaven.com/license"
+      ],
+      "note": "Original materials; some formats/resolutions converted for runtime."
+    },
+    {
+      "path": "assets/textures/woodland89/bark_brown_02_diff_1k.jpg",
+      "bytes": 659592,
+      "sha256": "920fa0bed0c9d78c1d530e99795113afd532d7db746de440f4a85d7c83ed0f1a",
+      "license": "CC0-1.0",
+      "credit": "Rob Tuytel / Poly Haven",
+      "upstream": [
+        "https://polyhaven.com/license"
+      ],
+      "note": "Original materials; some formats/resolutions converted for runtime."
+    },
+    {
+      "path": "assets/textures/woodland89/bark_brown_02_nor_gl_1k.jpg",
+      "bytes": 1015623,
+      "sha256": "0d5e691e8ad8bcd093a3587887fda2a6b4a948b5708a4f256f7919584c6eb857",
+      "license": "CC0-1.0",
+      "credit": "Rob Tuytel / Poly Haven",
+      "upstream": [
+        "https://polyhaven.com/license"
+      ],
+      "note": "Original materials; some formats/resolutions converted for runtime."
+    },
+    {
+      "path": "assets/textures/woodland89/forrest_ground_01_arm_1k.jpg",
+      "bytes": 296969,
+      "sha256": "22eb09a2ed951377f339c08be9f1665f0db7391ed9ba0b0e91e55aea2dbef315",
+      "license": "CC0-1.0",
+      "credit": "Rob Tuytel / Poly Haven",
+      "upstream": [
+        "https://polyhaven.com/license"
+      ],
+      "note": "Original materials; some formats/resolutions converted for runtime."
+    },
+    {
+      "path": "assets/textures/woodland89/forrest_ground_01_diff_1k.jpg",
+      "bytes": 833711,
+      "sha256": "3dd6875cb3908e022a3c45ebbffa5e84c670ff2691fbbb6dc9ea4bff88523800",
+      "license": "CC0-1.0",
+      "credit": "Rob Tuytel / Poly Haven",
+      "upstream": [
+        "https://polyhaven.com/license"
+      ],
+      "note": "Original materials; some formats/resolutions converted for runtime."
+    },
+    {
+      "path": "assets/textures/woodland89/forrest_ground_01_nor_gl_1k.jpg",
+      "bytes": 1428763,
+      "sha256": "32528a7cdee962cc0b248ee4023a74d0df175737ea90e1eb425122351e0bdab4",
+      "license": "CC0-1.0",
+      "credit": "Rob Tuytel / Poly Haven",
+      "upstream": [
+        "https://polyhaven.com/license"
+      ],
+      "note": "Original materials; some formats/resolutions converted for runtime."
+    },
+    {
+      "path": "assets/textures/woodland89/rock_surface_arm_1k.jpg",
+      "bytes": 775175,
+      "sha256": "8de45a3aa0be70f8baf5c609603bb6bba0274ee4eb8c8e47dad455258d5d7f2d",
+      "license": "CC0-1.0",
+      "credit": "Rob Tuytel / Poly Haven",
+      "upstream": [
+        "https://polyhaven.com/license"
+      ],
+      "note": "Original materials; some formats/resolutions converted for runtime."
+    },
+    {
+      "path": "assets/textures/woodland89/rock_surface_diff_1k.jpg",
+      "bytes": 886291,
+      "sha256": "07edda2bbe4715b01aae2e4bac9f21f204cf4aae37b4733ef01de33281e5e60e",
+      "license": "CC0-1.0",
+      "credit": "Rob Tuytel / Poly Haven",
+      "upstream": [
+        "https://polyhaven.com/license"
+      ],
+      "note": "Original materials; some formats/resolutions converted for runtime."
+    },
+    {
+      "path": "assets/textures/woodland89/rock_surface_nor_gl_1k.jpg",
+      "bytes": 1152344,
+      "sha256": "c645af7f6a20bf77421765e6f998873834821e1950a3a0a21c5ee9ced32cecc1",
+      "license": "CC0-1.0",
+      "credit": "Rob Tuytel / Poly Haven",
+      "upstream": [
+        "https://polyhaven.com/license"
+      ],
+      "note": "Original materials; some formats/resolutions converted for runtime."
+    },
+    {
+      "path": "data/environment/lizard_woa23_annual.json",
+      "bytes": 6697,
+      "sha256": "1ee24bbee2f2f50928dda3b07ba0441b732e552d49d20cca1d5774647c7132ca",
+      "license": "SOURCE-POLICY",
+      "credit": "NOAA NCEI / World Ocean Atlas 2023",
+      "upstream": [
+        "https://doi.org/10.25921/va26-hv25"
+      ],
+      "note": "Historical regional reference values; exact upstream files and hashes are retained in the JSON."
+    }
+  ]
+}

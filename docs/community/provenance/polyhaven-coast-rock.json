@@ -1,0 +1,47 @@
+{
+  "original_record": "assets/source/reef/polyhaven_coast_rocks_05/download-manifest.json",
+  "record": {
+    "status": "downloaded_hash_verified_not_geometry_or_visual_accepted",
+    "source": "Poly Haven",
+    "asset": "coast_rocks_05",
+    "author": "Rob Tuytel",
+    "asset_url": "https://polyhaven.com/a/coast_rocks_05",
+    "license": "CC0",
+    "license_url": "https://polyhaven.com/license",
+    "api_url": "https://api.polyhaven.com/files/coast_rocks_05",
+    "api_terms": "https://polyhaven.com/our-api",
+    "retrieved_utc": "2026-09-09T08:31:10Z",
+    "files": [
+      {
+        "local_path": ".local/vendor/polyhaven/coast_rocks_05/coast_rocks_05_2k.blend",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/blend/2k/coast_rocks_05/coast_rocks_05_2k.blend",
+        "bytes": 51267345,
+        "md5": "a352d786c77a32f8de44b79fa05a77bb",
+        "sha256": "0644f66dee2393783bb6e117fc0becafc48b2dd0eaab7d6af57acbbd64e66deb"
+      },
+      {
+        "local_path": ".local/vendor/polyhaven/coast_rocks_05/textures/coast_rocks_05_diff_2k.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/coast_rocks_05/coast_rocks_05_diff_2k.jpg",
+        "bytes": 3549600,
+        "md5": "87d8b0b68fd17706ce9ba63e5f1aa838",
+        "sha256": "3e95fdf0955df96007bddec6053ddb8809575426337ca3a10901649037f9e7c7"
+      },
+      {
+        "local_path": ".local/vendor/polyhaven/coast_rocks_05/textures/coast_rocks_05_nor_gl_2k.exr",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/exr/2k/coast_rocks_05/coast_rocks_05_nor_gl_2k.exr",
+        "bytes": 9585154,
+        "md5": "158ccf5c6b8942f92528eb21fa4a0361",
+        "sha256": "2d96808a54a54441f14e58b811501c0ac0360d228195f471a4a882607a7c683f"
+      },
+      {
+        "local_path": ".local/vendor/polyhaven/coast_rocks_05/textures/coast_rocks_05_rough_2k.exr",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/exr/2k/coast_rocks_05/coast_rocks_05_rough_2k.exr",
+        "bytes": 3176950,
+        "md5": "cb1137f9ae2d0c4b7d6103227cb584ee",
+        "sha256": "ca79b03bc126065aed7720b1cdc75bb6ee8976f675a0acf7ab73c2f064b45dbe"
+      }
+    ],
+    "seconds": 115.78096337500028,
+    "scope": "Offline art source only; not a scan of the project reef, not ecological data. Production app will not call the live API."
+  }
+}

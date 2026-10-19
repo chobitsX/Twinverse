@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "id": "lizard-woa23-1971-2000-annual-5m-v1",
+  "accessed": "2026-09-16",
+  "role": "regional_boundary_context",
+  "period": {
+    "start_year": 1971,
+    "end_year": 2000,
+    "aggregation": "annual"
+  },
+  "anchor": {
+    "latitude_deg": -14.666666666666666,
+    "longitude_deg": 145.46666666666667,
+    "kind": "regional_location_not_individual_fix",
+    "source": "https://australian.museum/get-involved/amri/lirs/about-lirs/"
+  },
+  "sample": {
+    "latitude_deg": -14.5,
+    "longitude_deg": 145.5,
+    "depth_m": 5,
+    "grid_deg": 1.0,
+    "selection": "containing_one_degree_cell_no_interpolation",
+    "anchor_to_cell_center_km": 18.876447195982646
+  },
+  "fields": {
+    "temperature": {
+      "value": 26.762,
+      "unit": "degC",
+      "source_id": "temperature",
+      "status": "frozen_climatology"
+    },
+    "salinity": {
+      "value": 35.156,
+      "unit": "1",
+      "source_id": "salinity",
+      "status": "frozen_climatology"
+    },
+    "oxygen": {
+      "value": 204.543,
+      "unit": "umol/kg",
+      "source_id": "oxygen",
+      "status": "frozen_climatology"
+    },
+    "oxygen_saturation": {
+      "value": 101.886,
+      "unit": "%",
+      "source_id": "oxygen_saturation",
+      "status": "frozen_climatology"
+    },
+    "temperature_analysis_error": {
+      "value": 0.0,
+      "unit": "degC",
+      "source_id": "temperature_analysis_error",
+      "status": "source_analysis_estimate_not_local_error_bound"
+    },
+    "oxygen_analysis_error": {
+      "value": 203.069,
+      "unit": "umol/kg",
+      "source_id": "oxygen_analysis_error",
+      "status": "source_analysis_estimate_not_local_error_bound"
+    }
+  },
+  "unknown_fields": [
+    "local_current_m_s",
+    "local_nutrients_umol_kg",
+    "local_reef_observation_error",
+    "local_coral_health"
+  ],
+  "source_dataset": {
+    "name": "World Ocean Atlas 2023",
+    "doi": "10.25921/va26-hv25",
+    "accession": "0270533",
+    "archive_revision": "v3.3, 2024-06-15 per NCEI landing metadata",
+    "oxygen_product_revision": "1.1, 2024-05-30 per WOA product page",
+    "exact_files": "identified by sources sha256; product and archive version labels are distinct"
+  },
+  "sources": {
+    "temperature": {
+      "sha256": "c5c1edc302b6796081c26b27013dd02516934e4c9125e09d75612ac9155275ef",
+      "bytes": 7404951,
+      "header": "#WOA23 one-degree ANNUAL temperature Climatological mean",
+      "url": "https://www.ncei.noaa.gov/data/oceans/woa/WOA23/DATA/temperature/csv/decav71A0/1.00/woa23_decav71A0_t00an01.csv.gz",
+      "excerpt": "docs/evidence/M2-003a/temperature-source-row.csv",
+      "excerpt_sha256": "c5d78042deb8be7351affc9047ce0b8710c5a86ffeeffe23804a4216f450916b",
+      "field_code": "an"
+    },
+    "salinity": {
+      "sha256": "6d36a74335bbb4deabd6ab53ffdb6b9211681a22fc335f1fece3b798f965354e",
+      "bytes": 5011918,
+      "header": "#WOA23 one-degree ANNUAL salinity Climatological mean",
+      "url": "https://www.ncei.noaa.gov/data/oceans/woa/WOA23/DATA/salinity/csv/decav71A0/1.00/woa23_decav71A0_s00an01.csv.gz",
+      "excerpt": "docs/evidence/M2-003a/salinity-source-row.csv",
+      "excerpt_sha256": "5e2a1e1f6801fbc8ee8f7ca3cc0f1d260f1ec1c612f9037dfe1e8fdc1bc8b2d2",
+      "field_code": "an"
+    },
+    "oxygen": {
+      "sha256": "e4a5a54be8adf714a79100b8ab02c95d5f2f9a1677d8cdc1ad3b9ce165c3567f",
+      "bytes": 10271496,
+      "header": "#WOA23 one-degree ANNUAL oxygen Climatological mean",
+      "url": "https://www.ncei.noaa.gov/data/oceans/woa/WOA23/DATA/oxygen/csv/decav71A0/1.00/woa23_decav71A0_o00an01.csv.gz",
+      "excerpt": "docs/evidence/M2-003a/oxygen-source-row.csv",
+      "excerpt_sha256": "b3bb3d8c6167507edb6008da01fa8ba159aea7c71911904d9149e330757e3177",
+      "field_code": "an"
+    },
+    "oxygen_saturation": {
+      "sha256": "17812620d27eb9b7e8e8506bab62483eb5fb56a19042213e53153b52e2674e4f",
+      "bytes": 9153558,
+      "header": "#WOA23 one-degree ANNUAL percent oxygen saturation Climatological mean",
+      "url": "https://www.ncei.noaa.gov/data/oceans/woa/WOA23/DATA/o2sat/csv/decav71A0/1.00/woa23_decav71A0_O00an01.csv.gz",
+      "excerpt": "docs/evidence/M2-003a/oxygen_saturation-source-row.csv",
+      "excerpt_sha256": "da460b446a870ae2f6f268ae17a0337286b320b1b2f8aaa68637bfcc7da4df71",
+      "field_code": "an"
+    },
+    "temperature_analysis_error": {
+      "sha256": "5f415e839d7e5a40231c9a7f52f04820aa2eaeae20327f4439e49b96c6571f7e",
+      "bytes": 288782,
+      "header": "#WOA23 one-degree ANNUAL temperature standard error of the objective analysis",
+      "url": "https://www.ncei.noaa.gov/data/oceans/woa/WOA23/DATA/temperature/csv/decav71A0/1.00/woa23_decav71A0_t00sea01.csv.gz",
+      "excerpt": "docs/evidence/M2-003a/temperature_analysis_error-source-row.csv",
+      "excerpt_sha256": "be1a2c21f375aae69099a24b1850987839153f2c98e7957ac704773870c243c0",
+      "field_code": "sea"
+    },
+    "oxygen_analysis_error": {
+      "sha256": "a259a5371332de7d7d5b39c14748d088943ad0c854e8c192c0b1da05afc1c4be",
+      "bytes": 10269984,
+      "header": "#WOA23 one-degree ANNUAL oxygen standard error of the objective analysis",
+      "url": "https://www.ncei.noaa.gov/data/oceans/woa/WOA23/DATA/oxygen/csv/decav71A0/1.00/woa23_decav71A0_o00sea01.csv.gz",
+      "excerpt": "docs/evidence/M2-003a/oxygen_analysis_error-source-row.csv",
+      "excerpt_sha256": "1d8c2bf995f0da8344fd2ae99e180495c0713c7a4499ecdd7e4ece24e564e4e4",
+      "field_code": "sea"
+    }
+  },
+  "limitations": [
+    "Not real-time weather or local reef observations.",
+    "Annual climatology has no daily low-oxygen cycle.",
+    "Grid mapping error is not the reef-scale physiological prediction error.",
+    "Oxygen saturation may exceed 100%; do not clamp it.",
+    "umol/kg is not mg/L; no density-free conversion is supplied.",
+    "Zero printed analysis error is not a claim of zero uncertainty.",
+    "Large oxygen analysis estimate retained verbatim; not used as a confidence interval or simulation noise."
+  ],
+  "attribution": "Reagan et al. (2023), World Ocean Atlas 2023, NOAA NCEI, doi:10.25921/va26-hv25; 1971-2000 annual one-degree subset at 14.5 S,145.5 E,5 m. Accessed 2026-09-16. Temperature: Locarnini et al. (2024), doi:10.25923/54bh-1613. Salinity: Reagan et al. (2024), doi:10.25923/70qt-9574. Oxygen: Garcia et al. (2024), doi:10.25923/rb67-ns53. Extracted/JSON-formatted by Twinverse; no NOAA endorsement.",
+  "rights": {
+    "basis": "NOAA-produced public data; retain citation and mark derivative; do not claim ownership or endorsement",
+    "dataset_terms": "https://www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.nodc:NCEI-WOA23",
+    "noaa_policy": "https://www.noaa.gov/disclaimer"
+  }
+}

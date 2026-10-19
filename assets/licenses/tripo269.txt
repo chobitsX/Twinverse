@@ -1,0 +1,20 @@
+Tripo Studio H3.1 ecology references, generated October 9-11, 2026.
+46 successful source tasks, including rejected drafts and corrected references.
+43 selected runtime variants cover the remaining 37 species in the existing atlas.
+15 variants use locally conditioned Tripo geometry with retained authored scientific
+parts; 28 use the authored scientific geometry with Tripo pigment/micro-normal detail.
+Source generation does not establish anatomical accuracy or specimen calibration.
+
+Tasks, source/output hashes, geometry roles, texture sizes and local conditioning:
+assets/source/tripo269/LEDGER.json
+assets/source/tripo269/RUNTIME.json
+Editable sources and raw downloads stay outside the runtime pack.
+Motion, counts, identity, close reference parts and World ownership follow the
+existing authored scene controllers. They are teaching demonstrations, not scans,
+field measurements, biomechanical simulations or ecological predictions.
+
+Terms: https://www.tripo3d.ai/terms (last updated July 11, 2025; prior review Oct 9, 2026).
+Output rights depend on the applicable account plan under sections 5.2.1/5.2.2.
+The paid account tier was not independently verified. Assets are not labelled CC0,
+public domain or wholly original mesh authorship; commercial distribution rights
+remain unverified. This local development candidate does not establish them.

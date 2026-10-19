@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "accessed": "2026-09-11",
+  "assets": [
+    {
+      "file": "jupiter_nasa.jpg",
+      "source_url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Jupiter/Jupiter.jpg",
+      "source_page": "https://science.nasa.gov/3d-resources/jupiter/",
+      "git_blob_sha1": "2f529002f9636d38c8ab131e27e98abbca325c09",
+      "sha256": "ac2d387f8ea56a59f45dea37993c779a730f49d7d9fdbc8d36c307a351b1f1a1",
+      "bytes": 225878,
+      "dimensions": [
+        720,
+        360
+      ],
+      "credit": "NASA 3D Resources / JPL / Caltech",
+      "scientific_scope": "Voyager image map; historical, not current cloud weather",
+      "modification": "Original JPEG bytes, no edits"
+    },
+    {
+      "file": "saturn_nasa.jpg",
+      "source_url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Saturn/Saturn.jpg",
+      "source_page": "https://science.nasa.gov/3d-resources/saturn/",
+      "git_blob_sha1": "c0d3f5f2b662a6bee1d6300dcb5951f5e44abc77",
+      "sha256": "d959a239e3d87630daf08e2a688dcbf315fe01b1fd474e55522770108f40aca7",
+      "bytes": 275735,
+      "dimensions": [
+        720,
+        360
+      ],
+      "credit": "NASA 3D Resources / JPL / Caltech",
+      "scientific_scope": "Fictional texture from JPL/Caltech planetary map database, as explicitly described by NASA; not observational reconstruction",
+      "modification": "Original JPEG bytes, no edits"
+    }
+  ],
+  "usage_guidance": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+  "repository_terms": "https://github.com/nasa/NASA-3D-Resources",
+  "use": "Attributed graphical simulation, no NASA branding or endorsement claim."
+}

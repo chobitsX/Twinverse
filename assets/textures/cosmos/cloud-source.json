@@ -1,0 +1,17 @@
+{
+  "path": "assets/textures/cosmos/nasa-clouds-2002-2048.jpg",
+  "sha256": "daddaad84d7a33bbbc86cdda3f591099f57cee8607b7bcf3b67eb7e4f7a1c793",
+  "bytes": 829367,
+  "dimensions": [
+    2048,
+    1024
+  ],
+  "download": "https://eoimages.gsfc.nasa.gov/images/imagerecords/57000/57747/cloud_combined_2048.jpg",
+  "primary_context": "https://science.nasa.gov/earth/earth-observatory/the-blue-marble-2181/",
+  "original_catalog": "https://visibleearth.nasa.gov/images/57747/blue-marble-clouds/77558l",
+  "catalog_access": "Search index preserves record; current direct URL redirects to NASA Earth Observatory homepage. Original NASA image endpoint remains accessible.",
+  "credit": "NASA Goddard Space Flight Center / Reto Stöckli (clouds); Robert Simmon (compositing)",
+  "data_semantics": "MODIS visible cloud mosaic from two days plus thermal infrared third-day polar coverage; published 2002-02-11. Frozen visual layer, not current weather or same-date data as 2004-01 land map.",
+  "usage_policy": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+  "postprocess": "Original JPEG unchanged; shader maps greyscale to display opacity, not retrieved optical depth."
+}

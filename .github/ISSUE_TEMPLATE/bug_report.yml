@@ -1,0 +1,83 @@
+{
+  "name": "问题反馈 / Bug report",
+  "description": "可复现的操作、画面或崩溃问题 / Reproducible behavior, visual or crash issue",
+  "title": "[Bug] ",
+  "body": [
+    {
+      "type": "markdown",
+      "attributes": {
+        "value": "欢迎中文或英文反馈。请勿上传API Key、带访问令牌的下载链接、设备序列号或真实用户存档。 Chinese and English are welcome; keep private data out of reports."
+      }
+    },
+    {
+      "type": "input",
+      "id": "version",
+      "attributes": {
+        "label": "版本 / Version",
+        "description": "例如 0.4.187 / build 285"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "dropdown",
+      "id": "platform",
+      "attributes": {
+        "label": "平台 / Platform",
+        "options": [
+          "macOS Apple Silicon",
+          "macOS Intel",
+          "Windows",
+          "Linux",
+          "Other"
+        ]
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "environment",
+      "attributes": {
+        "label": "设备与画质 / Device and quality",
+        "description": "系统版本、CPU/GPU、内存、画质；不需要序列号。"
+      },
+      "validations": {
+        "required": false
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "steps",
+      "attributes": {
+        "label": "复现步骤 / Steps"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "expected",
+      "attributes": {
+        "label": "预期与实际结果 / Expected and actual"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "evidence",
+      "attributes": {
+        "label": "截图或精简日志 / Screenshots or minimal logs",
+        "description": "删除个人路径、令牌和私人数据。"
+      },
+      "validations": {
+        "required": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/experience/visual_stage.gd" id="1_stage"]
+[ext_resource type="Script" path="res://scripts/experience/cosmos_builder.gd" id="2_builder"]
+[ext_resource type="Texture2D" path="res://assets/textures/cosmos/earth_bmng_200401_5400x2700.jpg" id="3_earth"]
+[ext_resource type="Texture2D" path="res://assets/textures/cosmos/nasa-clouds-2002-2048.jpg" id="4_clouds"]
+
+[ext_resource type="Texture2D" path="res://assets/textures/cosmos/lroc_color_2k.jpg" id="7_moon"]
+
+
+[node name="CosmosStage" type="Node"]
+script = ExtResource("1_stage")
+builder = ExtResource("2_builder")
+texture_keys = Array[String](["earth_bmng", "earth_clouds", "moon"])
+texture_assets = Array[Texture2D]([ExtResource("3_earth"), ExtResource("4_clouds"), ExtResource("7_moon")])

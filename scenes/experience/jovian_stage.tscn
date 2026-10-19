@@ -1,0 +1,17 @@
+[gd_scene load_steps=12 format=3]
+[ext_resource type="Script" path="res://scripts/experience/visual_stage.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/experience/jovian_builder.gd" id="2"]
+[ext_resource type="Texture2D" path="res://assets/textures/cosmos/planets_v2/jupiter_hubble_2015.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/textures/cosmos/jovian117/io.jpg" id="4"]
+[ext_resource type="Texture2D" path="res://assets/textures/cosmos/jovian117/europa.jpg" id="5"]
+[ext_resource type="Texture2D" path="res://assets/textures/cosmos/jovian117/ganymede.jpg" id="6"]
+[ext_resource type="Texture2D" path="res://assets/textures/cosmos/jovian117/callisto.jpg" id="7"]
+[ext_resource type="Texture2D" path="res://assets/textures/cosmos/jovian117/io-coverage.png" id="8"]
+[ext_resource type="Texture2D" path="res://assets/textures/cosmos/jovian117/europa-coverage.png" id="9"]
+[ext_resource type="Texture2D" path="res://assets/textures/cosmos/jovian117/ganymede-coverage.png" id="10"]
+[ext_resource type="Texture2D" path="res://assets/textures/cosmos/jovian117/callisto-coverage.png" id="11"]
+[node name="JovianStage" type="Node"]
+script = ExtResource("1")
+builder = ExtResource("2")
+texture_keys = Array[String](["jupiter", "io", "europa", "ganymede", "callisto", "io_coverage", "europa_coverage", "ganymede_coverage", "callisto_coverage"])
+texture_assets = Array[Texture2D]([ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("6"), ExtResource("7"), ExtResource("8"), ExtResource("9"), ExtResource("10"), ExtResource("11")])

@@ -1,0 +1,13 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/experience/visual_stage.gd" id="1_stage"]
+[ext_resource type="Script" path="res://scripts/experience/anatomy_builder.gd" id="2_builder"]
+[ext_resource type="PackedScene" path="res://assets/models/heart/teleost_heart_lod0.glb" id="3_solid"]
+[ext_resource type="PackedScene" path="res://assets/models/heart/teleost_heart_cutaway.glb" id="4_cutaway"]
+[ext_resource type="PackedScene" path="res://assets/models/fish/v11/percula_v11_lod0.glb" id="5_context"]
+
+[node name="AnatomyStage" type="Node"]
+script = ExtResource("1_stage")
+asset_keys = Array[String](["heart_solid", "heart_cutaway", "fish_context"])
+asset_scenes = Array[PackedScene]([ExtResource("3_solid"), ExtResource("4_cutaway"), ExtResource("5_context")])
+builder = ExtResource("2_builder")

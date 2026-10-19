@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "accessed": "2026-09-15",
+  "source_page": "https://svs.gsfc.nasa.gov/12021/",
+  "source_url": "https://svs.gsfc.nasa.gov/vis/a010000/a012000/a012021/Hubble_Jupiter_color_global_map_2015a.tif",
+  "credit": "NASA’s Goddard Space Flight Center / Space Telescope Science Institute; NASA, ESA, A. Simon (GSFC), M. Wong (UC Berkeley), G. Orton (JPL-Caltech)",
+  "dimensions": [
+    3600,
+    1800
+  ],
+  "scientific_scope": "First 2015 Hubble global colour map; historical multi-image composite, not current cloud weather. Polar strips in the source are unobserved/black; renderer clamps latitude UV to 0.06–0.94 as an authored edge extension, not new observed polar data.",
+  "source": {
+    "path": "assets/source/cosmos/hubble_jupiter_2015/Hubble_Jupiter_color_global_map_2015a.tif",
+    "bytes": 19461484,
+    "sha256": "c3b915227ef88899a07a2b62584d9303d77d3491b9bb7de8824fb6df4a52f7b2"
+  },
+  "runtime": {
+    "path": "assets/textures/cosmos/planets_v2/jupiter_hubble_2015.png",
+    "bytes": 6154903,
+    "sha256": "aa05f6a1fdad55e9e47d58cfeed3f5ca4520f0f67efc419aa03657254ac91101"
+  },
+  "conversion": "macOS sips -s format png; same dimensions, no retouching or colour grading of the source",
+  "usage_guidance": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+  "use": "Attributed educational graphical simulation. No logos or endorsement claim; not relicensed as CC0."
+}

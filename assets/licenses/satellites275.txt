@@ -1,0 +1,14 @@
+Natural satellite geometric ephemerides, frozen 2026-10-13.
+Sources: NASA/JPL Solar System Dynamics, NAIF generic SPK kernels, NASA/JPL Horizons API.
+https://ssd.jpl.nasa.gov/sats/ephem/
+https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/satellites/
+https://ssd.jpl.nasa.gov/ftp/eph/satellites/bsp/ura182.bsp
+https://ssd.jpl.nasa.gov/ftp/eph/satellites/bsp/nep097.bsp
+https://ssd.jpl.nasa.gov/horizons/
+22 major satellites use original SPK Chebyshev polynomials for 1995-01-01 to 2050-01-01 TDB.
+Coefficients rotated to J2000 ecliptic and quantized to 0.1 metre with separately bounded coefficient truncation; byte planes are compressed without changing the time variable.
+392 slow outer satellites use same-centre geometric Horizons position/velocity states over the same dates, with excluded-state validation and adaptive cadence.
+Raw response files, HTTP ranges, source headers and SHA-256 records remain under docs/references/science/satellites275 and are excluded from the application.
+The independent jplephem reader is a local generation/validation dependency; its implementation is not distributed in the runtime. GDScript runtime readers and visual marker meshes are authored in this project.
+Existing catalogue/rotation, surface image and model provenance remains in its original asset records. Grey spheres are radius illustrations, not real surface reconstruction; unknown radii/orientation remain unknown.
+37 small fast moons retain the original 2026-09-01 to 2026-12-01 states. Four unavailable identities are retained with explicit missing-data labels. No extrapolated or repeated-date positions are presented as ephemerides.

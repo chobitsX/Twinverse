@@ -1,0 +1,21 @@
+name: Community checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: community-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@9f698171ed81b15d1823a05fc7211befd50c8ae0 # v6.0.3
+        with:
+          persist-credentials: false
+      - name: Validate public documentation and resource manifest
+        run: python3 tools/check_community.py
+      - name: Check snapshot dependency boundaries
+        run: python3 -m unittest discover -s tests/tools -p test_public_snapshot.py

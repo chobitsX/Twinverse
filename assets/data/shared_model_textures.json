@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "scope": "Exact source bytes, identical import parameters, and identical decoded pixels at every mip level. Import-only aliases; sources retained.",
+  "textures": {
+    "res://assets/models/fish/v12/percula_v12_lod1_percula_v3_basecolor.png": {
+      "canonical_path": "res://assets/models/fish/v11/percula_v11_lod0_percula_v3_basecolor.png",
+      "source_sha256": "7ff164cf63ca3fe8d9fd62a778758424bb1872794dffaaf9063563d90bd41cb2",
+      "all_mip_levels_sha256": "6cadf1d0f307f706cd634c5264a37632a509023ad40d21e29fcced1a035e3497"
+    },
+    "res://assets/models/fish/v12/percula_v12_lod1_percula_v3_fin_rgba.png": {
+      "canonical_path": "res://assets/models/fish/v11/percula_v11_lod0_percula_v3_fin_rgba.png",
+      "source_sha256": "74c11e60fd9e8c86f615ecd907437776f8ebe50faca0620594ae3478cf618d7d",
+      "all_mip_levels_sha256": "2eb1ba6de488da49effdda3d2539d068633369c56b05327ef1e5678563c32aca"
+    },
+    "res://assets/models/fish/v12/percula_v12_lod1_percula_v3_iris.png": {
+      "canonical_path": "res://assets/models/fish/v11/percula_v11_lod0_percula_v3_iris.png",
+      "source_sha256": "545e0c8e85ade14af911bbc93d590bde15dc33b3e29ab1c44275154e40387ea1",
+      "all_mip_levels_sha256": "45b88ae605f883702df50f450f0dcc7cb20d83a73e69beae797a055d5c290c8b"
+    },
+    "res://assets/models/fish/v12/percula_v12_lod1_percula_v3_normal.png": {
+      "canonical_path": "res://assets/models/fish/v11/percula_v11_lod0_percula_v3_normal.png",
+      "source_sha256": "018ca7fcbacb83cc263fee2786f2e42c3512ce91e07b9a1709b835c3fdf280e6",
+      "all_mip_levels_sha256": "300ef4a9006c211699226ce1ef9683fc3f2af88c43e29996e1353d5caed69e48"
+    },
+    "res://assets/models/fish/v12/percula_v12_lod1_percula_v3_roughness.png": {
+      "canonical_path": "res://assets/models/fish/v11/percula_v11_lod0_percula_v3_roughness.png",
+      "source_sha256": "c4bd4648855de20223b92413c3953411562dbbb1f60ffb9c840e434082e26f63",
+      "all_mip_levels_sha256": "3fb89affee0df066f1e03c4b4bdc43cd79f2923b6d1e8e5070cede024fe6a1b8"
+    },
+    "res://assets/models/heart/teleost_heart_cutaway_Elastic_bulbus_normal.png": {
+      "canonical_path": "res://assets/models/heart/teleost_heart_cutaway_Cut_myocardium_normal.png",
+      "source_sha256": "cb13b2748304207413fbfef55f7dc3a49c0675229216ecee7d5823a2ced246eb",
+      "all_mip_levels_sha256": "e0811caeae2c39eece61786511d03b8bd8845be1434a832d6022b3ce6363a339"
+    },
+    "res://assets/models/heart/teleost_heart_cutaway_Myocardium_normal.png": {
+      "canonical_path": "res://assets/models/heart/teleost_heart_cutaway_Cut_myocardium_normal.png",
+      "source_sha256": "cb13b2748304207413fbfef55f7dc3a49c0675229216ecee7d5823a2ced246eb",
+      "all_mip_levels_sha256": "e0811caeae2c39eece61786511d03b8bd8845be1434a832d6022b3ce6363a339"
+    },
+    "res://assets/models/heart/teleost_heart_cutaway_Thin_atrial_wall_normal.png": {
+      "canonical_path": "res://assets/models/heart/teleost_heart_cutaway_Cut_myocardium_normal.png",
+      "source_sha256": "cb13b2748304207413fbfef55f7dc3a49c0675229216ecee7d5823a2ced246eb",
+      "all_mip_levels_sha256": "e0811caeae2c39eece61786511d03b8bd8845be1434a832d6022b3ce6363a339"
+    },
+    "res://assets/models/heart/teleost_heart_lod0_Elastic_bulbus_normal.png": {
+      "canonical_path": "res://assets/models/heart/teleost_heart_cutaway_Cut_myocardium_normal.png",
+      "source_sha256": "cb13b2748304207413fbfef55f7dc3a49c0675229216ecee7d5823a2ced246eb",
+      "all_mip_levels_sha256": "e0811caeae2c39eece61786511d03b8bd8845be1434a832d6022b3ce6363a339"
+    },
+    "res://assets/models/heart/teleost_heart_lod0_Myocardium_normal.png": {
+      "canonical_path": "res://assets/models/heart/teleost_heart_cutaway_Cut_myocardium_normal.png",
+      "source_sha256": "cb13b2748304207413fbfef55f7dc3a49c0675229216ecee7d5823a2ced246eb",
+      "all_mip_levels_sha256": "e0811caeae2c39eece61786511d03b8bd8845be1434a832d6022b3ce6363a339"
+    },
+    "res://assets/models/heart/teleost_heart_lod0_Thin_atrial_wall_normal.png": {
+      "canonical_path": "res://assets/models/heart/teleost_heart_cutaway_Cut_myocardium_normal.png",
+      "source_sha256": "cb13b2748304207413fbfef55f7dc3a49c0675229216ecee7d5823a2ced246eb",
+      "all_mip_levels_sha256": "e0811caeae2c39eece61786511d03b8bd8845be1434a832d6022b3ce6363a339"
+    },
+    "res://assets/models/heart/teleost_heart_lod0_Elastic_bulbus_basecolor.png": {
+      "canonical_path": "res://assets/models/heart/teleost_heart_cutaway_Elastic_bulbus_basecolor.png",
+      "source_sha256": "7253a2d21e7f1441a548628edf0bb7929f0b13937cd37185bcfa6a61db6d2fa2",
+      "all_mip_levels_sha256": "558447e7ebaf255b519a9c9a6488de22f3c3f961feaee190f8213664f04ffb06"
+    },
+    "res://assets/models/heart/teleost_heart_lod0_Myocardium_basecolor.png": {
+      "canonical_path": "res://assets/models/heart/teleost_heart_cutaway_Myocardium_basecolor.png",
+      "source_sha256": "871cf3f39ea043d8150bbafba2d775728fd8b050c92946a40761bb736849c68c",
+      "all_mip_levels_sha256": "df9ac83c585250ecddaa0e48de49d20123becbb5005ea73475e52c2c255546c3"
+    },
+    "res://assets/models/heart/teleost_heart_lod0_Thin_atrial_wall_basecolor.png": {
+      "canonical_path": "res://assets/models/heart/teleost_heart_cutaway_Thin_atrial_wall_basecolor.png",
+      "source_sha256": "472e16392404849052b95c48ac64e5a7d533a718c8ad805871dff3074655cd4e",
+      "all_mip_levels_sha256": "763bbba3053f065bf7c5be9df7ab473cc0a1b1b940b5f5cbece6775d4bc2ca59"
+    },
+    "res://assets/models/reef/anemone_v5/anemone_v5_lod2_anemone_disc_v4_basecolor.png": {
+      "canonical_path": "res://assets/models/reef/anemone_v5/anemone_v5_lod1_anemone_disc_v4_basecolor.png",
+      "source_sha256": "438d41fc87fd661c2b68d46f2217233d792c34a5caf64ddb02e6bf9c2620470e",
+      "all_mip_levels_sha256": "7b7334a2366d38013dff1a1af2a6c3449616fd3d4da358807a0360faf1ff85ea"
+    },
+    "res://assets/models/reef/anemone_v5/anemone_v5_lod1_anemone_tentacle_v4_normal.png": {
+      "canonical_path": "res://assets/models/reef/anemone_v5/anemone_v5_lod1_anemone_disc_v4_normal.png",
+      "source_sha256": "55e82cf776cf29789bc36e1ef6b8726147346cb585b9942134786a33f4ee78c9",
+      "all_mip_levels_sha256": "5a0c71d92c6c1ab85a9b8aceadb8c2ca10c5c6ac1775411b7959ef875f1b239d"
+    },
+    "res://assets/models/reef/anemone_v5/anemone_v5_lod2_anemone_disc_v4_normal.png": {
+      "canonical_path": "res://assets/models/reef/anemone_v5/anemone_v5_lod1_anemone_disc_v4_normal.png",
+      "source_sha256": "55e82cf776cf29789bc36e1ef6b8726147346cb585b9942134786a33f4ee78c9",
+      "all_mip_levels_sha256": "5a0c71d92c6c1ab85a9b8aceadb8c2ca10c5c6ac1775411b7959ef875f1b239d"
+    },
+    "res://assets/models/reef/anemone_v5/anemone_v5_lod2_anemone_tentacle_v4_normal.png": {
+      "canonical_path": "res://assets/models/reef/anemone_v5/anemone_v5_lod1_anemone_disc_v4_normal.png",
+      "source_sha256": "55e82cf776cf29789bc36e1ef6b8726147346cb585b9942134786a33f4ee78c9",
+      "all_mip_levels_sha256": "5a0c71d92c6c1ab85a9b8aceadb8c2ca10c5c6ac1775411b7959ef875f1b239d"
+    },
+    "res://assets/models/reef/anemone_v5/anemone_v5_lod2_anemone_disc_v4_roughness.png": {
+      "canonical_path": "res://assets/models/reef/anemone_v5/anemone_v5_lod1_anemone_disc_v4_roughness.png",
+      "source_sha256": "bb4d906e867902c21f77cfef62ed56196ddddee821855ab223a16fae64f2465f",
+      "all_mip_levels_sha256": "106f5641230546955e7fb7aa319ddc0cc0e0ec80f45d04ee604a0d180daf5795"
+    },
+    "res://assets/models/reef/anemone_v5/anemone_v5_lod2_anemone_tentacle_v4_basecolor.png": {
+      "canonical_path": "res://assets/models/reef/anemone_v5/anemone_v5_lod1_anemone_tentacle_v4_basecolor.png",
+      "source_sha256": "b0c46a2e85cafb120714508065791ef36a7ef1b14cdacfd7696636f90dc2cda6",
+      "all_mip_levels_sha256": "dab78015a21c5726d02764116b7ec045163f2b65b63c9705b33226322e99b650"
+    },
+    "res://assets/models/reef/anemone_v5/anemone_v5_lod2_anemone_tentacle_v4_roughness.png": {
+      "canonical_path": "res://assets/models/reef/anemone_v5/anemone_v5_lod1_anemone_tentacle_v4_roughness.png",
+      "source_sha256": "70d35c0de965a86af4dccf9838358ca7204049b2bbe92937c17b423a1fd52f8d",
+      "all_mip_levels_sha256": "932da80dcce4695e93f59f1aabaa79c3edb467b159cd6a9453c39e3c420aed7a"
+    },
+    "res://assets/models/reef/branching_v4/branching_v4_cushion_lod1_branching_v4_cushion_LOD0_basecolor.png": {
+      "canonical_path": "res://assets/models/reef/branching_v4/branching_v4_cushion_lod0_branching_v4_cushion_LOD0_basecolor.png",
+      "source_sha256": "66e9e9f23970398e67d15ab01b78f4f7ebef77884efc9e5b2fd10ce4a91f3d00",
+      "all_mip_levels_sha256": "03dd617dd67285cd1f54fe5ef715f1698aaf471a386fd34d9ff8eb58b7269a21"
+    },
+    "res://assets/models/reef/branching_v4/branching_v4_cushion_lod1_branching_v4_cushion_LOD0_normal.png": {
+      "canonical_path": "res://assets/models/reef/branching_v4/branching_v4_cushion_lod0_branching_v4_cushion_LOD0_normal.png",
+      "source_sha256": "a35e2be88bf7aeb4799310413d304a97c45081c1a4f83179c59409381fc5e1c7",
+      "all_mip_levels_sha256": "e6a084985b0beb2b1d3fc51a0ed9119c22944ec170a9c736703f8c51aa56891e"
+    },
+    "res://assets/models/reef/branching_v4/branching_v4_cushion_lod1_branching_v4_cushion_LOD0_roughness.png": {
+      "canonical_path": "res://assets/models/reef/branching_v4/branching_v4_cushion_lod0_branching_v4_cushion_LOD0_roughness.png",
+      "source_sha256": "aef588a28ddc6aa2c757cea98e48fb7228bd502444bfe32b29f753da4774dbb0",
+      "all_mip_levels_sha256": "19a3d2fd9563e830f9c1b5577326f10d044b3d17e25aabd4b1b9d7501e8c8207"
+    },
+    "res://assets/models/reef/coast_rock_v1/coast_rocks_05_lod1_coast_rocks_05_diff_2k.png": {
+      "canonical_path": "res://assets/models/reef/coast_rock_v1/coast_rocks_05_lod0_coast_rocks_05_diff_2k.png",
+      "source_sha256": "0b1397897dcaa814344c2d63aec489072fd81f04350d4b3afdbb6be60cd09cd6",
+      "all_mip_levels_sha256": "4b149eb3a15251b160bcb591940359c18ad241f840d207cb24fae2919ba12912"
+    },
+    "res://assets/models/reef/coast_rock_v1/coast_rocks_05_lod1_coast_rocks_05_nor_gl_2k.png": {
+      "canonical_path": "res://assets/models/reef/coast_rock_v1/coast_rocks_05_lod0_coast_rocks_05_nor_gl_2k.png",
+      "source_sha256": "b8523bbce3a73e8b240a58da95d146dc2e1dad0ee1d2f5447dca48203f6e3035",
+      "all_mip_levels_sha256": "ba2160036b0c4680e804d73f288543410033872d51c3a8b37a8f0e23d6872e18"
+    },
+    "res://assets/models/reef/coast_rock_v1/coast_rocks_05_lod1_coast_rocks_05_rough_2k.png": {
+      "canonical_path": "res://assets/models/reef/coast_rock_v1/coast_rocks_05_lod0_coast_rocks_05_rough_2k.png",
+      "source_sha256": "3990dce8d105762dcff12b9d7f50f18696cffc299e4b311028a7799e0cdcde7b",
+      "all_mip_levels_sha256": "fc87e4224b797ca830e72d480e8ad34a62f808880cd772decb623b6e0f88444c"
+    },
+    "res://assets/models/reef/massive_coral_lod1_massive_coral_basecolor.png": {
+      "canonical_path": "res://assets/models/reef/massive_coral_lod0_massive_coral_basecolor.png",
+      "source_sha256": "525f17846f219c5bc940a1caf9b16eda29fa368add59164487619f52945e65c3",
+      "all_mip_levels_sha256": "91f91daacf51c6414931e16e0eb31b9bc70f90528474a435b2ab3d958b0f3e8e"
+    },
+    "res://assets/models/reef/massive_coral_lod1_massive_coral_normal.png": {
+      "canonical_path": "res://assets/models/reef/massive_coral_lod0_massive_coral_normal.png",
+      "source_sha256": "2a8160735f3c6bf2429ad8aee815deacf1191c6e71d084585f540c477f59c651",
+      "all_mip_levels_sha256": "0249ae7bedd00cb2789732f2259c69dddaca2bf9d142acd34751d609f72fbc6a"
+    },
+    "res://assets/models/reef/massive_coral_lod1_massive_coral_roughness.png": {
+      "canonical_path": "res://assets/models/reef/massive_coral_lod0_massive_coral_roughness.png",
+      "source_sha256": "bbb10335a022395ad7cbfa115f9cf4a50bb6accb6b471104423b32c07a8fd135",
+      "all_mip_levels_sha256": "de00c42cb4f82e1c152c6448be0de6aa8f5f008f51e5205a95799b5409228a1d"
+    },
+    "res://assets/models/reef/plate_v6/plate_v6_cup_lod1_plate_v4_cup_LOD0_basecolor.png": {
+      "canonical_path": "res://assets/models/reef/plate_v6/plate_v6_cup_lod0_plate_v4_cup_LOD0_basecolor.png",
+      "source_sha256": "bc7f3c18f774ab91d6a1744a80d6a99ba1c977d8788e95a8308d9f7dbfc538db",
+      "all_mip_levels_sha256": "a644214ea9242a9c8d716e0403203a5a8de19e9240b65c2cfcb81c174ae088c4"
+    },
+    "res://assets/models/reef/plate_v6/plate_v6_cup_lod1_plate_v4_cup_LOD0_normal.png": {
+      "canonical_path": "res://assets/models/reef/plate_v6/plate_v6_cup_lod0_plate_v4_cup_LOD0_normal.png",
+      "source_sha256": "485c7ff509bad5c53fe0d08adaee9000f939647ad42f0e24d0f4c27a1d57679a",
+      "all_mip_levels_sha256": "f347b6010eaf629eae4898bf5a3d343d8420b8f96503e90259237a5906814387"
+    },
+    "res://assets/models/reef/plate_v6/plate_v6_cup_lod1_plate_v4_cup_LOD0_roughness.png": {
+      "canonical_path": "res://assets/models/reef/plate_v6/plate_v6_cup_lod0_plate_v4_cup_LOD0_roughness.png",
+      "source_sha256": "9dbf94a5c12439409f1cdb6d6fae68e05485ee91444dd6b7632c24d43df304a9",
+      "all_mip_levels_sha256": "949995416db5358529666fc6f09eb9eaa33c45668f03697afc1bc059e8131465"
+    },
+    "res://assets/models/reef/plate_v6/plate_v6_fan_lod1_plate_v4_fan_LOD0_basecolor.png": {
+      "canonical_path": "res://assets/models/reef/plate_v6/plate_v6_fan_lod0_plate_v4_fan_LOD0_basecolor.png",
+      "source_sha256": "d1884431b6f63e7bc19c1ffc0f7bf5d11442afd1628c5b4e8c77178b8b7d46f6",
+      "all_mip_levels_sha256": "20e782de11d952386dd265a338c56f627831ca9057a90c25ece177e66ca8583d"
+    },
+    "res://assets/models/reef/plate_v6/plate_v6_fan_lod1_plate_v4_fan_LOD0_normal.png": {
+      "canonical_path": "res://assets/models/reef/plate_v6/plate_v6_fan_lod0_plate_v4_fan_LOD0_normal.png",
+      "source_sha256": "5ead22969c96f164dd014350db54f55cf46a0555e460a44b2f96208b3f0e5c8d",
+      "all_mip_levels_sha256": "4f42ab395b7ca5e1042a995d54d44a078f52852286ba38a050533865fb770db6"
+    },
+    "res://assets/models/reef/plate_v6/plate_v6_fan_lod1_plate_v4_fan_LOD0_roughness.png": {
+      "canonical_path": "res://assets/models/reef/plate_v6/plate_v6_fan_lod0_plate_v4_fan_LOD0_roughness.png",
+      "source_sha256": "c8d2ed81342dc67587ff6b5ad72b6cad0975ab68f984d708e181226716a83fa4",
+      "all_mip_levels_sha256": "2c87c88a1b6eaea282767d92a4555a24371515ddd61fa0d36d0ef7514330540f"
+    },
+    "res://assets/models/reef/plate_v6/plate_v6_lobed_lod1_plate_v4_lobed_LOD0_basecolor.png": {
+      "canonical_path": "res://assets/models/reef/plate_v6/plate_v6_lobed_lod0_plate_v4_lobed_LOD0_basecolor.png",
+      "source_sha256": "5869b850c7cc7a606d9223e66ccb571d08fa026a89a1a3719262bb8430c226ea",
+      "all_mip_levels_sha256": "0c3b268496cd24379131bbefe7ffd78094654e2d7796b005d79f59b2b0fbda27"
+    },
+    "res://assets/models/reef/plate_v6/plate_v6_lobed_lod1_plate_v4_lobed_LOD0_normal.png": {
+      "canonical_path": "res://assets/models/reef/plate_v6/plate_v6_lobed_lod0_plate_v4_lobed_LOD0_normal.png",
+      "source_sha256": "de2bc82ad24f7a8e4962c70ece074f84ac16c8ff8803a344bacb8741975d6a6b",
+      "all_mip_levels_sha256": "ed4eee3c6e96a6243b052f7f10eec9a9950506ba9d3d0f73ce1f128fbf054628"
+    },
+    "res://assets/models/reef/plate_v6/plate_v6_lobed_lod1_plate_v4_lobed_LOD0_roughness.png": {
+      "canonical_path": "res://assets/models/reef/plate_v6/plate_v6_lobed_lod0_plate_v4_lobed_LOD0_roughness.png",
+      "source_sha256": "811aacc9dc1d518a7996cc76fbdfec25b2dd28e2be049189416a541ea9fc0d0b",
+      "all_mip_levels_sha256": "9290eb4f0fffdf874e902d745e5000f322b84e5128d6c48e9c499da2d4bcb4d6"
+    },
+    "res://assets/models/reef/reef_rock_lod1_reef_rock_basecolor.png": {
+      "canonical_path": "res://assets/models/reef/reef_rock_lod0_reef_rock_basecolor.png",
+      "source_sha256": "14085d30f710ab9dd86f931dd457605b8321cdb02a0adc98eec69534a8ad9e9f",
+      "all_mip_levels_sha256": "3a9eb195c66ce1def6b6e839198ca48e00c826b9759f354bb8cf08197dcd0723"
+    },
+    "res://assets/models/reef/reef_rock_lod1_reef_rock_normal.png": {
+      "canonical_path": "res://assets/models/reef/reef_rock_lod0_reef_rock_normal.png",
+      "source_sha256": "e95dd27a12393f10ba13017c15674df49a52e4be604a1f823ccfefa83b3736b0",
+      "all_mip_levels_sha256": "99af06de4c9f8b2aee3ca91c762596bdcad64fabf6a6ad6003b0d4b54482dfb3"
+    },
+    "res://assets/models/reef/reef_rock_lod1_reef_rock_roughness.png": {
+      "canonical_path": "res://assets/models/reef/reef_rock_lod0_reef_rock_roughness.png",
+      "source_sha256": "537b2959c000de8c3e3a8ecaab3b6088536c35213e92ac3c4cb7ffadabea40fd",
+      "all_mip_levels_sha256": "d1fb8d1972043201263d370bed544a1b5599c64a79a71cd0076e469d0fc84af8"
+    }
+  }
+}

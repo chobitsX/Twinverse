@@ -1,0 +1,18 @@
+{
+  "kind": "authored_procedural_scalar_volume",
+  "asset": "assets/textures/cosmos/cloud_shape_v1.res",
+  "disk_bytes": 253204,
+  "sha256": "5cf60fb78930c496c84374bdb3f745ed1d647a28ccf4d776e5027294d7af256e",
+  "size_xyz": [
+    64,
+    64,
+    64
+  ],
+  "seed": 260911,
+  "noise": "Godot FastNoiseLite TYPE_SIMPLEX_SMOOTH, FRACTAL_FBM, frequency 0.065, octaves 4, gain 0.5; seamless NoiseTexture3D",
+  "generator": "tools/art/bake_cloud_noise.gd",
+  "generator_sha256": "3592047728d3e86a44ce2a742ea1678f9a40062d0d6c2030a9240421e9a4a9a7",
+  "bake_evidence": "docs/evidence/M0-009/cloudscape-v3/noise-bake002/run.json",
+  "source": "Algorithmically generated within this project; no third-party image input or observed meteorology. Engine/library licenses remain their own.",
+  "scientific_scope": "Visual density field; not real-time weather or cloud measurement. Does not correspond cloud-by-cloud to historical NASA orbital composite."
+}

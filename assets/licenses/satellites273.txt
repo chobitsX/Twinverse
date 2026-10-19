@@ -1,0 +1,12 @@
+Natural satellite catalogue and geometric states, frozen 2026-10-13.
+JPL Solar System Dynamics / NASA-JPL Horizons API.
+Sources: https://ssd.jpl.nasa.gov/sats/discovery.html
+https://ssd.jpl.nasa.gov/sats/elem/ (shape description only, never runtime positions)
+https://ssd.jpl.nasa.gov/sats/phys_par/
+https://ssd.jpl.nasa.gov/horizons/
+NAIF pck00011 orientation coefficients reuse the frozen astronomy85 source.
+Numbers are a dated catalogue, not a permanent final count. Eight planets:456. Pluto:5, separately catalogued.
+451 planetary satellites have geometric vector states for 2026-09-01 to 2026-12-01 TDB. The Moon uses the existing ERFA series.
+Daphnis has no requested-epoch ephemeris (Horizons range stops in 2018). S/2009 S1, S/2009 S2 and S/2025 U1 did not resolve to the recognized moon; no false comet/asteroid states accepted.
+Unknown radii/orientation remain unknown; grey radius spheres/identity markers are author-created aids, not actual surfaces.
+Existing planet/moon texture provenance and licenses remain in their original asset records.

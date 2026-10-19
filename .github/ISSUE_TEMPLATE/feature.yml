@@ -1,0 +1,53 @@
+{
+  "name": "改进建议 / Improvement",
+  "description": "一个具体的教育或使用需求 / A bounded educational or usability need",
+  "title": "[Idea] ",
+  "body": [
+    {
+      "type": "markdown",
+      "attributes": {
+        "value": "欢迎中文或英文反馈。请勿上传API Key、带访问令牌的下载链接、设备序列号或真实用户存档。 Chinese and English are welcome; keep private data out of reports."
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "need",
+      "attributes": {
+        "label": "谁遇到什么问题 / Who needs what"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "result",
+      "attributes": {
+        "label": "完成后能观察到什么 / Observable result"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "scope",
+      "attributes": {
+        "label": "建议范围与可接受的简化 / Scope and tradeoffs"
+      },
+      "validations": {
+        "required": false
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "sources",
+      "attributes": {
+        "label": "相关教学或科学依据 / References if applicable"
+      },
+      "validations": {
+        "required": false
+      }
+    }
+  ]
+}

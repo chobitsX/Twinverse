@@ -1,0 +1,180 @@
+{
+  "format": "TWDE4401",
+  "format_version": 1,
+  "header": "little-endian <8sIIIIdd; magic, planet_index, step_days, node_count, reserved, start_jd_tdb, end_jd_tdb; 40 bytes",
+  "record": "six little-endian float64: heliocentric J2000 ecliptic x/y/z AU, then vx/vy/vz AU/day; 48 bytes",
+  "source_url": "https://naif.jpl.nasa.gov/pub/naif/pds/wgc/kernels/spk/de440.bsp",
+  "source_sha256": "a4ce9bf9b3282becc9f4b2ac3cebe03a2ae7599981aabd7265fd8482fff7c4b5",
+  "source_bytes": 119799808,
+  "reader": "jplephem 2.24",
+  "center": "NAIF planet-system barycenters 1..8 minus Sun 10 at same TDB Julian day",
+  "frame": "ICRF equatorial rotated to mean J2000 ecliptic",
+  "obliquity_arcsec": 84381.448,
+  "au_km": 149597870.7,
+  "start_jd_tdb": 2378496.5,
+  "end_jd_tdb": 2469807.5,
+  "interpolation": "piecewise cubic Hermite using endpoint position and velocity; final interval may be shorter",
+  "planet_files": [
+    {
+      "index": 0,
+      "name": "Mercury",
+      "naif_target": 1,
+      "path": "assets/data/solar_de440_179/planet_0.bin",
+      "step_days": 1,
+      "nodes": 91312,
+      "bytes": 4383016,
+      "sha256": "7b47cb75e404d86626f6df6bc6ab13426f99a3af27b906c79717b827c29ba0b6",
+      "first_position_au": [
+        -0.21101703950410197,
+        0.25049047494261906,
+        0.03987341794077889
+      ],
+      "last_position_au": [
+        -0.17951404248448502,
+        0.2678117696735194,
+        0.038348303242544866
+      ]
+    },
+    {
+      "index": 1,
+      "name": "Venus",
+      "naif_target": 2,
+      "path": "assets/data/solar_de440_179/planet_1.bin",
+      "step_days": 2,
+      "nodes": 45657,
+      "bytes": 2191576,
+      "sha256": "84815f13a8b5edebe0981ad130ac0e246aebb33921078119e4177aca2e4665a3",
+      "first_position_au": [
+        -0.6146735311863512,
+        0.3700477245303873,
+        0.04042985773461464
+      ],
+      "last_position_au": [
+        0.14178222355512918,
+        -0.7133842157318014,
+        -0.0180256677459316
+      ]
+    },
+    {
+      "index": 2,
+      "name": "Earth-Moon barycenter",
+      "naif_target": 3,
+      "path": "assets/data/solar_de440_179/planet_2.bin",
+      "step_days": 2,
+      "nodes": 45657,
+      "bytes": 2191576,
+      "sha256": "f90c40954b77215162370532631d4d56cd45a38495e0ec679d1caa8ca1196fbf",
+      "first_position_au": [
+        -0.22498517414866448,
+        0.9571208080804563,
+        0.00042454503100853463
+      ],
+      "last_position_au": [
+        -0.1715829623696943,
+        0.9682682880886145,
+        -0.00010814871895384235
+      ]
+    },
+    {
+      "index": 3,
+      "name": "Mars",
+      "naif_target": 4,
+      "path": "assets/data/solar_de440_179/planet_3.bin",
+      "step_days": 4,
+      "nodes": 22829,
+      "bytes": 1095832,
+      "sha256": "f201b5ad29be0b9b7c4ed370389c3d35629ea4b57ac18b0bc2dee2757a767a98",
+      "first_position_au": [
+        -1.0962693290107495,
+        -1.1093969900469425,
+        0.004256544573574103
+      ],
+      "last_position_au": [
+        -1.5432316877793697,
+        -0.5035895204729829,
+        0.02720193305006915
+      ]
+    },
+    {
+      "index": 4,
+      "name": "Jupiter system barycenter",
+      "naif_target": 5,
+      "path": "assets/data/solar_de440_179/planet_4.bin",
+      "step_days": 8,
+      "nodes": 11415,
+      "bytes": 547960,
+      "sha256": "2b151a80f6169343e5193c901c291d557ae4a8a7ecfe3b500b5cd64e3417dacf",
+      "first_position_au": [
+        -0.02950367180452556,
+        5.132251005824535,
+        -0.01979011721300067
+      ],
+      "last_position_au": [
+        -2.39104634493199,
+        4.664074051129192,
+        0.03396564221877785
+      ]
+    },
+    {
+      "index": 5,
+      "name": "Saturn system barycenter",
+      "naif_target": 6,
+      "path": "assets/data/solar_de440_179/planet_5.bin",
+      "step_days": 16,
+      "nodes": 5708,
+      "bytes": 274024,
+      "sha256": "09e59ed1b0ac5cf4a4362b96bd130b76cc9c07258d3bddd8c8c9ef3f34a4ab2e",
+      "first_position_au": [
+        -5.6861089490637395,
+        7.110000857547584,
+        0.09822177102927948
+      ],
+      "last_position_au": [
+        4.766225421471267,
+        -8.773719932777603,
+        -0.037876765428138455
+      ]
+    },
+    {
+      "index": 6,
+      "name": "Uranus system barycenter",
+      "naif_target": 7,
+      "path": "assets/data/solar_de440_179/planet_6.bin",
+      "step_days": 16,
+      "nodes": 5708,
+      "bytes": 274024,
+      "sha256": "91671d7c4e5d68d0a7a6d94629b2f1164e7b7c711a420b437aa9adc790a09351",
+      "first_position_au": [
+        -18.27116526907822,
+        0.9816670693102161,
+        0.2420129966727424
+      ],
+      "last_position_au": [
+        -17.82323641511405,
+        4.07148301656417,
+        0.2458503411213354
+      ]
+    },
+    {
+      "index": 7,
+      "name": "Neptune system barycenter",
+      "naif_target": 8,
+      "path": "assets/data/solar_de440_179/planet_7.bin",
+      "step_days": 16,
+      "nodes": 5708,
+      "bytes": 274024,
+      "sha256": "c0c9832cc546a17993b81430afb68893a5eb6851f3ef0bf1e676859c48ff2aa2",
+      "first_position_au": [
+        -20.31023510815904,
+        -22.494174519839678,
+        0.930912479165368
+      ],
+      "last_position_au": [
+        17.398198810683038,
+        24.19778398623797,
+        -0.8992418129822296
+      ]
+    }
+  ],
+  "total_data_bytes": 11232032
+}

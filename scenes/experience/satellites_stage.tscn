@@ -1,0 +1,10 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="Script" path="res://scripts/experience/visual_stage.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/experience/satellite_system_builder.gd" id="2"]
+[ext_resource type="Texture2D" path="res://assets/textures/cosmos/rocky133/mars.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/textures/cosmos/planets_v1/saturn_nasa.jpg" id="4"]
+[node name="SatelliteSystemStage" type="Node"]
+script = ExtResource("1")
+builder = ExtResource("2")
+texture_keys = Array[String](["mars","saturn"])
+texture_assets = Array[Texture2D]([ExtResource("3"),ExtResource("4")])

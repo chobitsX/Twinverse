@@ -1,0 +1,161 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/bootstrap.gd" id="1_script"]
+
+[sub_resource type="Environment" id="Environment_stage"]
+background_mode = 1
+background_color = Color(0.018, 0.028, 0.05, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.35, 0.5, 0.65, 1)
+ambient_light_energy = 0.7
+tonemap_mode = 3
+
+[sub_resource type="StandardMaterial3D" id="Material_floor"]
+albedo_color = Color(0.045, 0.075, 0.105, 1)
+roughness = 0.85
+
+[sub_resource type="PlaneMesh" id="Mesh_floor"]
+material = SubResource("Material_floor")
+size = Vector2(18, 18)
+
+[sub_resource type="StandardMaterial3D" id="Material_teal"]
+albedo_color = Color(0.035, 0.48, 0.48, 1)
+metallic = 0.55
+roughness = 0.24
+
+[sub_resource type="SphereMesh" id="Mesh_teal"]
+material = SubResource("Material_teal")
+radius = 1.0
+height = 2.0
+radial_segments = 64
+rings = 32
+
+[sub_resource type="StandardMaterial3D" id="Material_copper"]
+albedo_color = Color(0.7, 0.22, 0.065, 1)
+metallic = 0.65
+roughness = 0.3
+
+[sub_resource type="SphereMesh" id="Mesh_copper"]
+material = SubResource("Material_copper")
+radius = 0.48
+height = 0.96
+radial_segments = 48
+rings = 24
+
+[sub_resource type="StandardMaterial3D" id="Material_matte"]
+albedo_color = Color(0.62, 0.67, 0.7, 1)
+roughness = 0.82
+
+[sub_resource type="SphereMesh" id="Mesh_matte"]
+material = SubResource("Material_matte")
+radius = 0.58
+height = 1.16
+radial_segments = 48
+rings = 24
+
+[sub_resource type="SystemFont" id="Font_chinese"]
+font_names = PackedStringArray("PingFang SC", "Heiti SC")
+
+[node name="Bootstrap" type="Node3D"]
+script = ExtResource("1_script")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_stage")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+position = Vector3(4.5, 3.4, 7.5)
+rotation = Vector3(-0.31, 0.54, 0)
+current = true
+fov = 45.0
+
+[node name="KeyLight" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-48, -30, 0)
+light_color = Color(0.87, 0.95, 1, 1)
+light_energy = 1.9
+shadow_enabled = true
+
+[node name="RimLight" type="OmniLight3D" parent="."]
+position = Vector3(-1.5, 3, -3)
+light_color = Color(0.12, 0.65, 1, 1)
+light_energy = 4.0
+omni_range = 9.0
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("Mesh_floor")
+
+[node name="TealSphere" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1, 0)
+mesh = SubResource("Mesh_teal")
+
+[node name="CopperSphere" type="MeshInstance3D" parent="."]
+position = Vector3(-2.15, 0.48, 0.4)
+mesh = SubResource("Mesh_copper")
+
+[node name="MatteSphere" type="MeshInstance3D" parent="."]
+position = Vector3(2, 0.58, -0.85)
+mesh = SubResource("Mesh_matte")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Root" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/font = SubResource("Font_chinese")
+
+[node name="Title" type="Label" parent="HUD/Root"]
+offset_left = 40.0
+offset_top = 28.0
+offset_right = 800.0
+offset_bottom = 72.0
+theme_override_colors/font_color = Color(0.88, 0.95, 0.98, 1)
+theme_override_font_sizes/font_size = 30
+text = "3DWorld  /  渲染环境检查"
+
+[node name="Subtitle" type="Label" parent="HUD/Root"]
+offset_left = 42.0
+offset_top = 78.0
+offset_right = 900.0
+offset_bottom = 105.0
+theme_override_colors/font_color = Color(0.55, 0.7, 0.79, 1)
+theme_override_font_sizes/font_size = 17
+text = "M0-001 · 基础几何体用于检查材质、光照与阴影。"
+
+[node name="Status" type="Label" parent="HUD/Root"]
+layout_mode = 0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 42.0
+offset_top = -85.0
+offset_right = 1040.0
+offset_bottom = -55.0
+theme_override_colors/font_color = Color(0.62, 0.86, 0.86, 1)
+theme_override_font_sizes/font_size = 16
+text = "正在读取渲染设备……"
+
+[node name="Hint" type="Label" parent="HUD/Root"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 42.0
+offset_top = -51.0
+offset_right = 1050.0
+offset_bottom = -24.0
+theme_override_colors/font_color = Color(0.5, 0.62, 0.7, 1)
+theme_override_font_sizes/font_size = 15
+text = "正式视觉样片尚未开始。按 Esc 或点击退出关闭。"
+
+[node name="Quit" type="Button" parent="HUD/Root"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -142.0
+offset_top = -74.0
+offset_right = -42.0
+offset_bottom = -30.0
+theme_override_font_sizes/font_size = 17
+text = "退出"

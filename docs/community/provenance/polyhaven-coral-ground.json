@@ -1,0 +1,44 @@
+{
+  "original_record": "assets/source/reef/polyhaven_coral_ground_02/download-manifest.json",
+  "record": {
+    "asset": "Coral Ground 02",
+    "author": "Rob Tuytel",
+    "source": "https://polyhaven.com/a/coral_ground_02",
+    "license": "CC0-1.0",
+    "license_url": "https://polyhaven.com/license",
+    "api": "https://api.polyhaven.com/files/coral_ground_02",
+    "retrieved_date": "2026-09-10",
+    "declared_dimensions": "2M x 2M",
+    "resolution_label": "1k",
+    "scope": "Exposed coastal ground material for authored submerged substrate; not verified Lizard Island bathymetry, living coral color or ecological cover.",
+    "files": [
+      {
+        "key": "Diffuse",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/coral_ground_02/coral_ground_02_diff_1k.png",
+        "file": "coral_ground_02_diff_1k.png",
+        "bytes": 6593528,
+        "expected_md5": "69dd83f8b3833089bb80f389924f952c",
+        "sha256": "4f87c9f25f4081a5fb0c88387dde95ebdb2ced1ccd11546cafc7b9306034e964",
+        "seconds": 6.735572707984829
+      },
+      {
+        "key": "nor_gl",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/coral_ground_02/coral_ground_02_nor_gl_1k.png",
+        "file": "coral_ground_02_nor_gl_1k.png",
+        "bytes": 6654542,
+        "expected_md5": "08e02b7db7a54055abcd6e8c7fc1c70d",
+        "sha256": "10f7f10f887c4720a88c8dfe771b36fb52f1432ab4aa08218e092bdc694e7b70",
+        "seconds": 4.615085249999538
+      },
+      {
+        "key": "arm",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/coral_ground_02/coral_ground_02_arm_1k.png",
+        "file": "coral_ground_02_arm_1k.png",
+        "bytes": 4894411,
+        "expected_md5": "034f0d0e21b9aac97550bdd5fd2de501",
+        "sha256": "b8055b8b84e8371e982cf5ea472032230bdc3bdf55b40b7585176d6bdda7c6fa",
+        "seconds": 4.843523541989271
+      }
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "source_url": "https://heasarc.gsfc.nasa.gov/FTP/heasarc/dbase/tdat_files/heasarc_bsc5p.tdat.gz",
+  "source_sha256": "122628cde2d8bedf7e16ddf5f888167ac58c04b5592d6155408ce297f3073931",
+  "catalog_rows": 9110,
+  "selected": 8404,
+  "excluded_nonstars": [
+    92,
+    95,
+    182,
+    1057,
+    1841,
+    2472,
+    2496,
+    3515,
+    3671,
+    6309,
+    6515,
+    7189,
+    7539,
+    8296
+  ],
+  "invalid": [],
+  "subset_sha256": "e7513deeecc32373b6ca6461c8c1b0a622284b3cdbb0bf202e8c9d13f6ed681b",
+  "boundary": "Fixed J2000 star directions; no individual proper motion, stellar parallax, refraction, extinction calibration or brightness prediction.",
+  "galaxy_map": {
+    "path": "assets/source/ground_sky262/Gaia_EDR3_flux_cartesian_4k.png",
+    "sha256": "68fef2ee355015f84a43105bbf296f5a8d8b38d2fe8fe1a068ba1402e9ce5550",
+    "runtime_path": "assets/textures/ground_sky262/gaia_edr3_4k.png",
+    "runtime_sha256": "68fef2ee355015f84a43105bbf296f5a8d8b38d2fe8fe1a068ba1402e9ce5550",
+    "projection": "Galactic equirectangular, l=0 and b=0 at centre, +l to left",
+    "original_size": [
+      4000,
+      2000
+    ],
+    "source_url": "https://sci.esa.int/web/gaia/-/the-colour-of-the-sky-from-gaia-s-early-data-release-3-equirectangular-projection",
+    "download_url": "https://sci.esa.int/documents/33580/35361/Gaia_EDR3_flux_cartesian_4k.png/4648ec09-6c63-47a5-d0da-3ab3e0b42afe?version=1.0&t=1606986362680&download=true",
+    "credit": "ESA/Gaia/DPAC; CC BY-SA 3.0 IGO. Acknowledgement: A. Moitinho.",
+    "licence": "https://creativecommons.org/licenses/by-sa/3.0/igo/",
+    "pixels_modified": false
+  }
+}
