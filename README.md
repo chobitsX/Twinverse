@@ -4,9 +4,9 @@
 
 [简体中文](README.zh-CN.md) · [Getting started](docs/community/GETTING_STARTED.md) · [Contributing](CONTRIBUTING.md) · [Roadmap](ROADMAP.md) · [Scientific scope](docs/community/SCIENCE.md)
 
-[![Twinverse: a 10-second preview of galaxies, Earth, reef life and cell structures](docs/media/twinverse-preview.gif)](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.189-preview.1)
+[![Twinverse: a 10-second preview starting from the universe, through the Milky Way and into life](docs/media/twinverse-preview-288.gif)](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.190-preview.1)
 
-[Try the macOS preview](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.189-preview.1) · [54-second demo (MP4)](https://github.com/chobitsX/Twinverse/releases/download/v0.4.189-preview.1/twinverse-demo-en.mp4) · [中文演示](https://github.com/chobitsX/Twinverse/releases/download/v0.4.189-preview.1/twinverse-demo-zh.mp4) · [Static poster](docs/media/twinverse-poster.jpg)
+[Try the macOS preview](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.190-preview.1) · [60-second demo (MP4)](https://github.com/chobitsX/Twinverse/releases/download/v0.4.190-preview.1/twinverse-demo-en.mp4) · [中文演示](https://github.com/chobitsX/Twinverse/releases/download/v0.4.190-preview.1/twinverse-demo-zh.mp4) · [Static poster](docs/media/twinverse-poster-288.jpg)
 
 Actual Godot scenes with scripted cameras and edited cuts. [Capture details and credits](docs/media/README.md).
 
@@ -14,7 +14,7 @@ Actual Godot scenes with scripted cameras and edited cuts. [Capture details and 
 
 Twinverse is an open-source educational 3D exploration and simulation application. Rotate Earth, approach different habitats, observe celestial motion, or follow a fish into organ, cell and molecular reference views. Developers, artists, educators, scientists and curious explorers are welcome to help improve its accuracy, accessibility and performance.
 
-**Current version: 0.4.189 (build 287).** Representative scenes are playable. Native validation currently focuses on Apple Silicon Macs; Windows and lower-end hardware remain unverified. A [macOS preview](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.189-preview.1) is available (ad-hoc signed, unnotarized); Intel Macs are also unverified. The interface supports English and Simplified Chinese. Choose a language or follow the system in the top-right “···” menu; the preference is saved locally.
+**Current version: 0.4.190 (build 288).** Representative scenes are playable. Native validation currently focuses on Apple Silicon Macs; Windows and lower-end hardware remain unverified. A [macOS preview](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.190-preview.1) is available (ad-hoc signed, unnotarized); Intel Macs are also unverified. The interface supports English and Simplified Chinese. Choose a language or follow the system in the top-right “···” menu; the preference is saved locally.
 
 ## Explore
 
@@ -25,6 +25,8 @@ Twinverse is an open-source educational 3D exploration and simulation applicatio
 - **Spatial interaction:** hover, approach, inspect, enter and return through 3D objects and regions; open explanations when needed.
 
 A comprehensive digital twin is a long-term ambition. The current application combines reference data, simplified models and authored teaching scenes. It does not provide a live reconstruction of the universe. Read the [scientific boundaries](docs/community/SCIENCE.md).
+
+Ordinary launches start at the universe overview. Saved world progress and preferences continue; other saved viewpoints remain available when revisiting their scenes.
 
 ## Run from source
 

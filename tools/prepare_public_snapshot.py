@@ -17,7 +17,7 @@ ROOT_FILES = ["AGENTS.md", "CLAUDE.md", "README.md", "README.zh-CN.md", "README.
               "SECURITY.md", "ROADMAP.md", "LICENSE", "LICENSING.md", "THIRD_PARTY_NOTICES.md",
               "project.godot", "export_presets.cfg", ".godot-version", ".gitattributes",
               "tests/tools/test_public_snapshot.py", "tests/tools/test_localization.py", "tests/tools/test_project_runtime_guard.py",
-              "tests/core/test_app_language.gd", "tests/core/test_language_restart.gd",
+              "tests/core/test_app_language.gd", "tests/core/test_language_restart.gd", "tests/core/test_startup_entry.gd", "tests/core/test_startup_entry.gd.uid",
               "tests/core/test_localized_content.gd", "tests/integration/i18n_smoke.gd",
               "tests/integration/i18n_visual.gd", "tests/integration/ui_density_visual.gd", "docs/LOCALIZATION.md", "localization/exclusions.json"]
 TOOL_FILES = ["godot.sh", "export_macos.sh", "preview_macos.py", "project_runtime_guard.py", "sync_export_resources.py",

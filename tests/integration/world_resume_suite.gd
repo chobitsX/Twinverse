@@ -82,11 +82,18 @@ func _write_session() -> void:
 
 func _resume_session() -> void:
 	_expected = JSON.parse_string(FileAccess.get_file_as_string(_directory.path_join("expected.json")))
-	_check("new_process_restores_committed_scale_time_identity", _main.world.current_scale_id == "heart" and _main.world.simulation_time_s == float(_expected.time)
+	var expected_entry: String = _main.WorldState.INITIAL_SCALE_ID
+	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--scale="): expected_entry=argument.trim_prefix("--scale=")
+	_check("new_process_restores_world_at_requested_entry", _main.world.current_scale_id == expected_entry and _main.world.simulation_time_s == float(_expected.time)
 		and _main.world.TARGET_FISH_ID == _expected.fish_id and _main.world.seed == int(_expected.seed))
 	_check("pause_multiplier_and_preferences_restored", _main.world.paused and _main.world.time_scale == 2.0
 		and _main.pause_button.text == "继续时间" and _main._render_ratio == 0.75 and _main._reduced_motion and _main._muted
 		and is_equal_approx(_main.soundscape.master, 0.21))
+	if _main.world.current_scale_id!="heart":
+		_main.world.set_foreground(true)
+		_main.navigate_to("heart")
+		if not await _wait_ready(): return
 	_check("heart_camera_selection_and_cutaway_restored", _main.coordinator.active_scene.camera.position.is_equal_approx(Store.vector(_expected.heart_position))
 		and _main._orbit_target.is_equal_approx(Store.vector(_expected.heart_target)) and _main.info_panel.visible
 		and _main.coordinator.active_scene.get_meta("anatomy_selected_region", "") == "ventricle"

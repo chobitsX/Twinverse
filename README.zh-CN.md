@@ -4,9 +4,9 @@
 
 [English](README.md) · [开始探索](docs/community/GETTING_STARTED.md) · [参与贡献](CONTRIBUTING.md) · [路线图](ROADMAP.md) · [科学边界](docs/community/SCIENCE.md)
 
-[![孪生宇宙：银河、地球、礁区与微观世界的10秒动态预览](docs/media/twinverse-preview.gif)](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.189-preview.1)
+[![孪生宇宙：从宇宙、银河到地球与生命的10秒动态预览](docs/media/twinverse-preview-288.gif)](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.190-preview.1)
 
-[下载 macOS 体验包](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.189-preview.1) · [54秒中文演示（MP4）](https://github.com/chobitsX/Twinverse/releases/download/v0.4.189-preview.1/twinverse-demo-zh.mp4) · [English demo](https://github.com/chobitsX/Twinverse/releases/download/v0.4.189-preview.1/twinverse-demo-en.mp4) · [静态封面](docs/media/twinverse-poster.jpg)
+[下载 macOS 体验包](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.190-preview.1) · [60秒中文演示（MP4）](https://github.com/chobitsX/Twinverse/releases/download/v0.4.190-preview.1/twinverse-demo-zh.mp4) · [English demo](https://github.com/chobitsX/Twinverse/releases/download/v0.4.190-preview.1/twinverse-demo-en.mp4) · [静态封面](docs/media/twinverse-poster-288.jpg)
 
 真实Godot场景，采用程序化运镜与剪辑。[录制方式与署名](docs/media/README.md)。
 
@@ -14,7 +14,7 @@
 
 Twinverse 是一个以教育科普为主的开源3D宇宙探索与模拟应用。你可以旋转地球、走近不同生态环境，观察天体运动，也可以沿着一条鱼深入器官、细胞与分子层次。我们希望与开发者、美术创作者、教师和科学爱好者一起，让这些体验更准确、更直观，也能在更多电脑上运行。
 
-> 当前版本 **0.4.189（287）**。界面支持简体中文与英文，可从右上角“···”菜单选择语言，支持跟随系统并保存偏好。核心代表场景已可体验；目前实机验证集中在 Apple Silicon Mac。Windows 与低配硬件验证正在路线图中，已有[macOS预览包](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.189-preview.1)（临时签名、未公证）；Intel Mac和其它硬件仍未实测。
+> 当前版本 **0.4.190（288）**。界面支持简体中文与英文，可从右上角“···”菜单选择语言，支持跟随系统并保存偏好。核心代表场景已可体验；目前实机验证集中在 Apple Silicon Mac。Windows 与低配硬件验证正在路线图中，已有[macOS预览包](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.190-preview.1)（临时签名、未公证）；Intel Mac和其它硬件仍未实测。
 
 ## 可以探索什么
 
@@ -27,6 +27,8 @@ Twinverse 是一个以教育科普为主的开源3D宇宙探索与模拟应用�
 | 自然探索 | 在3D对象或地域上选择、靠近、进入、返回；按需查看知识、来源与观察主题 |
 
 “孪生宇宙”是长期愿景。当前应用结合真实数据、简化模型和作者设计的教学场景；银河与宇宙网是示意，生态场景也不代表全球实时观测。每类内容的依据与限制见[科学说明](docs/community/SCIENCE.md)。
+
+普通启动从宇宙结构全景开始，保留已有世界进度、语言与画质偏好；进入其它尺度时仍可使用其已保存的观察视角。
 
 ## 从源码运行
 

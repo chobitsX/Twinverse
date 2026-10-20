@@ -1,6 +1,7 @@
 extends RefCounted
 ## One runtime owns this object. Scale scenes receive value snapshots only.
 
+const INITIAL_SCALE_ID: String = "universe"
 const SCHEMA_VERSION: int = 1
 const FIXED_STEP_S: float = 1.0 / 60.0
 const MAX_STEPS_PER_ADVANCE: int = 16
@@ -50,7 +51,7 @@ var simulation_time_s: float = 0.0
 var paused: bool = false
 var time_scale: float = 1.0
 var foreground: bool = true
-var current_scale_id: String = "galaxy"
+var current_scale_id: String = INITIAL_SCALE_ID
 var seed: int = 41037
 var skipped_wall_time_s: float = 0.0
 var _accumulator_s: float = 0.0

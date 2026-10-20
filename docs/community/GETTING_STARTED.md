@@ -2,11 +2,11 @@
 
 ## 先运行项目
 
-macOS可以先下载[0.4.189预览包](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.189-preview.1)，解压后打开`3DWorld.app`，无需安装Godot或配置生成服务密钥。当前为临时签名、未公证的预览，首次打开可能被系统拦截；请核对Release的SHA256SUMS并阅读[Apple的打开应用说明](https://support.apple.com/en-us/102445)，再决定是否允许该应用。包内含Apple Silicon与Intel架构，目前只在M5实测，不能据此保证Intel或低配设备体验。
+macOS可以先下载[0.4.190预览包](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.190-preview.1)，解压后打开`3DWorld.app`，无需安装Godot或配置生成服务密钥。当前为临时签名、未公证的预览，首次打开可能被系统拦截；请核对Release的SHA256SUMS并阅读[Apple的打开应用说明](https://support.apple.com/en-us/102445)，再决定是否允许该应用。包内含Apple Silicon与Intel架构，目前只在M5实测，不能据此保证Intel或低配设备体验。
 
 从源码体验，请按[开发指南](DEVELOPMENT.md)安装固定版本Godot并完成资源导入。源仓库无需本机专用的`builds/macos/current`目录。
 
-程序通常从地球和导览开始。你可以先打开“导览”，搜索“宇宙结构”“太阳系”或一个物种；熟悉后直接在3D场景上探索。
+程序从宇宙结构全景开始，双击银河入口进入银河系，再探索太阳系与地球。普通启动会保留世界进度与偏好，并从宇宙全景重新出发。你可以先打开“导览”，搜索“宇宙结构”“太阳系”或一个物种；熟悉后直接在3D场景上探索。
 
 ## 三条短路线
 
@@ -52,6 +52,6 @@ macOS可以先下载[0.4.189预览包](https://github.com/chobitsX/Twinverse/rel
 
 ## English quick route
 
-A [macOS preview ZIP](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.189-preview.1) is available: unzip and open `3DWorld.app`, with no Godot installation or generation-service keys. This ad-hoc-signed, unnotarized build has only been tested on the maintainer’s M5 Mac; Intel and lower-end devices remain unverified. Check the release checksum and [Apple’s guidance](https://support.apple.com/en-us/102445) before deciding whether to allow a blocked first launch.
+A [macOS preview ZIP](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.190-preview.1) is available: unzip and open `3DWorld.app`, with no Godot installation or generation-service keys. This ad-hoc-signed, unnotarized build has only been tested on the maintainer’s M5 Mac; Intel and lower-end devices remain unverified. Check the release checksum and [Apple’s guidance](https://support.apple.com/en-us/102445) before deciding whether to allow a blocked first launch.
 
 After importing `project.godot`, run with F5. Use the top navigation/search to find the cosmic web, Solar System, Earth habitats or a species. Drag to orbit; pinch/scroll to zoom; click to inspect; double-click/Enter to enter supported targets. Backspace returns and Space pauses. The interface supports English and Simplified Chinese. Use the top-right “···” menu to choose a language or follow the system; the choice is saved locally. The controls table above follows the same order. The quality menu provides High/Balanced/Energy saving. Use the device-report template to help test unverified platforms.

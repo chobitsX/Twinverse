@@ -2899,5 +2899,8 @@
   "在地面仰望星河。\n夜空随共同日期变化。": "Look up at the Milky Way from Earth.\nThe night sky follows the shared date.",
   "转动地球，发现不同地域的生命与环境。": "Rotate Earth to discover life and environments across regions.",
   "拖动环顾，直接点选3D对象。\n展开主题，比较现象与科学依据。": "Drag to look around and select 3D objects directly.\nOpen topics to compare phenomena and scientific evidence.",
-  "中性氧 · 8个电子 · 1s² 2s² 2p⁴\n孤立原子组成教学；云形使用类氢参考函数，不是O₂分子或氧原子的精确电子密度。": "Neutral oxygen · 8 electrons · 1s² 2s² 2p⁴\nIsolated-atom composition teaching. Clouds use hydrogen-like reference functions, not exact electron densities of O₂ or oxygen atoms."
+  "中性氧 · 8个电子 · 1s² 2s² 2p⁴\n孤立原子组成教学；云形使用类氢参考函数，不是O₂分子或氧原子的精确电子密度。": "Neutral oxygen · 8 electrons · 1s² 2s² 2p⁴\nIsolated-atom composition teaching. Clouds use hydrogen-like reference functions, not exact electron densities of O₂ or oxygen atoms.",
+  "世界进度已恢复 · 从宇宙开始观察": "World progress restored · Observe from the universe",
+  "已从备份恢复世界进度 · 从宇宙开始观察": "World progress restored from backup · Observe from the universe",
+  "从宇宙开始探索 · 双击银河进入": "Explore from the universe · Double-click the Milky Way to enter"
 }

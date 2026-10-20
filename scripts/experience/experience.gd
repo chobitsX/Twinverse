@@ -186,7 +186,7 @@ var _debug_visible: bool = false
 var _muted: bool = false
 var _recording: bool = false
 var _shutting_down: bool = false
-var _start_scale: String = "reef"
+var _start_scale: String = WorldState.INITIAL_SCALE_ID
 var _capture_path: String = ""
 var _capture_after: float = 3.0
 var _run_duration: float = 0.0
@@ -304,7 +304,7 @@ func _ready() -> void:
 		push_error("Formal performance capture and motion readback must use separate runs")
 		get_tree().quit(6)
 		return
-	if not Catalog.contains(_start_scale): _start_scale = "reef"
+	if not Catalog.contains(_start_scale): _start_scale = WorldState.INITIAL_SCALE_ID
 	_open_world()
 	# Explicit diagnostic settings override restored preferences without rewriting saves.
 	for argument: String in OS.get_cmdline_user_args():
@@ -347,14 +347,16 @@ func _ready() -> void:
 	_orbit_target = stage.default_target
 	_resize()
 	_update_ui()
-	_apply_saved_view(stage)
+	# Every ordinary launch opens on the cosmic overview, even after a saved
+	# close-up. Other saved observer views remain available when revisited.
+	if _start_scale != WorldState.INITIAL_SCALE_ID: _apply_saved_view(stage)
 	pause_button.text = I18n.text(I18n.text("继续时间") if world.paused else I18n.text("暂停时间"))
 	message_label.text = I18n.text(_restore_notice)
 	if night_preset: message_label.text=I18n.text(I18n.text("已切至观星点的夜空预设 · 下方显示同一天文日期"))
 	world.record_observation("continued" if not world.habitat.events.is_empty() else "started")
 	_remember_view()
 	_setup_sound()
-	if _first_visit: world_guide.open(true)
+	# Keep the initial universe visible; the guide stays available in the HUD.
 	if "--show-knowledge" in OS.get_cmdline_user_args(): world_guide.hide(); explorer_panel.show()
 	_wall_start_us = Time.get_ticks_usec()
 	_next_save_us = _wall_start_us + AUTOSAVE_INTERVAL_US
@@ -405,7 +407,9 @@ func _open_world() -> void:
 	var result: Dictionary = _store.load_session()
 	if result.status in ["ok", "recovered"]:
 		world.restore_checkpoint(result.payload.world)
-		_start_scale = world.current_scale_id
+		# Restore the living world and preferences, then choose the requested
+		# entry independently of the saved observer location.
+		world.current_scale_id = _start_scale
 		_views = result.payload.observer.views.duplicate(true)
 		_restore_solar_view()
 		var preferences: Dictionary = result.payload.observer.preferences
@@ -415,11 +419,13 @@ func _open_world() -> void:
 		_muted = bool(preferences.muted)
 		for key: String in ["master", "environment_volume", "music_volume", "effects_volume"]:
 			soundscape.set(key, float(preferences[key]))
-		_restore_notice = I18n.text("已继续上次观察 · 离线期间时间保持不变") if result.status == "ok" else I18n.text("已从上一份可用存档恢复，继续观察")
+		if _start_scale == WorldState.INITIAL_SCALE_ID:
+			_restore_notice = I18n.text("世界进度已恢复 · 从宇宙开始观察") if result.status == "ok" else I18n.text("已从备份恢复世界进度 · 从宇宙开始观察")
+		else:
+			_restore_notice = I18n.text("已继续上次观察 · 离线期间时间保持不变") if result.status == "ok" else I18n.text("已从上一份可用存档恢复，继续观察")
 	elif result.status == "missing":
 		_first_visit = not temporary
-		if _first_visit: _start_scale = "earth"
-		_restore_notice = I18n.text("世界会自动保存，下次打开可继续观察")
+		_restore_notice = I18n.text("从宇宙开始探索 · 双击银河进入") if _start_scale == WorldState.INITIAL_SCALE_ID else I18n.text("世界会自动保存，下次打开可继续观察")
 	else:
 		_restore_notice = I18n.text("存档版本不兼容，本次观察不会覆盖原存档") if result.status == "incompatible" else I18n.text("存档暂时无法读取，本次观察不会覆盖原存档")
 	print("WORLD_SESSION ", JSON.stringify({"status": result.status, "scale": _start_scale, "simulation_time_s": world.simulation_time_s}))
@@ -2143,7 +2149,7 @@ func toggle_trial() -> void:
 		world.restore_checkpoint(fresh.checkpoint())
 		_views.clear()
 		_restore_solar_view()
-		target_id = "galaxy"
+		target_id = WorldState.INITIAL_SCALE_ID
 	else:
 		target_id = str(_trial_return.current_scale_id)
 		world.restore_checkpoint(_trial_return)

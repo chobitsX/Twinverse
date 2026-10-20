@@ -139,6 +139,7 @@ class RuntimeGuardTests(unittest.TestCase):
                     resolution.assert_called_once_with(1)
                     command = start.call_args.args[0]
                     self.assertEqual(command[:4], ['open', '-W', '-n', str(app)])
+                    self.assertIn('--scale=universe', command)
                     run.assert_called_once_with(['renice', '10', '-p', '123'], capture_output=True, text=True)
                     with guard.project_slot(root):
                         pass

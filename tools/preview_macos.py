@@ -32,7 +32,7 @@ def main():
                         help='Godot display index, after checking current monitor arrangement')
     parser.add_argument('--dry-run', action='store_true')
     parser.add_argument('--knowledge', action='store_true', help='Open the current observation knowledge card')
-    parser.add_argument('--scale', choices=['earth','solar_system','galaxy','universe','night_sky'], default='earth',
+    parser.add_argument('--scale', choices=['earth','solar_system','galaxy','universe','night_sky'], default='universe',
                         help='Initial no-save observation scale')
     args = parser.parse_args()
     local = ROOT / '.local/preview'

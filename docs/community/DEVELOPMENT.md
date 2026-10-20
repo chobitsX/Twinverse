@@ -29,6 +29,18 @@ export GODOT_BIN="/path/to/Godot.app/Contents/MacOS/Godot"
 
 也可以直接从Godot项目管理器导入`project.godot`，等待导入完毕后按F5。编辑器和独立运行窗口保持单实例，不同时启动多个3D预览。
 
+普通启动（包括已有观察存档）统一从宇宙结构全景开始；世界进度、语言/画质偏好继续保留。`--scale=<id>`是显式场景入口，优先于默认入口。
+
+可用隔离存档检查启动回归（选择尚不存在的测试目录）：
+
+```sh
+./tools/godot.sh --headless --max-fps 5 --script res://tests/core/test_startup_entry.gd -- \
+  --world-dir="$PWD/.local/verification/startup-288/loaded-example" \
+  --startup-case=loaded --startup-report=res://.local/verification/startup-288/loaded-report.json
+```
+
+该用例先建立旧银河位置的测试存档，再验证从宇宙启动且保留时间/偏好；不会读取真实用户世界。`fresh`检查新会话，`explicit`配合`--scale=earth`检查显式入口；分别选择新的测试目录。
+
 ## Windows与Linux贡献者
 
 使用同版本Godot项目管理器导入`project.godot`并等待资源导入。`godot.sh`、`preview_macos.py`和`export_macos.sh`是macOS开发辅助入口，不能作为Windows脚本运行。项目的Windows/低配验证尚未完成；遇到导入、驱动或画面问题时使用设备测试模板反馈，不要修改科学时间倍率来掩盖帧率。
