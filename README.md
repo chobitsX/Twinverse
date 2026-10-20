@@ -18,6 +18,10 @@ Twinverse is an open-source educational 3D exploration and simulation applicatio
 
 ## Explore
 
+[![Nine-frame storyboard: Universe, Milky Way, Solar System, Earth, land, ocean, a heart muscle cell, atomic scale and building with AI](docs/media/twinverse-storyboard-288-en.jpg)](docs/media/twinverse-storyboard-288-en.jpg)
+
+Nine frames from the demo, including the AI Coding closing card. Click the image to view full size.
+
 - **Space:** an illustrative cosmic web and Milky Way, the Solar System, the Moon and other natural satellites.
 - **Earth:** ocean, woodland, desert, cities and polar environments, with named species and local teaching experiments.
 - **The night sky:** reference stars, the Milky Way, Sun, Moon and planets seen from a ground-level observer.

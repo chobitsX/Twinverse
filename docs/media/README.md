@@ -1,10 +1,18 @@
 # Demonstration media / 演示媒体
 
-The 60-second English and Chinese demonstrations and the editable HyperFrames project are attached to the [0.4.190 preview release](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.190-preview.1). The repository keeps a lightweight ten-second GIF and a static poster; full movies and raw frame sequences are not added to Git history.
+The 60-second English and Chinese demonstrations and the editable HyperFrames project are attached to the [0.4.190 preview release](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.190-preview.1). The repository keeps a lightweight ten-second GIF, a static poster and bilingual nine-frame storyboards; full movies and raw frame sequences are not added to Git history.
 
 The universe opening is captured from **0.4.190 / build 288**; seven unchanged build 287 takes are reused: Milky Way, Solar System, Earth, woodland, reef, a cardiomyocyte and an atomic electron-density illustration. Captured with Godot 4.7.2 Movie Maker, Forward+/Metal, Balanced quality. The scene HUD was hidden for scenic takes; overlays and subtitles were added in HyperFrames 0.8.181. Colors/exposure were left unchanged. Camera motion is scripted and scenes are edited together. Output is 1920×1080, 30 FPS, 60 seconds, silent.
 
 Movie Maker uses fixed simulation steps; the maintainer captured slowly in the background to respect the machine's resource budget. **The video is an edited scenic demonstration, not a real-time performance benchmark or continuous navigation recording.** Scientific illustrations and simplified habitats retain the [documented scientific boundaries](../community/SCIENCE.md).
+
+## Static storyboards / 九帧静态速览
+
+[English storyboard](twinverse-storyboard-288-en.jpg) · [中文九帧图](twinverse-storyboard-288-zh.jpg) · [Frame times and source hashes](storyboard-288.json)
+
+The 3×3 images select eight scenic frames and the AI Coding closing card from the released videos, starting at the universe. The frames are uniformly scaled and arranged with localized short titles; scene colors and exposure are unchanged. The [source record](storyboard-288.json) lists the exact frame numbers, timestamps, movie hashes and image hashes. Both READMEs show the image directly below their Explore heading, with a link to the full-size JPEG.
+
+九宫格选用已发布成片的八张场景画面及 AI 共建片尾，从宇宙结构开始，等比缩放并添加简短标题；场景色彩和曝光保持原样。中英文 README 在“可以探索什么 / Explore”标题下直接展示，点击可查看原尺寸图片，便于不播放视频时浏览。
 
 ## Credits and terms
 
@@ -18,6 +26,6 @@ The editable bundle contains both language entries, local fonts/library, caption
 
 ## 中文
 
-本次演示的宇宙开场使用288版真实Godot场景，其余七段沿用287版素材，通过固定步进录制、程序化运镜、剪辑和中英文字幕制作，隐藏产品HUD；未生成替代场景、调整素材色彩或添加音轨。60秒1080p成片与可编辑工程放在Release附件，仓库只保留10秒轻量动图与静态封面，便于随版本更新。
+本次演示的宇宙开场使用288版真实Godot场景，其余七段沿用287版素材，通过固定步进录制、程序化运镜、剪辑和中英文字幕制作，隐藏产品HUD；未生成替代场景、调整素材色彩或添加音轨。60秒1080p成片与可编辑工程放在Release附件，仓库保留10秒轻量动图、静态封面与中英九帧图，便于随版本更新。
 
 录制为降低前台干扰而在后台低速完成，视频不作为实时性能或连续操作证据。教学示意与科学边界保持不变。组装媒体采用CC BY 4.0，署名Twinverse/chobitsX；第三方素材、数据和字体继续遵守各自许可。当前只发布GitHub；YouTube/B站不安排，已有文案供未来选用。

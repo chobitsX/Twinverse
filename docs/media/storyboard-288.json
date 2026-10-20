@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "release": "https://github.com/chobitsX/Twinverse/releases/tag/v0.4.190-preview.1",
+  "layout": {
+    "columns": 3,
+    "rows": 3,
+    "frame_px": [
+      640,
+      360
+    ],
+    "label_height_px": 72,
+    "gutter_px": 16,
+    "size_px": [
+      1984,
+      1360
+    ]
+  },
+  "method": "Exact frames from the published H.264 movies, uniformly scaled and tiled; localized titles added below each frame.",
+  "provenance": "Eight actual-engine scenic frames followed by the existing AI Coding closing card. Universe opening: build 288; seven scenic takes: build 287. Capture/scientific boundaries and credits follow README.md in this directory.",
+  "frames": [
+    {
+      "number": 1,
+      "video_frame": 90,
+      "time_seconds": 3.0,
+      "title_en": "Universe",
+      "title_zh": "宇宙结构",
+      "kind": "engine_scene"
+    },
+    {
+      "number": 2,
+      "video_frame": 285,
+      "time_seconds": 9.5,
+      "title_en": "Milky Way",
+      "title_zh": "银河系",
+      "kind": "engine_scene"
+    },
+    {
+      "number": 3,
+      "video_frame": 495,
+      "time_seconds": 16.5,
+      "title_en": "Solar System",
+      "title_zh": "太阳系",
+      "kind": "engine_scene"
+    },
+    {
+      "number": 4,
+      "video_frame": 705,
+      "time_seconds": 23.5,
+      "title_en": "Earth",
+      "title_zh": "地球",
+      "kind": "engine_scene"
+    },
+    {
+      "number": 5,
+      "video_frame": 915,
+      "time_seconds": 30.5,
+      "title_en": "Life on land",
+      "title_zh": "陆地生命",
+      "kind": "engine_scene"
+    },
+    {
+      "number": 6,
+      "video_frame": 1125,
+      "time_seconds": 37.5,
+      "title_en": "Ocean ecosystem",
+      "title_zh": "海洋生态",
+      "kind": "engine_scene"
+    },
+    {
+      "number": 7,
+      "video_frame": 1335,
+      "time_seconds": 44.5,
+      "title_en": "Heart muscle cell",
+      "title_zh": "心肌细胞",
+      "kind": "engine_scene"
+    },
+    {
+      "number": 8,
+      "video_frame": 1545,
+      "time_seconds": 51.5,
+      "title_en": "Atomic scale",
+      "title_zh": "原子尺度",
+      "kind": "engine_scene"
+    },
+    {
+      "number": 9,
+      "video_frame": 1725,
+      "time_seconds": 57.5,
+      "title_en": "Build with AI",
+      "title_zh": "AI共建",
+      "kind": "closing_card"
+    }
+  ],
+  "sources": [
+    {
+      "language": "en",
+      "url": "https://github.com/chobitsX/Twinverse/releases/download/v0.4.190-preview.1/twinverse-demo-en.mp4",
+      "sha256": "11d698a46b736bd1136703c7c50aa78101e1b09dfcfcd05f18d1e5c028e70688",
+      "fps": 30,
+      "duration_seconds": 60
+    },
+    {
+      "language": "zh",
+      "url": "https://github.com/chobitsX/Twinverse/releases/download/v0.4.190-preview.1/twinverse-demo-zh.mp4",
+      "sha256": "7a057f3b8ee8a0c8bd4a53a341eb6ff505fa46a3a59e215368e641abe27d80c1",
+      "fps": 30,
+      "duration_seconds": 60
+    }
+  ],
+  "outputs": [
+    {
+      "language": "en",
+      "file": "twinverse-storyboard-288-en.jpg",
+      "bytes": 417313,
+      "sha256": "401a2aa3d2310f65e346883ee9a0bbb653291de74e1dcac723f918564b12b1de"
+    },
+    {
+      "language": "zh",
+      "file": "twinverse-storyboard-288-zh.jpg",
+      "bytes": 398063,
+      "sha256": "7837ed745bc34f796c87aded79f73a9bf1c3c1d69e9ad6162452e4df6a533ad4"
+    }
+  ]
+}
