@@ -1,28 +1,43 @@
-# 路线图 / Roadmap
+# Roadmap / 路线图
 
-Twinverse的长期方向是可共同建设的教育型3D宇宙。优先让已有内容易理解、可运行、可验证，再逐步扩展。
+Twinverse is an educational 3D universe that people can explore and build together. Priorities follow actual use, scientific evidence and the cost of maintaining the content. This roadmap describes direction without promising delivery dates or unverified hardware support.
 
-## 当前基础：0.4.187
+## Available now: 0.4.190 / build 288
 
-已实现宇宙—银河—太阳系—地球的探索，以及代表性海陆生态、城市、两极、地面观星与生命内部参考层；三档画质、共享时间、局部教学实验及保存恢复已具备。当前原生验证集中于Apple Silicon Mac。
+- Explore an illustrative cosmic web, the Milky Way, Solar System and Earth, with representative habitats, cities, polar environments, the ground-level night sky and reference views inside life.
+- Ordinary launches start at the universe overview while preserving saved world progress and preferences. Shared time, save/recovery and three quality settings are available.
+- English and Simplified Chinese interfaces, system-language selection and a saved language preference are implemented.
+- Public source, asset origins/licenses, development instructions, issue templates and automated static checks are available. Existing content runs without generation-service credentials.
+- The project is developed entirely through AI Coding. [AGENTS.md](AGENTS.md), [CLAUDE.md](CLAUDE.md) and the [AI collaboration guide](docs/community/AI_COLLABORATION.md) provide shared contributor instructions.
+- A [macOS preview and 60-second English/Chinese demos](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.190-preview.1), a ten-second GIF and [static nine-frame storyboards](docs/media/README.md#static-storyboards--九帧静态速览) are published.
 
-## 近期：可参与的公开测试版
+The macOS preview contains Apple Silicon and Intel executables and is ad-hoc signed, without Apple notarization. Native validation currently covers the maintainer's M5 Mac. Intel Macs, 8GB/other lower-end Macs, Windows and Linux remain unverified; minimum hardware requirements have not been certified. See [Getting started](docs/community/GETTING_STARTED.md).
 
-- 完成公开源码、资源来源与许可清单，以及可从新环境运行的说明。
-- 在低配Mac及Windows集成/入门独显机器上验证，记录实测支持范围。
-- 排查首次进入等待、存档恢复和跨场景操作中的真实问题。
-- 提供可下载的测试包、版本说明和问题反馈入口。
-- 开展少量首次使用者测试，了解探索入口是否容易发现、知识表达是否清楚。
+## Next priorities
 
-## 后续：让内容更容易共同维护
+1. Gather a small number of first-use reports: downloading/opening the app, finding the next exploration layer, entering/returning and understanding the explanations. Fix concrete usability problems found in those reports.
+2. Obtain community reports from other Macs and Windows hardware before expanding the tested support range. Use short, relevant checks; investigate performance when a specific problem is reported.
+3. Improve installation and distribution, including future Developer ID signing and Apple notarization.
+4. Refine keyboard navigation, text readability, explanations and selected content based on feedback. Keep contribution tasks small and preserve source and license records.
 
-- 知识文本国际化，逐步提供英文界面与教学说明。
-- 改善键盘操作、文字对比度与不同屏幕的可读性。
-- 为科学数据更新、模型/素材替换和教学路线提供清晰的贡献流程。
-- 继续按实测热点优化生态场景性能。
+## Longer-term work
 
-## 长期探索
+Extend selected astronomy, ecology and teaching routes as their scientific references, assets and maintenance budget become available. Species-specific physiological calibration needs applicable data or expert review. The current teaching models and authored scenes retain their [scientific boundaries](docs/community/SCIENCE.md).
 
-更丰富的生态与天文主题、更多教学活动及更广的硬件覆盖。新增内容需兼顾科学依据、观察体验和运行预算；不承诺尚未实现的实时全球生态或完整宇宙动力学。
+Start with [a bounded first contribution](docs/community/FIRST_CONTRIBUTIONS.md) and [CONTRIBUTING.md](CONTRIBUTING.md).
 
-这份路线图表示优先方向，没有未经验证的交付日期。具体小任务见[第一份贡献](docs/community/FIRST_CONTRIBUTIONS.md)。
+## 中文
+
+### 当前已交付：0.4.190 / 288
+
+宇宙—银河—太阳系—地球及代表性生态、城市、两极、地面观星与生命内部参考层已可探索。普通启动从宇宙全景开始，保留世界进度和偏好；共享时间、保存恢复与三档画质已具备。中英文界面、跟随系统语言和语言偏好保存均已实现。
+
+公开源码、资源来源与许可、开发说明、问题模板、自动静态检查和AI共建规范已上线；无需生成服务账号即可运行现有内容。macOS预览包、60秒中英文演示、动图和九帧静态图均已发布。
+
+当前预览包为临时签名、未经Apple公证，包含Apple Silicon与Intel架构，目前仅维护者的M5 Mac实测。Intel Mac、8GB或其它低配Mac、Windows和Linux仍需实机报告，尚未冻结最低配置。
+
+### 接下来
+
+先收集少量首次试玩反馈，聚焦下载打开、探索入口、进入返回和说明理解中的实际问题；按具体反馈改进。社区实机报告用于逐步明确硬件范围，安装分发、正式签名与公证继续后续推进。键盘操作、文字可读性、科学说明与局部内容按需求完善，不以未测结果承诺兼容或交付日期。
+
+长期逐步扩展天文、生态与教学路线；物种生理参数标定需要适用资料或专家审核。科学范围见[科学说明](docs/community/SCIENCE.md)，参与方式见[第一份贡献](docs/community/FIRST_CONTRIBUTIONS.md)和[AI共建指南](docs/community/AI_COLLABORATION.md)。
