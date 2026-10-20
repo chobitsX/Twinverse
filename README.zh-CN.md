@@ -4,6 +4,8 @@
 
 [English](README.md) · [开始探索](docs/community/GETTING_STARTED.md) · [参与贡献](CONTRIBUTING.md) · [路线图](ROADMAP.md) · [科学边界](docs/community/SCIENCE.md)
 
+**本项目完全采用 AI Coding 方式开发。** 我们使用 Codex、Claude Code 等 AI 编程工具完成实现，由发起者提出目标、指导并核查结果，也欢迎其他贡献者用 AI 一起维护和改进项目。先读共享规范 [AGENTS.md](AGENTS.md) 与 [AI 共建指南](docs/community/AI_COLLABORATION.md)；Claude Code 通过 [CLAUDE.md](CLAUDE.md) 读取同一套规则。
+
 ![Godot实机中的宇宙结构教学视图](docs/media/cosmic-web.png)
 
 Twinverse 是一个以教育科普为主的开源3D宇宙探索与模拟应用。你可以旋转地球、走近不同生态环境，观察天体运动，也可以沿着一条鱼深入器官、细胞与分子层次。我们希望与开发者、美术创作者、教师和科学爱好者一起，让这些体验更准确、更直观，也能在更多电脑上运行。
@@ -34,7 +36,7 @@ macOS也可在仓库根目录运行：
 
 ```sh
 ./tools/godot.sh --headless --editor --quit
-./tools/godot.sh -- --no-save --experience-preset --scale universe
+./tools/godot.sh -- --no-save --experience-preset --scale=universe
 ```
 
 该命令默认流畅画质，适合第一次体验，不写入用户存档。需要保存进度时运行`./tools/godot.sh`。编辑器不在默认位置时，通过`GODOT_BIN`指定可执行文件。更完整的步骤、版本检查和故障说明见[开发指南](docs/community/DEVELOPMENT.md)。

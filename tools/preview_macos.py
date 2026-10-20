@@ -38,7 +38,10 @@ def main():
     local = ROOT / '.local/preview'
     local.mkdir(parents=True, exist_ok=True)
     with project_slot(ROOT):
-        app = (ROOT / 'builds/macos/current/3DWorld.app').resolve(strict=True)
+        app = ROOT / 'builds/macos/current/3DWorld.app'
+        if not app.is_dir():
+            app = ROOT / 'builds/macos/3DWorld.app'
+        app = app.resolve(strict=True)
         command = ['open', '-W', '-n', str(app), '--args', '--screen', str(args.screen),
                    '--resolution', preview_resolution(args.screen), '--windowed', '--max-fps', '30',
                    '--', f'--scale={args.scale}', '--no-save', '--experience-preset']

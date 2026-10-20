@@ -1,5 +1,7 @@
 # 开发与验证 / Development
 
+项目完全采用 AI Coding 方式开发，欢迎使用 Codex、Claude Code 等工具共同维护。开始前读根目录 [AGENTS.md](../../AGENTS.md)、[AI 共建指南](AI_COLLABORATION.md) 和 [贡献指南](../../CONTRIBUTING.md)。Claude Code 入口 [CLAUDE.md](../../CLAUDE.md) 导入同一份规范；公共源码不依赖维护者的私人开发历史或服务账号。
+
 ## 依赖
 
 - 标准版Godot **4.7.2**，完整标识以仓库根目录的[.godot-version](../../.godot-version)为准。不要用其他版本得到的结果冒充固定版本验证。
@@ -20,7 +22,7 @@ export GODOT_BIN="/path/to/Godot.app/Contents/MacOS/Godot"
 ./tools/godot.sh --headless --editor --quit
 
 # 首次体验：不写入用户存档，从宇宙视图开始。
-./tools/godot.sh -- --no-save --experience-preset --scale universe
+./tools/godot.sh -- --no-save --experience-preset --scale=universe
 ```
 
 若使用默认安装位置，请省略`export GODOT_BIN`那一行。运行`./tools/godot.sh`可使用正常保存功能；增加`--editor`可打开编辑器。辅助脚本会核对版本、降低任务优先级，并在已有本项目引擎进程时返回75。关闭预览后继续操作，不删除运行锁。
@@ -38,6 +40,21 @@ export GODOT_BIN="/path/to/Godot.app/Contents/MacOS/Godot"
 ```sh
 python3 tools/check_community.py
 ```
+
+翻译与导出资源清单：
+
+```sh
+python3 tools/check_localization.py
+python3 tools/sync_export_resources.py --check
+```
+
+macOS / Linux 的轻量工具测试（不启动真实3D引擎）：
+
+```sh
+python3 -m unittest discover -s tests/tools -p 'test_*.py'
+```
+
+`test_project_runtime_guard.py` 使用 Unix 进程/文件锁接口；Windows 可先运行静态检查及 `test_public_snapshot.py`、`test_localization.py`，不要将未跑的运行锁检查写成通过。
 
 macOS核心保存测试（独立临时文件，不改用户存档）：
 
@@ -60,6 +77,8 @@ mkdir -p .local/verification
 ```
 
 输出为`builds/macos/3DWorld.app`，不会自动生成维护者本机的`current`版本链接。导出前检查会报告礁区使用缓存还是运行时计算布局；当前替换后的生态资源使用已有的计算回退，首次进入仍可能需要准备。该检查验证当前依赖与配方，不把失效的旧物种文件当作必需输入，也不冒称重做了接触/性能验收。该导出预设用于开发验证；公开分发的签名、公证和新机器安装体验仍需独立处理。
+
+导出后，可用 `python3 tools/preview_macos.py --screen <实际显示器编号>` 打开受运行锁保护的预览。它优先使用已有的 `builds/macos/current/3DWorld.app`；没有该版本入口时使用上述普通导出，首次贡献不需要创建维护者专用链接。先核对实际主/副屏，优先副屏；关闭窗口后才释放运行锁。
 
 ## 目录
 

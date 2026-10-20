@@ -120,27 +120,28 @@ class RuntimeGuardTests(unittest.TestCase):
             self.assertGreaterEqual(value['nice'], 10)
 
     def test_preview_holds_shared_slot_until_open_wait_finishes(self):
-        with tempfile.TemporaryDirectory() as folder:
-            root = Path(folder).resolve()
-            app = root / 'builds/macos/current/3DWorld.app'
-            app.mkdir(parents=True)
-            launcher = Mock()
-            launcher.poll.return_value = None
-            def wait():
-                with self.assertRaises(guard.ProjectBusy):
+        for relative in ['builds/macos/current/3DWorld.app', 'builds/macos/3DWorld.app']:
+            with self.subTest(export=relative), tempfile.TemporaryDirectory() as folder:
+                root = Path(folder).resolve()
+                app = root / relative
+                app.mkdir(parents=True)
+                launcher = Mock()
+                launcher.poll.return_value = None
+                def wait():
+                    with self.assertRaises(guard.ProjectBusy):
+                        with guard.project_slot(root):
+                            self.fail('preview released slot before exit')
+                    return 0
+                launcher.wait.side_effect = wait
+                engine = {'pid': 123, 'executable': str(app / 'Contents/MacOS/3DWorld')}
+                with patch.object(preview, 'preview_resolution', return_value='2560x1600') as resolution, patch.object(preview, 'ROOT', root), patch.object(guard, 'project_processes', return_value=[]), patch.object(preview, 'project_processes', return_value=[engine]), patch.object(preview.subprocess, 'Popen', return_value=launcher) as start, patch.object(preview.subprocess, 'run', return_value=subprocess.CompletedProcess([], 0)) as run, patch.object(preview.tempfile, 'mkdtemp', return_value=folder), patch.object(sys, 'argv', ['preview_macos.py', '--screen', '1']):
+                    self.assertEqual(preview.main(), 0)
+                    resolution.assert_called_once_with(1)
+                    command = start.call_args.args[0]
+                    self.assertEqual(command[:4], ['open', '-W', '-n', str(app)])
+                    run.assert_called_once_with(['renice', '10', '-p', '123'], capture_output=True, text=True)
                     with guard.project_slot(root):
-                        self.fail('preview released slot before exit')
-                return 0
-            launcher.wait.side_effect = wait
-            engine = {'pid': 123, 'executable': str(app / 'Contents/MacOS/3DWorld')}
-            with patch.object(preview, 'preview_resolution', return_value='2560x1600') as resolution, patch.object(preview, 'ROOT', root), patch.object(guard, 'project_processes', return_value=[]), patch.object(preview, 'project_processes', return_value=[engine]), patch.object(preview.subprocess, 'Popen', return_value=launcher) as start, patch.object(preview.subprocess, 'run', return_value=subprocess.CompletedProcess([], 0)) as run, patch.object(preview.tempfile, 'mkdtemp', return_value=folder), patch.object(sys, 'argv', ['preview_macos.py', '--screen', '1']):
-                self.assertEqual(preview.main(), 0)
-                resolution.assert_called_once_with(1)
-                command = start.call_args.args[0]
-                self.assertEqual(command[:4], ['open', '-W', '-n', str(app)])
-                run.assert_called_once_with(['renice', '10', '-p', '123'], capture_output=True, text=True)
-                with guard.project_slot(root):
-                    pass
+                        pass
 
 
 if __name__ == '__main__':

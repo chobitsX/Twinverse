@@ -4,6 +4,8 @@
 
 [简体中文](README.zh-CN.md) · [Getting started](docs/community/GETTING_STARTED.md) · [Contributing](CONTRIBUTING.md) · [Roadmap](ROADMAP.md) · [Scientific scope](docs/community/SCIENCE.md)
 
+**Built entirely through AI Coding.** Twinverse is developed using Codex, Claude Code and similar coding agents, with the creator directing the work and checking the results. We welcome contributors who use AI to maintain and improve the project. Start with [AGENTS.md](AGENTS.md), the shared project rules, and the [AI collaboration guide](docs/community/AI_COLLABORATION.md); [CLAUDE.md](CLAUDE.md) imports the same rules for Claude Code.
+
 ![A cosmic-web teaching view rendered in Godot](docs/media/cosmic-web.png)
 
 Twinverse is an open-source educational 3D exploration and simulation application. Rotate Earth, approach different habitats, observe celestial motion, or follow a fish into organ, cell and molecular reference views. Developers, artists, educators, scientists and curious explorers are welcome to help improve its accuracy, accessibility and performance.
@@ -27,7 +29,7 @@ Use the standard **Godot 4.7.2** editor; the exact build is pinned in [.godot-ve
 ```sh
 # From the repository root on macOS; no user save writes.
 ./tools/godot.sh --headless --editor --quit
-./tools/godot.sh -- --no-save --experience-preset --scale universe
+./tools/godot.sh -- --no-save --experience-preset --scale=universe
 ```
 
 For normal save-enabled use, run `./tools/godot.sh`. Set `GODOT_BIN` if the editor is installed elsewhere. Tripo, Blender and generation-service API keys are not required to run existing content. See [development and validation](docs/community/DEVELOPMENT.md) for exact steps and current platform limits.

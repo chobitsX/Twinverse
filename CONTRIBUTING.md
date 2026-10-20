@@ -2,6 +2,12 @@
 
 感谢你帮助更多人通过观察理解世界。欢迎中文或英文的Issue和Pull Request，也欢迎科学审校、翻译、美术和测试贡献。
 
+## AI Coding 共建 / Contribute with AI
+
+Twinverse 完全采用 AI Coding 方式开发，欢迎使用 Codex、Claude Code 或其他 AI 编程工具参与维护。先让工具读取 [AGENTS.md](AGENTS.md) 和 [AI 共建指南](docs/community/AI_COLLABORATION.md)，再确认范围、实现和验证；[CLAUDE.md](CLAUDE.md) 共享同一套规则。运行现有内容不需要 AI 服务账号或生成密钥。
+
+Twinverse has been developed entirely through AI Coding. Contributions using Codex, Claude Code and other coding agents are welcome. Read the shared rules and [AI contribution loop](docs/community/AI_COLLABORATION.md), inspect the diff, and report the checks actually performed. Mention your tools if useful; full prompts or private conversations are not required.
+
 ## 第一份贡献
 
 先阅读[运行指南](docs/community/DEVELOPMENT.md)，再从[具体的小任务](docs/community/FIRST_CONTRIBUTIONS.md)选择一项。报告问题不要求你先修复代码。较大改动先开Issue说明教育目的、现有问题与范围，便于协调。

@@ -2,6 +2,11 @@
 
 说明具体问题，以及用户能观察到的变化。
 
+欢迎通过 AI Coding 贡献。请先遵循 [AGENTS.md](https://github.com/chobitsX/Twinverse/blob/main/AGENTS.md) 与 [AI 共建指南](https://github.com/chobitsX/Twinverse/blob/main/docs/community/AI_COLLABORATION.md)。
+AI Coding contributions are welcome; follow the shared project rules and report the verification actually performed.
+
+- 使用的 AI 工具 / AI tools used（可选 / optional）：
+
 ## 验证 / Validation
 
 - 实际运行的检查、设备或场景：
