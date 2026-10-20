@@ -217,7 +217,12 @@ func ui_view_size() -> Vector2i:
 
 
 func _apply_ui_scale() -> void:
-	ui_scale = 1.0 if DisplayServer.get_name()=="headless" else clampf(DisplayServer.screen_get_scale(get_window().current_screen),1.0,3.0)
+	ui_scale = 1.0
+	if DisplayServer.get_name()!="headless":
+		# macOS window/viewport coordinates use the session's maximum density,
+		# including on a 1x external screen. Per-screen density halves the HUD there.
+		var density: float = DisplayServer.screen_get_max_scale() if OS.get_name()=="macOS" else DisplayServer.screen_get_scale(get_window().current_screen)
+		ui_scale = clampf(density,1.0,3.0)
 	if not is_instance_valid(hud): return
 	hud.scale = Vector2.ONE * ui_scale
 	hud.size = Vector2(ui_view_size())
@@ -377,7 +382,7 @@ func _ready() -> void:
 			metadata.merge(_run_metadata, true)
 			_motion_recording = motion.begin(argument.trim_prefix("--motion="), get_viewport(), metadata) == OK
 			if not _motion_recording: push_error("MOTION_START_FAILED")
-	print("EXPERIENCE_READY ", JSON.stringify({"scale": _start_scale, "target": WorldState.TARGET_FISH_ID, "driver": RenderingServer.get_current_rendering_driver_name(), "arm64": OS.has_feature("arm64"), "debug_build": OS.is_debug_build(), "output_px": str(get_viewport().get_texture().get_size()), "ratio": _render_ratio}))
+	print("EXPERIENCE_READY ", JSON.stringify({"scale": _start_scale, "target": WorldState.TARGET_FISH_ID, "driver": RenderingServer.get_current_rendering_driver_name(), "arm64": OS.has_feature("arm64"), "debug_build": OS.is_debug_build(), "output_px": str(get_viewport().get_texture().get_size()), "ratio": _render_ratio, "ui_scale":ui_scale, "logical_ui":str(ui_view_size())}))
 	if not _capture_path.is_empty(): _capture_when_ready.call_deferred()
 
 

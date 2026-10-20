@@ -30,7 +30,8 @@ func run() -> void:
 	original_id=main.world.get_instance_id(); original_time=main.world.simulation_time_s; original_jd=main.solar_jd
 	main.world_guide.hide(); main.explorer_panel.show(); main.message_label.text=""
 	await settle(); await settle()
-	check("native Retina scale follows the actual display",is_equal_approx(main.ui_scale,DisplayServer.screen_get_scale(get_window().current_screen)))
+	var expected_density: float = DisplayServer.screen_get_max_scale() if OS.get_name()=="macOS" else DisplayServer.screen_get_scale(get_window().current_screen)
+	check("HUD density matches native window coordinate units",is_equal_approx(main.ui_scale,expected_density))
 	check("HUD logical extent and native 3D pixels remain separate",main.hud.size.is_equal_approx(get_viewport().get_visible_rect().size/main.ui_scale) and main.coordinator.active_scene.viewport.size==get_window().size)
 	check("readable body, navigation and date text",main.explorer_panel.summary_text.get_theme_font_size("font_size")==18 and main.navigation_bar.path_buttons[-1].get_theme_font_size("font_size")==16 and main.time_label.get_theme_font_size("font_size")>=16)
 	check("UI glyphs rasterize at Retina density",is_equal_approx(main.hud.theme.default_font.oversampling,main.ui_scale) and main.hud.theme.default_font.has_char("鉴".unicode_at(0)) and main.object_pointer.theme==main.hud.theme)
