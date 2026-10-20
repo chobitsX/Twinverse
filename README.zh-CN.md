@@ -4,13 +4,17 @@
 
 [English](README.md) · [开始探索](docs/community/GETTING_STARTED.md) · [参与贡献](CONTRIBUTING.md) · [路线图](ROADMAP.md) · [科学边界](docs/community/SCIENCE.md)
 
-**本项目完全采用 AI Coding 方式开发。** 我们使用 Codex、Claude Code 等 AI 编程工具完成实现，由发起者提出目标、指导并核查结果，也欢迎其他贡献者用 AI 一起维护和改进项目。先读共享规范 [AGENTS.md](AGENTS.md) 与 [AI 共建指南](docs/community/AI_COLLABORATION.md)；Claude Code 通过 [CLAUDE.md](CLAUDE.md) 读取同一套规则。
+[![孪生宇宙：银河、地球、礁区与微观世界的10秒动态预览](docs/media/twinverse-preview.gif)](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.189-preview.1)
 
-![Godot实机中的宇宙结构教学视图](docs/media/cosmic-web.png)
+[下载 macOS 体验包](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.189-preview.1) · [54秒中文演示（MP4）](https://github.com/chobitsX/Twinverse/releases/download/v0.4.189-preview.1/twinverse-demo-zh.mp4) · [English demo](https://github.com/chobitsX/Twinverse/releases/download/v0.4.189-preview.1/twinverse-demo-en.mp4) · [静态封面](docs/media/twinverse-poster.jpg)
+
+真实Godot场景，采用程序化运镜与剪辑。[录制方式与署名](docs/media/README.md)。
+
+**本项目完全采用 AI Coding 方式开发。** 我们使用 Codex、Claude Code 等 AI 编程工具完成实现，由发起者提出目标、指导并核查结果，也欢迎其他贡献者用 AI 一起维护和改进项目。先读共享规范 [AGENTS.md](AGENTS.md) 与 [AI 共建指南](docs/community/AI_COLLABORATION.md)；Claude Code 通过 [CLAUDE.md](CLAUDE.md) 读取同一套规则。
 
 Twinverse 是一个以教育科普为主的开源3D宇宙探索与模拟应用。你可以旋转地球、走近不同生态环境，观察天体运动，也可以沿着一条鱼深入器官、细胞与分子层次。我们希望与开发者、美术创作者、教师和科学爱好者一起，让这些体验更准确、更直观，也能在更多电脑上运行。
 
-> 当前版本 **0.4.189（287）**。界面支持简体中文与英文，可从右上角“···”菜单选择语言，支持跟随系统并保存偏好。核心代表场景已可体验；目前实机验证集中在 Apple Silicon Mac。Windows 与低配硬件验证正在路线图中，尚无公开二进制发行版。
+> 当前版本 **0.4.189（287）**。界面支持简体中文与英文，可从右上角“···”菜单选择语言，支持跟随系统并保存偏好。核心代表场景已可体验；目前实机验证集中在 Apple Silicon Mac。Windows 与低配硬件验证正在路线图中，已有[macOS预览包](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.189-preview.1)（临时签名、未公证）；Intel Mac和其它硬件仍未实测。
 
 ## 可以探索什么
 

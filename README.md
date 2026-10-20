@@ -4,13 +4,17 @@
 
 [简体中文](README.zh-CN.md) · [Getting started](docs/community/GETTING_STARTED.md) · [Contributing](CONTRIBUTING.md) · [Roadmap](ROADMAP.md) · [Scientific scope](docs/community/SCIENCE.md)
 
-**Built entirely through AI Coding.** Twinverse is developed using Codex, Claude Code and similar coding agents, with the creator directing the work and checking the results. We welcome contributors who use AI to maintain and improve the project. Start with [AGENTS.md](AGENTS.md), the shared project rules, and the [AI collaboration guide](docs/community/AI_COLLABORATION.md); [CLAUDE.md](CLAUDE.md) imports the same rules for Claude Code.
+[![Twinverse: a 10-second preview of galaxies, Earth, reef life and cell structures](docs/media/twinverse-preview.gif)](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.189-preview.1)
 
-![A cosmic-web teaching view rendered in Godot](docs/media/cosmic-web.png)
+[Try the macOS preview](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.189-preview.1) · [54-second demo (MP4)](https://github.com/chobitsX/Twinverse/releases/download/v0.4.189-preview.1/twinverse-demo-en.mp4) · [中文演示](https://github.com/chobitsX/Twinverse/releases/download/v0.4.189-preview.1/twinverse-demo-zh.mp4) · [Static poster](docs/media/twinverse-poster.jpg)
+
+Actual Godot scenes with scripted cameras and edited cuts. [Capture details and credits](docs/media/README.md).
+
+**Built entirely through AI Coding.** Twinverse is developed using Codex, Claude Code and similar coding agents, with the creator directing the work and checking the results. We welcome contributors who use AI to maintain and improve the project. Start with [AGENTS.md](AGENTS.md), the shared project rules, and the [AI collaboration guide](docs/community/AI_COLLABORATION.md); [CLAUDE.md](CLAUDE.md) imports the same rules for Claude Code.
 
 Twinverse is an open-source educational 3D exploration and simulation application. Rotate Earth, approach different habitats, observe celestial motion, or follow a fish into organ, cell and molecular reference views. Developers, artists, educators, scientists and curious explorers are welcome to help improve its accuracy, accessibility and performance.
 
-**Current version: 0.4.189 (build 287).** Representative scenes are playable. Native validation currently focuses on Apple Silicon Macs; Windows and lower-end hardware remain unverified. No public binary release is available yet. The interface supports English and Simplified Chinese. Choose a language or follow the system in the top-right “···” menu; the preference is saved locally.
+**Current version: 0.4.189 (build 287).** Representative scenes are playable. Native validation currently focuses on Apple Silicon Macs; Windows and lower-end hardware remain unverified. A [macOS preview](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.189-preview.1) is available (ad-hoc signed, unnotarized); Intel Macs are also unverified. The interface supports English and Simplified Chinese. Choose a language or follow the system in the top-right “···” menu; the preference is saved locally.
 
 ## Explore
 
@@ -42,7 +46,7 @@ The default foreground cap is 30 FPS, with 5 FPS in the background and two share
 
 ## Contribute
 
-Start with [a bounded first contribution](docs/community/FIRST_CONTRIBUTIONS.md). Science corrections, documentation, translation, art and device reports are welcome alongside code. Read [CONTRIBUTING.md](CONTRIBUTING.md) and the [roadmap](ROADMAP.md).
+Start with [a bounded first contribution](docs/community/FIRST_CONTRIBUTIONS.md) or a [good first issue](https://github.com/chobitsX/Twinverse/issues?q=is%3Aopen%20label%3A%22good%20first%20issue%22). Science corrections, documentation, translation, art and device reports are welcome alongside code. Read [CONTRIBUTING.md](CONTRIBUTING.md) and the [roadmap](ROADMAP.md).
 
 ## Licensing
 

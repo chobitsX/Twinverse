@@ -1,6 +1,13 @@
 # 第一份贡献 / First contributions
 
-以下是可以转为Issue的具体任务草案。开始前先查看已有Issue和PR，避免重复；当前文档不是已自动创建的远程Issue列表。
+已建立以下可直接参与的公开任务。开始前先查看Issue状态和已有PR，并在对应Issue说明选定范围，避免重复。欢迎使用Codex、Claude Code等AI工具；请先阅读[共享规则](../../AGENTS.md)和[AI共建指南](AI_COLLABORATION.md)。
+
+- [#1 核对英文操作说明](https://github.com/chobitsX/Twinverse/issues/1) · `good first issue`
+- [#2 核对一个天文主题的主要来源](https://github.com/chobitsX/Twinverse/issues/2) · `good first issue`
+- [#3 改进一组少量英文界面术语](https://github.com/chobitsX/Twinverse/issues/3) · `good first issue`
+- [#4 提供Windows或8GB Mac首次运行报告](https://github.com/chobitsX/Twinverse/issues/4) · `help wanted`
+
+以下表格保留可选贡献范围；尚未链接Issue的条目仍是建议，开始前请先讨论具体问题。
 
 | 任务 | 范围与入口 | 完成标准 |
 |---|---|---|
@@ -15,8 +22,8 @@
 
 ## 建议标签
 
-维护者建立仓库后可使用`good first issue`、`help wanted`、`science`、`documentation`、`art`和`platform-test`。只给边界清楚、确实适合首次参与的任务加新手标签。
+已建立的任务使用`good first issue`、`help wanted`和`documentation`；科学、美术或平台任务可按需增加标签。只给边界清楚、确实适合首次参与的任务加新手标签。
 
 ## English
 
-Good starting points include a first-run device report, one confusing instruction, a small terminology correction, one science-source check, or a reproducible narrow-window UI issue. Asset work needs prior discussion and is not automatically a beginner task. These are local task drafts, not remotely created issues.
+Good starting points include a first-run device report, one confusing instruction, a small terminology correction, one science-source check, or a reproducible narrow-window UI issue. Asset work needs prior discussion and is not automatically a beginner task. Start with the live tasks [#1](https://github.com/chobitsX/Twinverse/issues/1), [#2](https://github.com/chobitsX/Twinverse/issues/2), [#3](https://github.com/chobitsX/Twinverse/issues/3) or the device-report request [#4](https://github.com/chobitsX/Twinverse/issues/4). The unlinked table entries remain contribution ideas; check with the maintainer before starting those.
