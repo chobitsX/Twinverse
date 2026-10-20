@@ -5,3 +5,4 @@
 /docs/evidence/** -text -whitespace
 /assets/data/** -text
 /data/environment/** -text
+/LICENSES/GODOT-* -text -whitespace

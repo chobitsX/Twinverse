@@ -100,3 +100,10 @@ GLB导入会抽取一些纹理，这些派生文件由公共`.gitignore`排除�
 ## English summary
 
 Use the exact standard Godot build pinned in `.godot-version`. Import the project before running it. On macOS the helper accepts `GODOT_BIN`, enforces the version and serializes engine jobs. Windows/Linux users should use the editor's project manager; those platforms are not certified yet. Run `python3 tools/check_community.py` for documentation changes. The isolated save test above is available on macOS after import. Keep validation proportional and distinguish tested results from unverified platforms.
+
+
+## 发行包的引擎许可 / Engine notices in binary distributions
+
+分发导出应用时，同时附上`LICENSES/GODOT-MIT.txt`与`LICENSES/GODOT-NOTICES.txt`，以及项目的`LICENSING.md`、`THIRD_PARTY_NOTICES.md`和资源署名。当前完整引擎/组件文本通过同版本官方Godot的`Engine.get_license_text()`、`get_copyright_info()`与`get_license_info()`取得；包含可选/编辑器组件时不表示这些组件都进入应用。更新Godot版本时重新取得对应版本的声明；不把全部第三方代码归为项目MIT。
+
+Ship the Godot MIT text and full component notices alongside any binary distribution. The checked files are `LICENSES/GODOT-MIT.txt` and `LICENSES/GODOT-NOTICES.txt`; keep project/asset attribution too. Refresh the engine notices when updating the pinned Godot version. Optional/editor-only inventory entries may be included.

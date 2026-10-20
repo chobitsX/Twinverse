@@ -17,7 +17,7 @@
 | 区域环境数据 | NOAA NCEI / World Ocean Atlas 2023，DOI **10.25921/va26-hv25** | `data/environment/`保留具体文件URL、SHA与历史年均数据边界 |
 | 生态生成模型/表面 | Twinverse contributors；使用Tripo Studio H3.1，项目原创几何与局部后处理；[Tripo条款](https://www.tripo3d.ai/terms) | 维护者已确认生成时付费；自有可授权部分按CC BY 4.0，第三方输入/原料不因此改变许可 |
 | 原创程序模型、材质与声音 | Twinverse contributors；部分二维素材使用生成工具辅助 | 运行代码按MIT，清单中可授权美术按CC BY 4.0；程序声景不是现场录音 |
-| 引擎 | Godot Engine contributors；[MIT许可](https://godotengine.org/license/) | 本源码快照不包含Godot引擎二进制；应用包需同时保留引擎及模板自带第三方说明 |
+| 引擎 | Godot Engine contributors；[MIT许可](https://godotengine.org/license/) | 源码不含Godot二进制；预览包附带[引擎与完整组件许可](LICENSES/GODOT-NOTICES.txt)，由同版本官方引擎API导出，可能含仅编辑器使用的组件条目。分发应用时保留这些说明 |
 
 模型属于教学参考，不能因其生成方式或视觉精细度推定解剖精度。运行时使用系统字体，没有单独捆绑字体文件。
 

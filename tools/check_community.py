@@ -15,7 +15,7 @@ def main() -> int:
     errors = []
     required = ["AGENTS.md", "CLAUDE.md", "README.md", "README.zh-CN.md", "README.en.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md", "SECURITY.md",
                 "ROADMAP.md", "LICENSE", "LICENSING.md", "THIRD_PARTY_NOTICES.md",
-                "LICENSES/CC-BY-4.0.txt", "docs/community/ASSET_INVENTORY.json"]
+                "LICENSES/CC-BY-4.0.txt", "LICENSES/GODOT-MIT.txt", "LICENSES/GODOT-NOTICES.txt", "docs/community/ASSET_INVENTORY.json"]
     for name in required:
         if not (ROOT / name).is_file():
             errors.append("Missing required file: " + name)
