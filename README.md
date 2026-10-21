@@ -8,6 +8,8 @@
 
 [Try the macOS preview](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.190-preview.1) · [60-second demo (MP4)](https://github.com/chobitsX/Twinverse/releases/download/v0.4.190-preview.1/twinverse-demo-en.mp4) · [中文演示](https://github.com/chobitsX/Twinverse/releases/download/v0.4.190-preview.1/twinverse-demo-zh.mp4) · [Static poster](docs/media/twinverse-poster-288.jpg)
 
+Lightweight WebM: [English (27.4 MB)](https://github.com/chobitsX/Twinverse/releases/download/v0.4.190-preview.1/twinverse-demo-en.webm) · [简体中文 (28.1 MB)](https://github.com/chobitsX/Twinverse/releases/download/v0.4.190-preview.1/twinverse-demo-zh.webm). MP4 downloads are available above.
+
 Actual Godot scenes with scripted cameras and edited cuts. [Capture details and credits](docs/media/README.md).
 
 **Built entirely through AI Coding.** Twinverse is developed using Codex, Claude Code and similar coding agents, with the creator directing the work and checking the results. We welcome contributors who use AI to maintain and improve the project. Start with [AGENTS.md](AGENTS.md), the shared project rules, and the [AI collaboration guide](docs/community/AI_COLLABORATION.md); [CLAUDE.md](CLAUDE.md) imports the same rules for Claude Code.

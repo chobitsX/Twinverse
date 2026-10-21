@@ -6,6 +6,32 @@ The universe opening is captured from **0.4.190 / build 288**; seven unchanged b
 
 Movie Maker uses fixed simulation steps; the maintainer captured slowly in the background to respect the machine's resource budget. **The video is an edited scenic demonstration, not a real-time performance benchmark or continuous navigation recording.** Scientific illustrations and simplified habitats retain the [documented scientific boundaries](../community/SCIENCE.md).
 
+## Lightweight WebM / WebM轻量版
+
+The release also includes VP9 WebM previews alongside the original H.264 MP4 downloads. Both retain the same 60-second edit, 1920×1080 resolution, 30 FPS, BT.709 color and silent playback.
+
+| Edition / 语言 | MP4 | WebM | Smaller / 减少 | Mean SSIM vs MP4 |
+|---|---:|---:|---:|---:|
+| English | 51.62 MB | 27.35 MB | 47.0% | 0.9922 |
+| 简体中文 | 53.88 MB | 28.14 MB | 47.8% | 0.9920 |
+
+File sizes above use decimal MB. All 1,800 frames of each WebM were decoded and compared against its released MP4. Nine selected scene pairs and native-pixel crops of star fields, captions and dark ocean detail were reviewed. The WebM files are lossy transcodes; the SSIM reference is itself compressed. Keep the original MP4 for broad playback compatibility and the higher-quality reference. Exact hashes, settings and measurements are in [webm-288.json](webm-288.json); release download hashes are in `SHA256SUMS.txt`.
+
+新增WebM轻量预览，MP4原文件继续提供。保持60秒剪辑、1080p30、色彩和字幕；两版各1800帧完整解码与数值比较，九组关键场景及星点、文字、暗部裁切已看。属于有损转码，SSIM以已压缩MP4为参照，不代表无损；下载校验值随Release更新。
+
+To reproduce the preview encoding, use FFmpeg with `libvpx-vp9`:
+
+```sh
+ffmpeg -i input.mp4 -map 0:v:0 -an -map_metadata -1 \
+  -c:v libvpx-vp9 -b:v 0 -crf 30 -deadline good -cpu-used 4 \
+  -row-mt 1 -tile-columns 1 -frame-parallel 1 -lag-in-frames 25 \
+  -g 120 -aq-mode 0 -threads 2 -pix_fmt yuv420p \
+  -color_range tv -colorspace bt709 -color_primaries bt709 -color_trc bt709 \
+  output.webm
+```
+
+The source demos are SDR BT.709. These settings preserve that source profile; other source formats need their own color handling.
+
 ## Static storyboards / 九帧静态速览
 
 [English storyboard](twinverse-storyboard-288-en.jpg) · [中文九帧图](twinverse-storyboard-288-zh.jpg) · [Frame times and source hashes](storyboard-288.json)

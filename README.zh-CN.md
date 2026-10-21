@@ -8,6 +8,8 @@
 
 [下载 macOS 体验包](https://github.com/chobitsX/Twinverse/releases/tag/v0.4.190-preview.1) · [60秒中文演示（MP4）](https://github.com/chobitsX/Twinverse/releases/download/v0.4.190-preview.1/twinverse-demo-zh.mp4) · [English demo](https://github.com/chobitsX/Twinverse/releases/download/v0.4.190-preview.1/twinverse-demo-en.mp4) · [静态封面](docs/media/twinverse-poster-288.jpg)
 
+WebM 轻量版：[中文（28.1 MB）](https://github.com/chobitsX/Twinverse/releases/download/v0.4.190-preview.1/twinverse-demo-zh.webm) · [English (27.4 MB)](https://github.com/chobitsX/Twinverse/releases/download/v0.4.190-preview.1/twinverse-demo-en.webm)；MP4 下载入口见上方。
+
 真实Godot场景，采用程序化运镜与剪辑。[录制方式与署名](docs/media/README.md)。
 
 **本项目完全采用 AI Coding 方式开发。** 我们使用 Codex、Claude Code 等 AI 编程工具完成实现，由发起者提出目标、指导并核查结果，也欢迎其他贡献者用 AI 一起维护和改进项目。先读共享规范 [AGENTS.md](AGENTS.md) 与 [AI 共建指南](docs/community/AI_COLLABORATION.md)；Claude Code 通过 [CLAUDE.md](CLAUDE.md) 读取同一套规则。

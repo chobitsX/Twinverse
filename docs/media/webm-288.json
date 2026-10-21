@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "application_version": "0.4.190",
+  "application_build": 288,
+  "duration_s": 60,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "audio_tracks": 0,
+  "encoding": {
+    "codec": "VP9",
+    "encoder": "libvpx-vp9",
+    "crf": 30,
+    "cpu_used": 4,
+    "threads": 2,
+    "row_mt": true,
+    "tile_columns": 1,
+    "keyframe_interval": 120,
+    "pixel_format": "yuv420p",
+    "color_range": "tv",
+    "color_space": "bt709"
+  },
+  "quality_scope": "Lossy transcodes of the existing released MP4s. All frames decoded and compared by SSIM; nine selected scene pairs plus native-pixel star, text and dark-ocean crops visually reviewed. SSIM is relative to an already-compressed MP4, not a lossless master.",
+  "mp4_originals_retained": true,
+  "editions": [
+    {
+      "language": "en",
+      "source": {
+        "file": "twinverse-demo-en.mp4",
+        "url": "https://github.com/chobitsX/Twinverse/releases/download/v0.4.190-preview.1/twinverse-demo-en.mp4",
+        "bytes": 51615840,
+        "sha256": "11d698a46b736bd1136703c7c50aa78101e1b09dfcfcd05f18d1e5c028e70688"
+      },
+      "webm": {
+        "file": "twinverse-demo-en.webm",
+        "url": "https://github.com/chobitsX/Twinverse/releases/download/v0.4.190-preview.1/twinverse-demo-en.webm",
+        "bytes": 27353289,
+        "sha256": "99aff7ea4d97b9ce949390eb4869e0dfc0eed0c63e9ab8928b94f6ab858fb9d6"
+      },
+      "reduction_percent": 47.006017920080346,
+      "ssim_mean_vs_mp4": 0.9922476527777789,
+      "ssim_min_frame": 0.972369,
+      "fully_decoded_frames": 1800
+    },
+    {
+      "language": "zh",
+      "source": {
+        "file": "twinverse-demo-zh.mp4",
+        "url": "https://github.com/chobitsX/Twinverse/releases/download/v0.4.190-preview.1/twinverse-demo-zh.mp4",
+        "bytes": 53883386,
+        "sha256": "7a057f3b8ee8a0c8bd4a53a341eb6ff505fa46a3a59e215368e641abe27d80c1"
+      },
+      "webm": {
+        "file": "twinverse-demo-zh.webm",
+        "url": "https://github.com/chobitsX/Twinverse/releases/download/v0.4.190-preview.1/twinverse-demo-zh.webm",
+        "bytes": 28141873,
+        "sha256": "33a94c11db0015e063d87019b7eb109fa8d8a93ce52ffde83fd5120c5755cad3"
+      },
+      "reduction_percent": 47.77263440719928,
+      "ssim_mean_vs_mp4": 0.9919619705555555,
+      "ssim_min_frame": 0.971301,
+      "fully_decoded_frames": 1800
+    }
+  ]
+}
